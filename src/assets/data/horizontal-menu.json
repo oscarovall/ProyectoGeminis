@@ -1,0 +1,307 @@
+[
+	{
+		"title": "Dashboards",
+		"icon": "icofont-ui-home",
+		"sub": [
+			{
+				"title": "Default",
+				"routing": "default-dashboard"
+			},
+			{
+				"title": "Analytical",
+				"routing": "analytical-dashboard"
+			},
+			{
+				"title": "Financial",
+				"routing": "financial-dashboard"
+			},
+			{
+				"title": "Travel",
+				"routing": "travel-dashboard"
+			}
+		]
+	},
+	{
+		"title": "Apps",
+		"icon": "icofont-database",
+		"sub": [
+			{
+				"title": "Calendar",
+				"routing": "calendar"
+			},
+			{
+				"title": "Chat",
+				"routing": "chat"
+			},
+			{
+				"title": "Contacts",
+				"routing": "contacts"
+			},
+			{
+				"title": "Inbox",
+				"routing": "inbox"
+			},
+			{
+				"title": "Taskboard",
+				"routing": "taskboard"
+			},
+			{
+				"title": "Todo List",
+				"routing": "todo-list"
+			},
+			{
+				"title": "Users",
+				"routing": "users"
+			}
+		]
+	},
+	{
+		"title": "Widgets",
+		"icon": "icofont-layers",
+		"sub": [
+			{
+				"title": "Chart Widgets",
+				"routing": "chart-widgets"
+			},
+			{
+				"title": "Data Widgets",
+				"routing": "data-widgets"
+			},
+			{
+				"title": "Media Widgets",
+				"routing": "media-widgets"
+			}
+		]
+	},
+	{
+		"icon": "icofont-library",
+		"title": "UI Kit",
+    "subSections": 2,
+		"sub": [
+      {
+        "subSection": [
+          {
+            "title": "Accordions",
+            "routing": "accordions"
+          },
+          {
+            "title": "Alerts",
+            "routing": "alerts"
+          },
+          {
+            "title": "Autocompletes",
+            "routing": "autocompletes"
+          },
+          {
+            "title": "Badges",
+            "routing": "badges"
+          },
+          {
+            "title": "Buttons",
+            "routing": "buttons"
+          },
+          {
+            "title": "Cards",
+            "routing": "cards"
+          },
+          {
+            "title": "Checkboxes",
+            "routing": "checkboxes"
+          },
+          {
+            "title": "Dropdowns",
+            "routing": "dropdowns"
+          },
+          {
+            "title": "Inputs",
+            "routing": "inputs"
+          },
+          {
+            "title": "Lists",
+            "routing": "lists"
+          },
+          {
+            "title": "Notifications",
+            "routing": "notifications"
+          }
+        ]
+      },
+      {
+        "subSection": [
+          {
+            "title": "Progress",
+            "routing": "progress"
+          },
+          {
+            "title": "Radio buttons",
+            "routing": "radio-buttons"
+          },
+          {
+            "title": "Ratings",
+            "routing": "ratings"
+          },
+          {
+            "title": "Selects",
+            "routing": "selects"
+          },
+          {
+            "title": "Sliders",
+            "routing": "sliders"
+          },
+          {
+            "title": "Switcher",
+            "routing": "switchers"
+          },
+          {
+            "title": "Tabs",
+            "routing": "tabs"
+          },
+          {
+            "title": "Textareas",
+            "routing": "textareas"
+          },
+          {
+            "title": "Vertical timeline",
+            "routing": "v-timeline"
+          },
+          {
+            "title": "Typography",
+            "routing": "typography"
+          },
+          {
+            "title": "Icons",
+            "routing": "icons"
+          }
+        ]
+      }
+		]
+	},
+	{
+		"title": "Data",
+		"icon": "icofont-listing-box",
+		"subSections": 4,
+		"sub": [
+			{
+				"sectionTitle": "Forms",
+				"subSection": [
+					{
+						"title": "Form elements",
+						"routing": "form-elements"
+					},
+					{
+						"title": "Form layout",
+						"routing": "form-layout"
+					},
+					{
+						"title": "Form validation",
+						"routing": "form-validation"
+					},
+					{
+						"title": "Form Wizard",
+						"routing": "form-wizard"
+					}
+				]
+			},
+			{
+				"sectionTitle": "Tables",
+				"subSection": [
+					{
+						"title": "Simple Tables",
+						"routing": "simple-tables"
+					},
+					{
+						"title": "Filter Table",
+						"routing": "filter-table"
+					},
+					{
+						"title": "Sorting Table",
+						"routing": "sorting-table"
+					},
+					{
+						"title": "Search Table",
+						"routing": "search-table"
+					},
+					{
+						"title": "Pagination Table",
+						"routing": "pagination-table"
+					}
+				]
+			},
+			{
+				"sectionTitle": "Maps",
+				"subSection": [
+					{
+						"title": "Google Maps",
+						"routing": "google-maps"
+					},
+					{
+						"title": "Leaflet maps",
+						"routing": "leaflet-maps"
+					}
+				]
+			},
+			{
+				"sectionTitle": "Charts",
+				"subSection": [
+					{
+						"title": "Ng2 Charts",
+						"routing": "ng2-charts"
+					},
+					{
+						"title": "Ngx Charts",
+						"routing": "ngx-charts"
+					}
+				]
+			}
+		]
+	},
+	{
+		"title": "Pages",
+		"icon": "icofont-education",
+		"subSections": 2,
+		"sub": [
+			{
+				"sectionTitle": "Service pages",
+				"subSection": [
+					{
+						"title": "Pricing",
+						"routing": "pricing"
+					},
+					{
+						"title": "Invoice",
+						"routing": "invoice"
+					},
+					{
+						"title": "FAQ",
+						"routing": "faq"
+					},
+					{
+						"title": "Timeline",
+						"routing": "timeline"
+					}
+				]
+			},
+			{
+				"sectionTitle": "Extra pages",
+				"subSection": [
+					{
+						"title": "Log In",
+						"routing": "/extra/log-in"
+					},
+					{
+						"title": "Sign Up",
+						"routing": "/extra/sign-up"
+					},
+					{
+						"title": "404 Page",
+						"routing": "/extra/404"
+					},
+					{
+						"title": "500 Page",
+						"routing": "/extra/500"
+					}
+				]
+			}
+		]
+	}
+]

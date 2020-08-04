@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-12 p-0" *ngFor="let documentItem of documents">
+    <div class="line">
+      <a *ngIf="!type" [href]="documentItem.link" target="_blank">
+        <tc-checkbox [value]="documentItem.uploaded" [disabled]="true" >
+          <span class="tittle">{{documentItem.name}}</span>
+        </tc-checkbox>
+      </a>
+      <a *ngIf="type" [href]="documentItem.link" target="_blank">
+        <tc-checkbox [value]="documentItem.uploaded" [disabled]="true" >
+          <span class="tittle">{{documentItem.name}}</span>
+        </tc-checkbox>
+      </a>
+      <div *ngIf="!disabled">
+        <div class="icon tc-icon-wrap aosp-ui-upload" (click)="uploadDocument(documentItem.name, {docName: documentItem.name, AttributeID: documentItem.attributeId})"></div>
+      </div>
+    </div>
+    <span class="date" *ngIf="documentItem.updateTime">{{documentItem.updateTime}}</span>
+    <div class="line">
+      <div *ngIf="documentItem.required && !documentItem.link" [ngClass]="{'document_required': documentItem.required}" >Required</div>
+    </div>
+    <hr>
+  </div>
+  <div style="text-align: center; justify-content: center;" class="mt-2" *ngIf="type">
+    <span class="info">Upload only .pdf or .docx files, max. file size: 1 Mb</span>
+  </div>
+  <div style="text-align: center; justify-content: center;" class="mt-2" *ngIf="!type">
+    <span class="info">Upload only .png or .jpg files, max. file size: 1 Mb</span>
+  </div>
+</div>

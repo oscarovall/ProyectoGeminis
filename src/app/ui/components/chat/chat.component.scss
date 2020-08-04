@@ -1,0 +1,195 @@
+@import '~assets/sass/variables';
+
+$_module: $module-rem;
+$_animation: $animation;
+$_color: #fff;
+$_fs: $main-fs;
+$_shape: $shape;
+$_dialog-bg: #516478;
+$_message-bg: main-palette(500);
+$_info-color: $info-color;
+$_success-color: $success-color;
+
+:host {
+  background: #fff;
+  border-radius: $_shape;
+  display: flex;
+  flex-direction: column;
+  font-family: inherit;
+  height: 500px;
+  max-height: 100%;
+  overflow: hidden;
+  width: 100%;
+
+  .chat-wrap {
+    display: flex;
+    height: 100%;
+    max-height: inherit;
+
+    .dialog {
+      background: $_dialog-bg;
+      display: flex;
+      flex-direction: column;
+      max-height: inherit;
+      width: 100%;
+
+      .btn {
+        align-items: center;
+        background: none;
+        border: none;
+        border-radius: 0;
+        color: rgba(#000,.3);
+        cursor: pointer;
+        display: flex;
+        font-size: 20px;
+        height: ($_module * 4);
+        justify-content: center;
+        outline: none;
+        padding: 0;
+        transition: color .2s $_animation;
+        width: ($_module * 4);
+
+        &:hover,
+        &:focus {
+          color: #000;
+        }
+      }
+      .dialog-header {
+        align-items: center;
+        background: $_message-bg;
+        border-bottom: 1px solid rgba(#000,.1);
+        display: flex;
+        padding: $_module $_module;
+
+        .user-avatar {
+          align-items: center;
+          background: main-palette(300);
+          border-radius: 50%;
+          color: main-contrast(300);
+          display: flex;
+          height: 36px;
+          justify-content: center;
+          margin: 0 $_module;
+          overflow: hidden;
+          width: 36px;
+
+          .text-avatar {
+            font-size: 20px;
+            line-height: 1;
+          }
+        }
+        .user-info {
+          flex-grow: 2;
+
+          .user-name {
+            font-size: $_fs;
+            margin: 0;
+          }
+          .user-last-seen {
+            line-height: 1;
+            opacity: .8;
+
+            &.online {
+              color: $_success-color;
+              opacity: 1;
+            }
+          }
+        }
+      }
+      .dialog-messages {
+				background: #2c435b;
+        height: 100%;
+        min-height: 300px;
+        overflow: auto;
+
+        .messages-list {
+          padding: $_module ($_module * 2) 0;
+
+          .message {
+            padding: ($_module / 2) 0;
+            transition:
+              opacity .2s $_animation,
+              transform .2s $_animation;
+
+            .message-content {
+              background: $_message-bg;
+              border-radius: $_shape;
+              display: inline-block;
+              padding: ($_module / 2) $_module;
+              position: relative;
+
+              &:before {
+                border: 5px solid transparent;
+                border-bottom-color: $_message-bg;
+                bottom: 0;
+                content: '';
+                display: block;
+                height: 0;
+                left: -5px;
+                position: absolute;
+                width: 0;
+              }
+            }
+            .message-date {
+              font-size: 90%;
+              margin-top: ($_module / 2);
+              opacity: .6;
+            }
+            &.my-message {
+              margin-left: auto;
+              text-align: right;
+
+              .message-content {
+                background: $_success-color;;
+
+                &:before {
+                  border-bottom-color: $_success-color;
+                  left: auto;
+                  right: -5px;
+                }
+              }
+            }
+          }
+        }
+        &.add-message {
+          .messages-list {
+            .message {
+              &:last-child {
+                opacity: 0;
+                transform: scale(0);
+              }
+            }
+          }
+        }
+      }
+      .dialog-footer {
+        align-items: flex-end;
+        background: $_message-bg;
+				border-top: 1px solid rgba(#000,.1);
+				color: #fff;
+        display: flex;
+        flex-shrink: 0;
+        padding: 0 $_module;
+
+        .btn {
+          font-size: 1.6rem;
+
+          &.send-message {
+            color: $_info-color;
+            font-size: 2rem;
+
+            &:hover,
+            &:focus {
+              color: $_success-color;
+            }
+          }
+        }
+        .message-box {
+          flex-grow: 2;
+          max-height: 108px;
+          padding: ($_module / 2) 0;
+        }
+      }
+    }
+  }
+}

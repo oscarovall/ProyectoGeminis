@@ -1,0 +1,20 @@
+<div>
+  <div class="w-100 scroll">
+    <div class="row w-100 flex-nowrap mx-0">
+      <ng-container  *ngFor="let item of steps; let f = first">
+
+          <div class="step col p-0 m-0">
+            <div [class]="'circle ' + item.statusLead">
+              <ng-container *ngIf="item.statusLead == 'done'; else elseTemplate">
+                <span>✓</span>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <span>{{item.position}}</span>
+              </ng-template>
+            </div>
+            <p>{{item.name}}</p>
+          </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

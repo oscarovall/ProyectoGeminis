@@ -1,0 +1,19 @@
+.text-title {
+    color: #5aaef3 !important;
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  padding: 2px;
+}
+
+.borderTittle-table {
+  border-bottom: 2px solid #68b7f6 !important;
+}
+
+.alert.alert-warning {
+  background:$alert-warning !important;
+}

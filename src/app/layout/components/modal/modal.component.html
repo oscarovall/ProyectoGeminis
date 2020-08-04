@@ -1,0 +1,15 @@
+<div class="modal-container position" *ngIf="visible">
+  <div class="modal-content">
+    <div class="row w-100 p-0 m-0 h-100">
+      <div class="col-12 p-3">
+        <button class="mainBtn" (click)="close()">GO BACK</button>
+      </div>
+      <div class="col-12 text-center h-100 p-0">
+        <img class="img-car w-100 img-floorplan" [src]="userService.contentModal"
+          *ngIf="userService.contentModal && !userService.iframeModal" />
+        <iframe class="img-car img-car2 w-100" [src]="userService.contentModal | safe"
+          *ngIf="userService.contentModal && userService.iframeModal"></iframe>
+      </div>
+    </div>
+  </div>
+</div>

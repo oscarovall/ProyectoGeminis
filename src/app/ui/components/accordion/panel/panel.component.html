@@ -1,0 +1,15 @@
+<div class="panel">
+	<button class="panel-header" (click)="changeState()" [ngClass]="getPanelClasses()">		
+		<i class="title-icon  {{ titleIcon }}" *ngIf="titleIcon"></i>
+		<div class="title">{{ title }} </div>
+		<div class="icon" [ngClass]="{'plus': !opened, 'minus': opened}">
+			<span></span>
+			<span></span>
+		</div>
+	</button>
+	<div class="content-wrap" [@shrink]="state">
+		<div class="panel-body" [ngClass]="getPanelClasses()">
+			<ng-content></ng-content>
+		</div>
+	</div>
+</div>

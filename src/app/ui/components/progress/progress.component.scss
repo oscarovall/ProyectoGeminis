@@ -1,0 +1,76 @@
+@import '~assets/sass/variables';
+
+$extra-small-height: 4px;
+$small-height: 8px;
+$default-height: 12px;
+$large-height: 16px;
+
+$_shape: $shape;
+
+:host {
+  display: block;
+  margin: 0 0 2 * $module-rem 0;
+
+  .progress {
+    background: #1f316b;
+    border-radius: $_shape;
+    display: block;
+    overflow: hidden;
+    height: 18px;
+    width: 100%;
+    border-radius: 4px;
+
+    .bar {
+      background: accent-palette(500);
+      border-radius: $_shape;
+      display: block;
+			height: 100%;
+			transition: width .3s $animation;
+      text-align: center;
+      line-height: 1;
+			width: 0%;
+
+      .label {
+        color:#fff;
+        top: 3px;
+        // font-size: 0.8em;
+        position: relative;
+        margin: 0 10px;
+      }
+    }
+  }
+
+  &.extra-small {
+    > .progress {
+			height: $extra-small-height;
+
+      > .bar {
+        > .label {
+          display: none;
+        }
+      }
+    }
+  }
+  &.small {
+    > .progress {
+			height: $small-height;
+
+      > .bar {
+        > .label {
+          display: none;
+        }
+      }
+    }
+  }
+  &.large {
+    > .progress {
+			height: $large-height;
+
+      > .bar {
+        > .label {
+          // font-size: 1em;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+[
+	{
+		"subject": "We need to meet soon",
+		"sender": "Beny Brodson",
+		"text": " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum, nibh et tincidunt fermentum, justo est feugiat tortor, id volutpat odio est eu dolor. Nunc vel laoreet arcu. Phasellus bibendum augue maximus metus scelerisque laoreet vitae vel nulla. Curabitur eleifend sed dolor eget porta. Proin id purus ligula. Maecenas egestas at quam id bibendum. Proin tincidunt erat eget enim venenatis, nec eleifend ex sollicitudin.Quisque porttitor imperdiet nibh, congue egestas felis tincidunt eu. Praesent ut dignissim leo. Mauris pulvinar egestas magna in maximus. Maecenas sed ipsum bibendum, pretium mauris id, lacinia felis. Nullam lorem nisi, bibendum non enim at, posuere vulputate leo. Sed sed venenatis felis. Sed mollis ante ac finibus tincidunt. Praesent efficitur vehicula urna, vitae convallis elit aliquet ac. Vivamus posuere fringilla diam, in rutrum magna mattis sit amet. Aenean consectetur tristique elit nec laoreet. Proin vehicula consectetur ipsum, sit amet euismod erat aliquet ut. Sed a sodales turpis. ",
+		"time": "14:30",
+		"type": "inbox",
+		"img": "../../../../assets/content/avatar-55-6.jpg"
+	},
+	{
+		"subject": "Send you a message",
+		"sender": "Glenn Russell",
+		"text": " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum, nibh et tincidunt fermentum, justo est feugiat tortor, id volutpat odio est eu dolor. Nunc vel laoreet arcu. Phasellus bibendum augue maximus metus scelerisque laoreet vitae vel nulla. Curabitur eleifend sed dolor eget porta. Proin id purus ligula. Maecenas egestas at quam id bibendum. Proin tincidunt erat eget enim venenatis, nec eleifend ex sollicitudin.Quisque porttitor imperdiet nibh, congue egestas felis tincidunt eu. Praesent ut dignissim leo. Mauris pulvinar egestas magna in maximus. Maecenas sed ipsum bibendum, pretium mauris id, lacinia felis. Nullam lorem nisi, bibendum non enim at, posuere vulputate leo. Sed sed venenatis felis. Sed mollis ante ac finibus tincidunt. Praesent efficitur vehicula urna, vitae convallis elit aliquet ac. Vivamus posuere fringilla diam, in rutrum magna mattis sit amet. Aenean consectetur tristique elit nec laoreet. Proin vehicula consectetur ipsum, sit amet euismod erat aliquet ut. Sed a sodales turpis. ",
+		"time": "11:00",
+		"type": "inbox",
+		"img": "../../../../assets/content/avatar-55-1.jpg"
+	},	
+	{
+		"subject": "Some text to test message subject field",
+		"sender": "Morgan Mathis",
+		"text": "  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum, nibh et tincidunt fermentum, justo est feugiat tortor, id volutpat odio est eu dolor. Nunc vel laoreet arcu. Phasellus bibendum augue maximus metus scelerisque laoreet vitae vel nulla. Curabitur eleifend sed dolor eget porta. Proin id purus ligula. Maecenas egestas at quam id bibendum. Proin tincidunt erat eget enim venenatis, nec eleifend ex sollicitudin.Quisque porttitor imperdiet nibh, congue egestas felis tincidunt eu. Praesent ut dignissim leo. Mauris pulvinar egestas magna in maximus. Maecenas sed ipsum bibendum, pretium mauris id, lacinia felis. Nullam lorem nisi, bibendum non enim at, posuere vulputate leo. Sed sed venenatis felis. Sed mollis ante ac finibus tincidunt. Praesent efficitur vehicula urna, vitae convallis elit aliquet ac. Vivamus posuere fringilla diam, in rutrum magna mattis sit amet. Aenean consectetur tristique elit nec laoreet. Proin vehicula consectetur ipsum, sit amet euismod erat aliquet ut. Sed a sodales turpis. ",
+		"time": "14:30",
+		"type": "inbox",
+		"img": "../../../../assets/content/avatar-55-5.jpg"
+	},
+	{
+		"subject": "Looking for some work",
+		"sender": "Evan Black",
+		"text": " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum, nibh et tincidunt fermentum, justo est feugiat tortor, id volutpat odio est eu dolor. Nunc vel laoreet arcu. Phasellus bibendum augue maximus metus scelerisque laoreet vitae vel nulla. Curabitur eleifend sed dolor eget porta. Proin id purus ligula. Maecenas egestas at quam id bibendum. Proin tincidunt erat eget enim venenatis, nec eleifend ex sollicitudin.Quisque porttitor imperdiet nibh, congue egestas felis tincidunt eu. Praesent ut dignissim leo. Mauris pulvinar egestas magna in maximus. Maecenas sed ipsum bibendum, pretium mauris id, lacinia felis. Nullam lorem nisi, bibendum non enim at, posuere vulputate leo. Sed sed venenatis felis. Sed mollis ante ac finibus tincidunt. Praesent efficitur vehicula urna, vitae convallis elit aliquet ac. Vivamus posuere fringilla diam, in rutrum magna mattis sit amet. Aenean consectetur tristique elit nec laoreet. Proin vehicula consectetur ipsum, sit amet euismod erat aliquet ut. Sed a sodales turpis. ",
+		"time": "09:00",
+		"type": "draft",
+		"img": "../../../../assets/content/avatar-55-10.jpg"
+	},	
+	{
+		"subject": "We need to meet soon",
+		"sender": "Alyssa Campbell",
+		"text": " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum, nibh et tincidunt fermentum, justo est feugiat tortor, id volutpat odio est eu dolor. Nunc vel laoreet arcu. Phasellus bibendum augue maximus metus scelerisque laoreet vitae vel nulla. Curabitur eleifend sed dolor eget porta. Proin id purus ligula. Maecenas egestas at quam id bibendum. Proin tincidunt erat eget enim venenatis, nec eleifend ex sollicitudin.Quisque porttitor imperdiet nibh, congue egestas felis tincidunt eu. Praesent ut dignissim leo. Mauris pulvinar egestas magna in maximus. Maecenas sed ipsum bibendum, pretium mauris id, lacinia felis. Nullam lorem nisi, bibendum non enim at, posuere vulputate leo. Sed sed venenatis felis. Sed mollis ante ac finibus tincidunt. Praesent efficitur vehicula urna, vitae convallis elit aliquet ac. Vivamus posuere fringilla diam, in rutrum magna mattis sit amet. Aenean consectetur tristique elit nec laoreet. Proin vehicula consectetur ipsum, sit amet euismod erat aliquet ut. Sed a sodales turpis. ",
+		"time": "17:30",
+		"type": "inbox",
+		"img": "../../../../assets/content/avatar-55-11.jpg"
+	},
+	{
+		"subject": "Send you a message",
+		"sender": "Glenn Russell",
+		"text": " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum, nibh et tincidunt fermentum, justo est feugiat tortor, id volutpat odio est eu dolor. Nunc vel laoreet arcu. Phasellus bibendum augue maximus metus scelerisque laoreet vitae vel nulla. Curabitur eleifend sed dolor eget porta. Proin id purus ligula. Maecenas egestas at quam id bibendum. Proin tincidunt erat eget enim venenatis, nec eleifend ex sollicitudin.Quisque porttitor imperdiet nibh, congue egestas felis tincidunt eu. Praesent ut dignissim leo. Mauris pulvinar egestas magna in maximus. Maecenas sed ipsum bibendum, pretium mauris id, lacinia felis. Nullam lorem nisi, bibendum non enim at, posuere vulputate leo. Sed sed venenatis felis. Sed mollis ante ac finibus tincidunt. Praesent efficitur vehicula urna, vitae convallis elit aliquet ac. Vivamus posuere fringilla diam, in rutrum magna mattis sit amet. Aenean consectetur tristique elit nec laoreet. Proin vehicula consectetur ipsum, sit amet euismod erat aliquet ut. Sed a sodales turpis. ",
+		"time": "18:00",
+		"type": "sent",
+		"img": "../../../../assets/content/avatar-55-7.jpg"
+	},	
+	{
+		"subject": "Some text to test message subject field",
+		"sender": "Morgan Mathis",
+		"text": "  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum, nibh et tincidunt fermentum, justo est feugiat tortor, id volutpat odio est eu dolor. Nunc vel laoreet arcu. Phasellus bibendum augue maximus metus scelerisque laoreet vitae vel nulla. Curabitur eleifend sed dolor eget porta. Proin id purus ligula. Maecenas egestas at quam id bibendum. Proin tincidunt erat eget enim venenatis, nec eleifend ex sollicitudin.Quisque porttitor imperdiet nibh, congue egestas felis tincidunt eu. Praesent ut dignissim leo. Mauris pulvinar egestas magna in maximus. Maecenas sed ipsum bibendum, pretium mauris id, lacinia felis. Nullam lorem nisi, bibendum non enim at, posuere vulputate leo. Sed sed venenatis felis. Sed mollis ante ac finibus tincidunt. Praesent efficitur vehicula urna, vitae convallis elit aliquet ac. Vivamus posuere fringilla diam, in rutrum magna mattis sit amet. Aenean consectetur tristique elit nec laoreet. Proin vehicula consectetur ipsum, sit amet euismod erat aliquet ut. Sed a sodales turpis. ",
+		"time": "12:30",
+		"type": "sent",
+		"img": "../../../../assets/content/avatar-55-8.jpg"
+	},
+	{
+		 "subject": "Hey, check this ",
+		 "sender": "Andre White",
+		 "text": " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum, nibh et tincidunt fermentum, justo est feugiat tortor, id volutpat odio est eu dolor. Nunc vel laoreet arcu. Phasellus bibendum augue maximus metus scelerisque laoreet vitae vel nulla. Curabitur eleifend sed dolor eget porta. Proin id purus ligula. Maecenas egestas at quam id bibendum. Proin tincidunt erat eget enim venenatis, nec eleifend ex sollicitudin.Quisque porttitor imperdiet nibh, congue egestas felis tincidunt eu. Praesent ut dignissim leo. Mauris pulvinar egestas magna in maximus. Maecenas sed ipsum bibendum, pretium mauris id, lacinia felis. Nullam lorem nisi, bibendum non enim at, posuere vulputate leo. Sed sed venenatis felis. Sed mollis ante ac finibus tincidunt. Praesent efficitur vehicula urna, vitae convallis elit aliquet ac. Vivamus posuere fringilla diam, in rutrum magna mattis sit amet. Aenean consectetur tristique elit nec laoreet. Proin vehicula consectetur ipsum, sit amet euismod erat aliquet ut. Sed a sodales turpis. ",
+		 "time": "13:00",
+		 "type": "trash",
+		 "img": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=350"
+	}
+]

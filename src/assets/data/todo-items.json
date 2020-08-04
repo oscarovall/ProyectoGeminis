@@ -1,0 +1,35 @@
+[
+	{
+		"text": "Buy flowers",
+		"done": false
+	},
+	{
+		"text": "Complete todo app",
+		"done": true
+	},
+	{
+		"text": "Get shoes",
+		"done": false
+	},
+	{
+		"text": "Call Joe",
+		"done": false
+	},
+	{
+		"text": "Meet with Adam",
+		"done": false
+	},
+	{
+		"text": "Something else",
+		"done": false
+	},
+	{
+		"text": "Contact customer",
+		"done": false
+	},
+	{
+		"text": "Finish order",
+		"done": true
+	}
+
+]

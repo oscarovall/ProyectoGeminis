@@ -1,0 +1,35 @@
+<div class="calendar-wrapper mt-4">
+  <div class="row col-xl-12 col-lg-12 w-100 p-0">
+    <div class="col-xl-9 col-lg-10 t-4 title2 pl-4">Weekly Calendar</div>
+
+    <div class="col-xl-3 col-lg-2 date d-flex pr-3">
+      <button tc-button mwlCalendarPreviousView class="btn btn-outline-dark rounded" [outline]="false" [view]="view"
+        [(viewDate)]="viewDate" [beforeIcon]="'icofont-rounded-left'"
+        (viewDateChange)="activeDayIsOpen = false"></button>
+
+      <h3 class="ml-2 mr-2 pt-0 pb-0 text-nowrap">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+
+      <button tc-button mwlCalendarNextView class="btn btn-outline-dark rounded" [outline]="false" [view]="view"
+        [(viewDate)]="viewDate" [afterIcon]="'icofont-rounded-right'"
+        (viewDateChange)="activeDayIsOpen = false"></button>
+    </div>
+  </div>
+  <br>
+  <div class="row animated fadeIn" *ngIf="cargando">
+    <div class="col-sm-12">
+      <div class="alert alert-warning text-center">
+        <br>
+        <i class="fa fa-spinner fa-spin fa-3x"></i>
+        <br>
+        <strong class="spinnerText">Loading</strong>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-xl-12 col-lg-12 rounded square scrollbar-dusty-grass square thin scroll pl-3 pr-3" *ngIf="!cargando">
+    <mwl-calendar-week-view [viewDate]="viewDate" [events]="events" [refresh]="refresh"></mwl-calendar-week-view>
+  </div>
+
+
+</div>

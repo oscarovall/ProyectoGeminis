@@ -1,0 +1,65 @@
+
+<div class="row animated fadeIn" *ngIf="cargando">
+  <div class="col-xl-12">
+    <div class="alert alert-warning text-center">
+      <br>
+      <i class="fa fa-spinner fa-spin fa-3x"></i>
+      <br>
+      <strong class="spinnerText">Loading</strong>
+    </div>
+  </div>
+</div>
+
+<div class="row px-5" *ngIf="!cargando">
+  <div class="row w-100 m-0 menuTitle3Div animated fadeIn">
+    <div>
+      <div class="forms-configuration">Forms Configuration</div>
+    </div>
+    <div class="col title1ComponentsDiv text-right pr-0">
+      <button tc-button type="button" class="col-xl-2 btn btn-outline-dark rounded addForm" (click)="addNewForm()">
+        <div class="d-flex">
+          <div class="mr-2">+</div>ADD FORM
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <div class="pl-3 pr-3 col-xl-12 listaForm rounded square scrollbar-dusty-grass square thin scroll">
+    <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+      <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+        <thead>
+          <tr>
+            <td scope="col">Category</td>
+            <td scope="col">Form</td>
+            <td scope="col">Has Document</td>
+            <td scope="col" style="min-width: 100px;">Actions</td>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let LeadDocument of getAll; let in=index" class="animated fadeIn">
+            <td width="" class="remove_lines forms">{{LeadDocument.docCategory.name}}</td>
+            <td width="" class="remove_lines forms">{{LeadDocument.name}}</td>
+            <td width="" class="remove_lines forms pl-5">
+              <input class="styled-checkbox" type="checkbox"  [checked]="LeadDocument.templateUrl" >
+            </td>
+
+            <td width="180" class="remove_lines text-center">
+              <div class="d-flex">
+                <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" title="Edit Form" (click)="edit(LeadDocument)">
+                  <div class="aosp-ui-icon aosp-ui-edit-md"></div>
+                </button>
+                <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2
+                        delete" title="Delete Form" (click)="delete(LeadDocument.leadDocumentId, in)" style="background:#ff0000c4">
+                  <div class="aosp-ui-icon aosp-ui-delete-md"></div>
+                </button>
+              </div>
+
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

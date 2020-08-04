@@ -1,0 +1,165 @@
+
+
+.titleText {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 3.25;
+  letter-spacing: normal;
+  text-align: left;
+  color: #5aaef3;
+}
+
+
+.homeBtn.btn.btn-primary {
+  width: 100%;
+  height: 32px;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.32);
+  background-color: #0d5fa1;
+  border-color: transparent;
+  font-size: 13px;
+}
+
+
+.btn-default {
+  background: #0d5fa1;
+  color: #ffffff;
+  float: right !important;
+}
+
+
+.homeBtn.btn.btn-primary {
+  width: 100%;
+  height: 32px;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.32);
+  background-color: #0d5fa1;
+  border-color: transparent;
+  font-size: 13px;
+}
+
+
+.btn-default {
+  background: #0d5fa1;
+  color: #ffffff;
+  float: right !important;
+}
+
+.parrafo {
+  color:#cac5cb;
+}
+
+.subitulo {
+  margin: -12px;
+}
+
+.table td, .table th {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: none !important;
+}
+
+.remove_lines {
+  color: #cac5cb;
+}
+
+hr {
+  border-color: white;
+  width: 100%;
+}
+
+
+.scroll {
+  max-height: 200px;
+  min-height: 160px;
+  overflow-y: auto;
+}
+
+
+
+
+
+.result-homes {
+  position: relative;
+  max-height: auto;
+  padding-top: 10px;
+}
+
+  .result-homes .bg-bottom {
+    position: absolute;
+    bottom: 0px;
+    height: 50%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(6, 19, 54, .8)) 0% 0% no-repeat padding-box;
+  }
+
+.title-result-homes {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  color: #ffffff;
+  font-family: $tajawal-ff;
+  font-size: 16px;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 25px;
+}
+
+  .title-result-homes .title-bottom {
+    position: absolute;
+    bottom: 0px;
+    font-family: $arvo-ff;
+    font-size: 24px;
+  }
+
+  .title-result-homes .price {
+    font-family: $arvo-ff;
+    font-size: 24px;
+  }
+
+.home-result-feature {
+  white-space: nowrap;
+  width: 85px;
+  min-width: 85px;
+ 
+}
+
+  .home-result-feature .home-sqm-icon,
+  .home-result-feature .home-beds-icon,
+  .home-result-feature .home-baths-icon,
+  .home-dollar-icon {
+    padding-left: 35px;
+    font-size: 18px;
+    padding-right: 35px;
+  }
+
+.home-result-feature-description .home-sqm-icon,
+.home-result-feature-description .home-beds-icon,
+.home-result-feature-description .home-baths-icon {
+  padding-left: 55px;
+  font-size: 36px;
+  padding-right: 30px;
+}
+
+.result-homes hr {
+  border-top: 1px solid rgba(255, 255, 255, 1);
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.result-homes .tag {
+
+  top: 20px;
+}
+
+.feature-homes .bg-bottom {
+  position: absolute;
+  bottom: 0px;
+  height: 50%;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(6, 19, 54, .8)) 0% 0% no-repeat padding-box;
+}
+

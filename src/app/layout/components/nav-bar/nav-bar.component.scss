@@ -1,0 +1,185 @@
+@import "~assets/sass/variables";
+
+:host {
+	position: fixed;
+	top: 0;
+	padding: 0;
+	margin: 0;
+	transition: background .2s $animation, transform .2s $animation;
+	background: #001347;
+	width: 100%;
+	z-index: 999;
+	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+
+	// @media #{$max991} {
+	// 	position: absolute;
+	// }
+
+	&.side-open {
+		transform: translateX($side-bar-width);
+	}
+	.nav-bar-wrap {
+		background: #001347;
+		box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.7);
+		color: main-contrast(500);
+		height: $nav-bar-height;
+		position: relative;
+		width: 100%;
+
+		::ng-deep {
+			.nav-content {
+				height: 100%;
+				margin: 0 auto;
+				padding: 0 $content-h-indents;
+				width: 100%;
+				@media #{$max1199} {
+					padding-left: $content-h-indents / 3 * 2;
+					padding-right: $content-h-indents / 3 * 2;
+				}
+
+				> .row {
+					height: 100%;
+				}
+				.toggle-button-col {
+					align-items: center;
+					display: none;
+					@media #{$max991} {
+						display: flex;
+					}
+
+					.toggle-sidebar {
+						cursor: pointer;
+						display: flex;
+						flex-direction: column;
+						height: $module-rem * 2;
+						justify-content: space-between;
+
+						.bar {
+							background: main-contrast(500);
+							min-height: 3px;
+							transition: background .2s $animation;
+							width: $module-rem * 3;
+						}
+					}
+				}
+				.title-col {
+					align-items: center;
+					display: flex;
+
+					.page-title {
+						font-size: 1.5em;
+						margin: .2rem 0 0;
+						transition: opacity .2s $animation, color .2s $animation;
+						@media #{$max543} {
+							display: none;
+						}
+
+						&.hide {
+							opacity: 0;
+						}
+					}
+					.search {
+						align-items: center;
+						display: flex;
+						height: 100%;
+						left: 0;
+						max-width: 100%;
+						padding: 0 15px;
+						position: absolute;
+						top: 0;
+						width: $module-rem * 40;
+						z-index: 5;
+						@media #{$max767} {
+							display: none !important;
+						}
+					}
+				}
+				.actions-col {
+					.nav-actions {
+						align-items: center;
+						display: flex;
+						height: 100%;
+						margin: 0 (-$module-rem);
+
+						.item {
+							margin: 0 $module-rem;
+						}
+						.toggle-search {
+							cursor: pointer;
+							@media #{$max767} {
+								display: none !important;
+							}
+
+							&.active {
+								color: accent-palette(500) !important;
+							}
+						}
+						::ng-deep .tc-icon {
+							&.marker {
+								&:before {
+									background: accent-palette(500);
+									border-radius: 50%;
+									content: '';
+									display: block;
+									height: 8px;
+									position: absolute;
+									right: 0;
+									top: 0;
+									width: 8px;
+								}
+								&.bg-red {
+									&:before {
+										background: $error-color;
+									}
+								}
+								&.bg-blue {
+									&:before {
+										background: $info-color;
+									}
+								}
+								&.bg-green {
+									&:before {
+										background: $success-color;
+									}
+								}
+								&.bg-yellow {
+									&:before {
+										background: $warning-color;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	&.boxed {
+		.nav-bar-wrap {
+			::ng-deep {
+				.nav-content {
+					max-width: $boxed-width;
+				}
+			}
+		}
+	}
+	&.light {
+		.nav-bar-wrap {
+			background: #fff;
+			color: #000;
+
+			::ng-deep {
+				.nav-content {
+					.toggle-button-col {
+						.toggle-sidebar {
+							.bar {
+								background: main-palette(500);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

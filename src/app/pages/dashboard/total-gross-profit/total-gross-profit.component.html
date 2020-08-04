@@ -1,0 +1,68 @@
+<div class="row w-100 m-0 menuTitle3Div animated fadeIn mt-4">
+  <div class="col-12 col-md-4 col-xl-6 my-2">
+    <div class="title2 t-3">Gross Profit</div>
+  </div>
+  <div class="col-6 col-md-4 col-xl-3 text-right pr-0">
+    <select class="custom-select font-filtro rounded" [(ngModel)]="storeSelected" name="storeSelected"
+      (change)="getTotalGrossProfit()" placeholder="select">
+      <option [ngValue]="''" style="display:none;"> Store </option>
+      <option [ngValue]="''"> All </option>
+      <option [ngValue]="store.storeId" *ngFor="let store of stores">{{store.name}}</option>
+    </select>
+  </div>
+  <div class="col-6 col-md-4 col-xl-3 date d-flex">
+    <button tc-button mwlCalendarPreviousView class="btn btn-outline-dark rounded" [outline]="false" [view]="view"
+      [(viewDate)]="viewDate" [beforeIcon]="'icofont-rounded-left'" (viewDateChange)="activeDayIsOpen = false" (click)="calculateDateRange()">
+    </button>
+
+    <h3 class="m-0 pt-1 pb-0 text-nowrap">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+
+    <button tc-button mwlCalendarNextView class="btn btn-outline-dark rounded" [outline]="false" [view]="view"
+      [(viewDate)]="viewDate" [afterIcon]="'icofont-rounded-right'" (viewDateChange)="activeDayIsOpen = false" (click)="calculateDateRange()">
+    </button>
+  </div>
+</div>
+
+<div class="row m-3 p-4 animated fadeIn bg-item-dashboard" *ngIf="cargando"  style="height: 400px;" >
+
+  <div class="col-sm-12">
+
+    <div class="alert alert-warning text-center">
+      <br>
+      <i class="fa fa-spinner fa-spin fa-3x"></i>
+      <br>
+      <strong class="spinnerText">Loading</strong>
+    </div>
+  </div>
+</div>
+
+<div class="row mx-3 mb-3 p-4 bg-item-dashboard"  *ngIf="!cargando" style="height: 400px;">
+  <div class="row w-100 p-0 m-0" style="align-items: center;">
+    <div class="col-8">
+      <h3 class="p-0 tittleLeads" style="font-size:22px">Total Gross Profit</h3>
+    </div>    
+    <div class="col-4">
+      <h3 class="p-0 text-right tittleLeads" style="font-size:40px">{{totalLeads | currency}}</h3>
+    </div>
+  </div>
+
+  <div class="row w-100 rounded square scrollbar-dusty-grass square thin scroll">
+    <div *ngFor="let lead of totalGrossProfit; index as i" class="row w-100 my-2">
+      <div class="col-3">
+        <h3 class="p-0" style="font-size:16px">{{i+1}}.  {{lead.employeeName}}</h3>
+      </div>
+      <div class="col-8" >
+        <div class="bar-progress" style="min-width: 350px;" [ngStyle]="{'width': (lead.total*3)/totalLeads*100+'%'}">  
+          <div class="row">
+            <div class="col-8">
+              <h3 class="p-0 text-left px-3" style="font-size:16px">{{lead.closed}} Closed - {{lead.closing}} Est. Closings</h3>
+            </div>
+            <div class="col-4">
+              <h3 class="p-0 text-right px-3" style="font-size:16px">{{lead.total | currency}}</h3>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

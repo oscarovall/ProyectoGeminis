@@ -1,0 +1,111 @@
+@import '~assets/sass/variables';
+
+$_border: 1px solid rgba(#000, .12);
+
+$_tab-bg-active: linear-gradient(to right, #0a48fd, #fe6666);
+$_tab-bg-hover: rgba(#9ca09c, 0.2);
+$_tab-active-color: rgba(#fff, 0.9);
+
+$_tabs-br: 5px 5px 0 0;
+
+$_tab-color: rgba(#000, 0.8);
+$_tab-disabled-color: rgba(#fff, 0.5);
+
+$_link-padding: $module/2;
+
+$_content-bg: #dcdcdc;
+$_content-color: #000;
+
+$_shape: $shape;
+
+:host {
+  background: rgba(main-palette(500),.4);
+  display: block;
+  padding: 0;
+  margin: 0;
+
+  .tabs {
+    align-items: center;
+    background: rgba(main-palette(500),.5);
+    border: $_border;
+    border-radius: $_shape;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: $module-rem 0 0 (3 * $module-rem);
+		overflow-x: auto;
+
+    .link {
+      border-bottom: 2px solid transparent;
+      margin-right: 2 * $module-rem;
+      cursor: pointer;
+      padding-bottom: $module-rem;
+      opacity: 0.7;
+      transition: border-color .2s $animation, color .2s $animation, opacity .2s $animation;
+			white-space: nowrap;
+
+      &.active {
+        border-bottom: 2px solid accent-palette(500);
+        opacity: 1;
+      }
+      &:hover {
+        border-bottom: 2px solid accent-palette(500);
+        opacity: 1;
+      }
+      &.disabled {
+        color: $_tab-disabled-color;
+        pointer-events: none;
+      }
+    }
+  }
+  .tab-content {
+    border: $_border;
+    border-radius: 0 0 $_shape $_shape;
+    display: block;
+    margin: 0;
+    padding: ($module-rem * 2) ($module-rem * 3);
+    overflow: hidden;
+		transition: height 0.3s $animation;
+		@media #{$max543} {
+			padding: $module-rem;
+		}
+  }
+  &.alternative {
+    background: none;
+
+    > .tabs {
+			padding-bottom: 2 * $module-rem;
+			background: transparent;
+      border: none;
+			vertical-align: middle;
+
+      > .link {
+        border: 1px solid transparent;
+        border-radius: 50px;
+        margin: 0 ($module-rem / 2) 0 0;
+        padding: ($module-rem / 2) ($module-rem * 2);
+				transition: background .2s $animation, border-color .2s $animation, color .2s $animation;
+
+        &.active {
+          border: 1px solid main-palette(500);
+          background: main-palette(500);
+          color: main-contrast(500);
+          padding: ($module-rem / 2) ($module-rem * 2);
+					transition: background .2s $animation;
+
+					&:hover {
+            color: #fff;
+          }
+        }
+        &:hover {
+          border: 1px solid main-palette(500);
+          color: main-contrast(500);
+        }
+      }
+    }
+    > .tab-content {
+      background: rgba(main-palette(500),.4);
+      border-radius: $_shape;
+    }
+  }
+}

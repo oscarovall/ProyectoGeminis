@@ -1,0 +1,63 @@
+@import '~assets/sass/variables';
+
+:host {
+    .event-action {
+		background: rgba( #000, .15);
+		display: none;
+		left: 0;
+		min-height: 100vh;
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 9999;
+
+		&.active {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+		}
+		&.hide {
+			animation: disapear .4s ease-out;
+			display: none;
+		}
+		.modal {
+			animation: apear .4s ease-out;
+			box-shadow: 0px 20px 40px rgba(#000,.5);
+			max-width: 45 * $module-rem;
+			min-width: 25 * $module-rem;
+			@media #{$max543} {
+				width: 90%;
+				margin: 0 5%;
+			}
+
+			&.hide {
+				animation: disapear .4s ease-out;
+			}
+			.modal-body {
+				.groups {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+
+					>.date-group {
+						margin-right: $module-rem;
+					}
+				}
+			}
+			.modal-footer {
+				display: flex;
+				justify-content: space-between;
+			}
+		}
+	}
+	@keyframes apear {
+    from {margin-top: 20%; opacity: 0; transform: scale(0.8); }
+    to {margin-top: 0; opacity: 1;transform: scale(1)}
+	}
+	@keyframes disapear {
+    from {margin-top: 0; opacity: 1;transform: scale(1)}
+    to {margin-top: 20%; opacity: 0; transform: scale(0.8); }
+	}
+
+}

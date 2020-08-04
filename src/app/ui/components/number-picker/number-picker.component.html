@@ -1,0 +1,11 @@
+<div class="numberpicker row" [ngClass]="{'disabled': disabled}">
+  <div class="operator" (click)="subt()" *ngIf="!disabled">
+    <span>-</span>
+  </div>
+  <div class="count">
+    <span>{{value}}</span>
+  </div>
+  <div class="operator" (click)="plus()" *ngIf="!disabled" >
+    <span>+</span>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="modal-body row w-100 h-100 mx-0">
+  <div class="col-12 p-0">
+    <tc-form-label class="tc-form-label">Position: {{newGroup.position}}</tc-form-label>
+    <tc-form-group>
+      <tc-form-label class="tc-form-label">Group name</tc-form-label>
+      <input class="form-control w-100" type="text" placeholder="Input group name" [(ngModel)]="newGroup.name">
+    </tc-form-group>
+    <tc-form-group>
+      <tc-form-label class="tc-form-label">Deadline (days)</tc-form-label>
+      <number-picker [value]="newGroup.deadline" (change)="deadlineChange($event)"></number-picker>
+    </tc-form-group>
+  </div>
+</div>
+<div class="row modal-footer justify-content-end">
+  <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" [view]="'error'" (click)="deleteButton()" *ngIf="action==='Edit'">Delete</button>
+  <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="closeButton()">Cancel</button>
+  <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="saveButton()">Save</button>
+</div>

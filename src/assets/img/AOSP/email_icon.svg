@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="prefix__email_icon" width="44.735" height="32" viewBox="0 0 44.735 32">
+    <defs>
+        <style>
+            .prefix__cls-2{fill:#5aaef3}
+        </style>
+    </defs>
+    <g id="prefix__Group_1010" data-name="Group 1010" transform="translate(-325.085 -231.164)" style="isolation:isolate">
+        <path id="prefix__Path_54" d="M368.213 231.164h-32.29a1.61 1.61 0 0 0-1.608 1.608v8.962h-8.265a.965.965 0 1 0 0 1.93h9.23a.965.965 0 0 0 .964-.965.89.89 0 0 0-.01-.1.9.9 0 0 0 .01-.1v-8.019l15.156 14.712a.965.965 0 0 0 1.334.01l12.428-11.7a.965.965 0 0 0-1.323-1.4l-11.757 11.071-14.491-14.072h30.3v28.141h-31.647v-8.382a.965.965 0 1 0-1.929 0v8.7a1.61 1.61 0 0 0 1.608 1.608h32.29a1.609 1.609 0 0 0 1.608-1.608v-28.788a1.609 1.609 0 0 0-1.608-1.608z" class="prefix__cls-2" data-name="Path 54"/>
+        <path id="prefix__Path_55" d="M342.109 263.519a.965.965 0 0 0-.965-.965h-9.23a.965.965 0 0 0 0 1.93h9.23a.965.965 0 0 0 .965-.965z" class="prefix__cls-2" data-name="Path 55" transform="translate(-2.806 -15.019)"/>
+    </g>
+</svg>

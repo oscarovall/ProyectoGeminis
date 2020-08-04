@@ -1,0 +1,121 @@
+<div class="sidebar" [@menuShrink]="sideBarState">
+	<div class="title-box">
+		<h3 class="title">Inbox</h3>
+
+		<button *ngIf="sideBarState" (click)="toggleState()">
+			<i class="icofont-arrow-left"></i>
+		</button>
+	</div>
+
+	<div class="compose-btn">
+		<button tc-button [block]="true" (click)="toggleNewMessage()" [outline]="true" [view]="'info'">Compose</button>
+	</div>
+
+	<div class="menu">
+		<ul>
+			<li *ngFor="let item of menuItems" [ngClass]="{'active': item.active}" (click)="changeItem(item)">
+				<i class="icon" [ngClass]="item.icon"></i>
+				<span class="text"> {{ item.title }} </span>
+				<span class="count"> {{ getCount(item) }} </span>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="main">
+	<div class="main-groupe" [style.display]="messageState ? 'none' : 'flex'">
+		<div class="header">
+			<div class="toggler" (click)="toggleState()">
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+			</div>
+
+			<tc-input
+				#search
+				class="search"
+				(keydown)="filterMessages($event, search.value)"
+				[placeholder]="'Type to search'"
+				[suffixIcon]="'icofont-search'"
+			></tc-input>
+
+			<button tc-button (click)="sortMessages()" [outline]="true" [view]="'info'">
+				<i class="icofont-sort"></i>
+			</button>
+		</div>
+
+		<div class="message-list">
+			<ul>
+				<li *ngFor="let message of displayedData" (click)="selectMessage(message)">
+					<div *ngIf="message.img" class="img">
+						<img src="{{ message.img }}">
+					</div>
+					<div class="content">
+						<p class="title">{{ message.sender }} </p>
+						<span class="text"> {{ message.subject }} </span>
+					</div>
+					<div class="time">
+						<span> {{message.time}} </span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="message" [@itemSelected]="getMessageState()">
+		<div class="header">
+			<button class="close" (click)="closeMessage()">
+				<i class="icofont-arrow-left"></i>
+			</button>
+			<button class="delete">
+				<i class="icofont-trash"></i>
+			</button>
+			<button class="delete">
+				<i class="icofont-archive"></i>
+			</button>
+			<button class="delete">
+				<i class="icofont-exclamation-circle"></i>
+			</button>
+			<button class="delete">
+				<i class="icofont-tags"></i>
+			</button>
+		</div>
+
+		<div class="content">
+			<div class="message-subject">
+				{{ shownMessage.subject }}
+			</div>
+			<div class="sender">
+				<div *ngIf="shownMessage.img" class="img">
+					<img src="{{ shownMessage.img }}">
+				</div>
+				<span class="sender-name">from
+					<a> {{ shownMessage.sender }}</a> on
+					<span class="time">{{shownMessage.time}}</span>
+				</span>
+			</div>
+			<div class="message-text">
+				{{ shownMessage.text }}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="new-message" [@bgAppearence]="getNewMessageState()" (click)="toggleNewMessage()">
+
+	<tc-card [title]="'Send message'" (click)="$event.stopPropagation();" class="message-content">
+		<tc-form-group>
+			<tc-input [placeholder]="'Receiver'"></tc-input>
+		</tc-form-group>
+
+		<tc-form-group>
+			<tc-input [placeholder]="'Message subject'"></tc-input>
+		</tc-form-group>
+
+		<tc-form-group>
+			<tc-textarea [placeholder]="'Message'" [height]="230" [resize]="false"></tc-textarea>
+		</tc-form-group>
+		<button tc-button> Send</button>
+	</tc-card>
+
+</div>

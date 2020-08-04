@@ -1,0 +1,53 @@
+[
+	{	
+		"category": "to do",
+		"title": "Update Angular CLI",
+		"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, laborum."
+	},
+	{
+		"category": "to do",
+		"title": "Fix Inbox",
+		"desc": " Aliquam voluptatem quibusdam  cum vero natus aspernatur iure."
+	},
+	{
+		"category": "done",
+		"title": "Commit changes",
+		"desc": "Minima numquam, obcaecati voluptatem quas accusantium id nisi itaque soluta nobis nemo eveniet assumenda aperiam?"
+	},
+	{
+		"category": "testing",
+		"title": "Components Fixes",
+		"desc": "Dicta culpa quidem iure dolorem iusto obcaecati tempora possimus aperiam dolor quis?"
+	},
+	{
+		"category": "testing",
+		"title": "Create Taskboard",
+		"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, laborum."
+	},
+	{
+		"category": "in progress",
+		"title": "Update Users Page",
+		"desc": " Exercitationem, laborum.dignissimos, nobis veritatis voluptatibus nam numquam cum vero natus aspernatur iure."
+	},
+	{
+		"category": "done",
+		"title": "Make pages responsive",
+		"desc": "Fugit inventore possimus numquam ab minus cupiditate  doloremque illo obcaecati? "
+	},
+	{
+		"category": "to do",
+		"title": "Contact Selleer",
+		"desc":" Aliquam voluptatem quibusdam  cum vero natus aspernatur iure."
+	},
+	{
+		"category": "testing",
+		"desc":" Exercitationem, laborum.dignissimos, nobis veritatis voluptatibus nam numquam cum vero natus aspernatur iure.",
+		"title": "Create new Dashboard"
+	},
+	{
+		"category": "done",
+		"title": "Create landing page",
+		"desc": "Minima numquam, obcaecati voluptatem quas accusantium id nisi itaque soluta nobis nemo eveniet assumenda aperiam?"
+	}
+	
+]

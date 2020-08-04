@@ -1,0 +1,30 @@
+<div >
+  <!-- class="scroll-sidebar" malihu-scrollbar style="max-height: 820px; width:auto;" -->
+  <!-- <perfect-scrollbar class="scroll-sidebar" style="max-height: 400px; width:auto;"
+  [scrollIndicators]="false"
+  [config]="config"> -->
+  <nav class="sidebar-nav">
+    <ul id="sidebarnav">
+      <!-- <div class="scroll square scrollbar-dusty-grass square thin"> -->
+        <ng-container *ngFor="let item of menuItems">
+          <li class="nav-small-cap">
+            <a *ngIf="item.routing" class="waves-effect waves-dark" routerLinkActive="active" [routerLink]="['/' + item.routing]" aria-expanded="false" [ngClass]="{'has-arrow':item.sub}">
+              <tc-icon [iconClass]="item.icon" [tcFontSize]="14"></tc-icon>
+              <span class="hide-menu">{{ item.title }}</span>
+            </a>       
+            <a *ngIf="!item.routing" class="waves-effect waves-dark" routerLinkActive="active" href="#" aria-expanded="false" [ngClass]="{'has-arrow':item.sub}">
+              <tc-icon [iconClass]="item.icon" [tcFontSize]="14"></tc-icon>
+              <span class="hide-menu">{{ item.title }}</span>
+            </a>           
+            <ul aria-expanded="false" class="collapse" *ngIf="item.sub">
+              <li *ngFor="let itemSub of item.sub">
+                <a [routerLink]="['/' + itemSub.routing]" routerLinkActive="active"
+                  class="nav-toggler-item">{{ itemSub.title }}</a>
+              </li>
+            </ul>
+          </li>
+        </ng-container>
+      <!-- </div> -->
+    </ul>
+  </nav>
+</div>

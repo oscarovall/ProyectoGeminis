@@ -1,0 +1,173 @@
+@import '~assets/sass/variables';
+
+.scrollbar-dusty-grass::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+	background-color: #38496e;
+	border-radius: 10px;
+}
+
+.scrollbar-dusty-grass::-webkit-scrollbar {
+	width: 7px;
+	background-color: #38496e;
+}
+
+.scrollbar-dusty-grass::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+	background-image: -webkit-linear-gradient(330deg, #64b5f6 0%, #64b5f6 100%);
+	background-image: linear-gradient(120deg, #64b5f6 0%, #64b5f6 100%);
+}
+
+.square::-webkit-scrollbar-track {
+	border-radius: 0 !important;
+}
+
+.square::-webkit-scrollbar-thumb {
+	border-radius: 0 !important;
+}
+
+.thin::-webkit-scrollbar {
+	width: 6px;
+}
+
+.scroll {
+	position: relative;
+	overflow-y: auto;
+	max-height: 110px;
+}
+
+.buttons {
+	padding: 20px 75px 20px 75px;
+}
+
+tc-card {
+	background-color: #001347;
+}
+
+// hr {
+//     width: 85%;
+//     background-color: #00529b;
+// }
+
+// @import '~assets/sass/variables';
+
+$border: 1px solid rgba(#eae5eb, 0.2);
+$img-size: 12 * $module;
+
+:host {
+  .contact-wrapper {
+    .tc-card {
+      background-color: #001347;
+      margin: 0;
+      padding: 0px 23px 0 28px;
+    }
+    .contact {
+      flex: 1;
+      min-width: 100%;
+
+      .img-section {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .contact-img {
+          border-radius: 50%;
+          display: flex;
+          height: $img-size;
+          margin-bottom: $module-rem;
+          min-height: $img-size;
+          min-width: $img-size;
+          justify-content: center;
+          overflow: hidden;
+          width: $img-size;
+          padding: 0;
+          border: 1px solid #5aaef3;
+
+          > img {
+            height: 100%;
+            position: relative;
+          }
+        }
+        .contact-name {
+          font-size: 14px;
+
+          > a {
+            color: rgba(#eae5eb,.8);
+            font-weight: 500;
+            text-decoration: none;
+						transition: color .2s $animation;
+
+            &:hover {
+              color: #eae5eb;
+            }
+          }
+        }
+        .contact-role {
+          font-size: 14px;
+          // opacity: 0.6;
+          margin-bottom: 2 * $module-rem;
+        }
+      }
+      .contact-item {
+        display: flex;
+        flex-direction: row;
+        font-size: 14px;
+        justify-content: space-between;
+        padding: $module-rem 0;
+        color: #eae5eb;
+
+        & > *:first-child {
+          // opacity: 0.6;
+        }
+        a {
+          color: rgba(#eae5eb,.8);
+          font-weight: 500;
+          text-decoration: none;
+          transition: color .2s $animation;
+
+          &:hover {
+            color: #eae5eb;
+          }
+        }
+      }
+    }
+  }
+
+  .container {
+    position: relative;
+  }
+  .image {
+    opacity: 1;
+    display: block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    width: 50px;
+    height: 50px;
+  }
+  .container:hover .image {
+    opacity: 0.3;
+  }
+  .container:hover .middle {
+    opacity: 1;
+  }
+  .text {
+    color: #64b5f6;
+    width: 100%;
+    height: 100%;
+    background: none;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+  }
+}

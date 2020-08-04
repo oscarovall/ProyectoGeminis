@@ -1,0 +1,23 @@
+@import '~assets/sass/variables';
+
+$_border-color: rgba(#000,.15);
+$_border-style: solid;
+$_border-width: 1px;
+$_shape: $shape;
+
+:host {
+  border-color: $_border-color;
+  border-style: $_border-style;
+  border-width: $_border-width;
+  border-radius: $_shape;
+  display: block;
+  list-style-type: none;
+  margin-bottom: $module-rem * 2;
+  padding: 0;
+
+  &.striped {
+    > tc-list-item:nth-child(odd) {
+      background: main-palette(500);
+    }
+  }
+}

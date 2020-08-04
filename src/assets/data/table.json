@@ -1,0 +1,26 @@
+[
+	{
+		"Person"  : "Ronald Hilbert",
+		"Position": "developer",
+		"Phone"   :	"+22 887 110 4587",
+		"Email"   : "robhilbert@company.com"
+	},
+	{
+		"Person"  : "Angela Simpson",
+		"Position": "digital artist",
+		"Phone"   :	"+22 886 112 4887",
+		"Email"   : "angelasimpson@company.com"
+	},
+	{
+		"Person"  : "Richard Franson",
+		"Position": "art director",
+		"Phone"   :	"+22 550 111 2233",
+		"Email"   : "richardfranson@company.com"
+	},
+	{
+		"Person"  : "David Robertson",
+		"Position": "developer",
+		"Phone"   :	"+22 882 109 0203",
+		"Email"   : "davrobetsont@company.com"
+	}
+]

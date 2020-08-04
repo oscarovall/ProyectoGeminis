@@ -1,0 +1,68 @@
+<div class="dots">
+		<div class="mark" *ngFor="let dot of dots; let i = index " [style.left.%]="dotOffsetLeft(dot)" [style.top.%]="dotOffsetTop(dot)">
+			<span 
+				class="dot" 
+				(click)="labelClick(dot ,$event )" 
+				[ngStyle]="getDotStyle(dot)"
+			></span>
+			<div 	
+				class="label" 
+				(click)="labelClick(dot|| 0 ,$event )"
+				[ngStyle]="getLabelStyle(dot)"
+		>
+			{{ labels[i] }}
+		</div>
+	</div>
+</div>
+
+<div 
+	class="track" 
+	[style.left.%]="getTrackOffset()"
+	[style.top.%]="getTrackTopOffset()"
+	[style.width.%]="getTrackWidth()" 
+	[style.height.%]="getTrackHeight()"
+	[style.background-color]="accentColor"
+></div>
+
+<tc-slider-handler 
+	*ngIf="range"
+	[enable]="tooltip"
+	[color]="accentColor"
+	[(ngModel)]="value[0]"
+	[size]="getElementSize()"
+	[offset]="getElementOffset()"
+	[max]="max" [min]="min" [step]="step"
+	[lesser]="value[1]"
+	[style.left.%]="offsetLeft(value[0])"
+	[style.top.%]="offsetTop(value[0])"
+	[direction]="direction"
+></tc-slider-handler>
+
+<tc-slider-handler 
+	*ngIf="range"
+	[(ngModel)]="value[1]"
+	[size]="getElementSize()"
+	[enable]="tooltip"
+	[color]="accentColor"
+	[offset]="getElementOffset()"
+	[max]="max" [min]="min" [step]="step"
+	[larger]="value[0]"
+	[style.left.%]="offsetLeft(value[1])"
+	[style.top.%]="offsetTop(value[1])"
+	[direction]="direction"
+></tc-slider-handler>
+
+<tc-slider-handler 
+	*ngIf="!range"
+	[(ngModel)]="value"
+	[size]="getElementSize()"
+	[enable]="tooltip"
+	[color]="accentColor"
+	[offset]="getElementOffset()"
+	[max]="max" [min]="min" [step]="step"
+	[style.left.%]="offsetLeft(value)"
+	[style.top.%]="offsetTop(value)"
+	[direction]="direction"
+></tc-slider-handler>
+
+<div class="rail"></div>

@@ -1,0 +1,291 @@
+<div #workflowSVG id="workflowSVG">
+  <div *ngIf="workflow">
+    <div class="row w-100 bg-aosp-info mb-3 rounded" *ngFor="let group of workflow.groupStepOverview; let i = index;"
+      [style.height]="group.height + 'px'">
+
+
+      <svg id="workflow-container" class="draggable-container w-100" xmlns="http://www.w3.org/2000/svg"
+        ng-mousedown="mouseDown($event)" ng-mousemove="mouseMove($event)" ng-mouse-wheel-up="mouseWheelUp($event)"
+        ng-mouse-wheel-down="mouseWheelDown($event)" x="0" y="0">
+
+        <g id="group-container" class="w-100">
+          <g style="fill:#0c1d55;">
+            <rect width="100%" height="458" rx="6" style="stroke:none" />
+            <rect width="100%" height="457" x=".5" y=".5" rx="5.5" style="fill:none" />
+
+            <!-- Connectors Plus Group -->
+            <g data-name="Connectors" width="18" height="34" viewBox="0 0 18 34" [ngClass]="{selected: group.selected}"
+              [attr.transform]="'translate('+ (positionXTitles + 91) +', 18)'" class="connector cursor-pointer"
+              (click)="selectConnectorGroup($event, group)">
+              <g>
+                <g data-name="Ellipse" class="ellipse" transform="translate(0 2)" fill="none" stroke="#c6c6c6"
+                  stroke-width="1">
+                  <circle cx="9" cy="9" r="9" stroke="none" />
+                  <circle cx="9" cy="9" r="8.5" fill="none" />
+                </g>
+                <text data-name="+" class="ellipse-symbol" transform="translate(4.6 16)" fill="#c6c6c6" font-size="16"
+                  font-family="Roboto-Regular, Roboto">
+                  <tspan x="0" y="0">+</tspan>
+                </text>
+              </g>
+              <g data-name="Workflow Line" transform="translate(9 0) rotate(180)">
+                <line y2="8" fill="none" class="line" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+              </g>
+              <g transform="translate(9 31) rotate(180)">
+                <line y2="8" fill="none" class="line" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+              </g>
+            </g>
+
+            <!-- Group Title -->
+            <g [attr.transform]="'translate( 25, 15)'" class="cursor-pointer" (click)="configureGroup(group)">
+              <text transform="translate(30 20)" fill="#eae5eb" font-size="16" font-family="Roboto-Regular, Roboto">
+                {{group.name}}
+              </text>
+              <ellipse transform="translate(-10 0)" cx="14" cy="14" rx="14" ry="14" fill="#0d5fa1" />
+              <text transform="translate(4 15)" fill="#eae5eb" font-size="15" font-family="Roboto-Bold, Roboto"
+                font-weight="700" alignment-baseline="middle" text-anchor="middle">
+                {{group.position}}
+              </text>
+            </g>
+
+            <g *ngFor="let step of group.step">
+              <!-- Group Components -->
+              <g style="cursor: pointer" [attr.data-name]="step.name" *ngIf="step.x && step.y"
+                [attr.data-id]="step.stepId" [attr.data-type]="step.stepTypeId" [attr.data-x]="step.position"
+                [attr.data-y]="step.stepLevel" [attr.transform]="'translate('+ step.x +', '+step.y+')'">
+
+                <!-- Normal Components -->
+                <g *ngIf="step.stepTypeId !== 0 && step.stepTypeId !== 10" transform="translate(-110 0)"
+                  [ngClass]="{selected: step.selected}">
+                  <!-- Content Title -->
+                  <g transform="translate(0 16)" (click)="selectStep($event, step, group)">
+                    <rect width="220" height="60" rx="3" style="fill:#0d5fa1" />
+                    <text x="110" y="38" alignment-baseline="middle" stroke-width="0" stroke="#000" text-anchor="middle"
+                      [attr.data-step]="step.stepId"
+                      style="font-size:16px;fill:#f6f6f6;font-family:Roboto-Regular,Roboto">
+                      {{step.name | ellipsis:27 }}
+                    </text>
+                  </g>
+
+                  <!-- Role Title -->
+                  <g transform="translate(43)" width="170" height="30" [attr.data-step]="step.stepId"
+                    (click)="selectStep($event, step, group)">
+                    <rect width="170" height="30" fill="#6cf" rx="3"></rect>
+                    <text x="85" y="15" alignment-baseline="middle" stroke-width="0" stroke="#000" text-anchor="middle"
+                      *ngIf="step.role">{{step.role}}</text>
+                    <text x="85" y="15" alignment-baseline="middle" stroke-width="0" stroke="#000" text-anchor="middle"
+                      *ngIf="!step.role">AOSP</text>
+                  </g>
+
+                  <g transform="translate(7)" width="30" height="30" [attr.data-step]="step.stepId"
+                    (click)="selectStep($event, step, group)">
+                    <rect width="30" height="30" fill="#eae5eb" rx="3"></rect>
+                    <image [attr.xlink:href]="'/assets/img/AOSP/menu_icon'+step.stepTypeId+'.svg'" x="7" y="7"
+                      height="17px" width="17px" />
+                  </g>
+
+                  <!-- Connectors Plus -->
+                  <g data-name="Connectors" class="connector" width="18" height="34" viewBox="0 0 18 34"
+                    transform="translate(100 85)" (click)="selectConnector($event, step, group)">
+                    <g>
+                      <g data-name="Ellipse" class="ellipse" transform="translate(0 2)" fill="none" stroke-width="1">
+                        <circle cx="9" cy="9" r="9" stroke="none" />
+                        <circle cx="9" cy="9" r="8.5" fill="none" />
+                      </g>
+                      <text data-name="+" class="ellipse-symbol" transform="translate(4.6 16)" font-size="16"
+                        font-family="Roboto-Regular, Roboto">
+                        <tspan x="0" y="0">+</tspan>
+                      </text>
+                    </g>
+                    <g data-name="Workflow Line" transform="translate(9 0) rotate(180)">
+                      <line y2="8" fill="none" class="line" stroke-width="0.5" stroke-dasharray="3 2" />
+                    </g>
+                    <g transform="translate(9 31) rotate(180)">
+                      <line y2="8" fill="none" class="line" stroke-width="0.5" stroke-dasharray="3 2" />
+                    </g>
+                  </g>
+                </g>
+
+                <!-- Coditionals Components -->
+                <g *ngIf="step.stepTypeId === 0" transform="translate(-110 0)"
+                  [ngClass]="{selectedLeft: step.selected && !step.selectedRight, selectedRight: step.selected && step.selectedRight}">
+                  <!-- Content Title -->
+                  <g transform="translate(0 0)" (click)="selectStep($event, step, group)">
+                    <rect width="220" height="30" rx="3" />
+                    <rect width="131" height="30" rx="4" style="fill:#f6f6f6" transform="translate(42 0)" />
+                    <text id="Condition" transform="translate(69 6)" fill="#777" font-size="14"
+                      font-family="Roboto-Regular, Roboto">
+                      <tspan x="7.103" y="13">Condition</tspan>
+                    </text>
+                  </g>
+
+                  <!-- Connectors -->
+                  <g data-name="Connectors" width="18" height="34" viewBox="0 0 18 34" transform="translate(100 40)">
+                    <!-- Connectors Left -->
+                    <g>
+                      <g data-name="Workflow Line" transform="translate(9 0) rotate(180)">
+                        <line y2="8" fill="none" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                      </g>
+                      <g data-name="Left Connection" transform="translate(10 0)">
+                        <g transform="translate(0 0) rotate(90)">
+                          <line y2="121" fill="none" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                        </g>
+                        <g transform="translate(-120 8) rotate(180)">
+                          <line y2="8" fill="none" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                          <!-- First Choice -->
+                          <g transform="translate(37 0) rotate(180)">
+                            <rect width="170" height="30" rx="4" transform="translate(-47)" fill="#39ae39" />
+                            <text x="85" y="15" alignment-baseline="middle" fill="#f6f6f6" transform="translate(-70)">
+                              {{step.mainValue? step.mainValue.value: ""}}
+                            </text>
+
+                            <!-- Connectors Plus -->
+                            <g data-name="Connectors" width="18" height="34" viewBox="0 0 18 34" class="connectorLeft"
+                              transform="translate(27 39)" (click)="selectConnectorCondition($event, step, group, false)">
+                              <g>
+                                <g data-name="Ellipse" class="ellipse" transform="translate(0 2)" fill="none" stroke="#c6c6c6"
+                                  stroke-width="1">
+                                  <circle cx="9" cy="9" r="9" stroke="none" />
+                                  <circle cx="9" cy="9" r="8.5" fill="none" />
+                                </g>
+                                <text data-name="+" class="ellipse-symbol" transform="translate(4.6 16)" fill="#c6c6c6" font-size="16"
+                                  font-family="Roboto-Regular, Roboto">
+                                  <tspan x="0" y="0">+</tspan>
+                                </text>
+                              </g>
+                              <g data-name="Workflow Line" transform="translate(9 0) rotate(180)">
+                                <line y2="8" fill="none" class="line" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                              </g>
+                              <g transform="translate(9 31) rotate(180)">
+                                <line y2="8" fill="none" class="line" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                              </g>
+                            </g>
+
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <!-- Connectors Right -->
+                    <g>
+                      <g data-name="Workflow Line" transform="translate(9 0) rotate(180)">
+                        <line y2="8" fill="none" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                      </g>
+                      <g data-name="Left Connection" transform="translate(131 0)">
+                        <g transform="translate(0 0) rotate(90)">
+                          <line y2="121" fill="none" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                        </g>
+                        <g transform="translate(0 8) rotate(180)">
+                          <line y2="8" fill="none" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                          <!-- Second Choice -->
+                          <g transform="translate(37 0) rotate(180)">
+                            <rect width="170" height="30" rx="4" transform="translate(-47)" fill="#dc3c3d" />
+                            <text x="85" y="15" alignment-baseline="middle" fill="#f6f6f6" transform="translate(-65)">
+                              {{step.secondaryValue? step.secondaryValue.value: ""}}
+                            </text>
+
+                            <!-- Connectors Plus -->
+                            <g data-name="Connectors" width="18" height="34" viewBox="0 0 18 34" class="connectorRight"
+                              transform="translate(27 39)" (click)="selectConnectorCondition($event, step, group, true)">
+                              <g>
+                                <g data-name="Ellipse" class="ellipse" transform="translate(0 2)" fill="none" stroke="#c6c6c6"
+                                  stroke-width="1">
+                                  <circle cx="9" cy="9" r="9" stroke="none" />
+                                  <circle cx="9" cy="9" r="8.5" fill="none" />
+                                </g>
+                                <text data-name="+" class="ellipse-symbol" transform="translate(4.6 16)" fill="#c6c6c6" font-size="16"
+                                  font-family="Roboto-Regular, Roboto">
+                                  <tspan x="0" y="0">+</tspan>
+                                </text>
+                              </g>
+                              <g data-name="Workflow Line" transform="translate(9 0) rotate(180)">
+                                <line y2="8" fill="none" class="line" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                              </g>
+                              <g transform="translate(9 31) rotate(180)">
+                                <line y2="8" fill="none" class="line" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+
+                <!-- Connectors Components -->
+                <g *ngIf="step.stepTypeId === 10" transform="translate(-110 0)"
+                  [ngClass]="{selected: step.selected}">
+                  <!-- Content Title -->
+                  <g transform="translate(0 47)" >
+                    <rect width="220" height="30" rx="3" />
+                    <rect width="131" height="30" rx="4" style="fill:#f6f6f6" transform="translate(42 0)" />
+                    <text id="Condition" transform="translate(69 6)" fill="#777" font-size="14"
+                      font-family="Roboto-Regular, Roboto">
+                      <tspan x="7.103" y="13">Connector</tspan>
+                    </text>
+                  </g>
+
+                  <!-- Connectors -->
+                  <g data-name="Connectors" width="18" height="34" viewBox="0 0 18 34" transform="translate(100 40)"
+                    (click)="selectConnector($event, step, group)">
+                    <!-- Connectors Left -->
+                    <g>
+                      <g data-name="Workflow Line" transform="translate(9 7) rotate(180)">
+                        <line y2="8" fill="none" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                      </g>
+                      <g data-name="Left Connection" transform="translate(9 0)">
+                        <g transform="translate(0 0) rotate(90)">
+                          <line y2="121" fill="none" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                        </g>
+                        <g transform="translate(-120 0) rotate(180)">
+                          <line [attr.y2]="43 + (116 * step.levelFatherLeft)" fill="none" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                        </g>
+                        {{step.levelFatherLeft}}
+                      </g>
+                    </g>
+                    <!-- Connectors Right -->
+                    <g>
+                      <g data-name="Right Connection" transform="translate(129 0)">
+                        <g transform="translate(0 0) rotate(90)">
+                          <line y2="121" fill="none" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                        </g>
+                        <g transform="translate(0 0) rotate(180)">
+                          <line [attr.y2]="43 + (116 * step.levelFatherRight)" fill="none" stroke="#9f9f9f" stroke-width="0.5" stroke-dasharray="3 2" />
+                        </g>
+                        {{step.levelFatherRight}}
+                      </g>
+                    </g>
+                  </g>
+
+                  <!-- Connectors Plus -->
+                  <g data-name="Connectors" class="connector" width="18" height="34" viewBox="0 0 18 34"
+                    transform="translate(100 85)" (click)="selectConnector($event, step, group)">
+                    <g>
+                      <g data-name="Ellipse" class="ellipse" transform="translate(0 2)" fill="none" stroke-width="1">
+                        <circle cx="9" cy="9" r="9" stroke="none" />
+                        <circle cx="9" cy="9" r="8.5" fill="none" />
+                      </g>
+                      <text data-name="+" class="ellipse-symbol" transform="translate(4.6 16)" font-size="16"
+                        font-family="Roboto-Regular, Roboto">
+                        <tspan x="0" y="0">+</tspan>
+                      </text>
+                    </g>
+                    <g data-name="Workflow Line" transform="translate(9 0) rotate(180)">
+                      <line y2="8" fill="none" class="line" stroke-width="0.5" stroke-dasharray="3 2" />
+                    </g>
+                    <g transform="translate(9 31) rotate(180)">
+                      <line y2="8" fill="none" class="line" stroke-width="0.5" stroke-dasharray="3 2" />
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+
+        </g>
+
+
+      </svg>
+
+    </div>
+  </div>
+</div>

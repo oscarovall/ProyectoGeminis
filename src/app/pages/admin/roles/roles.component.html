@@ -1,0 +1,42 @@
+<div class="row w-100 m-0 menuTitle3Div animated fadeIn">
+  <div>
+    <div class="title2 t-3">Role Management</div>
+  </div>
+  <div class="col title1ComponentsDiv text-right pr-0">
+
+    <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="addNewRole()">
+      <div class="d-flex">
+        <div class="mr-2">+</div>Add Role
+      </div>
+    </button>
+  </div>
+</div>
+
+<div class="pl-3 pr-3">
+  <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+    <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+      <thead>
+        <tr>
+          <td scope="col" width="180" style="min-width: 180px;">Role</td>          
+          <td *ngFor="let page of pages; let f = last" class="text-nowrap" width="120" scope="col" >{{page.rolePage1}}</td>         
+          <td scope="col" width="120"> Actions</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of roles; let f = last" class="animated fadeIn">
+          <td width="" class="remove_lines">{{role.shortRole}}</td>
+          <td *ngFor="let page of pages; let f = last" width="" class="animated fadeIn remove_lines">      
+            <div class="my-2 mx-auto aosp-ui-icon-header aosp-ui-edit2" [ngClass]="pipeRoles(page, role, 'edit')" (click)="savePermission(page, role, 'edit')"></div>      
+            <div class="my-2 mx-auto aosp-ui-icon-header aosp-ui-view" [ngClass]="pipeRoles(page, role, 'view')" (click)="savePermission(page, role, 'view')"></div>            
+            <div class="my-2 mx-auto aosp-ui-icon-header aosp-ui-invalid" [ngClass]="pipeRoles(page, role, 'none')" (click)="savePermission(page, role, 'none')"></div>
+          </td>          
+          <td width="" class="remove_lines">           
+            <button tc-button type="button" class="btn btn-outline-dark p-1 rounded ml-2" (click)="edit(role)">
+              <div class="aosp-ui-icon aosp-ui-edit-md"></div>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+
+.subtitleWidget {
+  margin-top: -10px;
+  color:#00529b;
+  font-weight:500;
+}
+
+
+.tittleLeads {
+  font-size: 22px;
+  padding: 0;
+  margin-top: -15px;
+}
+
+.numberWidget {
+  color:#5aaef3;
+}
+ 
+
+.fa.fa-spinner.fa-spin.fa-3x {
+  color: #0d5fa1 !important;
+}
+
+.spinnerText {
+  color: #0d5fa1 !important;
+}
+
+::ng-deep .mat-tab-header-pagination-chevron {
+  border-color: #5aaef3 !important;
+}

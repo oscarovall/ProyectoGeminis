@@ -1,0 +1,59 @@
+@import "~assets/sass/variables"; 
+
+$_animation: $animation;
+$_shape: $shape;
+$_handler-size: 14px;
+$_tooltip-size: 18px;
+$_rail-size: 4px;
+
+:host {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	margin-left: -$_handler-size / 2;
+	touch-action: none;
+	transition: left .2s $_animation, top .2s $_animation, transform .2s $_animation;
+	width: $_handler-size;
+	z-index: 8;
+
+
+	.handler {
+		background:#fff;
+		border: 2px solid ;
+		border-radius: 50%;
+		cursor: pointer;
+		display: block;
+		position: absolute;
+		height: $_handler-size;
+		margin-top: -$_handler-size/2 - $_rail-size/2;
+		left: 0;
+		top: 0;
+		transition: transform .3s $_animation, left .2s $_animation, top .2s $_animation;
+		width: $_handler-size;
+		z-index: 3;
+	}
+	.tooltip {
+		align-items: center;
+		background: main-palette(400);
+		border-radius: $_shape;
+		color: #fff;
+		display: flex;
+		justify-content: center;
+		font-size: 0.8em;
+		height: $_tooltip-size;
+		margin: 0;
+		margin-top: -$_handler-size * 2 - 5px;
+		margin-bottom: $module-rem/2;
+		padding: $module-rem/4 $module-rem/2;
+		text-align: center;
+		transition: left .2s $_animation, width .2s $_animation;
+	}
+	&.hovered,&:hover {
+			transform: scale(1.2);
+			transform-origin: center center;
+	}
+	.vertical & {
+		margin-top: 0;
+		margin-left: -$_handler-size / 2 + $_rail-size/2;
+	}
+}

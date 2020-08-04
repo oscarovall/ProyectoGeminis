@@ -1,0 +1,147 @@
+@import "~assets/sass/variables";
+
+$_shape: $shape;
+$_handler-size:  16px;
+$_tooltip-size: 2 * $module;
+$_rail-size: 4px;
+$_rail-bg: main-palette(500);
+$_animation: $animation;
+$_padding-bottom: $_handler-size/2 - $_rail-size/2;
+
+$_tooltip-size: 28px;
+$_labels-size: 18px;
+
+$_height: 4px;
+$_width: 4px;
+
+:host {
+	align-items: flex-end;
+	cursor: pointer;
+	display: flex;
+	height: $_handler-size;
+	margin: 0;
+	padding-bottom: $_padding-bottom;
+	position: relative;
+  width: 100%;
+
+	.rail {
+		background: $_rail-bg;
+		border-radius: 2px;
+		cursor: pointer;
+    height: $_height;
+    position: absolute;
+		width: 100%;
+	}
+	.dots {
+		height: $_height;
+		position: absolute;
+		left: 0;
+		width: 100%;
+
+		.mark {
+			align-items: center;
+			display: flex;
+			position: absolute;
+			flex-direction: column;
+			width: 0;
+
+			.dot {
+				background: $_rail-bg;
+				border: 2px solid $_rail-bg;
+				border-radius: 50%;
+				display: block;
+				height: 10px;
+				position: absolute;
+				margin-top: -3px;
+				transition: background .2s $_animation, border-color .2s $_animation;
+				width: 10px;
+				z-index: 4;
+			}
+			.label {
+				opacity: .6;
+				position: absolute;
+				font-size: .8em;
+				margin-top: $_handler-size/2;
+				text-align: center;
+				transition: opacity .2s $_animation;
+				text-align: center;
+				vertical-align: middle;
+				z-index: 5;
+
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+	.track {
+		background: accent-palette(500);
+		border-radius: 2px;
+		position: absolute;
+		height: $_height;
+		transition: width .2s $_animation, height .2s $_animation, left .2s $_animation, top .2s $_animation;
+		width: 100%;
+		z-index: 2;
+	}
+	&.with-labels {
+		height: $_handler-size + $_labels-size;
+		padding-bottom: $_labels-size;
+	}
+	&.tooltip {
+		height: $_handler-size + $_tooltip-size;
+	}
+	&.with-labels.tooltip {
+		height: $_handler-size + $_tooltip-size + $_labels-size;
+		padding-bottom: $_labels-size;
+	}
+	
+	&.vertical {
+		align-items: unset;
+		justify-content: center;
+		height: 240px;
+		width: $_handler-size;
+		padding: 0;
+		margin: 0;
+		max-width: 100%;
+
+		.rail {
+			height: 240px;
+			left: 0;
+			width: $_width;
+		}
+		.track {
+			height: 240px;
+			width: $_width
+		}
+
+		>.dots {
+			margin:0;
+			top: 0;
+			height: 100%;
+			width: $_width;
+
+			>.mark {
+				flex-direction: row;
+				align-content: center;
+				justify-content: unset;
+				.dot {
+					margin-top: 0;
+					margin-left: -3px;
+				}
+				.label {
+					margin: 0;
+					margin-left: $module-rem * 1.5;
+				}
+			}
+		}
+		&.with-labels {
+			width: $_handler-size + $_labels-size * 2 ;
+		}
+		&.tooltip {
+			width: $_handler-size + $_tooltip-size;
+		}
+		&.with-labels.tooltip {
+			width:$_handler-size + $_labels-size * 2;
+		}
+	}
+}

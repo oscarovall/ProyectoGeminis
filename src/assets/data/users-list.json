@@ -1,0 +1,118 @@
+[
+	{
+		"name": "Charles Sutton",
+		"tag": "company",
+		"email": "charlie@mail.com",
+		"img": "../../../../assets/content/avatar-176-10.jpg",
+		"role": "Designer",
+		"phone": "0987654321",
+		"location": "Manchester",
+		"birthDate": "April 7",
+		"labels": [
+			"Competitors"
+		]
+	},
+	{
+		"name": "Elsie Allen",
+		"img": "../../../../assets/content/avatar-176-11.jpg",
+		"tag": "company",
+		"email": "elsie-allen@mail.com",
+		"labels": [
+			"Clients","Suppliers"
+		],
+		"role": "Developer",
+		"phone": "0987654321",
+		"location": "Manchester",
+		"birthDate": "April 7"
+	},
+	{
+		"name": "Collin Nixon",
+		"img": "../../../../assets/content/avatar-176-6.jpg",
+		"tag": "company",
+		"email": "collin-nixon@mail.com",
+		"labels": [
+			"Clients"
+		],
+		"role": "Designer",
+		"phone": "0987654321",
+		"location": "Manchester",
+		"birthDate": "April 7"
+	},
+	{
+		"name": "Jamie Spencer",
+		"tag": "company",
+		"img": "../../../../assets/content/avatar-176-5.jpg",
+		"email": "spancer@mail.com",
+		"labels": [
+			"Clients","Competitors"
+		],
+		"role": "Manager",
+		"phone": "0987644421",
+		"location": "Washington",
+		"birthDate": "December 16"
+	},
+	{
+		"name": "Taylor Shaw",
+		"tag": "personal",
+		"img": "../../../../assets/content/avatar-176-8.jpg",
+		"email": "taylorshaw@mail.com",
+		"labels": [
+			"Clients","Suppliers"
+		],
+		"role": "Backend developer",
+		"phone": "0987654321",
+		"location": "Paris",
+		"birthDate": "October 16"
+	},{
+		"name": "Alexander Blair",
+		"tag": "personal",
+		"img": "../../../../assets/content/avatar-176-1.jpg",
+		"email": "alexblair@mail.com",
+		"labels": [
+			"Clients"
+		],
+		"role": "Frontend developer",
+		"phone": "0985754321",
+		"location": "London",
+		"birthDate": "May 12"
+	},
+	{
+		"name": "Jessa Garrison",
+		"tag": "team",
+		"img": "../../../../assets/content/avatar-176-3.jpg",
+		"email": "jessa-garrison@mail.com",
+		"labels": [
+			"Competitors"
+		],
+		"role": "Software Engineer",
+		"phone": "0987654321",
+		"location": "London",
+		"birthDate": "August 21"
+	},
+	{
+		"name": "Mell Russell",
+		"tag": "team",
+		"img": "../../../../assets/content/avatar-176-2.jpg",
+		"email": "mell-russell@mail.com",
+		"labels": [
+			"Suppliers"
+		],
+		"role": "Manager",
+		"phone": "0981234567",
+		"location": "Madrid",
+		"birthDate": "July 12"
+	},
+	{
+		"name": "Bethany Morgan",
+		"tag": "team",
+		"img": "../../../../assets/content/avatar-176-9.jpg",
+		"email":"bethany@mail.com",
+		"labels": [
+			"Clients","Suppliers"
+		],
+		"role": "Designer",
+		"phone": "0987654321",
+		"location": "London",
+		"birthDate": "May 27"
+	}
+]

@@ -1,0 +1,15 @@
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: none !important;
+}
+
+.result-homes {
+    height: 70%;
+}
+
+.bg-bottom-homes {
+    opacity: 0.4;
+    background: #0c1d55 !important;
+}

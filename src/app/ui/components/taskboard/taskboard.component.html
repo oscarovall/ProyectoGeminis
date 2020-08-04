@@ -1,0 +1,42 @@
+<div class="taskboard">
+	<div class="list-wrapper" *ngFor="let category of categories">
+		<div class="taskboard-list">
+			<div class="taskboard-header">
+				<h3 class="taskboard-title">{{ category.title }}</h3>
+				<div class="handle">...</div>
+			</div>
+
+			<div class="taskboard-cards" >
+				<div class="task-list" [dragula]="'bag-one'" [(dragulaModel)]='category.tasks'>
+					<div class="taskboard-card" *ngFor="let task of category.tasks">
+						<h4 class="card-title">{{ task.title }}</h4>
+						<span class="card-text">{{ task.desc }}</span>
+					</div>
+				</div>
+
+				<div class="taskboard-card" *ngIf="category.active">
+					<tc-input
+						#title
+						[placeholder]="'Title'"
+						(keydown.enter)="addNewTask(category, title.value, desc.value)"
+					></tc-input>
+
+					<tc-textarea
+						#desc
+						[placeholder]="'Description'"
+						(keydown.enter)="addNewTask(category, title.value, desc.value)"
+					></tc-textarea>
+
+					<div class="buttons">
+						<button tc-button (click)="addNewTask(category, title.value, desc.value)"> Add </button>
+						<button tc-button (click)="category.active = false"><i class="icofont-ui-close"></i></button>
+					</div>
+				</div>
+
+				<button tc-button [view]="'info'" [block]="true" *ngIf="!category.active" (click)="openPanel(category)">
+					Add Card
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

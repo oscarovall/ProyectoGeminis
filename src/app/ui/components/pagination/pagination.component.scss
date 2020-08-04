@@ -1,0 +1,48 @@
+@import '~assets/sass/variables';
+
+$_shape: $shape;
+
+:host {
+  display: inline-block;
+  margin-top: $module-rem;
+  padding: 0;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    padding-left: 0;
+		margin: 0;
+
+    li {
+			float: left;
+
+      &:not(:first-child) {
+        margin-left: 5px;
+      }
+      a {
+				background: main-palette(400);
+        border-radius: $_shape;
+        color: main-contrast(400);
+        cursor: pointer;
+        float: left;
+        font-size: 0.8em;
+        padding: 4px 8px;
+        text-decoration: none;
+				transition: background-color .2s $animation, color .2s $animation;
+
+        &:hover {
+					color: #fff;
+				}
+        &.active {
+          background-color: main-palette(700);
+          color: main-contrast(700);
+        }
+        &.disabled {
+          background: main-palette(200);
+          color: main-contrast(200);
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}

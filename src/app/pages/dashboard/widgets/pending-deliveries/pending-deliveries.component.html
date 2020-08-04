@@ -1,0 +1,22 @@
+
+
+
+  <div class="row animated fadeIn" *ngIf="cargando">
+
+    <div class="col-sm-12">
+
+      <div class="alert alert-warning text-center">
+        <br>
+        <i class="fa fa-spinner fa-spin fa-3x"></i>
+        <br>
+        <strong class="spinnerText">Loading</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="financing-grid rounded text-center" *ngIf="!cargando" style="height: 120px;">
+    <h2 class="numberWidget">{{deliverys?.pendingDeliveriesThisWeek}}</h2>
+    <h3 class="tittleLeads">Pending Deliveries</h3>
+    <p class="subtitleWidget">This Week</p>
+  </div>
+

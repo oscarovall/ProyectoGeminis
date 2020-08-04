@@ -1,0 +1,22 @@
+<div class="modal-body row w-100 h-100 mx-0">
+  <div class="col-12 p-0">
+    <tc-form-group>
+      <tc-form-label class="tc-form-label">Step name</tc-form-label>
+      <input class="form-control w-100" type="text" placeholder="Input step name" [(ngModel)]="newStep.name">
+    </tc-form-group>
+  </div>
+  <div class="col-12 p-0">
+    <tc-form-group>
+      <tc-form-label class="tc-form-label">Email Template</tc-form-label>
+      <select (change)="templateChanged($event)" class="custom-select rounded" [(ngModel)]="newStep.templateId">
+        <option style="display:none;"> -- select an option -- </option>
+        <option *ngFor="let template of templateService.templates" [value]="template.templateId">{{template.name}}</option>
+      </select>
+    </tc-form-group>
+  </div>
+</div>
+<div class="row modal-footer justify-content-end">
+  <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" [view]="'error'" (click)="deleteButton()" *ngIf="action==='Edit'">Delete</button>
+  <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="closeButton()">Cancel</button>
+  <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="saveButton()">Save</button>
+</div>

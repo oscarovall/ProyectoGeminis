@@ -1,0 +1,7 @@
+<div *ngIf="img" class="item-img"><img src="{{ img }}"></div>
+
+<div class="item-content">
+  <h4 *ngIf="title" class="item-title">{{ title }}</h4>
+
+  <div class="item-text"><ng-content></ng-content></div>
+</div>

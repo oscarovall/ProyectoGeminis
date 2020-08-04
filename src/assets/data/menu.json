@@ -1,0 +1,102 @@
+[
+  {
+		"title": "Home",
+    "icon": "aosp-ui-home",
+    "routing": "/dashboard"
+  },
+  {
+		"title": "CRM",
+		"icon": "aosp-ui-customer",
+    "badge": "3",
+    "badgeView": "info",
+		"sub": [
+			{
+				"title": "Leads",
+				"routing": "leads"
+			},
+			{
+				"title": "Contacts",
+				"routing": "customers"
+			}
+		]
+  },
+  {
+		"title": "Inventory",
+    "icon": "aosp-ui-inventory",
+    "routing": "inventory"
+  },
+  {
+		"title": "Service and repair",
+    "icon": "aosp-ui-serviceandrepair",
+    "routing": "serviceandrepair-dashboard"
+  },
+  {
+		"title": "Insurance",
+    "icon": "aosp-ui-insurance",
+    "routing": "insurance-dashboard"
+  },
+  {
+		"title": "Finance",
+    "icon": "aosp-ui-finance",
+    "routing": "finance-dashboard"
+  },
+  {
+		"title": "Real Estate",
+    "icon": "aosp-ui-realestate",
+    "routing": "realestate-dashboard"
+  },
+  {
+		"title": "Reports",
+    "icon": "aosp-ui-reports",
+    "routing": "report-dashboard"
+  },
+  {
+		"title": "Administration",
+		"icon": "aosp-ui-administration",
+    "badge": "7",
+    "badgeView": "info",
+		"sub": [
+			{
+				"title": "Company",
+				"routing": "company-admin"
+			},
+			{
+				"title": "Users",
+				"routing": "users-admin"
+			},
+			{
+				"title": "Roles",
+				"routing": "roles-admin"
+			},
+			{
+				"title": "Attributes",
+				"routing": "attributes-admin"
+			},
+			{
+				"title": "Products",
+				"routing": "products-admin"
+			},
+			{
+				"title": "Workflows",
+				"routing": "workflows-admin"
+      },
+      {
+				"title": "Templates",
+				"routing": "emails-admin"
+
+	  },
+	  {
+				"title": "Dealerships",
+				"routing": "dealerships-admin"
+	  },
+	  {
+				"title": "Manufacturers",
+				"routing": "manufacturers-admin"
+	  },
+      {
+        "title": "Forms",
+        "routing": "forms-admin"
+      }
+		]
+  }
+]

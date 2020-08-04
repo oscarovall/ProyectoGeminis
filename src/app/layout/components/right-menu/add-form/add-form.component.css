@@ -1,0 +1,43 @@
+.scroll {
+  height: 200px;
+  overflow-y: auto;
+}
+
+.form-control .field{
+  background: none;
+  padding: 0;
+  height: auto;
+}
+
+input.form-control {
+  align-items: center;
+  border: tan;
+  border-radius: inherit;
+  cursor: text;
+  display: flex;
+  outline: none;
+  /* padding: 0 1.25rem; */
+  /* padding: 0 calc(1.25rem - .2em); */
+  position: relative;
+  transition: background 0.2s ease-in-out, border 0.2s ease-in-out, color 0.2s ease-in-out;
+  line-height: 40px;
+  background: none;
+  color: #fff;
+}
+
+.height-atts {
+  max-height: 600px;
+}
+
+.form-upload-btn {
+  margin-top: 28px;
+}
+
+.form-delete-btn {
+  margin-top: 33px;
+}
+
+
+/*.custom-select.rounded.ng-dirty.ng-valid.ng-touched {
+  font-size: 10px !important;
+}*/

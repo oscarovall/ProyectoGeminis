@@ -1,0 +1,178 @@
+@import '/mixins';
+
+$background: var(--foreground-default);
+
+$default-color: #fff;
+$main-ff: Roboto, sans-serif;
+$second-ff: Roboto, sans-serif;
+$main-fs: 14px;
+$main-fw: 400;
+$module: 10px;
+$main-lh: 1.5;
+$module-rem: ($module / $main-fs) * 1rem;
+$shape: 0;
+
+//Titles and Fonts
+$color-main-font: var(--color-main-font);
+
+//Table
+$background-table: var(--foreground-table);
+$font-table: var(--font-table);
+$font-table-content: var(--font-table-content);
+$table-responsive: var(--table-responsive);
+
+//Gross Profit
+$gross-profit: var(--gross-profit);
+
+//Graph Appoinments
+$graph-Appointments: var(--graph-Appointments);
+
+//Widgets
+$backgroundWidgets-widgets: var(--foreground-widgets);
+$tittleLeads: var(--tittleLeads);
+$subtitleWidget:var(--subtitleWidget);
+$numberWidget: var(--numberWidget);
+$boxShadowWidget: var(--boxShadowWidget);
+
+//Filtros
+$custom-select: var(--custom-select);
+$font-filtros: var(--font-filtros);
+
+//Sidebar
+$sidebar: none;
+$sidebar-white: #e5edef;
+$sidebar-alt:#edf0f5;
+$sidebar-text: #687384;
+$sidebar-icons: #555f6d ;
+$themecolor: #398bf7;
+$border: rgba(120, 130, 140, 0.13);
+$dark: #263238;
+$white: #ffffff;
+$themecolor-alt: #26c6da;
+$themecolor-dark: #028ee1;
+
+//pending Task
+$task-description: var(--task-description);
+
+//Weekly-Metrics
+$label-center: var(--label-center);
+
+//Loading
+$alert-warning: var(--alert-warning);
+
+//Media
+$max543 : only screen and (max-width: 543px);
+$min544 : only screen and (min-width: 544px);
+$max767 : only screen and (max-width: 767px);
+$min768 : only screen and (min-width: 768px);
+$max991 : only screen and (max-width: 991px);
+$min992 : only screen and (min-width: 992px);
+$max1199 : only screen and (max-width: 1199px);
+$min1200 : only screen and (min-width: 1200px);
+
+$boxed-width: 1200px;
+$content-h-indents: 0; // Change to set Design before it was  $module-rem * 3
+$content-v-indents: 0; // Change to set Design before it was  $module-rem * 3
+
+$nav-bar-height: $module-rem * 6;
+$horizontal-menu-height: $module-rem * 5;
+$nav-bar-bg: #fff;
+
+$primary-bg: #001347;
+$primary-light: #fff;
+
+$side-bar-width: 19 * $module-rem;
+$side-bar-bg: #fff;
+$side-bar-bg-dark: #302d2d;
+
+$footer-height: 4 * $module-rem;
+
+$animation: ease-in-out;
+
+$success-color: #81c784;
+$success-contrast: #fff;
+$info-color: #64b5f6;
+$info-contrast: #fff;
+$warning-color: #ffb74d;
+$warning-contrast: #fff;
+$error-color: #e24d4d;
+$error-contrast: #fff;
+
+$main-palette: (
+  50 : #e1e4e8,
+  100 : #b5bdc5,
+  200 : #83919f,
+  300 : #516478,
+  400 : #2c435b,
+  500 : #223264,
+  AOSP500: #0d5fa1,
+  600 : #061e38,
+  700 : #051930,
+  800 : #041428,
+  900 : #020c1b,
+  A100 : #5985ff,
+  A200 : #2660ff,
+  A400 : #0041f2,
+  A700 : #003ad9,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+@function main-palette($key: $main-palette) {
+  @return map-get($main-palette, $key);
+}
+@function main-contrast($key: $main-palette) {
+  @return map-get(map-get($main-palette, contrast), $key);
+}
+
+$accent-palette: (
+  50 : #ffb889,
+  100 : #ffae79,
+  200 : #ffa76d,
+  300 : #ff9751,
+  400 : #FF924A,
+  500 : #eae5eb,
+  600 : #FF771D,
+  700 : #FF6A07,
+  800 : #E86107,
+  900 : #D15706,
+  A100 : #fff,
+  A200 : #eff0ff,
+  A400 : #bcc1ff,
+  A700 : #a2aaff,
+  contrast: (
+    50 : #000,
+    100 : #000,
+    200 : #000,
+    300 : #000,
+    400 : #eae5eb,
+    500 : #eae5eb,
+    600 : #eae5eb,
+    700 : #eae5eb,
+    800 : #eae5eb,
+    900 : #eae5eb,
+    A100 : #000,
+    A200 : #000,
+    A400 : #000,
+    A700 : #000,
+  )
+);
+@function accent-palette($key: $accent-palette) {
+  @return map-get($accent-palette, $key);
+}
+@function accent-contrast($key: $accent-palette) {
+  @return map-get(map-get($accent-palette, contrast), $key);
+}

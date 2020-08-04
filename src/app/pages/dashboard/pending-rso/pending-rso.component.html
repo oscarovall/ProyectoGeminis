@@ -1,0 +1,51 @@
+<div class="row w-100 m-0 menuTitle3Div animated fadeIn">
+  <div class="col-6 col-md-9 mt-4">
+    <div class="title2 t-3">Pending RSO</div>
+  </div>  
+</div>
+
+<div class="pl-3 pr-3">
+  <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+    <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+      <thead>
+        <tr class="borderTittle-table">
+
+          <td scope="col" class="text-nowrap">Customer Name</td>
+          <td scope="col" class="text-center text-nowrap">Make</td>
+          <td scope="col" class="text-center text-nowrap">Model</td>
+          <td scope="col" class="text-center text-nowrap">Order #</td>
+          <td scope="col" class="text-center text-nowrap">Actions</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rso of pendingRso" class="animated fadeIn">
+
+          <td width="" class="remove_lines text-title">{{rso.mainCustomer.name}} {{rso.mainCustomer.lastname}}</td>
+          <td width="" class="remove_lines text-center text-title">{{rso.leadProducts[0].productInv.manufacturer.shortName}}</td>
+          <td width="" class="remove_lines text-center text-title">{{rso.leadProducts[0].productInv.name}}</td>
+          <td width="" class="remove_lines text-center text-title">{{rso.leadProducts[0].productInv.rsoOrderNum}}</td>
+                    
+          <td width="180" class="remove_lines text-center">
+            <div class="d-flex">
+              <button tc-button type="button" class="btn btn-outline-dark approve rounded" (click)="approve()">                
+                  APPROVE
+              </button>
+              <button tc-button type="button" class="btn btn-outline-dark reject rounded ml-2" (click)="reject()">
+                  REJECT
+              </button>           
+            </div>
+          </td>          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-between mt-3">
+    <ngbd-pagination-advanced [totalItems]='totalPages' [page]="currentPage" (pageChanged)="changePage($event)"></ngbd-pagination-advanced>
+
+    <select class="custom-select font-filtro" style="width: auto" [(ngModel)]="pageSize" (change)="changePageSize()">
+      <option [ngValue]="5">5 items per page</option>
+      <option [ngValue]="10">10 items per page</option>
+      <option [ngValue]="50">50 items per page</option>
+    </select>
+  </div>
+</div>

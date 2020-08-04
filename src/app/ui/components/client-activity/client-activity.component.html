@@ -1,0 +1,136 @@
+<!-- <div class="scroll">
+  <div class="row w-100 mr-0 justify-content-between table">
+    <div class="row w-100 justify-content-between tableHeader">
+      <div class="row w-100 justify-content-between titleContent">
+        <div class="col-2">
+          <span>Client Activity</span>
+        </div>
+        <div class="col-5">
+          <span>Activity</span>
+        </div>
+        <div class="col-3">
+          <span>User</span>
+        </div>
+        <div class="col-2">
+          <span>Action</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row w-100 content">
+      <div class="col-12 p-0">
+        <ng-container *ngFor="let item of allNotifications | async; let f = last">
+          <div class="row w-100 justify-content-between rowContent">
+            <div class="col-1">
+              <span>{{item.date}}</span>
+            </div>
+            <div class="col-1">
+              <span>{{item.hour}}</span>
+            </div>
+            <div class="col-5">
+              <div class="row">
+                <div class="col-12">
+                  <span>{{item.activity.action}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <span class="info">{{item.activity.description}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="row">
+                <div class="col-12">
+                  <span>{{item.employee.role}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div>
+                  <span class="info">{{item.employee.name}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-2 action">
+              <ng-container *ngIf="item.action">
+                <tc-form-group>
+                  <tc-select [tcShape]="10" [placeholder]="'Actions'" [options]="item.action" class="t-2 position-relative"></tc-select>
+                </tc-form-group>
+              </ng-container>
+            </div>
+          </div>
+          <div *ngIf="!f" class="pl-3 pr-3">
+            <hr  class="w-100">
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="table-responsive animated fadeIn">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <td scope="col" width="180" style="min-width: 180px; text-align: center;">Client Activity</td>
+        <td scope="col" style="padding-left: 2em;">Activity</td>
+        <td scope="col" width="200" style="min-width: 200px; text-align: center;">User</td>
+        <!-- <td scope="col" width="150" style="min-width: 100px;">Action</td>-->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of notifications; let f = last" class="animated fadeIn">
+        <td width="70" class="remove_lineRigth">{{item.date}}</td>
+        <td class="remove_line">
+          <div class="row">
+            <div class="col-12">
+              <span [ngClass]="{ 'error': item.activity.type === 'error' }">{{item.activity.action}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12" *ngIf="!item.activity.description2">
+              <span class="info">{{item.activity.description1}}</span>
+            </div>
+            <div class="col-12" *ngIf="item.activity.description2">
+              <span class="status">{{item.activity.description1}}</span>
+              <span class="info px-1">to</span>
+              <span class="status">{{item.activity.description2}}</span>
+            </div>
+          </div>
+        </td>
+        <td class="remove_lineLeft">
+          <div class="row">
+            <div class="col-12" style="text-align: center;">
+              <span>{{item.employee.role}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12" style="text-align: center;">
+              <span class="info">{{item.employee.name}}</span>
+            </div>
+          </div>
+        </td>
+        <!--   <td class="nowrap">
+          <select *ngIf="item.action" (change)="executeAction($event)" class="custom-select rounded">
+            <option style="display:none;"> -- actions -- </option>
+            <option *ngFor="let action of item.action" [value]="action.name">{{action.name}}</option>
+          </select>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ngbd-pagination-advanced [totalItems]='recordCount' [page]="page" (pageChanged)="changePage($event)" *ngIf="recordCount && recordCount > 1"></ngbd-pagination-advanced>
+<!-- <div style="display: flex;">
+    <div class='mr-1 FLButton' (click)="changePage(0)">FIRST</div>
+    <div class='page mx-1 selected' (click)="changePage(page - 1)">
+      << /div>
+        <div [ngClass]="{selected: page === i}" class='page mx-1' *ngFor="let p of pages let i = index"
+          (click)="changePage(i)">{{i+1}}</div>
+        <div class='page mx-1 selected' (click)="changePage(page+1)">></div>
+        <div class='ml-1 FLButton' (click)="changePage(pages.length-1)">LAST</div>
+    </div>
+     <pagination [totalItems]="listaLecciones.recordCount" [(ngModel)]="listaLecciones.currentPage"
+    (pageChanged)="pageChanged($event)"></pagination>
+  </div> -->

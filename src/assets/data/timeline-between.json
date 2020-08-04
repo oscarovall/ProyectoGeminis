@@ -1,0 +1,68 @@
+[
+  {
+    "sectionLabel": "Today",
+    "sectionData": [
+      {
+        "date": "Now",
+        "title": "New Sale",
+        "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+        "icon": "icofont icofont-cart",
+        "iconBg": "#E22A6F",
+        "iconColor": ""
+      },
+      {
+        "date": "2 m ago",
+        "title": "New Review",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+        "icon": "icofont icofont-favourite",
+        "iconBg": "#FFBB41",
+        "iconColor": ""
+      },
+      {
+        "date": "2 h ago",
+        "title": "New Message",
+        "content": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised",
+        "icon": "icofont icofont-envelope",
+        "iconBg": "#678CF9",
+        "iconColor": ""
+      },
+      {
+        "date": "15 h ago",
+        "title": "New Sale",
+        "content": "Aenean lacinia bibendum nulla sed consectetur. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+        "icon": "icofont icofont-cart",
+        "iconBg": "#E7E9EC",
+        "iconColor": "#E22A6F"
+      }
+    ]
+  },
+  {
+    "sectionLabel": "Yesterday",
+    "sectionData": [
+      {
+        "date": "Jul 10, 2018",
+        "title": "New Report",
+        "content": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from",
+        "icon": "icofont icofont-chart-line",
+        "iconBg": "#50BD35",
+        "iconColor": ""
+      },
+      {
+        "date": "Jul 9, 2018",
+        "title": "New Message",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur nam nisi veniam.",
+        "icon": "icofont icofont-envelope",
+        "iconBg": "#E7E9EC",
+        "iconColor": "#50BD35"
+      },
+      {
+        "date": "Jul 8, 2018",
+        "title": "New Message",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur nam nisi veniam.",
+        "icon": "icofont icofont-envelope",
+        "iconBg": "#E7E9EC",
+        "iconColor": "#678CF9"
+      }
+    ]
+  }
+]

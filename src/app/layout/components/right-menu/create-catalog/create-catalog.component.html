@@ -1,0 +1,185 @@
+<tc-card [title]="title + ' Catalog'" [align]="'center'" [padding]="'0'" class="height-right-menu rounded square scrollbar-dusty-grass square thin">
+
+  <form #f="ngForm" id="leccionForma" class="form PrintArea" [ngClass]="{'was-validated': wasValidated}" novalidate *ngIf="data">
+    <div class="row">
+      
+      <!-- Details -->
+      <div class="col-12">
+        <table style="border: transparent" class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+          <thead>
+            <tr>
+              <td scope="col" class="remove_all_lines text-left text-nowrap" style="font-size:16px;color:#eae5eb">Home Details</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Make:</td>
+              <td width="" class="remove_all_lines text-left">Cavco</td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Model:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.name" name="name" maxLength="50" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Year:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="number" [(ngModel)]="data.year" name="year" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Status:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+            
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Box Size:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Sq Ft:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Bed:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Bath:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">W. Zone:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Lbs:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Floor R.Values:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Walls R.Values:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Ceiling R.Values:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Floor Thickness:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Walls Thickness:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Ceilling Thickness:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Thermal Zone:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Roaf Load Zone:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Floors:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+
+            <tr class="animated fadeIn">    
+              <td width="" class="remove_all_lines text-left">Pricing:</td>
+              <td width="" class="remove_all_lines text-left">
+                <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+              </td>
+            </tr>
+           
+          </tbody>
+        </table>
+      </div>
+
+        <div class="row pl-3 pr-3 mb-3">          
+          <div class="col-5" style="display: flex;">
+            <p class="title2"> Ceilling R.Values </p>            
+          </div>
+          <div class="col-7">
+            <input class="w-100 form-control" type="text" [(ngModel)]="data.xxx" name="xxx" [maxLength]="'50'" autocomplete="off" required />
+            <div class="invalid-feedback">It's required!</div>
+          </div>
+        </div>
+
+      <div class="col-12 py-1 px-5">
+        <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="cancel()">
+          <div class="d-flex">
+            <div class="aosp-ui-icon aosp-ui-cancel title"></div>Cancel
+          </div>
+        </button>
+        <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="save()">
+          <div class="d-flex">
+            <div class="aosp-ui-icon aosp-ui-save title"></div>Save
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <br>
+  </form>
+
+</tc-card>
+

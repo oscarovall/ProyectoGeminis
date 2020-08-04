@@ -1,0 +1,58 @@
+<tc-card [title]="tilte + ' Role'" [align]="'center'" [padding]="'0'">
+
+  <form #f="ngForm" id="leccionForma" class="form PrintArea" [ngClass]="{'was-validated': wasValidated}" novalidate>
+    <div class="row">      
+        <div class="col-12 pl-3 pr-3 mb-3">
+          <div>
+            <div style="display: flex;">
+              <p class="title2"> Role </p>
+              <div class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip"
+                data-placement="right" [title]="'Role'"></div>
+            </div>
+            <input 
+              class="w-100 form-control" 
+              type="text"
+              [(ngModel)]="role.role1"
+              name="role1"                
+              [maxLength]="'200'"
+              autocomplete="off"
+              required />
+            <div class="invalid-feedback">It's required!</div>
+          </div>
+        </div>
+
+        <div class="col-12 pl-3 pr-3 mb-3">
+          <div>
+            <div style="display: flex;">
+              <p class="title2"> Short Role </p>
+              <div class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip"
+                data-placement="right" [title]="'Short Role'"></div>
+            </div>
+            <input 
+              class="w-100 form-control" 
+              type="text"   
+              [(ngModel)]="role.shortRole"
+              name="shortRole"                
+              [maxLength]="'200'"
+              autocomplete="off"
+              required />
+            <div class="invalid-feedback">It's required!</div>
+          </div>
+        </div>
+
+      <div class="col-12 py-1 px-5">
+        <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="cancel()">
+          <div class="d-flex">
+            <div class="aosp-ui-icon aosp-ui-cancel title"></div>Cancel
+          </div>
+        </button>
+        <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="saveRole()">
+          <div class="d-flex">
+            <div class="aosp-ui-icon aosp-ui-save title"></div>Save
+          </div>
+        </button>
+      </div>
+    </div>
+  </form>
+
+</tc-card>

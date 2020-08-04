@@ -1,0 +1,21 @@
+<div class="modal-body row w-100 h-100 mx-0">
+  <form #f="ngForm" id="closeTaskForm" class="w-100" [ngClass]="{'was-validated': wasValidated}" novalidate>
+    <div class="col-12 p-0 mb-4 mt-1">
+      <span class="title">Comments</span>
+    </div>
+  
+    <div class="col-12 p-0 mb-3 px-1">
+      <textarea class="w-100 form-control" [(ngModel)]="comments"  name="comments" maxlength="100" required></textarea>
+      <div class="invalid-feedback text-right">It's required!</div>
+    </div>
+  
+    <div class="row w-100 mt-2">
+      <div class="col-6 pr-2">
+        <button type="button" class="cancel w-100" (click)="closeButton()">Cancel</button>
+      </div>
+      <div class="col-6 p-0 pl-2 ">
+        <button type="button" class="upload w-100" (click)="confirmCloseTask()">Close Task</button>
+      </div>
+    </div>
+  </form>  
+</div>

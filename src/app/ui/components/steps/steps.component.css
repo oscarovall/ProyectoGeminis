@@ -1,0 +1,106 @@
+.circle {
+	width: 64.1px;
+	height: 64.1px;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.step {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+}
+
+.Done {
+	background-color: #6ca100;
+}
+
+.Current {
+	background-color: #0d5fa1;
+}
+.Next {
+  background-color: #aab2bd;
+}
+.undefined {
+	background-color: #aab2bd;
+}
+.scroll {
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+.scroll::-webkit-scrollbar {
+	width: 20px;
+}
+
+/* Track */
+.scroll::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 0px transparent;
+	border-radius: 0px;
+}
+
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+	background: transparent;
+	border-radius: 0.1em;
+}
+
+/* Handle on hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+	background: transparent;
+}
+p {
+	margin-top: 0.5em;
+	width: 90px;
+	font-size: 14px;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.43;
+	letter-spacing: normal;
+	text-align: center;
+	color: #adc9df;
+}
+span {
+	color: #eae5eb;
+	font-size: 32px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 0.94;
+	text-align: center;
+}
+
+hr {
+	background: #3bafda;
+	margin: 0;
+	margin-top: 32px;
+	height: 2px;
+	border: transparent;
+}
+
+@media (max-width: 2048px) {
+	hr {
+		width: 10%;
+	}
+}
+@media (max-width: 1400px) {
+	hr {
+		width: 7%;
+	}
+}
+@media (max-width: 1165px) {
+	hr {
+		width: 3%;
+	}
+}
+@media (max-width: 670px) {
+	hr {
+		width: 0%;
+	}
+}

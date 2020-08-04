@@ -1,0 +1,213 @@
+
+
+<div class="modal-container position" *ngIf="visible">
+  <div class="modal-content">
+    <div class="row w-100 p-0 m-0">
+      <div class="col-12 p-3">
+        <button class="mainBtn" (click)="close()">GO BACK</button>
+      </div>
+      <div  class="col-8 text-center h-60 p-0 inicioModal">
+
+        <div class="row my-5">
+
+          <div class="col-6 text-center h-100 p-0">
+            <h2 class="ameri pl-3 ml-2">
+              <img src="assets\img\LOGO FULLfinal.svg" />
+            </h2>
+          </div>
+          <div class="col-6 text-center h-100 p-0 my-5">
+            <h2 class="subitittle pr-5 mr-3">Qualifying Questions</h2>
+          </div>
+          <div class="col-12 col-md-12 col-lg-4 col-xl-12 pr-0" style="display:contents">
+
+            <!--<div class="col-xl-6">
+    1. Are you interested in a single or doublewide?
+  </div>
+  <div class="col-xl-6">
+    15. Is one of them your spouse?
+  </div>
+  <div class="col-xl-6">
+    2. How many bedrooms are you interested in?
+  </div>
+  <div class="col-xl-6">
+    16. Do you own your own land, or will you buy your own, or will you live in a MHP?
+  </div>
+  <div class="col-xl-6">
+    3. How many bedrooms do you have now?
+  </div>
+  <div class="col-xl-6">
+    17. Do you have any valid ID?
+  </div>
+  <div class="col-xl-6">
+    4. Where do you live now?
+  </div>
+  <div class="col-xl-6">
+    18. Are you interested in financing or paying cash?
+  </div>
+  <div class="col-xl-6">
+    5. Do you rent or do you own?
+  </div>
+  <div class="col-xl-6">
+    19. If financing how much cash do you have available for a down payment?
+  </div>
+  <div class="col-xl-6">
+    6. Is it an apartment or a house?
+  </div>
+  <div class="col-xl-6">
+    20. Where do you keep these funds?
+  </div>
+  <div class="col-xl-6">
+    7. How much is your monthly rent?
+  </div>
+  <div class="col-xl-6">
+    21. Your down payment is based upon your credit score, if it is good you can put down as little
+    as 5% down, if you have no credit or bad credit you will need a minimum of 15% down.
+  </div>
+  <div class="col-xl-6">
+    8. How much would you expect to pay to own your own home?
+  </div>
+  <div class="col-xl-6">
+    22. Can I pull your credit to determine your score and down payment amount?
+  </div>
+  <div class="col-xl-6">
+    9. Please give me a payment range?
+  </div>
+  <div class="col-xl-6">
+    23. Do you have a payment range in mind?
+  </div>
+  <div class="col-xl-6">
+    10. If mortgage, How much is your mortgage or do you own it free and clear?
+  </div>
+  <div class="col-xl-6">
+    24. If they don’t have enough down payment money can they borrow it from a relative or would
+    they like to open a Layaway account with us?
+  </div>
+  <div class="col-xl-6">
+    11. Is it month to month or lease?
+  </div>
+  <div class="col-xl-6">
+    25. Where do you work?
+  </div>
+  <div class="col-xl-6">
+    12. If lease, when does the term end?
+  </div>
+  <div class="col-xl-6">
+    26. How much do you make monthly?
+  </div>
+  <div class="col-xl-6">
+    13. When would you like to move?
+  </div>
+  <div class="col-xl-6">
+    27. Can it be verified or do you receive cash only?
+  </div>
+  <div class="col-xl-6">
+    14. How many people will live with you?
+  </div>
+  <div class="col-xl-6">
+    28. What is the most important thing to them when buying a home? A particular feature, room,
+    color, materials, construction, price, payment, down payment, etc.
+  </div>-->
+
+          
+            <table class="col-xl-12 table">
+              <hr class="hr"/>
+              <tbody>
+
+                <tr class="animated fadeIn row text-left pl-5 pr-5 tableTr">
+                  <td class="col-xl-6 p-2">
+                    1. Are you interested in a single or doublewide?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    15. Is one of them your spouse?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    2. How many bedrooms are you interested in?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    16.Do you own your own land, or will you buy your own, or will you live in a MHP?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    3. How many bedrooms do you have now?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    17. Do you have any valid ID?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    4. Where do you live now?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    18. Are you interested in financing or paying cash?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    5. Do you rent or do you own?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    19. If financing how much cash do you have available for a down payment?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    6. Is it an apartment or a house?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    20. Where do you keep these funds?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    7. How much is your monthly rent?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    21. Your down payment is based upon your credit score, if it is good you can put down
+                    as little as 5% down, if you have no credit or bad credit you will need a minimum of
+                    15% down.
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    8. How much would you expect to pay to own your own home?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    22. Can I pull your credit to determine your score and down payment amount?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    9. Please give me a payment range?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    23. Do you have a payment range in mind?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    10. If mortgage, How much is your mortgage or do you own it free and clear?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    24. If they don’t have enough down payment money can they borrow it from a relative or
+                    would they like to open a Layaway account with us?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    11. Is it month to month or lease?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    25. Where do you work?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    12. If lease, when does the term end?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    26. How much do you make monthly?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    13. When would you like to move?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    27. Can it be verified or do you receive cash only?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    14. How many people will live with you?
+                  </td>
+                  <td class="col-xl-6 p-2">
+                    28. What is the most important thing to them when buying a home? A particular feature,
+                    room, color, materials, construction, price, payment, down payment, etc.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

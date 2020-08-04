@@ -1,0 +1,177 @@
+<div class="row p-3">
+  <!-- <div class="col-2">
+
+  </div> -->
+  <div class="col">
+    <div class="mb-0">
+      <div class="calendar-wrapper">
+        <div class="row controls">
+          <!-- <div class="col col-5 mode">
+            <button
+              tc-button
+              (click)="view = 'month'"
+              [view]="view == 'month' ? 'success' : 'default'"
+            >Month</button>
+
+            <button
+              tc-button
+              (click)="view = 'week'"
+              [view]="view == 'week' ? 'success' : 'default'"
+            >Week</button>
+
+            <button
+              tc-button
+              (click)="view = 'day'"
+              [view]="view == 'day' ? 'success' : 'default'"
+            >Day</button>
+          </div> -->
+          <div class="col-xl-5 p-3">
+            <button class="mainBtn" (click)="close()">GO BACK</button>
+          </div>
+
+          <div class="col col-2 date d-flex">
+            <button tc-button mwlCalendarPreviousView class="btn btn-outline-dark rounded" [outline]="false" [view]="view"
+                    [(viewDate)]="viewDate" [beforeIcon]="'icofont-rounded-left'" (viewDateChange)="activeDayIsOpen = false"></button>
+
+            <h3 class="ml-2 mr-2 pt-0 pb-0 text-nowrap">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+
+            <button tc-button mwlCalendarNextView class="btn btn-outline-dark rounded" [outline]="false" [view]="view"
+                    [(viewDate)]="viewDate" [afterIcon]="'icofont-rounded-right'" (viewDateChange)="activeDayIsOpen = false"></button>
+          </div>
+          <div class="col"></div>
+          <!-- <div class="col col-5 date-controls">
+            <button
+              tc-button
+              mwlCalendarPreviousView
+              [outline]="true"
+              [view]="view"
+              [(viewDate)]="viewDate"
+              [beforeIcon]="'icofont-rounded-left'"
+              (viewDateChange)="activeDayIsOpen = false"
+            ></button>
+
+            <button mwlCalendarToday tc-button [(viewDate)]="viewDate">
+              Today
+            </button>
+
+            <button
+              tc-button
+              mwlCalendarNextView
+              [outline]="true"
+              [view]="view"
+              [(viewDate)]="viewDate"
+              [afterIcon]="'icofont-rounded-right'"
+              (viewDateChange)="activeDayIsOpen = false"
+            ></button>
+          </div> -->
+        </div>
+
+        <br>
+
+        <!-- <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
+        </mwl-demo-utils-calendar-header> -->
+
+        <div [ngSwitch]="view">
+          <mwl-calendar-month-view *ngSwitchCase="'month'"
+                                   [viewDate]="viewDate"
+                                   [events]="events"
+                                   [refresh]="refresh"
+                                   [activeDayIsOpen]="true"
+                                   (dayClicked)="dayClicked($event.day)">
+          </mwl-calendar-month-view>
+          <!-- <mwl-calendar-week-view
+            *ngSwitchCase="'week'"
+            [viewDate]="viewDate"
+            [events]="events"
+            [refresh]="refresh"
+            (eventClicked)="handleEvent($event.event)"
+            (eventTimesChanged)="eventTimesChanged($event)">
+          </mwl-calendar-week-view>
+          <mwl-calendar-day-view
+            *ngSwitchCase="'day'"
+            [viewDate]="viewDate"
+            [events]="events"
+            [refresh]="refresh"
+            (eventClicked)="handleEvent($event.event)"
+            (eventTimesChanged)="eventTimesChanged($event)">
+          </mwl-calendar-day-view> -->
+        </div>
+
+        <div class="add-new">
+          <button tc-button [tcShape]="4" (click)="addEvent()">Add new task</button>
+          <!-- <button tc-button (click)="newEvent = true">Add new event</button> -->
+        </div>
+
+        <!-- <div class="event-action" [ngClass]="{ 'active': eventActive, 'hide': !eventActive }" (click)="closeEventAction()">
+          <tc-card [title]="'Event Action'" class="modal" (click)="$event.stopPropagation()" [tcBgColor]="'#516478'">
+            <div class="modal-body">
+              <tc-form-group>
+                <tc-form-label>Event title</tc-form-label>
+                <tc-input [(ngModel)]="selectedTitle"></tc-input>
+              </tc-form-group>
+
+              <tc-form-group>
+                <div class="groups">
+                  <div class="date-group">
+                    <tc-form-label>Start date</tc-form-label>
+                    <tc-input [placeholder]="'Start Date'" [(ngModel)]="selectedStartDate"></tc-input>
+                    <br>
+                    <tc-form-label>End time</tc-form-label>
+                    <tc-input [placeholder]="'End Date'" [(ngModel)]="selectedEndDate"></tc-input>
+                  </div>
+
+                  <div class="time-groups">
+                    <tc-form-label>Start time</tc-form-label>
+                    <tc-input [placeholder]="'Start Time'" [(ngModel)]="selectedStartTime"></tc-input>
+                    <br>
+                    <tc-form-label>End time</tc-form-label>
+                    <tc-input [placeholder]="'End Time'" [(ngModel)]="selectedEndTime"></tc-input>
+                  </div>
+                </div>
+              </tc-form-group>
+            </div>
+
+            <div class="modal-footer">
+              <button tc-button (click)="saveEvent()">Save</button>
+              <button tc-button (click)="deleteEvent()" [beforeIcon]="'icofont-trash'"></button>
+            </div>
+          </tc-card>
+        </div> -->
+        <!-- <div class="event-action" [ngClass]="{ 'active': newEvent, 'hide': !newEvent }" (click)="newEvent = false">
+          <tc-card [title]="'Add new event'" class="modal mb-0" (click)="$event.stopPropagation()" [tcBgColor]="'#516478'">
+            <div class="modal-body">
+              <tc-form-group>
+                <tc-form-label>Event title</tc-form-label>
+                <tc-input [placeholder]="'Event Title'" [(ngModel)]="selectedTitle"></tc-input>
+              </tc-form-group>
+
+              <tc-form-group>
+                <div class="groups">
+                  <div class="date-group">
+                    <tc-form-label>Start date</tc-form-label>
+                    <tc-input [placeholder]="'Start Date'" [(ngModel)]="selectedStartDate"></tc-input>
+                    <br>
+                    <tc-form-label>End time</tc-form-label>
+                    <tc-input [placeholder]="'End Date'" [(ngModel)]="selectedEndDate"></tc-input>
+                  </div>
+
+                  <div class="time-groups">
+                    <tc-form-label>Start time</tc-form-label>
+                    <tc-input [placeholder]="'Start Time'"[(ngModel)]="selectedStartTime"></tc-input>
+                    <br>
+                    <tc-form-label>End time</tc-form-label>
+                    <tc-input [placeholder]="'End Time'" [(ngModel)]="selectedEndTime"></tc-input>
+                  </div>
+                </div>
+              </tc-form-group>
+            </div>
+
+            <div class="modal-footer">
+              <button tc-button [tcShape]="4" [block]="true" (click)="addEvent()">Add Event</button>
+            </div>
+          </tc-card>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

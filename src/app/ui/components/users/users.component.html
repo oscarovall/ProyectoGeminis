@@ -1,0 +1,108 @@
+<div class="sidebar"  [@menuShrink]="sideBarState">
+	<div class="title-box">
+		<h3 class="title">Users</h3>
+		<button (click)="toggleState()"><i class="icofont-arrow-left"></i></button>
+	</div>
+
+	<div class="filter">
+		<div class="list">
+			<ul>
+				<li *ngFor="let item of list" (click)="changeItem(item)" [ngClass]="{'active': item.active}">
+					{{ item.title }}
+					<span class="counter">{{ getUsersCount(item) }}</span>
+				</li>
+			</ul>
+		</div>
+	
+		<div class="list">
+			<h3 class="list-title">Labels</h3>
+
+			<ul>
+				<li *ngFor="let label of labels" (click)="labelClick(label)" [ngClass]="{'active': label.active }"> 
+					{{ label.title }} 
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="add-label">
+		<tc-input  
+			#label
+			[placeholder]="'Add label'" 
+			(keydown)="addLabel($event, label.value, label)"
+			[size]="'sm'"
+		></tc-input> 
+	</div>
+</div>
+
+<div class="main">
+	<div class="header">
+		<div  *ngIf="getSideBarState()" class="toggler" (click)="toggleState()">
+			<div class="bar"></div>
+			<div class="bar"></div>
+			<div class="bar"></div>
+		</div>
+
+		<tc-input
+			#search class="search" 
+			(keydown)="filterUsers($event, search.value)" 
+			[placeholder]="'Type to search'" 
+			[suffixIcon]="'icofont-search'"
+		></tc-input>
+
+		<button tc-button [view]="'accent'" (click)="sortUsers()">
+			<i class="icofont-sort"></i>
+		</button>
+	</div>
+
+	<div class="list" [style.display]="userState ? 'none' : 'flex'">
+		<div class="users-list">
+			<ul>
+				<li *ngFor="let user of displayedUsers" (click)="selectUser(user)">
+					<div *ngIf="user.img" class="img">
+						<img src="{{ user.img }}">
+					</div> 
+					<div class="content">
+						<p class="title">{{ user.name }} </p>
+						<span class="text"> {{ user.email }} </span>
+					</div>
+					<div class="time"><span>  </span></div>
+				</li>
+		  </ul>
+		</div>
+
+		<div class="filter">
+			<div class="letters">
+				<a *ngFor="let letter of letters" (click)="filterClick(letter)" [ngClass]="{'active': selectedLetter == letter}"> 
+					{{ letter }}
+			 	</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="user-preview" [@itemSelected]="getItemState()">
+			<div class="header">
+				<span class="back" (click)="userState = false">
+					<i class="icofont-arrow-left"></i>
+				</span>
+				<span class="name"> {{ selectedUser.name }} </span>
+			</div>
+
+			<div class="user-information">
+				<div class="user-img">
+					<div class="img">
+						<img src="{{ selectedUser.img }}" alt="selectedUser.name">
+					</div>
+					<div class="name">{{ selectedUser.name }}</div>
+					<div class="role">{{ selectedUser.role }}</div>
+				</div>
+
+				<div class="information">
+					<span class="item"><i class="icofont-mobile-phone"></i> {{ selectedUser.phone }}</span>
+					<span class="item"><i class="icofont-location-pin"></i> {{ selectedUser.location }}</span>
+					<span class="item"><i class="icofont-birthday-cake"></i> {{ selectedUser.birthDate }}</span>
+					<span class="item"><i class="icofont-ui-email"></i> {{ selectedUser.email }}</span>
+				</div>
+			</div>
+		</div>
+</div>
+

@@ -1,0 +1,8 @@
+@import '~assets/sass/variables';
+
+:host {
+  color: rgba($default-color,.6);
+  display: block;
+  font-size: .8rem;
+  margin: $module-rem 0 0;
+}

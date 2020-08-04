@@ -1,0 +1,68 @@
+[
+  {
+    "product": "Iphone X",
+    "id": "#9405822",
+    "img": "assets/content/product-100-1.jpg",
+    "status": "Done",
+    "status-view": "success",
+    "progress": "70",
+    "progress-color": "#81c784",
+    "date": "16 Jule 2018",
+    "amount": "$868"
+  },
+  {
+    "product": "Earphone GL",
+    "id": "#9405820",
+    "img": "assets/content/product-100-2.jpg",
+    "status": "Cancelled ",
+    "status-view": "error",
+    "progress": "60",
+    "progress-color": "#64b5f6",
+    "date": "08 May 2018",
+    "amount": "$168"
+  },
+  {
+    "product": "HD Hand Camera",
+    "id": "#9405830",
+    "img": "assets/content/product-100-3.jpg",
+    "status": "Done",
+    "status-view": "success",
+    "progress": "50",
+    "progress-color": "#ffb74d",
+    "date": "13 May 2018",
+    "amount": "$168"
+  },
+  {
+    "product": "Classic Shoes",
+    "id": "#9405825",
+    "img": "assets/content/product-100-4.jpg",
+    "status": "In progress",
+    "status-view": "warning",
+    "progress": "30",
+    "progress-color": "#e24d4d",
+    "date": "26 Jule 2018",
+    "amount": "$168"
+  },
+  {
+    "product": "Hand Watch",
+    "id": "#9405840",
+    "img": "assets/content/product-100-5.jpg",
+    "status": "In progress",
+    "status-view": "info",
+    "progress": "80",
+    "progress-color": "#E27CAB",
+    "date": "12 August 2018",
+    "amount": "$268"
+  },
+  {
+    "product": "Apple Watch",
+    "id": "#9405841",
+    "img": "assets/content/product-100-6.jpg",
+    "status": "In progress",
+    "status-view": "warning",
+    "progress": "90",
+    "progress-color": "#60D5E2",
+    "date": "16 August 2018",
+    "amount": "$268"
+  }
+]

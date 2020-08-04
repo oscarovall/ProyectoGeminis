@@ -1,0 +1,8 @@
+<span class="alert-icon" *ngIf="icon && !iconRight"> <i [ngClass]="icon"></i> </span>
+<div class="content">
+	<div class="title" *ngIf="title"> {{ title }} </div>
+	<span class="message"> <ng-content></ng-content> </span>
+</div>
+
+<span class="close" *ngIf="removable" (click)="removeAlert()" > <i class="icofont-close"></i> </span>
+<span class="alert-icon" *ngIf="icon && iconRight"> <i [ngClass]="icon"></i> </span>

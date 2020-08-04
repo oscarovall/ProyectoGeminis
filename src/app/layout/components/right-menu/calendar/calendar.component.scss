@@ -1,0 +1,101 @@
+@import '~assets/sass/variables';
+
+.header {
+	.icons {
+		display: flex;
+		flex-direction: row;
+		font-size: 0.9em;
+		padding: $module-rem 0;
+
+		span {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 16px;
+		}
+	}
+}
+
+.buttons {
+	padding: 20px 75px 20px 75px;
+}
+
+hr {
+	width: 85%;
+	background-color: #00529b;
+}
+
+.taskList {
+	padding: 7px 20px 7px 20px;
+	font-family: Roboto;
+	font-size: 0.9em;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.67;
+	letter-spacing: normal;
+
+	.item-text {
+        color: rgba(#fff,.8);
+	}
+	.item-title {
+		color: #5aaef3;
+	}
+}
+
+.item {
+	padding: 7px 0;
+}
+
+.container {
+	padding: 25px 20px 7px 20px;
+}
+
+.checkbox {
+	height: auto !important;
+}
+
+.buttons {
+	padding: 20px 75px 20px 75px;
+}
+
+.scroll {
+	position: relative;
+	overflow-y: scroll;
+	max-height:240px !important;
+}
+
+.borderRed {
+	border-left-color: #bd2536 !important;
+}
+
+.borderLeft {
+    border-left: 6px;
+    border-left-style: outset;
+    border-left-color: #001347;
+}
+
+.dueTaskButton {
+  border-radius: 20px !important;
+  background: #be2235 !important;
+  cursor: default;
+}
+
+.pendingTaskButton {
+  border-radius: 20px !important;
+  cursor: default;
+}
+
+.hrTasks {
+  border-color: #6c757d !important;
+  width: 95% !important;
+  margin-top:auto !important;
+}
+
+.filtro{
+    display:contents !important;
+}
+
+.contact-item.row.taskList.borderLeft {
+  margin-top: -7px !important;
+}

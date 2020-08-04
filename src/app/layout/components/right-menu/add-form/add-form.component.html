@@ -1,0 +1,183 @@
+
+  <tc-card>
+
+    <h3 class="text-center">Forms</h3>
+
+    <!--<button #fileButton class="button" (click)="fileButtonClicked()"> {{getFileButtonText()}}</button>
+  <input #fileInput type="file" style="display: none !important" accept=".xlsx" (change)="onFileSelected($event)"
+         required>
+
+
+
+  <form #formRef="ngForm" class="form PrintArea" (ngSubmit)="uploadFile(); formRef.reset()" novalidate>
+  </form>-->
+    <!--<div class="row">
+    <div class="col-8">
+      <div style="display: flex;">
+        <p class="title2"> Upload File </p>
+        <div class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip" data-placement="right"></div>
+      </div>
+      <input class="w-100 field" type="file" accept=".xlsx" (change)="onFileSelected($event)" required />
+      <div class="invalid-feedback">It's required!</div>
+    </div>
+  </div>-->
+
+    <form #formRef="ngForm" class="form PrintArea" (ngSubmit)="uploadFile(); formRef.reset()" novalidate>
+      <div class="row">
+        <div class="col-8">
+          <div style="display: flex;">
+            <p class="title2"> Upload File </p>
+            <div class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip" data-placement="right"></div>
+          </div>
+          <input class="w-100 field" type="file" accept=".xlsx" (change)="onFileSelected($event)" required />
+          <div class="invalid-feedback">It's required!</div>
+        </div>
+        <div class="col-4">
+          <button tc-button type="submit" class="btn btn-outline-dark rounded form-upload-btn" [disabled]="!formRef.form.valid"
+                  style="background: #82a728">
+            UPLOAD FILE
+          </button>
+        </div>
+      </div>
+    </form>
+
+
+
+    <form #formRef="ngForm" class="form PrintArea my-4" novalidate>
+      <div class="row rounded square scrollbar-dusty-grass square thin scroll height-atts"
+           style="height: auto; overflow: auto; overflow-x: hidden;">
+
+        <div class="col-12 mb-3">
+          <div>
+            <div style="display: flex;">
+              <p class="title2"> Category </p>
+              <div class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip" data-placement="right"></div>
+            </div>
+
+            <select class="custom-select rounded" placeholder="select" [(ngModel)]="selectedDocument.docCategoryId"
+                    name="docCategoryId" required>
+              <option [ngValue]="null" style="display:none;"> Select Category </option>
+              <option [ngValue]="docCategory.docCategoryId" *ngFor="let docCategory of getAllDocCategory">
+                {{docCategory.name}}
+              </option>
+            </select>
+            <div class="invalid-feedback">It's required!</div>
+          </div>
+        </div>
+
+        <div class="col-12 mb-3">
+          <div>
+            <div style="display: flex;">
+              <p class="title2"> Form Name </p>
+              <div class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip" data-placement="right"></div>
+            </div>
+
+            <input class="w-100 form-control" type="text" [(ngModel)]="selectedDocument.name" name="name"
+                   [maxLength]="'200'" autocomplete="off" placeholder="00 0 00000000 0000" required />
+            <div class="invalid-feedback">It's required!</div>
+          </div>
+        </div>
+
+
+        <!--RELATION FIELD - ATTRIBUTE-->
+        <div class="row" *ngFor="let CellDocumentAttributeType of selectedDocument.cellDocumentAttributeType; let in=index">
+          <div class="col-12">
+            <hr />
+          </div>
+
+          <!--input field-->
+          <div class="col-12 form-group">
+            <div>
+              <div style="display: flex;">
+                <p class="title2 my-2"> Field </p>
+                <div class="ml-1 tc-icon-wrap aosp-ui-hints my-2" data-toggle="tooltip" data-placement="right"
+                     [title]="'Short Role'"></div>
+
+                <div class="col-4 mx-5">
+                  <input class="w-100 form-control" type="text" placeholder="Add Field"
+                         [(ngModel)]="selectedDocument.cellDocumentAttributeType[in].cell" name="name{{in}}"
+                         #name="ngModel" required />
+                </div>
+
+                <div class="col-2" style="margin-top:-9%">
+                  <button tc-button type="button" class="btn btn-outline-dark rounded form-delete-btn"
+                          style="background: #da2f14;" (click)="delete(in)">
+                    <div class=" title"></div>- DELETE
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- DELETE ATRITUBE Y ADD ATTRIBUTE-->
+          <!--<div class="col-12" style="display: flex;" *ngFor="let string of prueba;">-->
+          <div class="col-12" style="display: flex;" *ngFor="let string of CellDocumentAttributeType.attributeTypeId; let i=index">
+
+            <!--Button delete attribute-->
+            <div class="col-2" style="margin-top:-9%">
+              <button tc-button type="button" class="btn btn-outline-dark rounded form-delete-btn"
+                      style="background: #da2f14;" (click)="deleteAttribute(in,i)">
+                <div class="aosp-ui-icon aosp-ui-delete"></div>
+              </button>
+            </div>
+
+
+            <!--select ATTRIBUTE-->
+            <div class="col-10 form-group">
+
+              <select class="custom-select rounded" placeholder="select"
+                      [(ngModel)]="selectedDocument.cellDocumentAttributeType[in].attributeTypeId[i]"
+                      name="attributeTypeId{{in}}{{i}}" id="attributeTypeId{{in}}{{i}}" required>
+                <optgroup *ngFor="let class of (getAllAttributeType | attTypeGroup)" label="{{class.name}}">
+                  <option *ngFor="let attributeType of class.attributeType"
+                          [ngValue]="attributeType.attributeTypeId">
+                    <a>{{class.name}}</a>  <a class="title"> {{attributeType.name}} </a>
+                  </option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+          <!--</div>-->
+          <!--Button add attribute-->
+          <div class="col-12 mx-2 pr-4" style="margin-top:-2%">
+            <button tc-button type="button" class="btn btn-outline-dark rounded form-delete-btn"
+                    [disabled]="!formRef.form.valid" (click)="addAttribute(in)">
+              <div class="d-flex">
+                <div class=" title"></div>+ ADD ATTRIBUTE
+              </div>
+            </button>
+          </div>
+
+        </div>
+
+
+        <!-- ADD RELATION BUTTON-->
+
+        <div class="col-12 py-1">
+          <hr />
+          <div class="col-12 py-1 pr-5">
+            <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded col-8 m-3"
+                    [disabled]="!formRef.form.valid" (click)="add()">
+              <div class="d-flex">
+                <div class=" title"></div>+ ADD RELATION
+              </div>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SAVE BUTTON-->
+      <div class="w-100 text-center pr-5 mx-4">
+        <button tc-button type="submit" class="btn btn-outline-dark mr-2 rounded col-10 m-3"
+                [disabled]="!formRef.form.valid"
+                style="background: #82a728" (click)="createForm()">
+          <div class="d-flex">
+            <div class="title"></div>SAVE
+          </div>
+        </button>
+      </div>
+
+    </form>
+  </tc-card>

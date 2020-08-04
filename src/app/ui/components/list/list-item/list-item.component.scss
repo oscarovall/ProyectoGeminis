@@ -1,0 +1,55 @@
+@import '~assets/sass/variables';
+
+:host {
+  align-items: center;
+  border-bottom-color: inherit;
+  border-bottom-width: inherit;
+  border-bottom-style: inherit;
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding: 0 23px 0 23px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+  .item-img {
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 30px;
+    margin: $module-rem;
+    min-height: 30px;
+    min-width: 30px;
+    justify-content: center;
+    overflow: hidden;
+    width: 30px;
+
+    > img {
+      height: 100%;
+      position: relative;
+    }
+  }
+  .item-content {
+    align-self: center;
+    font-weight: 100;
+    display: block;
+    margin: $module-rem;
+		position: relative;
+		width: 100%;
+
+    .item-title {
+      margin: 0 0 ($module-rem / 2);
+      padding: 0;      
+      font-family: Roboto;
+      font-size: 0.9em;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.67;
+      letter-spacing: normal;
+      text-align: left;
+      color: #5aaef3;
+    }
+  }
+}

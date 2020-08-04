@@ -1,0 +1,56 @@
+<div class="row w-100 m-0 menuTitle3Div animated fadeIn">
+  <div class="col-12 col-md-12 col-xl-6 my-2">
+    <div class="title2 t-3">Weekly Metrics</div>
+  </div> 
+  <div  class="col-6 col-md-6 col-xl-3">    
+    <select class="custom-select font-filtro rounded" [(ngModel)]="teamMemberSelected" name="teamMemberSelected"
+      (change)="getWeeklyMetrics()" placeholder="select">
+      <option [ngValue]="null" style="display:none;"> Team Member </option>
+      <option [ngValue]="null"> All </option>
+      <option [ngValue]="employee.employeeId" *ngFor="let employee of teamMembers">{{employee.name}}</option>
+    </select>
+  </div>
+  <div class="col-6 col-md-6 col-xl-3 date d-flex">
+    <button tc-button mwlCalendarPreviousView class="btn btn-outline-dark rounded" [outline]="false" [view]="view"
+      [(viewDate)]="viewDate" [beforeIcon]="'icofont-rounded-left'" (viewDateChange)="activeDayIsOpen = false" (click)="calculateDateRange()">
+    </button>
+
+    <h3 class="m-0 pt-1 pb-0 text-nowrap">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+
+    <button tc-button mwlCalendarNextView class="btn btn-outline-dark rounded" [outline]="false" [view]="view"
+      [(viewDate)]="viewDate" [afterIcon]="'icofont-rounded-right'" (viewDateChange)="activeDayIsOpen = false" (click)="calculateDateRange()">
+    </button>
+  </div>
+</div>
+
+<div class="row mx-3 mb-3" >
+  <div class="table-responsive p-3 bg-aosp-info rounded square scrollbar-dusty-grass square thin" >
+    <div class="row w-100 p-0 m-0" style="height: 300px;">
+      <div *ngFor="let data of weeklyMetrics" class="col-1 col-md-3 col-xl-2  p-4" style="min-width: 250px; margin: auto">
+        <h3 class="p-0 text-center tittleLeads" style="font-size:16px">{{data.name}}</h3>
+        <div>
+          <div class="graph-container">
+            <div style="display: flex">
+              <div class="label-center">
+                {{data.done}}/{{(data.goal)}}             
+            </div>
+              <canvas baseChart
+                width="100" 
+                height="100"
+                [data]="[data.done, data.pending]"
+                [labels]="doughnutChartLabels"
+                [chartType]="doughnutChartType"
+                [colors]="data.color"
+                [legend]="false">
+              </canvas>            
+            </div>
+           
+          </div>
+        </div>
+      
+      </div>    
+     
+    </div>
+  </div>
+ 
+</div>

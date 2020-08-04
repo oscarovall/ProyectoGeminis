@@ -1,0 +1,125 @@
+@import '~assets/sass/variables';
+
+$border: 1px solid rgba(#eae5eb, 0.2);
+$img-size: 12 * $module;
+
+:host {
+  display: block;
+  margin-bottom: 2 * $module-rem;
+
+  .contact-wrapper {
+    .tc-card {
+      background-color: #001347;
+      margin: 0;
+      padding: 0px 23px 0 28px;
+    }
+    .contact {
+      flex: 1;
+      min-width: 100%;
+
+      .img-section {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .contact-img {
+          border-radius: 50%;
+          display: flex;
+          height: $img-size;
+          margin-bottom: $module-rem;
+          min-height: $img-size;
+          min-width: $img-size;
+          justify-content: center;
+          overflow: hidden;
+          width: $img-size;
+          padding: 0;
+          border: 1px solid #5aaef3;
+
+          > img {
+            height: 100%;
+            position: relative;
+          }
+        }
+        .contact-name {
+          font-size: 14px;
+
+          > a {
+            color: rgba(#eae5eb,.8);
+            font-weight: 500;
+            text-decoration: none;
+						transition: color .2s $animation;
+
+            &:hover {
+              color: #eae5eb;
+            }
+          }
+        }
+        .contact-role {
+          font-size: 14px;
+          // opacity: 0.6;
+          margin-bottom: 2 * $module-rem;
+        }
+      }
+      .contact-item {
+        display: flex;
+        flex-direction: row;
+        font-size: 14px;
+        justify-content: space-between;
+        padding: $module-rem 0;
+        color: #eae5eb;
+
+        & > *:first-child {
+          // opacity: 0.6;
+        }
+        a {
+          color: rgba(#eae5eb,.8);
+          font-weight: 500;
+          text-decoration: none;
+          transition: color .2s $animation;
+
+          &:hover {
+            color: #eae5eb;
+          }
+        }
+      }
+    }
+  }
+
+  .container {
+    position: relative;
+  }
+  .image {
+    opacity: 1;
+    display: block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+  .middle {
+    transition: .5s ease;
+    opacity: 0.8;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    width: 50px;
+    height: 50px;
+  }
+  .container:hover .image {
+    opacity: 0.3;
+  }
+  .container:hover .middle {
+    opacity: 1;
+  }
+  .text {
+    color: #64b5f6;
+    width: 100%;
+    height: 100%;
+    background: none;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+  }
+}

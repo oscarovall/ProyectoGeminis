@@ -1,0 +1,64 @@
+@import "~assets/sass/variables";
+
+$_menu-height: 5 * $module-rem;
+
+:host {
+	left: $side-bar-width; 
+	top: $nav-bar-height; 
+	position: relative;
+	@media #{$max991} {
+    left: 0;
+	}
+	.container {
+		position: fixed;
+		width: 25 * $module;
+		z-index: 9999;
+		> * {
+			z-index: 9999;
+		}
+	}
+	
+	.top-left {
+		@extend .container;
+		top: $nav-bar-height + $module-rem; 
+		left: $side-bar-width + $module-rem;
+		@media #{$max991} {
+		left: $module-rem;
+	}
+	
+	}
+	.top-right {
+		@extend .container;
+		top: $nav-bar-height + $module-rem;
+		right: $module-rem;
+	}
+	.bottom-left {
+		@extend .container;
+		bottom: $module-rem;
+		left: $side-bar-width + $module-rem;
+		@media #{$max991} {
+		left: $module-rem;
+	}
+	}
+	.bottom-right {
+		@extend .container;
+		bottom: $module-rem;
+		right: $module-rem;
+
+	}
+
+	&.horizontal {
+		left: 0;
+
+		.bottom-left {
+			left: $module-rem;
+		}
+		.top-left {
+			left: $module-rem;
+			top: $nav-bar-height + $_menu-height + $module-rem;
+		}
+		.top-right {
+			top: $nav-bar-height + $_menu-height + $module-rem;
+		}
+	}
+}

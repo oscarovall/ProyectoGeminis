@@ -1,0 +1,203 @@
+@import '~assets/sass/variables';
+
+$_shape: $shape;
+$_icon-shape: 50%;
+$_icon-bg: accent-palette(500);
+$_icon-color: #fff;
+$_line-size: 2px;
+$_line-color: main-palette(500);
+$_date-color: #929292;
+$_label-bg: main-palette(500);
+$_label-color: main-contrast(500);
+
+:host {
+  display: block;
+  position: relative;
+
+  .timeline-box {
+    .box-label {
+      display: flex;
+      padding: $module-rem 0;
+
+      .label-text {
+        background: $_label-bg;
+        border-radius: $_shape;
+        color: $_label-color;
+        display: inline-block;
+        padding: ($module-rem / 2) ($module-rem * 2);
+        position: relative;
+        text-align: center;
+        vertical-align: top;
+      }
+    }
+    .box-items {
+      display: flex;
+      flex-direction: column;
+
+      .item {
+        display: flex;
+        margin: $module-rem (-$module-rem / 2);
+        position: relative;
+
+        .icon-block {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          margin: 0 ($module-rem / 2);
+
+          .item-icon {
+            align-items: center;
+            background: $_icon-bg;
+            border-radius: $_icon-shape;
+            color: $_icon-color;
+            display: flex;
+            font-size: 1.5rem;
+            height: $module-rem * 4;
+            justify-content: center;
+            min-height: $module-rem * 4;
+            width: $module-rem * 4;
+          }
+          .line {
+            background: $_line-color;
+            flex-grow: 2;
+            height: 100%;
+            margin: $module-rem 0 0;
+            width: $_line-size;
+          }
+        }
+        .content-block {
+          flex-grow: 2;
+          margin: 0 ($module-rem / 2);
+
+          .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin: ($module-rem) (-$module-rem / 2) ($module-rem * 2);
+
+            .item-title {
+              margin: 0 ($module-rem / 2);
+            }
+            .item-date {
+              color: $_date-color;
+              font-size: 0.875rem;
+              margin: .2rem ($module-rem / 2) 0;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.align-right {
+    .timeline-box {
+      .box-items {
+        display: flex;
+        flex-direction: column;
+
+        .item {
+          flex-direction: row-reverse;
+
+          .content-block {
+            .item-header {
+              justify-content: flex-end;
+            }
+            .item-desc {
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.align-center {
+    .timeline-box {
+      .box-label {
+        justify-content: center;
+      }
+      .box-items {
+        .item {
+          flex-direction: column;
+          margin: $module-rem (-$module-rem / 2);
+
+          .icon-block {
+            .line {
+              display: none;
+            }
+          }
+          .content-block {
+            padding-bottom: $module-rem * 4;
+            position: relative;
+            text-align: center;
+
+            &:after {
+              background: $_line-color;
+              bottom: 0;
+              content: '';
+              height: $module-rem * 3;
+              left: 50%;
+              margin-left: -$_line-size / 2;
+              position: absolute;
+              width: $_line-size;
+            }
+            .item-header {
+              flex-direction: column;
+              justify-content: center;
+              margin-bottom: $module-rem;
+            }
+          }
+        }
+      }
+      &:last-child {
+        .box-items {
+          .item:last-child {
+            .content-block {
+              padding-bottom: 0;
+
+              &:after {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &.align-between {
+    @media #{$min768} {
+      .timeline-box {
+        .box-label {
+          justify-content: center;
+        }
+        .box-items {
+          .item {
+            width: 50%;
+
+            &:nth-child(odd) {
+              flex-direction: row-reverse;
+              margin-left: $module-rem * 2.5;
+
+              .content-block {
+                .item-header {
+                  justify-content: flex-end;
+                }
+                .item-desc {
+                  text-align: right;
+                }
+              }
+            }
+            &:nth-child(even) {
+              align-self: flex-end;
+              margin-right: $module-rem * 2.5;
+
+              .content-block {
+                .item-header {
+                  justify-content: flex-start;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+
+  <div class="row animated fadeIn" *ngIf="cargando">
+
+    <div class="col-sm-12">
+
+      <div class="alert alert-warning text-center">
+        <br>
+        <i class="fa fa-spinner fa-spin fa-3x"></i>
+        <br>
+        <strong class="spinnerText">Loading</strong>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="financing-grid rounded text-center" *ngIf="!cargando" style="height: 120px;">
+    <h2 class="numberWidget">{{countlead}}</h2>
+    <h3 class="tittleLeads">Closings</h3>
+    <p class="subtitleWidget">This Month</p>
+
+    <mat-tab-group animationDuration="250ms" style="margin-top: -8%;">
+      <mat-tab *ngFor="let lead of total;">
+        <ng-template mat-tab-label>
+          <div class="w-100" (click)="countLeads(lead.count)" style="padding: 15px;">
+            <span>{{lead.leadStatus.shortStatus}}</span>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+

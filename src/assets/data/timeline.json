@@ -1,0 +1,60 @@
+[
+  {
+    "sectionLabel": "Today",
+    "sectionData": [
+      {
+        "date": "Now",
+        "title": "New Sale",
+        "content": "Aenean lacinia bibendum nulla sed consectetur. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+        "icon": "icofont icofont-cart",
+        "iconBg": "",
+        "iconColor": ""
+      },
+      {
+        "date": "2 m ago",
+        "title": "New Review",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate.",
+        "icon": "icofont icofont-favourite",
+        "iconBg": "",
+        "iconColor": ""
+      },
+      {
+        "date": "2 h ago",
+        "title": "New Message",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur nam nisi veniam.",
+        "icon": "icofont icofont-envelope",
+        "iconBg": "",
+        "iconColor": ""
+      },
+      {
+        "date": "15 h ago",
+        "title": "New Sale",
+        "content": "Aenean lacinia bibendum nulla sed consectetur. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+        "icon": "icofont icofont-cart",
+        "iconBg": "",
+        "iconColor": ""
+      }
+    ]
+  },
+  {
+    "sectionLabel": "Yesterday",
+    "sectionData": [
+      {
+        "date": "Jul 10, 2018",
+        "title": "New Report",
+        "content": "Lorem ipsum dolor sit.",
+        "icon": "icofont icofont-chart-line",
+        "iconBg": "",
+        "iconColor": ""
+      },
+      {
+        "date": "Jul 10, 2018",
+        "title": "New Message",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur nam nisi veniam.",
+        "icon": "icofont icofont-envelope",
+        "iconBg": "",
+        "iconColor": ""
+      }
+    ]
+  }
+]

@@ -1,0 +1,77 @@
+<div class="row animated fadeIn" *ngIf="cargando">
+
+  <div class="col-sm-12">
+
+    <div class="alert alert-warning text-center">
+      <br>
+      <i class="fa fa-spinner fa-spin fa-3x"></i>
+      <br>
+      <strong class="spinnerText">Loading</strong>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive p-3 bg-aosp-info rounded square scrollbar-dusty-grass square thin" *ngIf="!cargando">
+  <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+    <thead>
+      <tr>
+        <th scope="col" class="p-3 task">Task
+          <tc-badge class="ml-2" [size]="'md'" [view]="'default'">
+            <span title="Due Tasks / Pending Tasks" class="nowrap">{{totalDueTasks}} / {{totalPendingTasks}}</span>
+          </tc-badge>
+        </th>
+        <th scope="col" class="text-center p-3 date">Start</th>
+        <th scope="col" class="text-center p-3 date">Due</th>
+        <th scope="col" class="text-center p-3 date"></th>
+        <th scope="col" class="text-center p-3 date"></th>
+      </tr>
+    </thead>
+    <tbody class="rounded square scrollbar-dusty-grass square thin">
+      <tr *ngFor="let task of pendingTasks" class="animated fadeIn">
+        <td scope="col" class="remove_lines p-3 task">
+          <p class="m-0 text-title">{{task.title}}</p>
+          <p class="m-0 task-description">{{task.description}}
+            <span *ngIf="task.customer" class="text-title">
+              {{task.customer.name}} {{task.customer.lastname}}
+            </span>
+          </p>
+        </td>
+        <td scope="col" class="remove_lines text-center p-3 date">
+          <p class="m-0 task-description">{{task.startDate |date:'MM/dd/y'}}</p>
+          <p *ngIf="!task.due" class="m-0 task-description">{{task.startDate |date:'h:mm a'}}</p>
+          <p *ngIf="task.due" class="m-0 task-description due-label">DUE TAKS</p>
+        </td>
+        <td scope="col" class="remove_lines text-center p-3 date">
+          <p class="m-0 task-description">{{task.endDate |date:'MM/dd/y'}}</p>
+          <p *ngIf="!task.due" class="m-0 task-description">{{task.endDate |date:'h:mm a'}}</p>
+          <p *ngIf="task.due" class="m-0 task-description due-label">DUE TASK</p>
+        </td>
+        <td scope="col" class="remove_lines text-center p-3 date"></td>
+        <td scope="col" class="remove_lines text-center p-3 date">
+          <div class="d-flex text-center">
+            <!-- <button *ngIf="task.due" tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="editOnRightMenu(task)">
+              <div class="aosp-ui-icon aosp-ui-reset-md"></div>
+            </button> -->
+            <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="editOnRightMenu(task)">
+              <div class="aosp-ui-icon aosp-ui-edit-md"></div>
+            </button>
+            <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="checkTask(task)">
+              <div class="aosp-ui-icon aosp-ui-approve-md"></div>
+            </button>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <div class="col title1ComponentsDiv text-right p-3">
+
+    <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="addTask()">
+      <div class="d-flex">
+        <div class="mr-2">+</div>Add Task
+      </div>
+    </button>
+  </div>
+</div>

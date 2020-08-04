@@ -1,0 +1,61 @@
+@import '~assets/sass/variables';
+
+:host {
+	.layout-wrap {
+		.nav-bar {
+			::ng-deep {
+				.nav-bar-wrap {
+					.logo-col {
+						@media #{$max991} {
+							display: none;
+						}
+						.logo {
+							padding-left: 0;
+							padding-right: 0;
+						}
+					}
+				}
+			}
+		}
+		@media #{$min992} {
+			.sidebar {
+				background: main-palette(500);
+				height: $horizontal-menu-height;
+				top: $nav-bar-height;
+				width: 100%;
+				z-index: 998;
+
+				::ng-deep {
+					.side-bar-wrap {
+						background: none;
+						padding: 0 $content-h-indents;
+						@media #{$max1199} {
+							padding-left: $content-h-indents / 3 * 2;
+							padding-right: $content-h-indents / 3 * 2;
+						}
+
+						.logo {
+							display: none;
+						}
+					}
+				}
+				&.boxed {
+					::ng-deep {
+						.side-bar-wrap {
+							margin: 0 auto;
+							max-width: $boxed-width;
+						}
+					}
+				}
+        &.light {
+          background: #fff;
+        }
+			}
+		}
+		.main {
+			@media #{$min992} {
+				padding-top: $nav-bar-height + $horizontal-menu-height;
+			}
+		}
+	}
+}

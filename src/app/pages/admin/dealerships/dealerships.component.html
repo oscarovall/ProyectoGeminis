@@ -1,0 +1,198 @@
+<!-- DEALERSHIP-TABLE -->
+<div class="row w-100 m-0 menuTitle3Div animated fadeIn">
+  <div class="col">
+    <div class="title2 t-3">Dealerships</div>
+  </div>
+
+  <div class="col-4 col-xl-3 text-right mr-2 pr-0 inner-addon right-addon d-flex">   
+    <input type="text" class="form-control input-search" aria-label="Number" matInput (keyup.enter)="onKeyUp(filterWords)" [(ngModel)]="filterWords" placeholder="Search">    
+    <button type="button" class="btn-search" (click)="onKeyUp(filterWords)"><i class="fa fa-search"></i></button>    
+  </div>
+
+  <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="addDealership()">
+    <div class="d-flex">
+      <div class="mr-2">+</div>add Dealerships
+    </div>
+  </button>
+</div>
+
+<div class="row animated fadeIn px-3" *ngIf="loading">
+
+  <div class="col-sm-12">
+
+    <div class="alert alert-warning text-center">
+      <br>
+      <i class="fa fa-spinner fa-spin fa-3x"></i>
+      <br>
+      <strong class="spinnerText">Loading</strong>
+    </div>
+  </div>
+</div>
+
+<div class="pl-3 pr-3" *ngIf="!loading && dealerships">
+  <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+    <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+      <thead>
+        <tr>
+
+          <td scope="col" class=""></td>
+          <td scope="col" class="text-center text-nowrap">Dealer</td>
+          <td scope="col" class="text-center text-nowrap">Address</td>
+          <td scope="col" class="text-center text-nowrap">City</td>
+          <td scope="col" class="text-center text-nowrap">State</td>
+          <td scope="col" class="text-center text-nowrap">County</td>
+          <td scope="col" class="text-center text-nowrap">Zip Code</td>
+          <td scope="col" class="text-center text-nowrap">Locations</td>
+          <td scope="col" class="text-center text-nowrap">Team Members</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of dealerships;" class="animated fadeIn">
+
+          <td width="50" class="remove_lines text-center">
+            <div class="d-flex">
+              <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="editDealership(data)">
+                <div class="aosp-ui-icon aosp-ui-edit-md"></div>
+              </button>
+            </div>
+          </td>          
+          <td width="" class="remove_lines text-center">
+            <a class="text-title" (click)="viewStorage(data)">{{data.name}}</a>
+          </td>     
+          <td width="" class="remove_lines text-center">{{data.address}}</td> 
+          <td width="" class="remove_lines text-center">{{data.city}}</td>    
+          <td width="" class="remove_lines text-center">{{data.state}}</td>    
+          <td width="" class="remove_lines text-center">{{data.county}}</td>    
+          <td width="" class="remove_lines text-center">{{data.zip}}</td>   
+          <td width="" class="remove_lines text-center">{{data.storageList.length}}</td>
+          <td width="" class="remove_lines text-center">
+            <!-- <div class="my-2 mx-auto aosp-ui-icon-header aosp-ui-view icono" (click)="viewTeamMembers(data)"></div>  -->
+            <ul class="lista lista--outer flex">
+              <li class="lista__item--outer m-auto">
+                <a class="flex lista--enlace">
+                  <div class="my-2 mx-auto aosp-ui-icon-header aosp-ui-view" style="position: relative !important;"></div> 
+                </a>                
+                <ul class="lista lista--inner" style="position: absolute !important;">
+                  <li class="lista__item--inner"> <a class="flex lista--enlace"  *ngFor="let member of data.storeMemberList">{{member.name}}</a></li>
+                </ul>        
+              </li>
+            </ul>                            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- END DEALERSHIP-TABLE -->
+
+<br>
+
+<!-- STORAGE-TABLE -->
+<div class="col-12 col-xl-4 row w-100 m-0 menuTitle3Div animated fadeIn p-3" *ngIf="selectedDealership">
+  <div class="col">
+    <div class="title2 t-3">Storage of {{selectedDealership.name}}</div>
+  </div>
+
+  <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="addStorage()">
+    <div class="d-flex">
+      <div class="mr-2">+</div>add Storage
+    </div>
+  </button>
+</div>
+
+<div class="col-12 col-xl-4 pl-3 pr-3" *ngIf="selectedDealership && selectedDealership.storageList">
+  <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+    <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+      <thead>
+        <tr>
+
+          <td scope="col" class=""></td>
+          <td scope="col" class="text-center text-nowrap">Location</td>          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let storage of selectedDealership.storageList;" class="animated fadeIn">
+
+          <td width="50" class="remove_lines text-center">
+            <div class="d-flex">
+              <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="editStorage(storage)">
+                <div class="aosp-ui-icon aosp-ui-edit-md"></div>
+              </button>
+            </div>
+          </td>                    
+          <td width="" class="remove_lines text-center">
+            <a class="text-title" (click)="selectedStorage = storage">{{storage.name}}</a>
+          </td>         
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- END STORAGE-TABLE -->
+
+<br>
+
+<!-- LOT-TABLE -->
+<div class="row w-100 m-0 menuTitle3Div animated fadeIn p-3" *ngIf="selectedStorage">
+  <div class="col">
+    <div class="title2 t-3">Spaces of {{selectedStorage.name}}</div>
+  </div>
+
+  <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="addLot()">
+    <div class="d-flex">
+      <div class="mr-2">+</div>add Space
+    </div>
+  </button>
+</div>
+
+<div class="pl-3 pr-3" *ngIf="selectedStorage">
+  <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+    <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+      <thead>
+        <tr>
+
+          <td scope="col" class=""></td>
+          <td scope="col" class="text-center text-nowrap">Space</td> 
+          <td scope="col" class="text-center text-nowrap">Make</td> 
+          <td scope="col" class="text-center text-nowrap">Default Model</td> 
+          <td scope="col" class="text-center text-nowrap">Id</td> 
+          <td scope="col" class="text-center text-nowrap">Year</td> 
+          <td scope="col" class="text-center text-nowrap">MSRP Price</td>          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lot of selectedStorage.lotList;" class="animated fadeIn">
+
+          <td width="50" class="remove_lines text-center">
+            <div class="d-flex">
+              <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="editLot(lot)">
+                <div class="aosp-ui-icon aosp-ui-edit-md"></div>
+              </button>
+            </div>
+          </td>          
+          <td width="" class="remove_lines text-center">{{lot.lotNameId}}</td>   
+          <td width="" class="remove_lines text-center">
+            <a *ngIf="lot.product">{{lot.product.manufacturer.shortName}}</a>
+          </td>   
+          <td width="" class="remove_lines text-center">
+            <a *ngIf="lot.product">{{lot.product.name}}</a>
+          </td> 
+          <td width="" class="remove_lines text-center">
+            <a *ngIf="lot.product">{{lot.product.nameId}}</a>
+          </td> 
+          <td width="" class="remove_lines text-center">
+            <a *ngIf="lot.product">{{lot.product.year}}</a>
+          </td>   
+          <td width="" class="remove_lines text-center">
+            <a *ngIf="lot.product">{{lot.product.price}}</a>
+          </td>   
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- END LOT-TABLE -->
+
+<br>
+
+

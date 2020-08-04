@@ -1,0 +1,422 @@
+.tc-icon-wrap {
+	line-height: 1;
+	width: 17px;
+	height: 20px;
+}
+
+// Main menu icons
+.aosp-ui-home {
+	background: url("/assets/img/AOSP/homeMenu.svg");
+	background-size: 17px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.aosp-ui-customer {
+	background: url("/assets/img/AOSP/customerMenu.svg");
+	background-size: 17px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.aosp-ui-inventory {
+	background: url("/assets/img/AOSP/inventoryMenu.svg");
+	background-size: 17px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.aosp-ui-hints {
+	background: url("/assets/img/AOSP/hints_icon.svg");
+	background-size: 17px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.aosp-ui-serviceandrepair {
+	background: url("/assets/img/AOSP/serviceAndRepairMenu.svg");
+	background-size: 17px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.aosp-ui-insurance {
+	background: url("/assets/img/AOSP/insuranceMenu.svg");
+	background-size: 17px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.aosp-ui-finance {
+	background: url("/assets/img/AOSP/financeMenu.svg");
+	background-size: 17px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.aosp-ui-realestate {
+	background: url("/assets/img/AOSP/realEstateMenu.svg");
+	background-size: 17px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.aosp-ui-reports {
+	background: url("/assets/img/AOSP/reportsMenu.svg");
+	background-size: 17px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.aosp-ui-administration {
+	background: url("/assets/img/AOSP/adminMenu.svg");
+	background-size: 17px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.aosp-ui-upload {
+	background: url("/assets/img/AOSP/upload_icon.svg");
+	background-size: 17px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.aosp-ui-icon {
+	background-size: 17px;
+	background-repeat: no-repeat;
+	width: 17px;
+	min-height: 17px;
+}
+
+// Workflow Step Configuration
+.aosp-ui-delete {
+	background-image: url(/assets/img/AOSP/delete_icon.svg);
+	background-size: 14px;
+	top: 2px;
+	background-position: center;
+	position: relative;
+}
+
+.aosp-ui-save {
+	background-image: url("/assets/img/AOSP/save_icon.svg");
+	background-size: 14px;
+	background-position: left;
+	top: 2px;
+	position: relative;
+}
+
+.aosp-ui-cancel {
+	background-image: url("/assets/img/AOSP/cancel_icon.svg");
+	background-size: 14px;
+	background-position: left;
+	top: 2px;
+	position: relative;
+}
+
+.aosp-ui-email {
+	background-image: url("/assets/img/AOSP/email_icon.svg");
+	background-size: 20px;
+	width: 20px !important;
+	background-position: left;
+	top: 2px;
+	position: relative;
+}
+
+.aosp-ui-delete.title {
+	top: -1px;
+	margin-right: 7px;
+}
+
+.aosp-ui-save.title {
+	top: -1px;
+	margin-right: 7px;
+}
+
+.aosp-ui-cancel.title {
+	top: -1px;
+	margin-right: 7px;
+}
+
+.aosp-ui-email.title {
+	top: -1px;
+	margin-right: 7px;
+}
+
+// Users Buttons
+.aosp-ui-edit {
+	background-image: url("/assets/img/AOSP/edit_icon.svg");
+	background-size: 14px;
+	background-position: left;
+	top: 2px;
+	position: relative;
+}
+
+.aosp-ui-edit-md {
+	background-image: url("/assets/img/AOSP/edit_icon.svg");
+	background-size: 20px;
+	background-position: center;	
+	position: relative;
+	width: 24px !important;
+	min-height: 34px !important;
+}
+
+.aosp-ui-calendar-md {
+	background-image: url("/assets/img/AOSP/date_icon.svg");
+	background-size: 22px;
+	background-position: center;	
+	position: relative;
+	width: 24px !important;
+	min-height: 34px !important;
+}
+
+.aosp-ui-email-md {
+	background-image: url("/assets/img/AOSP/email_icon.svg");
+	background-size: 23px;
+	background-position: center;	
+	position: relative;
+	width: 24px !important;
+	min-height: 34px !important;
+}
+
+.aosp-ui-call-md {
+	background-image: url("/assets/img/AOSP/call_icon.svg");
+	background-size: 20px;
+	background-position: center;	
+	position: relative;
+	width: 24px !important;
+	min-height: 34px !important;
+}
+
+.aosp-ui-approve-md {
+	background-image: url("/assets/img/AOSP/approve_icon.svg");
+	background-size: 20px;
+	background-position: center;	
+	position: relative;
+	width: 24px !important;
+	min-height: 34px !important;
+}
+
+.aosp-ui-reset-md {	
+	background-image: url("/assets/img/AOSP/refresh_icon_due.svg");
+	background-size: 20px;
+	background-position: center;	
+	position: relative;
+	width: 24px !important;
+	min-height: 34px !important;
+}
+
+.aosp-ui-edit.title {
+	top: -1px;
+	margin-right: 7px;
+}
+
+.aosp-ui-reset {
+	background-image: url("/assets/img/AOSP/refresh_icon.svg");
+	background-size: 14px;
+	background-position: left;
+	top: 2px;
+	position: relative;
+}
+
+.aosp-ui-reset.title {
+	top: -1px;
+	margin-right: 7px;
+}
+
+// Workflow Menu
+.aosp-ui-menu0 {
+	background-image: url("/assets/img/AOSP/menu_icon0.svg");
+}
+
+.aosp-ui-menu1 {
+	background-image: url("/assets/img/AOSP/menu_icon1.svg");
+}
+
+.aosp-ui-menu2 {
+	background-image: url("/assets/img/AOSP/menu_icon2.svg");
+}
+
+.aosp-ui-menu3 {
+	background-image: url("/assets/img/AOSP/menu_icon3.svg");
+}
+
+.aosp-ui-menu4 {
+	background-image: url("/assets/img/AOSP/menu_icon4.svg");
+}
+
+.aosp-ui-menu5 {
+	background-image: url("/assets/img/AOSP/menu_icon5.svg");
+}
+
+.aosp-ui-menu6 {
+	background-image: url("/assets/img/AOSP/menu_icon6.svg");
+}
+
+.aosp-ui-menu7 {
+	background-image: url("/assets/img/AOSP/menu_icon7.svg");
+}
+
+.aosp-ui-menu8 {
+	background-image: url("/assets/img/AOSP/menu_icon8.svg");
+}
+
+.aosp-ui-menu9 {
+	background-image: url("/assets/img/AOSP/menu_icon9.svg");
+}
+
+// Header Icons
+.aosp-ui-icon-header {
+	background-size: 24px;
+	background-repeat: no-repeat;
+	width: 24px;
+	height: 24px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+.aosp-ui-calendar {
+	background-image: url("/assets/img/AOSP/date_icon.svg");
+}
+
+.aosp-ui-notification {
+	background-image: url("/assets/img/AOSP/notification_icon.svg");
+}
+
+.aosp-ui-new-lead {
+	background-image: url("/assets/img/AOSP/add_lead_icon.svg");
+}
+
+.aosp-ui-tocalendar {
+	background-image: url("/assets/img/AOSP/tocalendar_icon.svg");
+	width: 16px;
+	background-size: contain;
+	height: 16px;
+	top: 3px;
+	position: relative;
+}
+
+.aosp-ui-view {
+	background-image: url("/assets/img/AOSP/view_icon.svg");
+	width: 16px;
+	background-size: contain;
+	height: 16px;
+	top: 5px;
+	position: relative;
+}
+
+.aosp-ui-edit2 {
+	background-image: url("/assets/img/AOSP/edit_icon_inactive.svg");
+	width: 16px;
+	background-size: contain;
+	height: 16px;
+	top: 3px;
+	position: relative;
+}
+
+.aosp-ui-invalid {
+	background-image: url("/assets/img/AOSP/invalid_icon.svg");
+	width: 16px;
+	background-size: contain;
+	height: 16px;
+	top: 3px;
+	position: relative;
+}
+
+.aosp-ui-view.active {
+	background-image: url("/assets/img/AOSP/view_icon_active.svg");
+	width: 16px;
+	background-size: contain;
+	height: 16px;
+	top: 5px;
+	position: relative;
+}
+
+.aosp-ui-edit2.active {
+	background-image: url("/assets/img/AOSP/edit_icon_active.svg");
+}
+
+.aosp-ui-invalid.active {
+	background-image: url("/assets/img/AOSP/invalid_icon_active.svg");
+}
+
+//Mobile Menu
+.aosp-ui-bars-menu {
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 18px;
+	cursor: pointer;
+	background-image: url("/assets/img/AOSP/close_menu.svg");
+	transition: 0.3s;
+}
+
+.aosp-ui-close-menu {
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 18px;
+	cursor: pointer;
+	background-image: url("/assets/img/AOSP/open_menu.svg");
+	transition: 0.3s;
+}
+
+// Right Menu
+.aosp-ui-icon-opener-container {
+	padding: 3px;
+	width: 24px;
+	top: -2px;
+	background-color: #1f316b;
+	border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+.aosp-ui-icon-opener {
+	position: relative;
+	content: '';
+	width: 7px;
+	height: 7px;
+	border-width: 1px 0 0 1px;
+	border-style: solid;
+	border-color: #5aaef3;
+	-webkit-transform: rotate(135deg) translate(0, -50%);
+	transform: rotate(135deg) translate(0, -50%);
+	-webkit-transform-origin: top;
+	transform-origin: top;
+	top: 50%;
+	left: 4px;
+	transition: all .3s ease-out;
+}
+
+.aosp-ui-icon-opener.opened {
+	-webkit-transform: rotate(-135deg) translate(0, -50%);
+	-ms-transform: rotate(-135deg) translate(0, -50%);
+	-o-transform: rotate(-135deg) translate(0, -50%);
+	transform: rotate(-135deg) translate(0, -50%);
+  top: 8px;
+  left: 6px;
+}
+
+// Profile
+
+.aosp-ui-profile-icon {
+  background-image: url("/assets/img/AOSP/profile_icon.svg");
+}
+
+.aosp-ui-profile-small {
+	background: url("/assets/img/AOSP/profile_icon.svg");
+	background-size: 30px;
+	background-position: center;
+  background-repeat: no-repeat;
+  width: 30px;
+	height: 30px;
+}
+
+.aosp-ui-profile-big {
+	background: url("/assets/img/AOSP/profile_icon.svg");
+	background-size: 120px;
+	background-position: center;
+  background-repeat: no-repeat;
+  width: 120px;
+	height: 120px;
+}

@@ -1,0 +1,40 @@
+<div class="modal-body row w-100 h-100 mx-0">
+  <div class="col-12 p-0">
+    <tc-form-group>
+      <tc-form-label class="tc-form-label">Step name</tc-form-label>
+      <input class="form-control w-100" type="text" placeholder="Input step name"[(ngModel)]="newStep.name">
+    </tc-form-group>
+  </div>
+  <div class="col-12 p-0">
+    <tc-form-group>
+      <tc-form-label class="tc-form-label">Attribute Type</tc-form-label>
+      <select (change)="attTypeChanged($event)" class="custom-select rounded" [(ngModel)]="newStep.attributeTypeId">
+        <option style="display:none;"> -- select an option -- </option>
+        <option *ngFor="let attType of attTypesToShow" [value]="attType.attributeTypeId">{{attType.name}}</option>
+      </select>
+    </tc-form-group>
+  </div>
+  <div class="col-12 p-0" *ngIf="values1ToShow && values1ToShow.length > 0">
+    <tc-form-group>
+      <tc-form-label class="tc-form-label">First Value</tc-form-label>
+      <select class="custom-select"  [(ngModel)]="newStep.mainValueId">
+        <option style="display:none;"> -- select an option -- </option>
+        <option *ngFor="let attVal of values1ToShow" [value]="attVal.attributeId">{{attVal.value}}</option>
+      </select>
+    </tc-form-group>
+  </div>
+  <div class="col-12 p-0" *ngIf="values1ToShow && values1ToShow.length > 0">
+    <tc-form-group>
+      <tc-form-label class="tc-form-label">Second Value</tc-form-label>
+      <select class="custom-select"  [(ngModel)]="newStep.secondaryValueId">
+        <option style="display:none;"> -- select an option -- </option>
+        <option *ngFor="let attVal of values1ToShow" [value]="attVal.attributeId">{{attVal.value}}</option>
+      </select>
+    </tc-form-group>
+  </div>
+</div>
+<div class="row modal-footer justify-content-end">
+  <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" [view]="'error'" (click)="deleteButton()" *ngIf="action==='Edit'">Delete</button>
+  <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="closeButton()">Cancel</button>
+  <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="saveButton()">Save</button>
+</div>

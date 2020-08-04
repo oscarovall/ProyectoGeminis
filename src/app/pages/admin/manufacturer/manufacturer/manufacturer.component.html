@@ -1,0 +1,227 @@
+<!-- MANUFACTURERS-TABLE -->
+<div class="p-0 m-0" *ngIf="display === 0">
+  <div class="row w-100 m-0 menuTitle3Div animated fadeIn">
+    <div class="col">
+      <div class="title2 t-3">Manufacturers</div>
+    </div>
+  
+    <div class="col-4 col-xl-3 text-right mr-2 pr-0 inner-addon right-addon d-flex">   
+      <input type="text" class="form-control input-search" aria-label="Number" matInput (keyup.enter)="onKeyUp(filterWords)" [(ngModel)]="filterWords" placeholder="Search">    
+      <button type="button" class="btn-search" (click)="onKeyUp(filterWords)"><i class="fa fa-search"></i></button>    
+    </div>
+  
+    <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="addManufacturer()">
+      <div class="d-flex">
+        <div class="mr-2">+</div>add Manufacturer
+      </div>
+    </button>
+  </div>
+  
+  <div class="row animated fadeIn px-3" *ngIf="loading">
+  
+    <div class="col-sm-12">
+  
+      <div class="alert alert-warning text-center">
+        <br>
+        <i class="fa fa-spinner fa-spin fa-3x"></i>
+        <br>
+        <strong class="spinnerText">Loading</strong>
+      </div>
+    </div>
+  </div>
+  
+  <div class="pl-3 pr-3" *ngIf="!loading && manufacturers">
+    <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+      <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+        <thead>
+          <tr>
+  
+            <td scope="col" class=""></td>
+            <td scope="col" class="text-center text-nowrap">Manufacturer</td>
+            <td scope="col" class="text-center text-nowrap">Plants</td>
+            <td scope="col" class="text-center text-nowrap">Phone Number</td>
+            <td scope="col" class="text-center text-nowrap">Address</td>
+            <td scope="col" class="text-center text-nowrap">City</td>
+            <td scope="col" class="text-center text-nowrap">State</td>
+            <td scope="col" class="text-center text-nowrap">Zip</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of manufacturers;" class="animated fadeIn">
+  
+            <td width="50" class="remove_lines text-center">
+              <div class="d-flex">
+                <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="editManufacturer(data)">
+                  <div class="aosp-ui-icon aosp-ui-edit-md"></div>
+                </button>
+              </div>
+            </td>          
+            <td width="" class="remove_lines text-center">
+              <a class="text-title" (click)="viewProducts(data)">{{data.shortName}}</a>
+            </td>     
+            <td width="" class="remove_lines text-center">
+              <div class="my-2 mx-auto aosp-ui-icon-header aosp-ui-view" (click)="viewPlants(data)"></div>                         
+            </td>   
+            <td width="" class="remove_lines text-center">phone #</td>    
+            <td width="" class="remove_lines text-center">{{data.mainAddress}}</td>    
+            <td width="" class="remove_lines text-center">{{data.mainCity}}</td>   
+            <td width="" class="remove_lines text-center">{{data.mainState}}</td>
+            <td width="" class="remove_lines text-center">{{data.mainZip}}</td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- END DEALERSHIP-TABLE -->
+
+
+<!-- PRODUCTS-TABLE -->
+<div class="p-0 m-0" *ngIf="display === 1">
+  <div class="row w-100 m-0 menuTitle3Div animated fadeIn">
+    <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="display = 0">
+      <div class="d-flex">Back</div>
+    </button>
+    <div class="col">
+      <div class="title2 t-3">Manufacturer Profile</div>
+    </div>
+  </div>
+  <div class="row w-100 m-0 menuTitle3Div animated fadeIn">
+    <div class="col">
+      <div class="title2 t-3">Avaliable Products</div>
+    </div>
+  
+    <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="addProduct()">
+      <div class="d-flex">
+        <div class="mr-2">+</div>add Product
+      </div>
+    </button>
+  </div>
+  
+  <div class="row animated fadeIn px-3" *ngIf="loading">
+  
+    <div class="col-sm-12">
+  
+      <div class="alert alert-warning text-center">
+        <br>
+        <i class="fa fa-spinner fa-spin fa-3x"></i>
+        <br>
+        <strong class="spinnerText">Loading</strong>
+      </div>
+    </div>
+  </div>
+  
+  <div class="pl-3 pr-3" *ngIf="!loading && manufacturers">
+    <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+      <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+        <thead>
+          <tr>
+  
+            <td scope="col" class=""></td>
+            <td scope="col" class="text-center text-nowrap">Model</td>
+            <td scope="col" class="text-center text-nowrap">Box Size</td>
+            <td scope="col" class="text-center text-nowrap">Bedrooms</td>
+            <td scope="col" class="text-center text-nowrap">Bathrooms</td>
+            <td scope="col" class="text-center text-nowrap">Wind Zone</td>
+            <td scope="col" class="text-center text-nowrap">Type</td>
+            <td scope="col" class="text-center text-nowrap">Hide / Show</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products;" class="animated fadeIn">
+  
+            <td width="50" class="remove_lines text-center">
+              <div class="d-flex">
+                <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="editProduct(product)">
+                  <div class="aosp-ui-icon aosp-ui-edit-md"></div>
+                </button>
+              </div>
+            </td>          
+            <td width="" class="remove_lines text-center">{{product.name}}</td>     
+            <td width="" class="remove_lines text-center">{{product.sqft}}</td>    
+            <td width="" class="remove_lines text-center">{{product.bed}}</td>    
+            <td width="" class="remove_lines text-center">{{product.bath}}</td>    
+            <td width="" class="remove_lines text-center">{{product.windZone}}</td>   
+            <td width="" class="remove_lines text-center">{{product.typeWide}}</td>
+            <td width="" class="remove_lines text-center">
+              <tc-switcher [value]="product.active" (valueChanged)="showHideHome($event, product)"></tc-switcher>
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- END PRODUCTS-TABLE -->
+
+
+<!-- PLANTS-TABLE -->
+<div class="p-0 m-0" *ngIf="display === 2">
+  <div class="row w-100 m-0 menuTitle3Div animated fadeIn">
+    <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="display = 0">
+      <div class="d-flex">Back</div>
+    </button>    
+  </div>
+  <div class="row w-100 m-0 menuTitle3Div animated fadeIn">
+    <div class="col">
+      <div class="title2 t-3">Plants of {{selectedManufacturer.shortName}}</div>
+    </div>
+  
+    <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="addPlant()">
+      <div class="d-flex">
+        <div class="mr-2">+</div>add Plant
+      </div>
+    </button>
+  </div>
+  
+  <div class="row animated fadeIn px-3" *ngIf="loading">
+  
+    <div class="col-sm-12">
+  
+      <div class="alert alert-warning text-center">
+        <br>
+        <i class="fa fa-spinner fa-spin fa-3x"></i>
+        <br>
+        <strong class="spinnerText">Loading</strong>
+      </div>
+    </div>
+  </div>
+  
+  <div class="pl-3 pr-3" *ngIf="!loading && plants">
+    <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+      <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+        <thead>
+          <tr>
+  
+            <td scope="col" class=""></td>
+            <td scope="col" class="text-center text-nowrap">Plant #</td>
+            <td scope="col" class="text-center text-nowrap">Address</td>
+            <td scope="col" class="text-center text-nowrap">City</td>
+            <td scope="col" class="text-center text-nowrap">State</td>
+            <td scope="col" class="text-center text-nowrap">Zip</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let plant of plants;" class="animated fadeIn">
+  
+            <td width="50" class="remove_lines text-center">
+              <div class="d-flex">
+                <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="editPlant(plant)">
+                  <div class="aosp-ui-icon aosp-ui-edit-md"></div>
+                </button>
+              </div>
+            </td>          
+            <td width="" class="remove_lines text-center">{{plant.plantNum}}</td>     
+            <td width="" class="remove_lines text-center">{{plant.address}}</td>    
+            <td width="" class="remove_lines text-center">{{plant.city}}</td>    
+            <td width="" class="remove_lines text-center">{{plant.state}}</td>    
+            <td width="" class="remove_lines text-center">{{plant.zip}}</td>  
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- END PLANTS-TABLE -->

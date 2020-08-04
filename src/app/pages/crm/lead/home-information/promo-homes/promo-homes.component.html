@@ -1,0 +1,62 @@
+<div class="col-12 col-xl-12 col-md-12 col-lg-12 pl-4 pr-4 mt-2" style="background: #132562;">
+  <div class="row w-100 m-0 menuTitle3Div animated fadeIn pl-2">
+    <div>
+      <div class="title2">
+        <div> <img src="assets\img\AOSP\homeMenu.svg" /><a class="px-3 t-8"> Promo Homes</a> </div>
+      </div>
+    </div>
+    <div class="col title1ComponentsDiv text-right pr-0">
+    </div>
+  </div>
+
+  <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)" *ngIf="result && result.length">
+    <div ngxSlickItem *ngFor="let productInv of result" class="slide">
+
+        <div class="titleText text-left">
+          {{productInv.name}} - {{productInv.nameId}}
+        </div>
+        <ng-container >
+          <a class="result-homes">
+            <div class="position-relative pl-2 pr-2"style=" width: 102%;cursor:pointer"  (click)="seeDetail(productInv)">
+
+              <img [src]="productInv.mainIconUrl" alt="home.name" style="width:auto; height:257.3px;"
+                class="w-100 h-100" />
+
+              <div class="bg-bottom"></div>
+              <div class="title-result-homes pb-3">
+                <div class="row pl-2 pr-3">
+                  <div class="col">
+                    <div class="title-bottom">{{productInv.name}}</div>
+                  </div>
+                </div>
+                <hr>
+                <div class="row"style="width: max-content;">
+                  <div class="col-4 home-result-feature text-left pr-0">
+                    <div class="">{{productInv.sqft}}</div>
+                    Sq Ft
+                  </div>
+                  <div class="col-4 home-result-feature text-center pr-0">
+                    <div class="">{{productInv.bed}}</div>
+                    Bed
+                  </div>
+                  <div class="col-4 home-result-feature text-right pr-0">
+                    <div class="position-right">
+                      <div class="">{{productInv.bath}}</div>
+                      <div class="">Bath</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </ng-container>
+
+
+    </div>
+  </ngx-slick>
+
+
+
+  <br /><br />
+
+</div>

@@ -1,0 +1,135 @@
+<div *ngIf="calendarService.displayCreationForm" class="animated fadeIn">
+  <div class="row header pb-2 pt-2 bg-aosp-info">
+    <div class="col-7 icons p-0">
+      <div class="mr-2 aosp-ui-icon-header aosp-ui-tocalendar" (click)="redirect('/calendar')"></div>
+      <span>Calendar</span>
+    </div>
+    <div class="col-3 p-0 text-right">
+      <span>{{today | date:'EEE, MMM d'}}</span>
+    </div>
+    <div class="col-2 icons p-0">
+      <div class="aosp-ui-icon-opener-container ml-3" (click)="openCalendar()">
+        <div class="mr-2 aosp-ui-icon-opener" [ngClass]="{opened: calendarOpened}"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 animated fadeIn" *ngIf="calendarOpened">
+    <div class="d-flex justify-content-center">
+      <bs-datepicker-inline class="calendar" [bsValue]="today" (bsValueChange)="onChangeCal($event)"></bs-datepicker-inline>
+    </div>
+  </div>
+
+  <mat-tab-group mat-stretch-tabs class="mat-elevation-z4" animationDuration="0ms" *ngIf="calendarService.allEvents">
+
+    <mat-tab [label]="'Appointments'">
+      <div class="scroll square scrollbar-dusty-grass square thin">
+        <div class="contact-item row taskList borderLeft" [ngClass]="{'borderRed': eventApp.priority }"
+             *ngFor="let eventApp of pendingTasks">
+          <div class="filtro" *ngIf="eventApp.appointmentTypeId === 'Appointment'">
+            <div class="col-12 text-left p-0">
+              <span class="item-text" *ngIf="eventApp.appointmentTypeId === appConfig.appointmentType.appointment">{{eventApp.startDate | date:'MMM d, h:mm a'}} - </span>
+              <span class="item-text">{{eventApp.endDate | date:'MMM d, h:mm a'}}</span>
+            </div>
+            <div class="col-11 text-left p-0">
+              <span class="item-title">{{eventApp.appointmentTypeId}}</span>
+            </div>
+            <div class="col-1 text-right p-0 h-0 d-flex" *ngIf="eventApp.manual === true">
+              <i class="fa fa-fw fa-pencil cursor-pointer" (click)="editTask(eventApp)"></i>
+              <i class="fa fa-fw fa-check ml-2 cursor-pointer" (click)="checkTask(eventApp)"></i>
+            </div>
+            <span class="col-12 text-left p-0">
+              <span class="item-text">{{eventApp.title}} </span>
+              <span *ngIf="eventApp.lead && eventApp.lead.mainCustomer" class="item-title">{{eventApp.lead.mainCustomer.name}} {{eventApp.lead.mainCustomer.lastname}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+
+    <mat-tab [label]="'All Tasks'">
+      <div class="scroll square scrollbar-dusty-grass square thin">
+        <div class="dueTasks">
+          <div class="col-6">
+            <button tc-button [tcShape]="4" class="dueTaskButton my-3" [block]="true"> Due Tasks </button>
+            </div>
+            <div class="contact-item row taskList" 
+                 *ngFor="let eventApp of dueTasks">
+              <div class="filtro" *ngIf="eventApp.appointmentTypeId === 'Pending task'">
+                  <div class="col-12 text-left p-0">
+                    <span class="item-text" *ngIf="eventApp.appointmentTypeId === appConfig.appointmentType.appointment">{{eventApp.startDate | date:'MMM d, h:mm a'}} - </span>
+                    <span class="item-text">{{eventApp.endDate | date:'MMM d, h:mm a'}}</span>
+                  </div>
+                  <div class="col-11 text-left p-0">
+                    <span class="item-title">{{eventApp.appointmentTypeId}}</span>
+                  </div>
+                  <div class="col-1 text-right p-0 h-0 d-flex" *ngIf="eventApp.manual === true">
+                    <i class="fa fa-fw fa-pencil cursor-pointer" (click)="editTask(eventApp)"></i>
+                    <i class="fa fa-fw fa-check ml-2 cursor-pointer" (click)="checkTask(eventApp)"></i>
+                  </div>
+                  <div class="col-12 text-left p-0">
+                    <span class="item-text">{{eventApp.title}} </span>
+                    <span *ngIf="eventApp.lead && eventApp.lead.mainCustomer" class="item-title">{{eventApp.lead.mainCustomer.name}} {{eventApp.lead.mainCustomer.lastname}}</span>
+                  </div>   
+                </div>
+              </div>
+          </div>
+
+        <hr class="hrTasks"/>
+          <div class="pendingTasks">
+            <div class="col-6">
+              <button tc-button [tcShape]="4" class="pendingTaskButton my-3" [block]="true"> Pending Tasks </button>
+            </div>
+            <div class="contact-item row taskList borderLeft " [ngClass]="{'borderRed': eventApp.priority }"
+                 *ngFor="let eventApp of pendingTasks">
+              <div class="filtro" *ngIf="eventApp.appointmentTypeId === 'Pending task'">
+                <div class="col-12 text-left p-0">
+                  <span class="item-text" *ngIf="eventApp.appointmentTypeId === appConfig.appointmentType.appointment">{{eventApp.startDate | date:'MMM d, h:mm a'}} - </span>
+                  <span class="item-text">{{eventApp.endDate | date:'MMM d, h:mm a'}}</span>
+                </div>
+                <div class="col-11 text-left p-0">
+                  <span class="item-title">{{eventApp.appointmentTypeId}}</span>
+                </div>
+                <div class="col-1 text-right p-0 h-0 d-flex" *ngIf="eventApp.manual === true">
+                  <i class="fa fa-fw fa-pencil cursor-pointer" (click)="editTask(eventApp)"></i>
+                  <i class="fa fa-fw fa-check ml-2 cursor-pointer" (click)="checkTask(eventApp)"></i>
+                </div>
+                <span class="col-12 text-left p-0">
+                  <span class="item-text">{{eventApp.title}} </span>
+                  <span *ngIf="eventApp.lead && eventApp.lead.mainCustomer" class="item-title">{{eventApp.lead.mainCustomer.name}} {{eventApp.lead.mainCustomer.lastname}}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <hr>
+
+  <div class="buttons col-9 mx-5 pr-3">
+    <button tc-button [tcShape]="4" [block]="true" (click)="showDisplay()"> Add Task or Appointment </button>
+  </div>
+</div>
+
+<div *ngIf="!calendarService.displayCreationForm" class="animated fadeIn">
+  <mat-tab-group mat-stretch-tabs #tasksgroup class="mat-elevation-z4">
+    <mat-tab label="Add Task">
+      <div class="container">
+        <app-add-appointment (saveDone)="hideDisplay()" [addTask]="calendarService.selectedEvent" [selectedCustomer]="calendarService.selectedCustomer" [type]="appConfig.appointmentType.pendingTask"></app-add-appointment>
+      </div>
+    </mat-tab>
+    <mat-tab label="Add Appointment">
+      <div class="container">
+        <app-add-appointment (saveDone)="hideDisplay()" [addTask]="calendarService.selectedEvent" [selectedCustomer]="calendarService.selectedCustomer" [type]="appConfig.appointmentType.appointment"></app-add-appointment>
+      </div>
+    </mat-tab>
+    <!-- <mat-tab label="Add Reminder">
+      <div class="container">
+        <app-add-appointment (saveDone)="hideDisplay()" [addTask]="calendarService.selectedEvent" [selectedCustomer]="calendarService.selectedCustomer" [type]="appConfig.appointmentType.reminder"></app-add-appointment>
+      </div>
+    </mat-tab> -->
+  </mat-tab-group>
+
+</div>

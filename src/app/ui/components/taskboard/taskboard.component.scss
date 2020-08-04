@@ -1,0 +1,106 @@
+@import '~assets/sass/variables';
+
+$_shape: $shape;
+
+:host {
+  display: block;
+  flex: 1;
+  height: 100%;
+  position: relative;
+
+  .taskboard {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    margin-left: -15px;
+    margin-right: -15px;
+		white-space: nowrap;
+
+    .list-wrapper {
+      box-sizing: border-box;
+      display: inline-block;
+      height: 100%;
+      padding: 0 $module-rem;
+      min-width: 30 * $module-rem;
+      vertical-align: top;
+      width: 30 * $module-rem;
+    }
+  }
+}
+
+//  Global styles for drag & drop
+
+.taskboard-card {
+  background: rgba(#fff,.1);
+  border-radius: $_shape;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: $module-rem;
+  margin-bottom: $module-rem;
+	min-width: 25 * $module-rem;
+
+	&:last-child {
+    margin-bottom: 0;
+  }
+  tc-textarea {
+    background: #2c435b;
+    margin-top: $module-rem / 2;
+  }
+  .card-title {
+    font-size: 1.1em;
+    font-weight: 400;
+  }
+  .card-text {
+    opacity: 0.8;
+    font-size: 0.9em;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+		margin-top: $module-rem/2;
+
+    .buttons {
+      opacity: 1;
+    }
+    > button {
+      width: 6 * $module;
+    }
+  }
+}
+.taskboard-list {
+  background: main-palette(500);
+  border-radius: $_shape;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: $module-rem;
+  max-height: 100%;
+  min-width: 27 * $module-rem;
+	white-space: normal;
+
+  .taskboard-header {
+    display: flex;
+		justify-content: space-between;
+
+    .taskboard-title {
+      font-size: 1.4em;
+      font-weight: 400;
+			padding: 0;
+			margin-bottom: 0;
+    }
+    .handle {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+  }
+  .taskboard-cards {
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      padding: $module-rem 0;
+    }
+  }
+}

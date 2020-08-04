@@ -1,0 +1,28 @@
+.col{
+    height: 1em;
+    cursor: pointer;
+}
+.title{
+    margin: 0px;
+    margin-bottom: 1.5em;
+}
+.label{
+    right: 0;
+    top: .9em;
+    font-size: small;
+}
+.excelent {
+    background-color: #6ca100;
+}
+.good {
+    background-color: #ffdd00;
+}
+.fair {
+    background-color: #f5ba31;
+}
+.poor {
+    background-color: #f59331;
+}
+.veryPoor {
+    background-color: #dc3c3d;
+}

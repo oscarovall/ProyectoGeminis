@@ -1,0 +1,36 @@
+[
+
+	{
+		"title": "Personal",
+		"price": "19",
+		"priceDesc": "per month",
+		"list": [
+			"Illo delectus accusamus","Consectetur adipisicing","Quod iusto blanditiis","Aliquam iste ducimus","In dolorum vitae cupiditate"
+		]
+	},
+	{
+		"title": "Team",
+		"price": "99",
+		"priceDesc": "per month",
+		"accentColor": "#020c1b",
+		"list": [
+			"Illo delectus accusamus","Consectetur adipisicing","Quod iusto blanditiis","Aliquam iste ducimus","In dolorum vitae cupiditate"
+		]
+	},
+	{
+		"title": "Corporate",
+		"price": "199",
+		"priceDesc": "per month",
+		"list": [
+			"Illo delectus accusamus","Consectetur adipisicing","Quod iusto blanditiis","Aliquam iste ducimus","In dolorum vitae cupiditate"
+		]
+	},
+	{
+		"title": "Buisness",
+		"price": "299",
+		"priceDesc": "per year",
+		"list": [
+			"Illo delectus accusamus","Consectetur adipisicing","Quod iusto blanditiis","Aliquam iste ducimus","In dolorum vitae cupiditate"
+		]
+	}
+]

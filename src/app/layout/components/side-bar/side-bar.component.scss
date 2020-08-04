@@ -1,0 +1,53 @@
+@import '~assets/sass/variables';
+
+$_light-sidebar-bg: #fff;
+$_light-logo-bg: #fff;
+
+$_dark-sidebar-bg: main-palette(500);
+$_dark-logo-bg: main-palette(500);
+
+:host {
+  // background: main-palette(500) url("/assets/img/v-navbar-bg.jpg") 50% 50% no-repeat;
+  background: none;
+	background-size: cover;
+	display: flex;
+	justify-content: flex-end;
+	height: 100%;
+	left: 0;
+  position: fixed;
+	top: 0;
+	transform: translate3d(0,0,0);
+	transition: width .1s $animation;
+	width: $side-bar-width;
+  z-index: 5;
+  @media #{$max767} {
+    transform: translateX(-$side-bar-width);
+    left: 205px;
+  }
+
+	.side-bar-wrap {
+    background: #0c1d55;
+    color: #fff;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		width: 100%;
+
+    ::ng-deep .mCustomScrollBox {
+      width: 100%;
+
+      .mCSB_container {
+        margin: 0;
+      }
+    }
+	}
+  &.opened {
+    transform: translateX(0);
+  }
+  &.light {
+    .side-bar-wrap {
+      background: rgba(#fff,.8);
+      color: #000;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@import "~assets/sass/variables";
+
+$_animation: $animation;
+$_panel-width: 35 * $module;
+$_nav-height: 11 * $module-rem;
+
+:host {
+	background: #0c1d55;
+	border-left: 1px solid main-palette(500);
+	color: #fff;
+	display: block;
+	position: fixed;
+	right: -$_panel-width;
+	height: 100vh;
+	top: $nav-bar-height;
+	transition: right .3s $_animation;
+	width: $_panel-width;
+	z-index: 1000;
+
+	.toggle-btn {
+		font-size: 1.5em;
+		left: -55px;
+		position: fixed;
+		padding: 7px;
+		position: absolute;
+		top: 300px;
+		z-index: inherit;
+	}
+	.container-rigth {
+		overflow: auto;
+	}
+}

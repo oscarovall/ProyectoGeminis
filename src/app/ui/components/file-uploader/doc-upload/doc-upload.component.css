@@ -1,0 +1,93 @@
+.title {
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.25;
+	letter-spacing: normal;
+	color: #eae5eb;
+}
+.uploadSpace {
+	width: 211.5px;
+	height: 32px;
+	border-radius: 5px;
+	border: 1px #3bafda;
+	border-style: dashed;
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 2.5;
+	letter-spacing: normal;
+	text-align: left;
+	color: #1f316b;
+	display: flex;
+	justify-content: space-between;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.displayName {
+	color: #3bafda;
+}
+.selectBtn {
+	border-radius: 4px;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.32);
+	background-color: #00529b;
+	border-color: transparent;
+	color: #eae5eb;
+	cursor: pointer;
+}
+
+.cancel {
+	border-radius: 4px;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.32);
+	background-color: #bd2536;
+	border-color: transparent;
+	cursor: pointer;
+	color: #eae5eb;
+	font-size: 14px;
+	font-family: Roboto;
+	font-size: 14px;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 2;
+	letter-spacing: normal;
+}
+
+.upload {
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 2.14;
+	letter-spacing: normal;
+	border-radius: 4px;
+	background-color: #6ca100;
+	border-color: transparent;
+	color: #eae5eb;
+	cursor: pointer;
+}
+.upload:disabled {
+	cursor: default;
+	opacity: 0.3;
+}
+
+.info {
+	width: 390.4px;
+	height: 47px;
+	font-family: Roboto;
+	font-size: 12px;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.67;
+	letter-spacing: normal;
+	color: #eae5eb;
+}
+
+div {
+	align-items: center;
+	text-align: center;
+}

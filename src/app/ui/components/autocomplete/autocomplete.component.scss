@@ -1,0 +1,99 @@
+@import '~assets/sass/variables';
+
+$_bg: (
+  default: transparent,
+  hover: transparent,
+  focus: rgba(accent-palette(500),.01),
+  disabled: rgba(#ccc, .1)
+);
+$_border: (
+  default: main-palette(100),
+  hover: main-palette(200),
+  focus: accent-palette(500),
+  disabled: #ccc
+);
+$_color: (
+  default: main-palette(500),
+  hover: main-palette(500),
+  focus: main-palette(500),
+  disabled: #ccc
+);
+
+$_placeholder-color: #a8a8a8;
+$_border-style: solid;
+$_border-width: 1px;
+$_fs: 1rem;
+$_lh: $module-rem * 2 / $_fs;
+$_padding-h: $module-rem;
+$_padding-v: ($module-rem / 2);
+$_shape: $shape;
+$_animation: $animation;
+
+// size sm
+$_fs-sm: ($_fs * .9);
+$_lh-sm: decimal-round($module-rem * 1.5 / $_fs-sm);
+$_shape-sm: ($_shape * .8);
+$_padding-v-sm: ($module-rem * .25);
+
+// size lg
+$_fs-lg: ($_fs * 1.3);
+$_lh-lg: $module-rem * 2 / $_fs-lg;
+$_shape-lg: ($_shape * 1.5);
+$_padding-v-lg: $module-rem;
+
+@-webkit-keyframes autofill {
+  to {
+    color: #666;
+    background: transparent;
+  }
+}
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+
+:host {
+	position: relative;
+
+	.autocomplete-list {
+		display: block;
+		position: relative;
+		z-index: 999;
+
+		ul {
+			background: main-palette(400);
+			border-radius: 0 0 $_shape $_shape;
+			box-shadow: 0px 20px 40px rgba(#000,.5);
+			list-style-type: none;
+			left: 0;
+      margin: 0;
+      max-height: 25 * $module-rem;
+      overflow: auto;
+      padding: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 9999;
+
+			li {
+				border-bottom: 1px solid rgba(#000, .05);
+				cursor: pointer;
+				padding: ($module-rem / 2) ($module-rem * 2);
+				transition: background 0.2s $_animation;
+
+				&.active {
+					background: main-palette(500);
+				}
+				&:hover {
+					background:rgba(#000,.05);
+				}
+				&:last-child {
+					border: none;
+				}
+			}
+		}
+	}
+}
+
+
+

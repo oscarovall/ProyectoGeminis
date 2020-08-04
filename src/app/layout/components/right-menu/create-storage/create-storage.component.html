@@ -1,0 +1,41 @@
+<tc-card [title]="tilte + ' Storage'" [align]="'center'" [padding]="'0'" class="height-right-menu rounded square scrollbar-dusty-grass square thin">
+
+  <form #f="ngForm" id="leccionForma" class="form PrintArea" [ngClass]="{'was-validated': wasValidated}" novalidate *ngIf="data">
+    <div class="row">      
+        <div class="col-12 pl-3 pr-3 mb-3">
+          <div>
+            <div style="display: flex;">
+              <p class="title2"> Storage </p>
+              <div class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip"
+                data-placement="right" [title]="'Storage'"></div>
+            </div>
+            <input 
+              class="w-100 form-control" 
+              type="text"
+              [(ngModel)]="data.name"
+              name="name"                
+              [maxLength]="'200'"
+              autocomplete="off"
+              required />
+            <div class="invalid-feedback">It's required!</div>
+          </div>
+        </div>
+
+      <div class="col-12 py-1 px-5">
+        <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="cancel()">
+          <div class="d-flex">
+            <div class="aosp-ui-icon aosp-ui-cancel title"></div>Cancel
+          </div>
+        </button>
+        <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="save()">
+          <div class="d-flex">
+            <div class="aosp-ui-icon aosp-ui-save title"></div>Save
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <br>
+  </form>
+
+</tc-card>

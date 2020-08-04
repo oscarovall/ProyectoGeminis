@@ -1,0 +1,11 @@
+<div class="tc-checkbox-wrap" (click)="switch(value)">
+  <div class="tc-checkbox-handle" [ngStyle]="getStyles()">
+    <input type="checkbox" class="checkbox-input form-control" [value]="value" [attr.checked]="value" [required]="required">
+
+    <span class="check-detector icofont-check"></span>
+  </div>
+
+  <div class="tc-checkbox-label" [ngStyle]="getLabelColor()">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="row w-100 m-0 menuTitleDiv">
+  <div class="col-6">
+    <div class="row" *ngIf="workflowService.workflows">
+      <div>
+        <div class="title1">Workflows List</div>
+      </div>
+      <div class="col pl-3 title1ComponentsDiv">
+        <select *ngIf="workflowService.workflows" name="attributeWorkflows" class="custom-select rounded"
+          value="selectedWorkflow">
+          <option *ngFor="let workflow of workflowService.workflows" [value]="workflowService.selectedWorkflow">
+            {{workflow.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row w-100 m-0 menuTitle2Div">
+  <div class="col-6">
+    <div class="row" *ngIf="workflowService.selectedWorkflow">
+      <div>
+        <div class="title1">{{workflowService.selectedWorkflow.name}}</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="row m-0 p-3">
+  <div class="col-9">
+    <app-ui-workflow class="w-100 h-100"></app-ui-workflow>
+  </div>
+  <div class="col-3 pr-0 sticky-under-navbar h-100">
+    <div class="w-100 p-3 mb-2 bg-white rounded" *ngFor="let group of workflowService.menuGroups">
+      <h6>{{group}}</h6>
+      <div *ngFor="let stepType of (workflowService.menuStepTypes | filterGroup: group)" (click)="addStep(stepType)"
+        class="w-100 menuSelection row">
+        <div [class]="'col-1 mr-2 aosp-ui-icon aosp-ui-menu' + stepType.stepTypeId"></div>
+        <span class="col">{{stepType.name}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--
+<div class="event-action" [ngClass]="{ 'active': eventActive, 'hide': !eventActive }" (click)="eventActive = false">
+
+
+  <tc-card [title]="'Condition'" class="modal rounded" (click)="$event.stopPropagation()"  [tcBgColor]="'#516478'">
+
+    <app-modal-condition (saveModal)="saveModal($event)" (closeModal)="closeModal()"></app-modal-condition>
+
+  </tc-card>
+
+</div> -->

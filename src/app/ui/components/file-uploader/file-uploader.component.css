@@ -1,0 +1,72 @@
+span {
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.43;
+	letter-spacing: normal;
+	text-align: left;
+    color: #eae5eb;
+    margin: 1em;
+    margin-bottom: 2em;
+}
+
+
+hr{
+    margin: 0;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px #5a6aa5;
+
+}
+
+.line{
+    margin-bottom: 0 !important;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.icon {
+    cursor: pointer !important;
+}
+tc-checkbox.line {
+    cursor: pointer !important;
+}
+
+.tittle {
+  margin: 0;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  color: #5aaef3;
+}
+
+.date{
+  margin: 0;
+  margin-left: 32px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  color: #eae5eb;
+}
+
+.info{
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  text-align: center;
+  color: #eae5eb;
+}

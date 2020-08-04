@@ -1,0 +1,41 @@
+tbody, tr { display: block; }
+
+tbody {
+    height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+th, td {
+	padding: 5px;		
+}
+
+thead tr {
+    width: 99%;
+}
+
+.text-title {
+	color: #5aaef3;
+	font-family: Roboto;
+	font-size: 14px;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.67;
+	letter-spacing: normal;
+	text-align: left;
+	color: #5aaef3;
+}
+
+tbody td, thead th {
+    width: 1%;     
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  padding: 2px;
+  border:none !important;
+}

@@ -1,0 +1,9 @@
+<i 
+	*ngFor="let icon of icons"
+	class="icon" 
+	[ngClass]="iconView" 
+	(mouseover)="setHoverValue(icon)"
+	(click)="setValue(icon)"
+	[ngStyle]="getIconStyles(icon)"
+></i>
+

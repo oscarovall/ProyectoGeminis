@@ -1,0 +1,76 @@
+[
+	{
+		"name": "Charles Sutton",
+		"email": "charlie@mail.com",
+		"img": "../../../../assets/content/avatar-132-10.jpg",
+		"role": "Designer",
+		"phone": "0987654321",
+		"location": "Manchester"
+	},
+	{
+		"name": "Elsie Allen",
+		"img": "../../../../assets/content/avatar-132-11.jpg",
+		"email": "elsie-allen@mail.com",
+		"role": "Developer",
+		"phone": "0987654321",
+		"location": "Manchester"
+	},
+	{
+		"name": "Collin Nixon",
+		"img": "../../../../assets/content/avatar-132-6.jpg",
+		"email": "collin-nixon@mail.com",
+		
+		"role": "Designer",
+		"phone": "0987654321",
+		"location": "Manchester"
+	},
+	{
+		"name": "Jamie Spencer",
+		"img": "../../../../assets/content/avatar-132-5.jpg",
+		"email": "spancer@mail.com",
+		"role": "Manager",
+		"phone": "0987644421",
+		"location": "Washington"
+	},
+	{
+		"name": "Taylor Shaw",
+		"img": "../../../../assets/content/avatar-132-8.jpg",
+		"email": "taylorshaw@mail.com",
+		"role": "Backend developer",
+		"phone": "0987654321",
+		"location": "Paris"
+	},
+	{
+		"name": "Alexander Blair",
+		"img": "../../../../assets/content/avatar-132-1.jpg",
+		"email": "alexblair@mail.com",
+		"role": "Frontend developer",
+		"phone": "0985754321",
+		"location": "London"
+	},
+	{
+		"name": "Jessa Garrison",
+		"img": "../../../../assets/content/avatar-132-3.jpg",
+		"email": "jessa-garrison@mail.com",
+		
+		"role": "Software Engineer",
+		"phone": "0987654321",
+		"location": "London"
+	},
+	{
+		"name": "Mell Russell",
+		"img": "../../../../assets/content/avatar-132-2.jpg",
+		"email": "mell-russell@mail.com",
+		"role": "Manager",
+		"phone": "0981234567",
+		"location": "Madrid"
+	},
+	{
+		"name": "Bethany Morgan",
+		"img": "../../../../assets/content/avatar-132-9.jpg",
+		"email": "bethany@mail.com",
+		"role": "Designer",
+		"phone": "0987654321",
+		"location": "London"
+	}
+]

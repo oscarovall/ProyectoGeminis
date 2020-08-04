@@ -1,0 +1,62 @@
+
+
+.forms-configuration {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  color: #eae5eb;
+}
+
+.btn.btn-outline-dark.rounded.addForm {
+  width: 174px;
+}
+
+.remove_lines.forms {
+  color: #eae5eb;
+}
+
+.table td, .table th {
+  padding: .75rem;
+  vertical-align: inherit;
+
+}
+
+.listaForm {
+  padding-left: 1rem !important;
+  max-height: 700px;
+  overflow-y: scroll;
+  min-height: 200px;
+}
+
+.alert.alert-warning {
+  background: #0b1c51 !important;
+  border-color: transparent !important;
+}
+
+.fa.fa-spinner.fa-spin.fa-3x {
+  color: #0d5fa1 !important;
+}
+
+.spinnerText {
+  color: #0d5fa1 !important;
+}
+
+.scroll {
+  height: 700px;
+  overflow-y: auto;
+}
+
+
+.aosp-ui-delete-md {
+  background-image: url("/assets/img/AOSP/delete_icon.svg");
+  background-size: 20px;
+  background-position: center;
+  position: relative;
+  width: 24px !important;
+  min-height: 34px !important;
+  
+}
+
+

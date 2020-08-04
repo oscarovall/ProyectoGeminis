@@ -1,0 +1,43 @@
+
+.connector .ellipse {
+  stroke: #c6c6c6;
+}
+
+.connector .ellipse-symbol {
+  fill: #c6c6c6;
+}
+
+
+.connector .line {
+  stroke: #9f9f9f;
+}
+
+
+
+.selected .connector .ellipse, .connector.selected .ellipse {
+  stroke: red;
+}
+
+.selected .connector .line, .connector.selected .line {
+  stroke: red;
+}
+
+.selected .connector .ellipse-symbol, .connector.selected .ellipse-symbol {
+  fill: red;
+}
+
+.selectedLeft .connectorLeft .ellipse,
+.selectedRight .connectorRight .ellipse {
+  stroke: red;
+}
+
+.selectedLeft .connectorLeft .line,
+.selectedRight .connectorRight .line {
+  stroke: red;
+}
+
+.selectedLeft .connectorLeft .ellipse-symbol,
+.selectedRight .connectorRight .ellipse-symbol {
+  fill: red;
+}
+

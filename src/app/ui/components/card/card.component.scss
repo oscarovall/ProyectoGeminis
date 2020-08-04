@@ -1,0 +1,139 @@
+@import '~assets/sass/variables';
+
+$_bg-color: rgba(main-palette(500),.4);
+$_border-color: main-palette(500);
+$_color: $default-color;
+$_border-width: 0;
+$_header-bg-color: rgba(main-palette(500),.5);
+$_fz: 1rem;
+$_shape: $shape;
+$_title-fs: 1.3571429rem;
+$_title-fw: 500;
+
+$_types: (
+  success: (
+    bg: $success-color,
+    color: $success-contrast,
+  ),
+  info: (
+    bg: $info-color,
+    color: $info-contrast,
+  ),
+  warning: (
+    bg: $warning-color,
+    color: $warning-contrast,
+  ),
+  error: (
+    bg: $error-color,
+    color: $error-contrast,
+  )
+);
+
+:host {
+	background-repeat: no-repeat;
+	background-color: #0c1d55;
+	background-size: cover;
+	background-position: center center;
+	border: $_border-width solid $_border-color;
+	border-radius: $_shape;
+	color: $_color;
+	display: block;
+	// font-size: $_fz;
+	// margin-bottom: 2 * $module-rem;
+	position: relative;
+
+  .bg-image {
+    border-radius: inherit;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .card-title {
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.88;
+    letter-spacing: normal;
+		border-radius: inherit;
+		color: #fff;
+		display: block;
+    padding: ($module-rem) ($module-rem * 1);
+    position: relative;
+		margin: 0;
+		width: 100%;
+
+    .mark {
+      //background-image: linear-gradient(-100deg, rgba(#fff, 0), accent-palette(500) 85%, rgba(#fff, 0));
+      padding: 0;
+      background: none;
+    }
+  }
+  .card-content {
+    display: block;
+    padding: $module-rem * 1;
+		position: relative;
+		width: 100%;
+  }
+
+  @each $type, $color in $_types {
+    &.card-#{$type} {
+      background: map-get($color, bg);
+      color: map-get($color, color);
+
+      &.outline {
+        background: none;
+        border: 1px solid map-get($color, bg);
+        color: map-get($color, bg);
+      }
+    }
+  }
+	&.outline {
+		background: none;
+		border: 1px solid currentColor;
+	}
+	.text-center {
+		text-align: center;
+	}
+	.text-right {
+		text-align: right;
+	}
+	&.full-width {
+		display: flex;
+		flex: 1;
+
+		> .card-content {
+			flex: 1;
+		}
+	}
+  ::ng-deep {
+    .card-header {
+      align-items: center;
+      display: flex;
+      margin: (-$module-rem) (-$module-rem) $module-rem;
+
+      .img,
+      .info,
+      .addition {
+        margin: $module-rem;
+      }
+      .info {
+        flex-grow: 2;
+      }
+      .addition {
+        @media #{$max543} {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+

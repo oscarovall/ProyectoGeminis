@@ -1,0 +1,46 @@
+<div class="tc-input-wrap" (click)="onFocus(disabled || readonly)" [ngStyle]="getStyles()">
+	<div class="input-prefix input-icon" [ngStyle]="{ 'color': properties.prefixIconColor }" *ngIf="properties.prefixIconValue">
+		<span class="{{ properties.prefixIconValue }}"></span>
+	</div>
+
+	<div class="input-prefix" *ngIf="properties.prefixValue" [ngStyle]="{ 'color': properties.prefixColor }">
+		{{ properties.prefixValue }}
+	</div>
+
+	<div class="input-infix">
+		<input 
+		#search type="{{ type }}" name="{{ name }}"
+		[tcAutocomplete]="_data" [key]="key"
+		(resultsChanged)="setResult($event)" 
+		(panelOpened)="setResult($event)" 
+		placeholder="{{ placeholder }}" 
+		[(ngModel)]="value" [attr.maxlength]="charLimiting"
+		class="input-control" (blur)="onBlur(disabled || readonly)"
+		[readonly]="readonly ? true : null" [required]="required ? true : null" (focus)="onFocus(disabled || readonly)"
+		(keydown)="arrowClick($event)" (keydown.enter)="selectItem()">
+	</div>
+
+	<div class="input-suffix" *ngIf="properties.suffixValue" [ngStyle]="{ 'color': properties.suffixColor }">
+		{{ properties.suffixValue }}
+	</div>
+
+	<div class="input-suffix input-icon" [ngStyle]="{ 'color': properties.suffixIconColor }" *ngIf="properties.suffixIconValue">
+		<span class="{{ properties.suffixIconValue }}"></span>
+	</div>
+
+	<div class="char-limiting" *ngIf="charLimiting > 0">{{ charLength }}</div>
+</div>
+
+<div class="autocomplete-list">
+	<ul [ngStyle]="getListStyles()">
+		<li
+			[tcFocus]="i == arrowKeyLocation"
+			(click)="resultSelected(item)"
+			*ngFor="let item of results; let i = index"
+			[innerHtml]="getHighlitedValue(item)"
+			[ngClass]="{'active': i === arrowKeyLocation}"
+		>
+			{{ item }}
+		</li>
+	</ul>
+</div>	

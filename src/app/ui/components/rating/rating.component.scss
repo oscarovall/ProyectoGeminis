@@ -1,0 +1,13 @@
+@import "~assets/sass/variables";
+
+$_animation: $animation;
+
+:host {
+	display: inline-block;
+ 
+	.icon {
+		font-size: 1.3em;
+		padding: 0 $module-rem / 4;
+		transition: color .2s $_animation;
+	}
+}

@@ -1,0 +1,14 @@
+<div class="container w-100" *ngIf="!Disabled">
+  <div style="width: 45%;" >
+    <number-format [format]="'money-USD'"  (change)="OnChangeInside($event.target.value,0)" [value]='insideArray[0]'></number-format>
+  </div>
+  <div style="width: 10%; text-align: center;">
+    <span> - </span>
+  </div>
+  <div style="width: 45%;">
+    <number-format [format]="'money-USD'" (change)="OnChangeInside($event.target.value, 1)" [value]='insideArray[1]'></number-format>
+  </div>
+</div>
+<div *ngIf="Disabled">
+  <span>{{formatedInside}}</span>
+</div>

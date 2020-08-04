@@ -1,0 +1,160 @@
+@import "~assets/sass/variables";
+
+$_padding: 0 $module-rem $module-rem;
+$_shape: $shape;
+$_animation: $animation;
+
+
+$_types: (
+	default: (
+	 bg:  main-palette(500),
+   color: #f5f5f5,
+  ),
+  accent: (
+   bg: accent-palette(500),
+   color: accent-contrast(500),
+  ),
+  success: (
+    bg: $success-color,
+    color: $success-contrast,
+  ),
+  info: (
+    bg: $info-color,
+    color: $info-contrast,
+  ),
+  warning: (
+    bg: $warning-color,
+    color: $warning-contrast,
+  ),
+  error: (
+    bg: $error-color,
+    color: $error-contrast,
+  )
+);
+
+:host {
+	background: accent-palette(600);
+	border-radius: $_shape;
+	color:#fff;
+	display: block;
+	opacity: 0;
+	overflow: hidden;
+	margin-bottom: $module-rem;
+	transition: all .3s $_animation;
+
+	.progress-bar {
+		display: block;
+		height: 6px;
+		width: 100%;
+
+		.progress {
+			background: accent-palette(800);
+			display: block;
+			height: 100%;
+			width: 15%;
+			transition: width .005 $_animation;
+		}
+	}
+	.notification-body {
+		align-items: stretch;
+		display: flex;
+		flex-direction: row;
+		padding: $module-rem;
+
+		.icon {
+			font-size: 1.2em;
+		}
+		.content {
+			margin: 0 0 0 $module-rem;
+			flex: 1;
+
+			.title-box {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+
+				.title {
+					font-size: 1.1em;
+					font-weight: 500;
+					margin: 0;
+					padding: 0;
+				}
+				.close {
+					cursor: pointer;
+					opacity: 0.6;
+					transition: opacity .3s $animation;
+
+					&:hover {
+						opacity: 1;
+					}
+				}
+			}
+			.message {
+				font-weight: 200;
+				opacity: 0.9;
+			}
+		}
+	}
+	.actions {
+		padding: 0 $module-rem ($module-rem / 2);
+
+		:not(:last-child) {
+			margin-right: $module-rem / 2;
+		}
+	}
+
+	@each $_type, $_color in $_types {
+    &.notification-#{$_type} {
+      background: map-get($_color, bg);
+			color: map-get($_color, color);
+
+			.progress-bar {
+				.progress {
+					background: rgba(#fff,.2);
+				}
+			}
+    }
+  }
+	&.hide {
+		opacity: 0;
+
+		&.fade,
+		&.from-top,
+  	&.from-bottom,
+  	&.from-left,
+  	&.from-right {
+			opacity: 0;
+  	  transition:
+  	    .2s opacity 0s $_animation,
+  	    .2s transform 0s $_animation;
+  	}
+  	&.from-top {
+			transform: translateY(-30px);
+  	}
+  	&.from-bottom {
+			transform: translateY(30px);
+  	}
+  	&.from-left {
+			transform: translateX(80%);
+  	}
+  	&.from-right {
+			transform: translateX(-80%);
+		}
+	}
+	&.apear {
+		&.fade,
+		&.from-top,
+  	&.from-bottom,
+  	&.from-left,
+  	&.from-right {
+			opacity: 1;
+			transform: translate(0);
+  	  transition:
+  	    .2s opacity 0s $_animation,
+  	    .2s transform 0s $_animation;
+  	}
+	}
+	&.destroy {
+		display: none;
+	}
+}

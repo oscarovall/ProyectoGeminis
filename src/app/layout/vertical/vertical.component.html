@@ -1,0 +1,275 @@
+<tc-notification-layout [notifications]="notifications | async"></tc-notification-layout>
+
+<div class="layout-wrap">
+  <nav-bar [view]="topbarStyle" class="navbar top-navbar navbar-expand-md navbar-light" [boxed]="boxed">
+    <div class="navbar-header">
+      <a class="navbar-brand w-100" [routerLink]="['/dashboard']" routerLinkActive="router-link-active">
+        <!-- Logo icon -->
+        <div>
+          <logo [src]="'/assets/img/logo-icon.svg'" [height]="32" [width]="48.5" alt="homepage" class="logo-icon p-3" ></logo>
+        </div>
+        <span>
+          <logo [src]="'/assets/img/logo.svg'" [height]="32" [width]="116" class="logo-text"></logo>
+        </span>
+        <!-- End Logo icon -->
+      </a>
+    </div>
+    <div class="navbar-collapse">
+      <div class="row w-100">
+        <div class="col col-auto toggle-button-col">
+          <!-- toggle-sidebar sidebartoggler nav-link sidebartoggler hidden-sm-down -->
+          <div class="toggle-sidebar nav-link nav-toggler hidden-md-up" >
+            <i class="aosp-ui-bars-menu"></i>
+          </div>
+          <div class="toggle-sidebar nav-link sidebartoggler hidden-sm-down" >
+            <i class="aosp-ui-bars-menu"></i>
+          </div>
+        </div>
+
+        <tc-switcher [value]="themeDark" (valueChanged)="toggleTheme()"></tc-switcher>
+        <!-- <div class="col title-col">
+          <h1 class="page-title" [ngClass]="{ 'hide': searchState === 'show', 'light' : topbarStyle !== 'dark'}">
+            {{ pageTitle }}
+          </h1>
+
+          <ng-container *ngIf="displaySearch">
+            <form class="search" [formGroup]="searchGroup" [@searchApear]="searchState">
+              <tc-autocomplete [borderColor]="topbarStyle != 'dark' ? ['#1c1c1c','#070707', '#FF8534'] : null"
+                [color]="getInputColor(topbarStyle)" formControlName="search" [prefixIcon]="'icofont-search'"
+                [data]="routers" [key]="'title'" [placeholder]="'Type page title to search'"
+                (keydown.enter)="goTo('vertical')"></tc-autocomplete>
+            </form>
+          </ng-container>
+        </div> -->
+
+        <div class="col w-100 text-right">
+          <div class="nav-actions">
+            <div class="item d-flex float-right">
+              <div class="mr-2 aosp-ui-icon-header aosp-ui-new-lead" (click)="openRightMenu(appConfig.rightMenu.createLead)"></div>
+              <div class="mr-2 aosp-ui-icon-header aosp-ui-notification"></div>
+              <div class="mr-2 aosp-ui-icon-header aosp-ui-calendar" (click)="openRightMenu(appConfig.rightMenu.calendar)"></div>
+              <div class="mr-2 aosp-ui-icon-header aosp-ui-profile-icon" (click)="openRightMenu(appConfig.rightMenu.profile)">
+                <img src="{{ authService.currentUser.imageUrl }}" class="img-icon" *ngIf="authService.currentUser && authService.currentUser.imageUrl"
+                  (error)="authService.currentUser.imageUrl = null">
+              </div>
+            </div>
+
+            <!-- <tc-dropdown class="item" [close]="closeDropdown">
+              <tc-dropdown-button>
+                <tc-icon [iconClass]="'icofont-notification'" [tcFontSize]="20" [tcColor]="['inherit', '#FF8534']"
+                  class="marker bg-blue"></tc-icon>
+              </tc-dropdown-button>
+
+              <tc-dropdown-content [align]="'right'" [animation]="'fadeInUp'" [offset]="[16, 0]">
+                <div class="menu-header">
+                  <h4 [tcColor]="'#fff'" class="menu-title">Notifications</h4>
+                </div>
+
+                <ul class="list">
+                  <li>
+                    <a href="#" (click)="$event.preventDefault()">
+                      <tc-icon [iconClass]="'icofont-like'" [tcFontSize]="24" [tcBgColor]="'#f2f5f8'"
+                        [tcColor]="'#302d2d'" [tcShape]="'50%'"></tc-icon>
+
+                      <div class="content">
+                        <span class="desc">Sara Crouch liked your photo</span>
+
+                        <span class="date">17 minutes ago</span>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" (click)="$event.preventDefault()">
+                      <tc-icon [iconClass]="'icofont-business-man'" [tcFontSize]="24" [tcBgColor]="'#f2f5f8'"
+                        [tcColor]="'#302d2d'" [tcShape]="'50%'"></tc-icon>
+
+                      <div class="content">
+                        <span class="desc">New user registered</span>
+
+                        <span class="date">23 minutes ago</span>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" (click)="$event.preventDefault()">
+                      <tc-icon [iconClass]="'icofont-share'" [tcFontSize]="24" [tcBgColor]="'#f2f5f8'"
+                        [tcColor]="'#302d2d'" [tcShape]="'50%'"></tc-icon>
+
+                      <div class="content">
+                        <span class="desc">Amanda Lie shared your post</span>
+
+                        <span class="date">25 minutes ago</span>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" (click)="$event.preventDefault()">
+                      <tc-icon [iconClass]="'icofont-business-man'" [tcFontSize]="24" [tcBgColor]="'#f2f5f8'"
+                        [tcColor]="'#302d2d'" [tcShape]="'50%'"></tc-icon>
+
+                      <div class="content">
+                        <span class="desc">New user registered</span>
+
+                        <span class="date">32 minutes ago</span>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" (click)="$event.preventDefault()">
+                      <tc-icon [iconClass]="'icofont-email'" [tcFontSize]="24" [tcBgColor]="'#f2f5f8'"
+                        [tcColor]="'#302d2d'" [tcShape]="'50%'"></tc-icon>
+
+                      <div class="content">
+                        <span class="desc">You have a new message</span>
+
+                        <span class="date">58 minutes ago</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+
+                <div class="menu-footer">
+                  <a href="#" (click)="$event.preventDefault()">
+                    View all notifications
+                    <span class="sli-arrow-right"></span>
+                  </a>
+                </div>
+              </tc-dropdown-content>
+            </tc-dropdown>
+
+            <tc-dropdown class="item" [close]="closeDropdown">
+              <tc-dropdown-button>
+                <tc-icon [iconClass]="'icofont-calendar'" [tcFontSize]="20" [tcColor]="['inherit', '#FF8534']"
+                  class="marker bg-yellow"></tc-icon>
+              </tc-dropdown-button>
+
+              <tc-dropdown-content [align]="'right'" [animation]="'fadeInUp'" [offset]="[16, 0]">
+                <div class="menu-header">
+                  <h4 [tcColor]="'#fff'" class="menu-title">Events</h4>
+                </div>
+
+                <ul class="list">
+                  <li>
+                    <a href="#" (click)="$event.preventDefault()">
+                      <tc-icon [iconClass]="'icofont-brand-android-robot'" [tcFontSize]="24" [tcBgColor]="'#f2f5f8'"
+                        [tcColor]="'#302d2d'" [tcShape]="'50%'"></tc-icon>
+
+                      <div class="content">
+                        <span class="desc">Androin event</span>
+
+                        <span class="date">1 Des 2018</span>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" (click)="$event.preventDefault()">
+                      <tc-icon [iconClass]="'icofont-brand-java'" [tcFontSize]="24" [tcBgColor]="'#f2f5f8'"
+                        [tcColor]="'#302d2d'" [tcShape]="'50%'"></tc-icon>
+
+                      <div class="content">
+                        <span class="desc">Java Dev conference</span>
+
+                        <span class="date">12 Des 2018</span>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" (click)="$event.preventDefault()">
+                      <tc-icon [iconClass]="'icofont-brand-whatsapp'" [tcFontSize]="24" [tcBgColor]="'#f2f5f8'"
+                        [tcColor]="'#302d2d'" [tcShape]="'50%'"></tc-icon>
+
+                      <div class="content">
+                        <span class="desc">Discussion about app</span>
+
+                        <span class="date">15 Des 2018</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </tc-dropdown-content>
+            </tc-dropdown>
+
+            <tc-dropdown class="item" [close]="closeDropdown">
+              <tc-dropdown-button>
+                <tc-icon [iconClass]="'icofont-user'" [tcFontSize]="20" [tcColor]="['inherit', '#FF8534']"></tc-icon>
+              </tc-dropdown-button>
+
+              <tc-dropdown-content [align]="'right'" [animation]="'fadeInUp'" [offset]="[16, 0]" [width]="180">
+                <div class="author-info">
+                  <img src="/assets/content/avatar-55-2.jpg" height="50" width="50" [tcShape]="'50%'">
+
+                  <h4 class="author-name">Anna Hamens</h4>
+                </div>
+
+                <ul class="list">
+                  <li>
+                    <a href="#" (click)="onCloseDropdown(); $event.preventDefault()">
+                      <tc-icon [iconClass]="'icofont-id'" [tcFontSize]="20" [padding]="0"></tc-icon>
+                      Profile
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" (click)="onCloseDropdown()" routerLink="inbox">
+                      <tc-icon [iconClass]="'icofont-envelope'" [tcFontSize]="20" [padding]="0"></tc-icon>
+                      Inbox
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" (click)="onCloseDropdown()" routerLink="calendar">
+                      <tc-icon [iconClass]="'icofont-calendar'" [tcFontSize]="20" [padding]="0"></tc-icon>
+                      Calendar
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" (click)="onCloseDropdown(); $event.preventDefault()">
+                      <tc-icon [iconClass]="'icofont-gears'" [tcFontSize]="20" [padding]="0"></tc-icon>
+                      Settings
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" (click)="goToLogin($event, '/extra/log-in'); onCloseDropdown()">
+                      <tc-icon [iconClass]="'icofont-exit'" [tcFontSize]="20" [padding]="0"></tc-icon>
+                      Log Out
+                    </a>
+                  </li>
+                </ul>
+              </tc-dropdown-content>
+            </tc-dropdown> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav-bar>
+
+  <side-bar [view]="verticalNavStyle" class="left-sidebar">
+    <menu class="p-0 m-0" [dataUrl]="'../../../../assets/data/menu.json'"></menu>
+  </side-bar>
+
+  <app-right-menu></app-right-menu>
+
+  <main class="main">
+    <div class="content-container" [ngClass]="{ 'boxed': boxed }">
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <footer [ngClass]="{ 'boxed': boxed } "></footer>
+  </main>
+  <div class="overlay animated fadeIn" *ngIf="userService.openRightMenu" (click)="closeRightMenu()"></div>
+
+  <div class="sidebar-overlay" (click)="closeSidebar()" *ngIf="openedSidebar"></div>
+
+  <app-modal></app-modal>
+  <app-modal-qualifying></app-modal-qualifying>
+</div>

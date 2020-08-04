@@ -1,0 +1,28 @@
+@import '~assets/sass/variables';
+
+$_border-width: 1px;
+$_border-style: solid;
+$_fs: 1rem;
+$_padding: .25em;
+$_shape: $shape;
+$_transition: $animation;
+
+:host {
+	align-items: center;
+  border-radius: $_shape;
+  display: inline-flex;
+  padding: $_padding;
+  transition:
+    background .2s $_transition,
+    border .2s $_transition,
+    color .2s $_transition;
+
+  .tc-icon-wrap {
+    line-height: 1;
+    width: 17px;
+    height: 20px;
+  }
+  &.border {
+    border: $_border-width $_border-style transparent;
+  }
+}

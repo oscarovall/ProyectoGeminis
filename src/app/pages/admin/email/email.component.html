@@ -1,0 +1,124 @@
+<div class="row w-100 m-0 menuTitle3Div">
+  <div class="col-3 p-0 m-auto">
+    <select class="custom-select rounded" [(ngModel)]="selectedChannel" (change)="changeChannel($event.target.value)">
+      <option [ngValue]="null" style="display:none;"> -- Select Channel Type -- </option>
+      <option [value]="appConfig.templates.email">{{appConfig.templates.email}}</option>
+      <option [value]="appConfig.templates.textMessage">{{appConfig.templates.textMessage}}</option>
+    </select>
+  </div>
+</div>
+<div class="row w-100 m-0 menuTitle3Div">
+  <div class="row" *ngIf="selectedChannel">
+    <div class="title2 t-3">{{selectedChannel}} Template</div>
+  </div>
+
+  <div class="col title1ComponentsDiv text-right pr-0">
+
+    <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" [view]="'error'"
+      (click)="deleteTemplate()" *ngIf="selectedTemplate">
+      <div class="d-flex">
+        <div class="aosp-ui-icon aosp-ui-delete title"></div>Delete
+      </div>
+    </button>
+    <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="saveTemplate()" *ngIf="selectedTemplate">
+        <div class="d-flex"><div class="aosp-ui-icon aosp-ui-save title"></div>Save</div>
+    </button>
+    <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="addTemplate()" *ngIf="selectedChannel">
+      <div class="d-flex">
+        <div class="mr-2">+</div>Add Template
+      </div>
+    </button>
+  </div>
+</div>
+
+<!-- List of Templates -->
+<div class="row pl-3 pr-3 w-100 animated fadeIn" *ngIf="loading">
+  <div class="col-sm-12">
+    <div class="alert alert-warning text-center">
+      <br>
+      <i class="fa fa-spinner fa-spin fa-3x"></i>
+      <br>
+      <strong class="spinnerText">Loading</strong>
+    </div>
+  </div>
+</div>
+<div class="row pl-3 pr-3 w-100" *ngIf="emailTemplates.length > 0 && !loading && selectedChannel == appConfig.templates.email">
+  <div *ngFor="let template of emailTemplates; let i= index">
+    <div class="template" (click)="selectTemplate(template, i)" [ngClass]="{'selected': template.selected}">
+      <div class="p-2">
+        <div class="emailPreview">
+          <img [src]="selectedTemplateContent && selectedTemplateContent.templateId == template.templateId ? selectedTemplateContent.url: template.templateContent[0].url" alt="{{template.name}}" *ngIf="template.url" class="emailPreview">
+        </div>
+        <div class="text-center pt-2">{{template.name}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row pl-3 pr-3 w-100" *ngIf="textTemplates.length > 0 && !loading && selectedChannel == appConfig.templates.textMessage">
+  <div class="col-3 p-0">
+    <select class="custom-select rounded" [(ngModel)]="selectedSmsTemplateId" (change)="selectSmsTemplate()" >
+      <option [ngValue]="null" style="display:none;"> -- Select Template -- </option>
+      <option [value]="template.templateId" *ngFor="let template of textTemplates; let pos = index" >{{template.name}}</option>
+    </select>
+  </div>
+</div>
+
+<!-- New or Edit Template -->
+<div class="row" *ngIf="selectedTemplate" class="menuTitle3Div">
+  <div class="col-12 p-0">
+    <div class="title2 t-3">{{title}}</div>
+  </div>
+  <div class="col-12 p-0 mt-4 mb-4">
+    <div class="row">
+
+      <div class="col-2 pl-0"><input class="form-control w-100" type="text" placeholder="Template name"
+        [(ngModel)]="selectedTemplate.name">
+      </div>
+
+      <div class="col-4" *ngIf="selectedChannel == appConfig.templates.email">
+        <input class="form-control w-100" type="text" placeholder="Email subject" [(ngModel)]="selectedTemplateContent.subject">
+      </div>
+
+      <div class="col-3">
+        <select (change)="addVariable($event.target.value)" class="custom-select rounded">
+          <option value=""> -- Add Variable -- </option>
+          <optgroup *ngFor="let class of (attributeTypes | attTypeGroup)" label="{{class.name}}">
+            <option *ngFor="let attributeType of class.attributeType" [value]="attributeType.attributeTypeId">{{attributeType.name}}</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="col-3">
+        <select class="custom-select rounded" [(ngModel)]="selectedLanguage" (change)="changeLanguage($event.target.value)">
+          <option style="display:none;"> -- Select Language -- </option>
+          <option [value]="appConfig.languages.english">{{appConfig.languages.english}}</option>
+          <option [value]="appConfig.languages.spanish">{{appConfig.languages.spanish}}</option>
+        </select>
+      </div>
+      <!-- <div class="col-1 pr-0">
+        <button tc-button type="button" class="btn btn-outline-dark rounded text-right t-4" (click)="viewCodeF()">
+          <div *ngIf="!viewCode">See Code</div>
+          <div *ngIf="viewCode">See Design</div>
+        </button>
+      </div> -->
+    </div>
+  </div>
+  <div class="col-12 p-0" *ngIf="selectedTemplate && selectedTemplateContent">
+    <!-- <form [formGroup]="form" *ngIf="!viewCode"> -->
+      <!-- <quill-editor format="html" name="html" [placeholder]="placeholder" (onEditorCreated)="onEditorCreated($event)"
+      [(ngModel)]="selectedTemplateContent.content" [style.height]="'200px'">
+      </quill-editor> -->
+    <!-- </form> -->
+    <textarea #textcode class="w-100 form-control h-400 rounded square scrollbar-dusty-grass square thin" (click)="getCaretPos(textcode)" (keyup)="getCaretPos(textcode)"
+      [(ngModel)]="selectedTemplateContent.contentText" name="htmlCode">
+    </textarea>
+
+    <!-- <pre>
+            <code [(attr.code)]="selectedTemplate.templateContent.content" ></code>
+    </!-->
+
+    <!-- <quill-view *ngIf="selectedTemplate.templateContent" [content]="selectedTemplate.templateContent.content"
+        theme="snow"></quill-view> -->
+
+  </div>
+</div>

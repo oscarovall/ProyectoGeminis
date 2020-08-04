@@ -1,0 +1,44 @@
+[
+  {
+    "product": "Play Station 4",
+    "img": "assets/content/avatar-55-17.jpg",
+    "sales": 69,
+    "price": 330,
+    "views": "432"
+  },
+  {
+    "product": "Backpack",
+    "img": "assets/content/avatar-55-13.jpg",
+    "sales": 45,
+    "price": 120,
+    "views": "432"
+  },
+  {
+    "product": "Headphones",
+    "img": "assets/content/avatar-55-15.jpg",
+    "sales": 53,
+    "price": 150,
+    "views": "332"
+  },
+  {
+    "product": "Sneakers",
+    "img": "assets/content/avatar-55-16.jpg",
+    "sales": 47,
+    "price": 90,
+    "views": "145"
+  },
+  {
+    "product": "Glasses",
+    "img": "assets/content/avatar-55-14.jpg",
+    "sales": 25,
+    "price": 80,
+    "views": "232"
+  },
+  {
+    "product": "Glasses",
+    "img": "assets/content/avatar-55-18.jpg",
+    "sales": 24,
+    "price": 23,
+    "views": "512"
+  }
+]

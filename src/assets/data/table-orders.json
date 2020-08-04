@@ -1,0 +1,42 @@
+[
+  {
+    "customer": "Cristina Petty",
+    "img": "assets/content/avatar-55-2.jpg",
+    "status": "Done",
+    "status-view": "success",
+    "date": "16 Jule 2018",
+    "amount": "$168"
+  },
+  {
+    "customer": "Jase Sutton",
+    "img": "assets/content/avatar-55-4.jpg",
+    "status": "Cancelled ",
+    "status-view": "error",
+    "date": "08 May 2018",
+    "amount": "$168"
+  },
+  {
+    "customer": "Jenson Carter",
+    "img": "assets/content/avatar-55-6.jpg",
+    "status": "Done",
+    "status-view": "success",
+    "date": "13 May 2018",
+    "amount": "$168"
+  },
+  {
+    "customer": "Zoe Sykes",
+    "img": "assets/content/avatar-55-9.jpg",
+    "status": "In progress",
+    "status-view": "warning",
+    "date": "26 Jule 2018",
+    "amount": "$168"
+  },
+  {
+    "customer": "Oscar Bennett",
+    "img": "assets/content/avatar-55-8.jpg",
+    "status": "In progress",
+    "status-view": "warning",
+    "date": "12 August 2018",
+    "amount": "$268"
+  }
+]

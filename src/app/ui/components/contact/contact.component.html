@@ -1,0 +1,67 @@
+<div class="contact-wrapper">
+  <tc-card [padding]="'0'">
+    <form #f="ngForm" id="contactForm" [ngClass]="{'was-validated': wasValidated}" novalidate>
+
+      <div class="contact">
+        <div class="img-section">
+          <div class="contact-img container">
+            <img src="{{ contact.imageUrl }}" class="image" alt="">
+            <div class="middle">
+              <button tc-button [afterIcon]="'icofont-pencil-alt-5'" class="text" (click)="uploadDocument()"></button>
+            </div>
+          </div>
+          <h3 *ngIf="!modeEdit" class="contact-name">{{ contact.name }}</h3>
+          <span *ngIf="!modeEdit" class="contact-role">{{ contact.role }}</span>
+        </div>
+
+        <div class="contact-item row" *ngIf="modeEdit">
+          <div class="col-6 text-left p-0">
+            <span>Name:</span>
+          </div>
+          <div class="col-12 text-right p-0">
+            <input type="text" [(ngModel)]="contact.name" name="name" class="form-control" required>
+            <div class="invalid-feedback">Campo obligatorio!</div>
+          </div>
+        </div>
+
+        <div class="contact-item row">
+          <div class="col-6 text-left p-0">
+            <span>Contact Number:</span>
+          </div>
+          <div class="col-6 text-right p-0" *ngIf="!modeEdit">
+            <span>{{ contact.cellphone }}</span>
+          </div>
+          <div class="col-12 text-right p-0" *ngIf="modeEdit">
+            <number-format [format]="'phoneNumber'" (changeValue)="changePhoneNumber($event)"
+              [value]="contact.cellphone" name="phoneNumber" class="p-0 h-auto" [required]="'required'"></number-format>
+            <div class="invalid-feedback">Debe tener un numero</div>
+          </div>
+        </div>
+
+        <div class="contact-item row">
+          <div class="col-6 text-left p-0">
+            <span>Email:</span>
+          </div>
+          <div class="col-6 text-right p-0" *ngIf="!modeEdit">
+            <span>{{ contact.email }}</span>
+          </div>
+          <div class="col-12 text-right p-0" *ngIf="modeEdit">
+            <input type="email" [(ngModel)]="contact.email" name="email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" required>
+            <div class="invalid-feedback">Debe tener un email</div>
+          </div>
+
+        </div>
+        <div class="contact-item row" *ngIf="!modeEdit">
+          <div class="col-6 text-left p-0">
+            <span>Store:</span>
+          </div>
+          <div class="col-6 text-right p-0">
+            <span>{{ contact.store.name }}</span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </tc-card>
+
+</div>

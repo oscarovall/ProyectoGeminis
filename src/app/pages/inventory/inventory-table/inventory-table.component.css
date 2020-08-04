@@ -1,0 +1,25 @@
+
+::ng-deep .input, button, select, optgroup, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  
+  .alert.alert-warning {
+    background: #0b1c51 !important;
+    border-color: transparent !important;
+  }
+  
+  .fa.fa-spinner.fa-spin.fa-3x {
+    color: #0d5fa1 !important;
+  }
+  
+  .spinnerText {
+    color: #0d5fa1 !important;
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #eae5eb !important;
+    opacity: 1; /* Firefox */
+  }

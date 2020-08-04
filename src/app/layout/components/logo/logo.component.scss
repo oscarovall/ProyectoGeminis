@@ -1,0 +1,16 @@
+@import '~assets/sass/variables';
+
+:host {
+  align-items: center;
+  //background: $_dark-sidebar-bg;
+  box-shadow : 0px 2px 0 0 rgba(#000,.05);
+  display: flex;
+  height: $nav-bar-height;
+  min-height: $nav-bar-height;
+  padding: ($module-rem / 2) ($module-rem * 2);
+
+  > img {
+    height: auto;
+    width: auto;
+  }
+}

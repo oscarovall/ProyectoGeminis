@@ -1,0 +1,80 @@
+<div class="row w-100 m-0 menuTitle3Div animated fadeIn mt-2">
+  <div>
+    <div class="title2 t-3">
+      <div class="d-flex"> <img src="assets\img\AOSP\homeMenu.svg" /><div class="title2 t-8 ml-3"> Promo Homes</div></div>
+    </div>
+  </div>
+  <div class="col title1ComponentsDiv text-right pr-0">
+
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="cargando">
+
+  <div class="col-sm-12">
+
+    <div class="alert alert-warning text-center">
+      <br>
+      <i class="fa fa-spinner fa-spin fa-3x"></i>
+      <br>
+      <strong class="spinnerText">Loading</strong>
+    </div>
+  </div>
+</div>
+
+<div class="pl-3 pr-3" *ngIf="!cargando">
+  <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+    <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+      <thead>
+        <tr class="borderTittle-table">
+
+          <td scope="col" class="text-center text-nowrap">Location</td>
+          <td scope="col" class="text-center text-nowrap">Make</td>
+          <td scope="col" class="text-center text-nowrap">Model</td>
+          <td scope="col" class="text-center text-nowrap">Serial #</td>
+          <td scope="col" class="text-center text-nowrap">HUD #</td>
+          <td scope="col" class="text-center text-nowrap">Box Size</td>
+          <td scope="col" class="text-center text-nowrap">Sq Ft</td>
+          <td scope="col" class="text-center text-nowrap">Bed</td>
+          <td scope="col" class="text-center text-nowrap">Bath</td>
+          <td scope="col" class="text-center text-nowrap">W.Zone</td>
+          <td scope="col" class="text-center text-nowrap">MSRP Price</td>
+          <td scope="col" class="text-center text-nowrap">Discount</td>
+          <td></td>
+          <td scope="col" class="text-center text-nowrap">Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of promoHome;" class="animated fadeIn">
+
+          <td width="" class="remove_lines text-center">{{product.productLot?.lot.storage.store.name}} - {{product.productLot?.lot.storage.name}} {{product.productLot?.lot.lotNameId}}</td>
+          <td width="" class="remove_lines text-center">{{product.manufacturer.shortName}}</td>
+          <td width="" class="remove_lines text-center">{{product.name}}</td>
+          <td width="" class="remove_lines text-center">{{product.serialNum}}</td>
+          <td width="" class="remove_lines text-center">{{product.hudNum}}</td>
+          <td width="" class="remove_lines text-center">{{product.boxLong}}X{{product.boxWide}}</td>
+          <td width="" class="remove_lines text-center">{{product.sqft}}</td>
+          <td width="" class="remove_lines text-center">{{product.bed}}</td>
+          <td width="" class="remove_lines text-center">{{product.bath}}</td>
+          <td width="" class="remove_lines text-center">{{product.windZone}}</td>
+          <td width="" class="remove_lines text-center">{{product.price | currency}}</td>
+          <td width="" class="remove_lines text-center">{{product.discount | currency}}</td>
+          <td width="" class="remove_lines text-center"></td>
+          <td width="100" class="remove_lines text-center">
+            <tc-badge class="w-100" size="'md'" style="background: #00529b;"><span class="nowrap">ASSIGN TO LEAD</span></tc-badge>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-between mt-3" >
+    <ngbd-pagination-advanced [totalItems]='totalPages' [page]="currentPage" (pageChanged)="changePage($event)"></ngbd-pagination-advanced>
+
+    <select class="custom-select font-filtro" style="width: auto" [(ngModel)]="pageSize" (change)="changePageSize()">
+      <option [ngValue]="5">5 items per page</option>
+      <option [ngValue]="10">10 items per page</option>
+      <option [ngValue]="50">50 items per page</option>
+    </select>
+  </div>
+</div>

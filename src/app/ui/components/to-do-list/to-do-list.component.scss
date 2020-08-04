@@ -1,0 +1,50 @@
+@import '~assets/sass/variables';
+
+$_shape: $shape;
+$padding_h: 0;
+$padding_v: $module-rem;
+:host {
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom: $module-rem;
+  }
+  .list {
+    list-style-type: none;
+    margin: 0;
+		padding: 0;
+
+    > li {
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(#fff, 0.25);
+      display: flex;
+			padding: $padding_v $padding_h;
+
+      > tc-checkbox {
+        margin-right: $module-rem;
+      }
+      &:first-child {
+        border-top: 1px solid rgba(#fff, 0.25);
+      }
+      .item {
+
+        &.completed {
+          text-decoration: line-through rgba(#fff, 1);
+        }
+      }
+      .icon {
+        color: $error-color;
+        cursor: pointer;
+        font-size: 1.4em;
+        margin-left: auto;
+				transition: opacity 0.2s $animation;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+}

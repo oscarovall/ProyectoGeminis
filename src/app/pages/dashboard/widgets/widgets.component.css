@@ -1,0 +1,10 @@
+
+
+.backgroundWidgets {
+  background: $backgroundWidgets-widgets !important;
+  max-width: 23%;
+}
+
+.boxShadowWidget {
+  box-shadow: $boxShadowWidget !important;
+}

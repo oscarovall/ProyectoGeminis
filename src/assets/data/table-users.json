@@ -1,0 +1,73 @@
+[
+	{	"number": "1",
+			"img": "assets/content/avatar-55-3.jpg",
+			"person": "Angela Simpson",
+			"position": "digital artist",
+			"phone" : 	"+22 886 112 4887",
+			"email" : "angelasimpson@company.com"
+	},
+	{
+			"number": "2",
+			"img": "assets/content/avatar-55-5.jpg",
+			"person": "Richard Franson",
+			"position": "art director",
+			"phone" : 	"+22 550 111 2233",
+			"email" : "richardfranson@company.com"
+	},
+	{
+			"number": "3",
+			"img": "assets/content/avatar-55-4.jpg",
+			"person": "David Robertson",
+			"position": "developer",
+			"phone" : 	"+22 882 109 0203",
+			"email" : "davrobetsont@company.com"
+	},
+	{
+			"number": "4",
+			"img": "assets/content/avatar-55-11.jpg",
+			"person": "Jayden Doyle",
+			"position": "manager",
+			"phone" : 	"+22 887 110 4587",
+			"email" : "doyle@company.com"
+	},
+	{
+			"number": "5",
+			"img": "assets/content/avatar-55-6.jpg",
+			"person": "Chance Blankenship",
+			"position": "designer",
+			"phone" : 	"+22 885 117 4987",
+			"email" : "chance@company.com"
+	},
+	{	
+			"number": "6",
+			"img": "assets/content/avatar-55-8.jpg",
+			"person": "Isaac Dawson",
+			"position": "designer",
+			"phone" : 	"+22 892 111 0613",
+			"email" : "isaac@company.com"
+	},
+	{
+			"number": "7",
+			"img": "assets/content/avatar-55-10.jpg",
+			"person": "Richard Franson",
+			"position": "art director",
+			"phone" : 	"+22 550 111 2233",
+			"email" : "richardfranson@company.com"
+	},
+	{
+			"number": "8",
+			"img": "assets/content/avatar-55-1.jpg",
+			"person": "David Robertson",
+			"position": "developer",
+			"phone" : 	"+22 882 109 0203",
+			"email" : "davrobetsont@company.com"
+	},
+	{
+			"number": "9",
+			"img": "assets/content/avatar-55-12.jpg",
+			"person": "Sara Odom",
+			"position": "manager",
+			"phone" : 	"+22 887 110 4587",
+			"email" : "doyle@company.com"
+	}
+]

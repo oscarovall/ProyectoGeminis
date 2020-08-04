@@ -1,0 +1,283 @@
+<tc-card [title]="'Edit Customer'" [align]="'center'" [padding]="'0'" class="height-right-menu" *ngIf="!createLeadInProgress">
+  <form #f="ngForm" (keydown.enter)="cancelPropagacion($event)" id="leccionForma" class="form PrintArea"
+    [ngClass]="{'was-validated': wasValidated}" novalidate>
+    <div class="row">
+
+      <ng-container *ngFor="let attributeType of (attTypesSearch | orderBy:'position')">
+        <!-- *ngIf="validate(attributeType.attributeNavigation) && attributeType.attributeTypeId !== -1" -->
+        <div class="col-12 pl-3 pr-3 mb-3">
+          <div>
+            <div style="display: flex;">
+              <p class="title2">{{ attributeType.name }}</p>
+              <div *ngIf="attributeType.description" class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip"
+                data-placement="right" [title]="attributeType.description"></div>
+            </div>
+            <!-- Input -->
+            <input *ngIf="attributeType.dataTypeId == appConfig.dataType.Text" class="w-100 form-control" type="text"
+              (change)="onChange($event.target.value, attributeType)"
+              [maxLength]="attributeType && attributeType.length ? attributeType.length : '200'"
+              [required]="attributeType.obligatory" value="{{
+                attributeType.customerAttributeValue &&
+                attributeType.customerAttributeValue[0] &&
+                attributeType.customerAttributeValue[0].customerAttributeValue1
+                    ? attributeType.customerAttributeValue[0].customerAttributeValue1
+                  : ''
+              }}" />
+
+            <!-- Phone number -->
+            <number-format *ngIf="attributeType.dataTypeId ==  appConfig.dataType.PhoneNumber" [format]="'phoneNumber'"
+              [required]="attributeType.obligatory" (change)="onChange($event.target.value, attributeType)"
+              [format]="'money-USD'" (change)="onChange($event.target.value, attributeType)" value="{{
+                attributeType.customerAttributeValue &&
+                attributeType.customerAttributeValue[0] &&
+                attributeType.customerAttributeValue[0].customerAttributeValue1
+                    ? attributeType.customerAttributeValue[0].customerAttributeValue1
+                  : ''
+              }}">
+            </number-format>
+
+            <div class="invalid-feedback" [ngClass]="{'d-block': attributeType.valid === false && wasValidated}"
+              *ngIf="attributeType.obligatory">It's required!</div>
+          </div>
+        </div>
+      </ng-container>
+      <div  class="text-left p-0 mt-2">
+        <div class="row">
+          <ng-container *ngFor="let attributeType of (attTypesCreation | orderBy:'position')">
+            <!-- *ngIf="validate(attributeType.attributeNavigation) && attributeType.attributeTypeId !== -1" -->
+            <div class="col-12 pl-3 pr-3 mb-3">
+              <div>
+                <div style="display: flex;">
+                  <p class="title2">{{ attributeType.name }}</p>
+                  <div *ngIf="attributeType.description" class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip"
+                    data-placement="right" [title]="attributeType.description"></div>
+                </div>
+                <!-- Input -->
+                <input *ngIf="attributeType.dataTypeId == appConfig.dataType.Text" class="w-100 form-control"
+                  type="text" (change)="onChange($event.target.value, attributeType)"
+                  [maxLength]="attributeType && attributeType.length ? attributeType.length : '200'"
+                  [required]="attributeType.obligatory" value="{{
+                    attributeType.customerAttributeValue &&
+                    attributeType.customerAttributeValue[0] &&
+                    attributeType.customerAttributeValue[0].customerAttributeValue1
+                        ? attributeType.customerAttributeValue[0].customerAttributeValue1
+                      : ''
+                  }}" />
+
+                <!-- Text Area -->
+                <textarea *ngIf="attributeType.dataTypeId == appConfig.dataType.TextLong" class="w-100 form-control"
+                  (change)="onChange($event.target.value, attributeType)" [required]="attributeType.obligatory"
+                  [maxLength]="attributeType && attributeType.length ? attributeType.length : '1500'">
+                          </textarea>
+
+                <!-- Date -->
+                <date-picker *ngIf="attributeType.dataTypeId == appConfig.dataType.Date"
+                  (change)="onChange($event, attributeType)" [required]="attributeType.obligatory">
+                </date-picker>
+
+                <!-- Lists - Dropdowns -->
+                <select *ngIf="attributeType.dataTypeId == appConfig.dataType.ListValue"
+                  class="w-100 form-control form-control-line animated fadeIn"
+                  (change)="onChange($event.target.value, attributeType)" [required]="attributeType.obligatory">
+                  <option class="w-100" *ngFor="let attribute of attributeType.attribute"
+                    value="{{attribute.attributeId}}">
+                    {{ attribute.value }}
+                  </option>
+                </select>
+
+                <!-- Radio -->
+                <tc-radio *ngIf="attributeType.dataTypeId == appConfig.dataType.Radio"
+                  (change)="onChange($event, attributeType)" [required]="attributeType.obligatory">
+                  <div class="row w-100 mr-0 justify-content-between" *ngFor="let attribute of attributeType.attribute">
+                    <tc-radio-option [value]="attribute.value" class="col mr-0">
+                      {{ attribute.value }}</tc-radio-option>
+                  </div>
+                </tc-radio>
+
+                <!-- Checbox -->
+                <div *ngIf="attributeType.dataTypeId == appConfig.dataType.Multiple">
+                  <tc-checkbox *ngFor="let attribute of attributeType.attribute" [value]="attribute.checkValue"
+                    [required]="attributeType.obligatory" class="form-control"
+                    (change)="onChange($event, attributeType, attribute)">
+                    {{ attribute.value }}
+                  </tc-checkbox>
+                </div>
+
+                <!-- Phone number -->
+                <number-format *ngIf="attributeType.dataTypeId ==  appConfig.dataType.PhoneNumber"
+                  [format]="'phoneNumber'" [required]="attributeType.obligatory"
+                  (change)="onChange($event.target.value, attributeType)" [format]="'money-USD'"
+                  (change)="onChange($event.target.value, attributeType)">
+                </number-format>
+
+                <div class="invalid-feedback" [ngClass]="{'d-block': attributeType.valid === false && wasValidated}"
+                  *ngIf="attributeType.obligatory">It's required!</div>
+              </div>
+            </div>
+          </ng-container>
+
+          <div class="col-12 pl-3 pr-3 mb-3" *ngIf="selectedCustomer">
+            <div class="d-flex">
+              <p class="title2">Source</p>
+            </div>
+            <select class="custom-select rounded" [(ngModel)]="selectedCustomer.sourceName" name="sourceSelected"
+              placeholder="Select a Source" required>
+              <!-- <option [ngValue]="null" style="display:none;"> Select Source </option> -->
+              <option [ngValue]="source.sourceName" *ngFor="let source of sources">{{source.sourceName}}</option>
+            </select>
+          </div>
+
+          <div class="col-12 pl-3 pr-3 mb-3" *ngIf="selectedCustomer">
+            <div class="d-flex">
+              <p class="title2">Status</p>
+            </div>
+            <select class="custom-select rounded" [(ngModel)]="selectedCustomer.customerStatusId" name="statusSelected"
+              placeholder="Select a Status" required>
+              <option [ngValue]="state.customerStatusId" *ngFor="let state of status">{{state.status}}</option>
+            </select>
+          </div>
+
+          <div class="col-12 pl-3 pr-3 mb-3" *ngIf="selectedCustomer">
+            <div class="d-flex">
+              <p class="title2">Notes</p>
+            </div>
+            <textarea class="w-100 form-control" [(ngModel)]="selectedCustomer.notes" name="notes" required></textarea>
+          </div>
+
+          <div class="p-3 w-100 row m-0">
+            <div class="col-6" [ngClass]="{'col-12 p-0 m-0': foundCustomer}">
+              <button (click)="createLeadInProgress = !createLeadInProgress; cleanValues()" class="mainBtn w-100" [disabled]="requiredFieldsDone">Create Lead</button>
+            </div>
+            <div class="col-6 w-100">
+              <button (click)="updateCustomer()" class="mainBtn w-100">
+                <div class="d-flex">
+                  <div class="aosp-ui-icon aosp-ui-save title"></div>Update
+                </div>
+              </button>              
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</tc-card>
+
+<tc-card [title]="'Create Lead'" [align]="'center'" [padding]="'0'" class="height-right-menu" *ngIf="createLeadInProgress">
+  <form #f2="ngForm" id="addTaskForm" [ngClass]="{'was-validated': wasValidated}" novalidate >
+    <div class="text-left p-0 mt-2 w-100">
+      <div class="col-12 pl-3 pr-3 mb-3">
+        <div class="d-flex">
+          <p class="title2">Sales Reps</p>
+        </div>
+        <select class="custom-select rounded" [(ngModel)]="srSelected" name="srSelected"
+          placeholder="Select a Sales Representative" required>
+          <optgroup *ngFor="let store of (salesRepsEmployees | employeesStore)" label="{{store.name}}">
+            <option *ngFor="let employee of store.employee" [value]="employee.employeeId">{{employee.name}}</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="col-12 pl-3 pr-3 mb-3">
+        <div class="d-flex">
+          <p class="title2">Processing Agents</p>
+        </div>
+        <select class="custom-select rounded" [(ngModel)]="paSelected" name="paSelected"
+          placeholder="Select a Processing Agent" required>
+          <optgroup *ngFor="let store of (pasEmployees | employeesStore)" label="{{store.name}}">
+            <option *ngFor="let employee of store.employee" [value]="employee.employeeId">{{employee.name}}</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="col-12 pt-3">
+        <div class="d-flex">
+          <p class="title2 w-100 text-center" style="font-size: 16px;">Appointment</p>
+        </div>        
+      </div>
+
+      <div class="col-12 px-3 mb-3">
+        <div class="d-flex">
+          <p class="title2">Title</p>
+        </div>
+        <input type="text" [(ngModel)]="newAppointment.title" name="title" class="form-control" autocomplete="off" required>
+          <div class="invalid-feedback">It's required!</div>
+      </div>
+
+      <div class="col-12 px-3 mb-3">
+        <div class="d-flex">
+          <p class="title2">Starts:</p>
+        </div>
+        <div class="row">
+          <div class="col-5 text-right pl-0">
+            <date-picker [required]="true" name="startDate"
+              (change)="newAppointment.startDate = $event"></date-picker>
+            <div class="invalid-feedback">It's required!</div>
+          </div>
+          <div class="col-7 text-right">
+            <timepicker [(ngModel)]="startTime" name="timepicker1" class="animated fadeIn" [showSpinners]="false"
+              [required]="true"></timepicker>
+            <div class="invalid-feedback">It's required!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 px-3 mb-3">
+        <div class="d-flex">
+          <p class="title2">Ends:</p>
+        </div>
+        <div class="row">
+          <div class="col-5 text-right pl-0">
+            <date-picker [required]="true" name="endDate"
+              (change)="newAppointment.endDate = $event"></date-picker>
+            <div class="invalid-feedback">It's required!</div>
+          </div>
+          <div class="col-7 text-right">
+            <timepicker [(ngModel)]="endTime" name="timepicker2" class="animated fadeIn" [showSpinners]="false"
+              [required]="true"></timepicker>
+            <div class="invalid-feedback">It's required!</div>
+          </div>
+        </div>             
+      </div>
+              
+      <div class="row px-3 mb-3">
+        <div class="col-4 text-left p-0"><span>Priority:</span></div>
+        <div class="col-8 text-right">
+          <tc-radio [value]="newAppointment.priority">
+            <div class="row w-100 mr-0 justify-content-between">
+              <tc-radio-option [value]="false" class="col mr-0">Normal</tc-radio-option>
+              <tc-radio-option [value]="true" class="col mr-0">High</tc-radio-option>
+            </div>
+          </tc-radio>
+        </div>
+      </div>
+
+      <div class="col-12 px-3 mb-3">
+        <div class="d-flex">
+          <p class="title2">Description</p>
+        </div>
+        <textarea class="w-100 form-control rounded square scrollbar-dusty-grass square thin" [(ngModel)]="newAppointment.description" name="description" required></textarea>
+        <div class="invalid-feedback">It's required!</div>
+      </div>  
+      
+      <div class="p-3 w-100 row m-0">
+        <div class="col-6 w-100">
+          <button (click)="createLeadInProgress = !createLeadInProgress" class="mainBtn w-100">
+            <div class="d-flex">
+              <div class="aosp-ui-icon aosp-ui-cancel title"></div>Cancel
+            </div>
+          </button>              
+        </div>
+        <div class="col-6 w-100">
+          <button (click)="validForm()" class="mainBtn w-100"> 
+            <div class="d-flex">
+              <div class="aosp-ui-icon aosp-ui-save title"></div>Create
+            </div>
+          </button>              
+        </div>        
+      </div>
+
+    </div>
+  </form> 
+</tc-card>

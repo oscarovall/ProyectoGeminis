@@ -1,0 +1,11 @@
+<input *ngIf="!disabled"
+  class="form-control w-100"
+  [type]="type"
+  (change)="writing()"
+  [(ngModel)]="value"
+  (focus)="removeFormat()"
+  (blur)="applyFormat()"  
+  [required]="required"
+/>
+<p *ngIf="disabled">{{value}}</p>
+<div class="invalid-feedback">It's not valid</div>	

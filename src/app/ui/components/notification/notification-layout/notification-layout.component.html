@@ -1,0 +1,80 @@
+<div class="top-left">
+	<ng-container *ngFor="let notification of notifications">
+		<tc-notification 
+			*ngIf="notification.position == 'topLeft'"
+			[content]="notification.content"
+			[animation]="getAnimation(notification.animation)"
+			[title]="notification.title"
+			[position]="getPosition(notification.position)"
+			[autohide]="getAutohide(notification.autohide)"
+			[progress]="getProgress(notification.progress)"
+			[icon]="notification.icon"
+			[hideTimeout]="notification.hideTimeout"
+			[view]="getView(notification.view)"
+			> <ng-template #messageTemplate> {{ notification.content }} </ng-template> </tc-notification>
+	</ng-container>
+</div>
+<div class="top-right">
+	<ng-container *ngFor="let notification of notifications">
+			<tc-notification 
+			*ngIf="notification.position == 'topRight'"
+			[position]="topRight"
+			[content]="notification.content"
+			[animation]="getAnimation(notification.animation)"
+			[title]="notification.title"
+			[autohide]="getAutohide(notification.autohide)"
+			[progress]="getProgress(notification.progress)"
+			[icon]="notification.icon"
+			[hideTimeout]="notification.hideTimeout"
+			[view]="getView(notification.view)"
+			> <ng-template #messageTemplate> {{ notification.content }} </ng-template> </tc-notification>
+	</ng-container>
+</div>
+<div class="bottom-left">
+	<ng-container *ngFor="let notification of notifications">
+			<tc-notification 
+			*ngIf="notification.position == 'bottomLeft'"
+			[content]="notification.content"
+			[animation]="getAnimation(notification.animation)"
+			[title]="notification.title"
+			[position]="getPosition(notification.position)"
+			[autohide]="getAutohide(notification.autohide)"
+			[progress]="getProgress(notification.progress)"
+			[icon]="notification.icon"
+			[hideTimeout]="notification.hideTimeout"
+			[view]="getView(notification.view)"
+			> <ng-template #messageTemplate> {{ notification.content }} </ng-template> </tc-notification>
+	</ng-container>
+</div>
+<div class="bottom-right">
+	<ng-container *ngFor="let notification of notifications">
+			<tc-notification 
+			*ngIf="notification.position == 'bottomRight'"
+			[content]="notification.content"
+			[animation]="getAnimation(notification.animation)"
+			[title]="notification.title"
+			[position]="getPosition(notification.position)"
+			[autohide]="getAutohide(notification.autohide)"
+			[progress]="getProgress(notification.progress)"
+			[icon]="notification.icon"
+			[hideTimeout]="notification.hideTimeout"
+			[view]="getView(notification.view)"
+			> {{ notification.content }} </tc-notification>
+	</ng-container>
+</div>
+<div class="top-right">
+	<ng-container *ngFor="let notification of notifications">
+			<tc-notification 
+			*ngIf="defaultNotification(notification.position)"
+			[position]="topRight"
+			[content]="notification.content"
+			[animation]="getAnimation(notification.animation)"
+			[title]="notification.title"
+			[autohide]="getAutohide(notification.autohide)"
+			[progress]="getProgress(notification.progress)"
+			[icon]="notification.icon"
+			[hideTimeout]="notification.hideTimeout"
+			[view]="getView(notification.view)"
+			> <ng-template #messageTemplate> {{ notification.content }} </ng-template> </tc-notification>
+	</ng-container>
+</div>

@@ -1,0 +1,7 @@
+<img src="{{ img }}" *ngIf="img">
+
+<h3 class="card-title" *ngIf="title"><span class="mark">{{ title }}</span></h3>
+
+<div class="card-content" [ngStyle]="{ 'padding' : padding, 'overflow': getOverflow() }">
+	<ng-content></ng-content>
+</div>

@@ -1,0 +1,65 @@
+<div class="chat-wrap">
+  <div class="dialog">
+    <div class="dialog-header">
+      <div class="user-avatar">
+        <ng-container *ngIf="activeUser.avatar">
+          <div class="image-avatar"><img src="{{ activeUser.avatar }}" alt=""></div>
+        </ng-container>
+
+        <ng-container *ngIf="!activeUser.avatar && activeUser.name">
+          <div class="text-avatar">{{ activeUser.name.charAt(0) }}</div>
+        </ng-container>
+      </div>
+
+      <div class="user-info">
+        <h3 class="user-name">{{ activeUser.name }}</h3>
+
+        <div class="user-last-seen" [ngClass]="{ 'online': activeUser.lastSeen === 'online' }">{{ activeUser.lastSeen }}</div>
+      </div>
+
+      <button class="btn call"><i class="sli-options-vertical"></i></button>
+    </div>
+
+    <div class="dialog-messages">
+      <div class="messages-list">
+        <div *ngFor="let message of data" class="message" [ngClass]="{ 'my-message': message.my }">
+          <div class="message-content" [innerHtml]="message.content"></div>
+
+          <div class="message-date">{{ message.date }}</div>
+        </div>
+      </div>
+    </div>
+
+    <form
+      class="dialog-footer"
+      [formGroup]="chatForm"
+      (ngSubmit)="onSubmit(chatForm)"
+      novalidate
+    >
+      <button class="btn load-file" (click)="loadFile($event)" type="button">
+				<tc-icon 
+					[iconClass]="'icofont-ui-clip'"
+					[tcFontSize]="20" 
+					[tcColor]="['#fff', '#FF8534']" 
+				></tc-icon>
+      </button>
+
+      <div class="message-box">
+        <tc-textarea
+          [placeholder]="'Write a message...'"
+          [tcShape]="0"
+          [borderColor]="'transparent'"
+          [bgColor]="'transparent'"
+          [rows]="1"
+          [resize]="false"
+          formControlName="content"
+          (keydown.enter)="onSubmit(chatForm); $event.preventDefault()"
+        ></tc-textarea>
+      </div>
+
+      <button class="btn send-message" type="submit">
+        <i class="icofont-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</div>

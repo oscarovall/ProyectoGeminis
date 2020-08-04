@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="prefix__profile_icon" width="16" height="16" viewBox="0 0 16 16">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:#5aaef3}
+        </style>
+    </defs>
+    <g id="prefix__Layer_1" data-name="Layer 1">
+        <path id="prefix__Path_3464" d="M16 8a7.995 7.995 0 1 0-2.342 5.658A8 8 0 0 0 16 8zM8 .938a7.062 7.062 0 0 1 5.853 11.018 8 8 0 0 0-11.7 0A7.064 7.064 0 0 1 8 .938zM2.732 12.7a7.059 7.059 0 0 1 10.537 0 7.057 7.057 0 0 1-10.537 0z" class="prefix__cls-1" data-name="Path 3464"/>
+        <path id="prefix__Path_3465" d="M23.524 15.655a3.568 3.568 0 0 0 3.564-3.564V10.9a3.564 3.564 0 0 0-7.129 0v1.19a3.568 3.568 0 0 0 3.564 3.564zM21.149 10.9a2.379 2.379 0 1 1 4.754 0v1.19a2.379 2.379 0 1 1-4.754 0z" class="prefix__cls-1" data-name="Path 3465" transform="translate(-15.524 -5.422)"/>
+    </g>
+</svg>

@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\layout\\components",
+    "\\src\\app\\pages\\apps\\aosp",
+    "\\src\\app\\ui",
+    "\\src\\app\\ui\\components",
+    "\\src\\app\\ui\\directives",
+    "\\src\\assets\\data"
+  ],
+  "SelectedNode": "\\src\\app\\ui\\ui.module.ts",
+  "PreviewInSolutionExplorer": false
+}

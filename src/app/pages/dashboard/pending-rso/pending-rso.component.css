@@ -1,0 +1,17 @@
+.approve {
+    background-color: #6ca100 !important;
+}
+.approve:hover{
+    background-color: #48640e !important;
+}
+
+.reject {
+    background-color: #bd2536 !important;
+}
+.reject:hover{
+    background-color: #85202b !important;
+}
+
+.borderTittle-table {
+  border-bottom:2px solid #68b7f6 !important;
+}

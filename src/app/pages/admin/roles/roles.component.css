@@ -1,0 +1,13 @@
+table-responsive {    
+    border-radius: 1em !important;    
+}
+
+td {
+    text-align: center; 
+    vertical-align: middle;
+}
+
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+}

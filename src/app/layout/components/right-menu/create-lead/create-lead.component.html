@@ -1,0 +1,197 @@
+<tc-card [title]="'Add Customer'" [align]="'center'" [padding]="'0'" class="height-right-menu">
+
+  <form #f="ngForm" (keydown.enter)="cancelPropagacion($event)" id="leccionForma" class="form PrintArea"
+    [ngClass]="{'was-validated': wasValidated}" novalidate>
+    <div class="row">
+      <ng-container *ngFor="let attributeType of (attTypesSearch | orderBy:'position')">
+        <!-- *ngIf="validate(attributeType.attributeNavigation) && attributeType.attributeTypeId !== -1" -->
+        <div class="col-12 pl-3 pr-3 mb-3">
+          <div>
+            <div style="display: flex;">
+              <p class="title2">{{ attributeType.name }}</p>
+              <div *ngIf="attributeType.description" class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip"
+                data-placement="right" [title]="attributeType.description"></div>
+            </div>
+            <!-- Input -->
+            <input *ngIf="attributeType.dataTypeId == appConfig.dataType.Text" class="w-100 form-control" type="text"
+              (change)="onChange($event.target.value, attributeType)"
+              [maxLength]="attributeType && attributeType.length ? attributeType.length : '200'"
+              [required]="attributeType.obligatory" />
+
+            <!-- Phone number -->
+            <number-format *ngIf="attributeType.dataTypeId ==  appConfig.dataType.PhoneNumber" [format]="'phoneNumber'"
+              [required]="attributeType.obligatory" (change)="onChange($event.target.value, attributeType)"
+              [format]="'money-USD'" (change)="onChange($event.target.value, attributeType)">
+            </number-format>
+
+            <div class="invalid-feedback" [ngClass]="{'d-block': attributeType.valid === false && wasValidated}"
+              *ngIf="attributeType.obligatory">It's required!</div>
+          </div>
+        </div>
+      </ng-container>
+      <!-- </div>
+
+              <div class="row"> -->
+      <div class="col-12 h-100 text-right m-0 pl-3 pr-3">
+        <div>
+          <button (click)="cancelCreation()" class="warningBtn mr-2">
+            CANCEL
+          </button>
+          <ng-container>
+            <button (click)="searchCustomer()" class="mainBtn" [disabled]="requiredFieldsDone">
+              SEARCH
+            </button>
+          </ng-container>
+        </div>
+      </div>
+
+      <div *ngIf="wasSearch && foundCustomer" class="p-3 w-100">
+        <div class="title text-left pb-2">Customer Found</div>
+        <div class="row"><div class="title2 text-left col-3 pl-0">Id: </div>{{foundCustomer.customerId}}</div>
+        <div class="row"><div class="title2 text-left col-3 pl-0">Name: </div>{{foundCustomer.name}}</div>
+        <div class="row"><div class="title2 text-left col-3 pl-0">Lastname: </div>{{foundCustomer.lastname}}</div>
+        <div class="row"><div class="title2 text-left col-3 pl-0">Email: </div>{{foundCustomer.email}}</div>
+        <div class="row"><div class="title2 text-left col-3 pl-0">Mobile #: </div>{{foundCustomer.mobileNum}}</div>
+
+        <div *ngIf="foundCustomer.lead.length > 0" class="w-100 mt-2">
+          <div class="row w-100 p-0 m-0">
+            <div class="title2 text-left col-3 pl-0">Lead Id:</div>
+            <div class="title2 text-left col-5">Created:</div>
+            <div class="title2 text-left col-4 pr-0">Last Contact:</div>
+          </div>
+          <div class="row w-100 p-0 m-0" *ngFor="let lead of foundCustomer.lead">
+            <a [routerLink]="['/lead/'+lead.leadId]" (click)="close()" class="text-left col-3 pl-0">{{lead.leadId}}</a>
+            <div class="text-left col-5">{{lead.creationDate | date}}</div>
+            <div class="text-left col-4 pr-0">{{lead.lastContactDate | date}}</div>
+          </div>
+        </div>
+        <div *ngIf="foundCustomer.lead.length === 0" class="text-left mt-2">
+          No Lead found!
+        </div>
+      </div>
+
+      <div *ngIf="!foundCustomer && wasSearch" class="text-left p-0 mt-2">
+        <div class="pl-3 pr-3 mb-3">
+          No Customer found!
+        </div>
+        <div class="row">
+          <ng-container *ngFor="let attributeType of (attTypesCreation | orderBy:'position')">
+            <!-- *ngIf="validate(attributeType.attributeNavigation) && attributeType.attributeTypeId !== -1" -->
+            <div class="col-12 pl-3 pr-3 mb-3">
+              <div>
+                <div style="display: flex;">
+                  <p class="title2">{{ attributeType.name }}</p>
+                  <div *ngIf="attributeType.description" class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip"
+                    data-placement="right" [title]="attributeType.description"></div>
+                </div>
+                <!-- Input -->
+                <input *ngIf="attributeType.dataTypeId == appConfig.dataType.Text" class="w-100 form-control"
+                  type="text" (change)="onChange($event.target.value, attributeType)"
+                  [maxLength]="attributeType && attributeType.length ? attributeType.length : '200'"
+                  [required]="attributeType.obligatory" />
+
+                <!-- Text Area -->
+                <textarea *ngIf="attributeType.dataTypeId == appConfig.dataType.TextLong" class="w-100 form-control"
+                  (change)="onChange($event.target.value, attributeType)" [required]="attributeType.obligatory"
+                  [maxLength]="attributeType && attributeType.length ? attributeType.length : '1500'">
+                          </textarea>
+
+                <!-- Date -->
+                <date-picker *ngIf="attributeType.dataTypeId == appConfig.dataType.Date"
+                  (change)="onChange($event, attributeType)" [required]="attributeType.obligatory">
+                </date-picker>
+
+                <!-- Lists - Dropdowns -->
+                <select *ngIf="attributeType.dataTypeId == appConfig.dataType.ListValue"
+                  class="w-100 form-control form-control-line animated fadeIn"
+                  (change)="onChange($event.target.value, attributeType)" [required]="attributeType.obligatory">
+                  <option class="w-100" *ngFor="let attribute of attributeType.attribute"
+                    value="{{attribute.attributeId}}">
+                    {{ attribute.value }}
+                  </option>
+                </select>
+
+                <!-- Radio -->
+                <tc-radio *ngIf="attributeType.dataTypeId == appConfig.dataType.Radio"
+                  (change)="onChange($event, attributeType)" [required]="attributeType.obligatory">
+                  <div class="row w-100 mr-0 justify-content-between" *ngFor="let attribute of attributeType.attribute">
+                    <tc-radio-option [value]="attribute.value" class="col mr-0">
+                      {{ attribute.value }}</tc-radio-option>
+                  </div>
+                </tc-radio>
+
+                <!-- Checbox -->
+                <div *ngIf="attributeType.dataTypeId == appConfig.dataType.Multiple">
+                  <tc-checkbox *ngFor="let attribute of attributeType.attribute" [value]="attribute.checkValue"
+                    [required]="attributeType.obligatory" class="form-control"
+                    (change)="onChange($event, attributeType, attribute)">
+                    {{ attribute.value }}
+                  </tc-checkbox>
+                </div>
+
+                <!-- Phone number -->
+                <number-format *ngIf="attributeType.dataTypeId ==  appConfig.dataType.PhoneNumber"
+                  [format]="'phoneNumber'" [required]="attributeType.obligatory"
+                  (change)="onChange($event.target.value, attributeType)" [format]="'money-USD'"
+                  (change)="onChange($event.target.value, attributeType)">
+                </number-format>
+
+                <div class="invalid-feedback" [ngClass]="{'d-block': attributeType.valid === false && wasValidated}"
+                  *ngIf="attributeType.obligatory">It's required!</div>
+              </div>
+            </div>
+          </ng-container>
+
+          <div class="col-12 pl-3 pr-3 mb-3">
+            <div class="d-flex">
+              <p class="title2">Customer Source</p>
+            </div>
+            <select class="custom-select rounded" [(ngModel)]="sourceSelected" name="sourceSelected"
+              placeholder="Select a Source" required>
+              <!-- <option [ngValue]="null" style="display:none;"> Select Source </option> -->
+              <option [ngValue]="source.sourceName" *ngFor="let source of sources">{{source.sourceName}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="wasSearch" class="text-left p-0 mt-2 w-100">
+        <div class="col-12 pl-3 pr-3 mb-3">
+          <div class="d-flex">
+            <p class="title2">Sales Reps</p>
+          </div>
+          <select class="custom-select rounded" [(ngModel)]="srSelected" name="srSelected"
+            placeholder="Select a Sales Representative" required>
+            <optgroup *ngFor="let store of (salesRepsEmployees | employeesStore)" label="{{store.name}}">
+              <option *ngFor="let employee of store.employee" [value]="employee.employeeId">{{employee.name}}</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="col-12 pl-3 pr-3 mb-3">
+          <div class="d-flex">
+            <p class="title2">Processing Agents</p>
+          </div>
+          <select class="custom-select rounded" [(ngModel)]="paSelected" name="paSelected"
+            placeholder="Select a Processing Agent" required>
+            <optgroup *ngFor="let store of (pasEmployees | employeesStore)" label="{{store.name}}">
+              <option *ngFor="let employee of store.employee" [value]="employee.employeeId">{{employee.name}}</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div *ngIf="wasSearch" class="p-3 w-100 row m-0">
+        <div class="col-6 pl-0" *ngIf="!foundCustomer">
+          <button (click)="createCustomer()" class="mainBtn" [disabled]="requiredFieldsDone">Create Customer</button>
+        </div>
+        <div class="col-6 pr-0" [ngClass]="{'col-12 p-0 m-0': foundCustomer}">
+          <button (click)="createLead()" class="mainBtn" [disabled]="requiredFieldsDone">Create Lead</button>
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+
+</tc-card>

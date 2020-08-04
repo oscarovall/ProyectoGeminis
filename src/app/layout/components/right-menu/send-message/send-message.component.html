@@ -1,0 +1,134 @@
+<div class="animated fadeIn">
+  <mat-tab-group mat-stretch-tabs #tasksgroup class="mat-elevation-z4">
+    <mat-tab label="Send Email">
+      <div class="container p-0">
+        <tc-card [title]="'Send Email'" [align]="'center'" [padding]="'0'" class="height-right-menu">
+
+          <form #f="ngForm" id="leccionForma" class="form PrintArea" [ngClass]="{'was-validated': wasValidated}" novalidate *ngIf="selectedCustomer">
+            <div class="text-left p-0 mt-2 w-100">
+              <div class="row mb-3 px-3">
+               
+                <div class="col-6 pl-0">
+                  <select class="custom-select rounded form-control" [(ngModel)]="selectedTemplate" (change)="validateFormEmail()" name="teamMemberSelected">
+                    <option [ngValue]="null" style="display:none;">Select Template</option>
+                    <option [ngValue]="template" *ngFor="let template of emailTemplates">{{template.name}}</option>
+                  </select>
+                </div>
+          
+                <div class="col-6 pr-0">
+                  <select class="custom-select rounded form-control" [(ngModel)]="selectedLanguageEmail" (change)="validateFormEmail()" name="language">
+                    <option [value]="null" style="display:none;">Select Language</option>
+                    <option [value]="appConfig.languages.english">{{appConfig.languages.english}}</option>
+                    <option [value]="appConfig.languages.spanish">{{appConfig.languages.spanish}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-12 pl-3 mt-1 pr-3 mb-3">
+                <div class="d-flex ">
+                  <p class="title2 mb-1" style="font-size: 16px;">Customer Name:</p>
+                </div>
+                  <p class="title2" style="font-size: 14px; font-weight: 100;">{{selectedCustomer.name}} {{selectedCustomer.lastname}}</p>
+              </div>
+
+              <div class="col-12 pl-3 pr-3 mb-3">
+                <div class="d-flex">
+                  <p class="title2 mb-1" style="font-size: 16px;">Email:</p>
+                </div>
+                  <p class="title2" style="font-size: 14px; font-weight: 100;">{{selectedCustomer.email}}</p>
+              </div>
+            </div>
+
+            <div class="col-12 px-3 mb-3 mt-1">             
+              <textarea class="w-100 form-control rounded square scrollbar-dusty-grass square thin" placeholder="Custom Text" style="height: 210px;" [(ngModel)]="customTextEmail" name="customText"></textarea>
+              <div class="invalid-feedback">It's required!</div>
+            </div>
+
+            <div *ngIf="requiredFieldsDone" class="p-3 w-100 row m-0">
+              <div class="col-6 w-100">
+                <button (click)="viewPreview()" class="mainBtn">
+                  <div class="d-flex">Preview
+                  </div>
+                </button>              
+              </div>
+              <div class="col-6 w-100">
+                <button (click)="sendNotificationEmail()" class="mainBtn"> 
+                  <div class="d-flex">
+                    <div class="aosp-ui-icon aosp-ui-email title"></div>Send
+                  </div>
+                </button>              
+              </div>    
+              
+            </div>
+            
+          </form>
+        </tc-card>
+       
+      </div>
+    </mat-tab>
+    <mat-tab label="Send Message Text">
+      <div class="container p-0">
+        <tc-card [title]="'Send Message Text'" [align]="'center'" [padding]="'0'" class="height-right-menu">
+
+          <form #f="ngForm" id="leccionForma" class="form PrintArea" [ngClass]="{'was-validated': wasValidated}" novalidate *ngIf="selectedCustomer">
+            <div class="text-left p-0 mt-2 w-100">
+              <div class="row mb-3 px-3">
+               
+                <div class="col-6 pl-0">
+                  <select class="custom-select rounded" [(ngModel)]="selectedTextTemplate" name="selectedTextTemplate" (change)="validateFormSms()">
+                    <option [ngValue]="null" style="display:none;">Select Template</option>
+                    <option [ngValue]="template" *ngFor="let template of textTemplates">{{template.name}}</option>
+                  </select>
+                </div>
+          
+                <div class="col-6 pr-0">
+                  <select class="custom-select rounded" [(ngModel)]="selectedLanguageText" name="language" (change)="validateFormSms()">
+                    <option [value]="null" style="display:none;">Select Language</option>
+                    <option [value]="appConfig.languages.english">{{appConfig.languages.english}}</option>
+                    <option [value]="appConfig.languages.spanish">{{appConfig.languages.spanish}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-12 pl-3 mt-1 pr-3 mb-3">
+                <div class="d-flex ">
+                  <p class="title2 mb-1" style="font-size: 16px;">Customer Name:</p>
+                </div>
+                  <p  class="title2" style="font-size: 14px; font-weight: 100;">{{selectedCustomer.name}} {{selectedCustomer.lastname}}</p>
+              </div>
+
+              <div class="col-12 pl-3 pr-3 mb-3">
+                <div class="d-flex">
+                  <p class="title2 mb-1" style="font-size: 16px;">Mobile Phone:</p>
+                </div>
+                  <p class="title2" style="font-size: 14px; font-weight: 100;">{{selectedCustomer.mobileNum}}</p>
+              </div>
+            </div>
+
+            <div class="col-12 px-3 mb-3 mt-1">             
+              <textarea class="w-100 form-control rounded square scrollbar-dusty-grass square thin" placeholder="Custom Text" style="height: 210px;" [(ngModel)]="customText" name="customText"></textarea>
+              <div class="invalid-feedback">It's required!</div>
+            </div>
+
+            <div class="p-3 w-100 row m-0">
+              <div class="col-6 w-100"></div>
+              <div class="col-6 w-100">
+                <button (click)="sendNotificationSms()" class="mainBtn"> 
+                  <div class="d-flex">
+                    <div class="aosp-ui-icon aosp-ui-email title"></div>Send
+                  </div>
+                </button>              
+              </div>        
+            </div>
+            
+          </form>
+        </tc-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+
+
+  
+  

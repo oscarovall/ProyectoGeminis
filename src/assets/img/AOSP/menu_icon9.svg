@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="prefix__group_icon" width="15.984" height="16" viewBox="0 0 15.984 16">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:#5aaef3}
+        </style>
+    </defs>
+    <g id="prefix__Group_1277" data-name="Group 1277">
+        <path id="prefix__Path_3680" d="M376.034 477.038h-6.555a.545.545 0 0 1-.545-.545v-6.555a.545.545 0 0 1 .545-.545h6.555a.545.545 0 0 1 .545.545v6.555a.545.545 0 0 1-.545.545zm-6.01-1.09h5.466v-5.466h-5.466z" class="prefix__cls-1" data-name="Path 3680" transform="translate(-368.934 -469.393)"/>
+    </g>
+    <g id="prefix__Group_1278" data-name="Group 1278" transform="translate(8.339)">
+        <path id="prefix__Path_3681" d="M404.342 477.038h-6.555a.545.545 0 0 1-.545-.545v-6.555a.545.545 0 0 1 .545-.545h6.555a.545.545 0 0 1 .545.545v6.555a.545.545 0 0 1-.545.545zm-6.011-1.09h5.469v-5.466h-5.466z" class="prefix__cls-1" data-name="Path 3681" transform="translate(-397.242 -469.393)"/>
+    </g>
+    <g id="prefix__Group_1279" data-name="Group 1279" transform="translate(0 8.355)">
+        <path id="prefix__Path_3682" d="M376.034 505.4h-6.555a.545.545 0 0 1-.545-.545V498.3a.545.545 0 0 1 .545-.545h6.555a.545.545 0 0 1 .545.545v6.555a.545.545 0 0 1-.545.545zm-6.01-1.09h5.466v-5.466h-5.466z" class="prefix__cls-1" data-name="Path 3682" transform="translate(-368.934 -497.755)"/>
+    </g>
+    <g id="prefix__Group_1280" data-name="Group 1280" transform="translate(8.339 8.355)">
+        <path id="prefix__Path_3683" d="M404.342 505.4h-6.555a.545.545 0 0 1-.545-.545V498.3a.545.545 0 0 1 .545-.545h6.555a.545.545 0 0 1 .545.545v6.555a.545.545 0 0 1-.545.545zm-6.011-1.09h5.469v-5.466h-5.466z" class="prefix__cls-1" data-name="Path 3683" transform="translate(-397.242 -497.755)"/>
+    </g>
+</svg>

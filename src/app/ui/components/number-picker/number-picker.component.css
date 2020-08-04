@@ -1,0 +1,48 @@
+.numberpicker {
+  border-radius: 5px;
+  background-color: #1f316b;
+  height: 30px;
+  width: 58px;
+}
+
+.numberpicker.disabled {
+  background-color: transparent !important;
+}
+
+.count {
+  height: 100%;
+  width: 34%;
+  color: #5a6aa5;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.14;
+}
+.operator {
+  cursor: pointer;
+  color: #eae5eb;
+  height: 100%;
+  width: 33%;
+  font: 30px/1 Arial, sans-serif;
+}
+.operator:hover {
+  opacity: 50%;
+
+  border-radius: 5px;
+}
+
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Prevent text selection*/
+span {
+  width: 8px;
+  height: 14px;
+  opacity: 0.9;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.14;
+  color: #eae5eb;
+}

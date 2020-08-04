@@ -1,0 +1,25 @@
+<div class="modal-body row w-100 h-100 mx-0">
+
+  <div class="col-12 p-0 mb-4 mt-1">
+    <span class="title">Upload file</span>
+  </div>
+  <div class="row px-5 mb-2">
+    <div class="col-12 p-0 uploadSpace mb-3 px-1">
+      <span [class]="displayClass">{{display}}</span>
+      <div class="icon tc-icon-wrap aosp-ui-upload"></div>
+    </div>
+    <div class="col-12 p-0 mb-2">
+      <button class="selectBtn w-100" (click)="file.click()">SELECT FILE</button>
+    </div>
+    <div class="row w-100 mt-2">
+      <div class="col-6 pr-2">
+        <button type="button" class="cancel w-100" (click)="closeButton()">Cancel</button>
+      </div>
+      <div class="col-6 p-0 pl-2 ">
+        <button type="button" class="upload w-100" (click)="sendFile()" [disabled]="!enable">Upload</button>
+      </div>
+    </div>
+  </div>
+  <span class="info mt-1">{{message}}</span>
+  <input type="file" #file style="display:none;" (change)="uploadFile($event.target.files[0])">
+</div>

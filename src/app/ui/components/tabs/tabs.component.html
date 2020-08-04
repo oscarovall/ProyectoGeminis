@@ -1,0 +1,10 @@
+<div class="tabs">
+	<span class="link"*ngFor="let tab of tabs" (click)="selectTab(tab)" [ngClass]="getTabClasses(tab)">
+		<span>{{ tab.tabTitle}}</span>
+	</span>
+</div>
+
+<div class="tab-content">
+	<ng-content></ng-content>
+</div>
+

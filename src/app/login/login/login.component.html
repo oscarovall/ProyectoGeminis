@@ -1,0 +1,28 @@
+<div class="background">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mt-4 centerDiv">
+        <img class="m-auto" src="../../../assets/img/logo.svg" height="32" width="116">
+      </div>
+      <div class="col-12 mb-2" style="margin-top:120px">
+        <span>Email</span>
+        <br>
+        <input type="text" id="user" [disabled]="disableInputs">
+      </div>
+      <div class="col-12 my-2">
+        <span>Password</span>
+        <br>
+        <input type="password" id="password" [disabled]="disableInputs">
+      </div>
+      <div class="col-12 my-2">
+        <tc-checkbox [disabled]="disableInputs">Remember my aacount</tc-checkbox>
+      </div>
+      <div class="col-12 my-2 centerDiv">
+        <button id="logIn" class="mainBtn logIn" (click)="singin()" [disabled]="disableInputs">Log In</button>
+      </div>
+      <div class="col-12 my-2 centerDiv">
+        <button class="mainBtn forgot" [disabled]="disableInputs">Forgot Password?</button>
+      </div>
+    </div>
+  </div>
+</div>

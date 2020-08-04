@@ -1,0 +1,117 @@
+<form #f="ngForm" id="addTaskForm" [ngClass]="{'was-validated': wasValidated}" novalidate>
+
+  <div class="row pb-3" *ngIf="!selectedCustomer">
+    <div class="col-3 text-left t-2"><span>Customer:</span></div>
+    <div class="col-9 text-left">
+      <input type="text" class="w-100" aria-label="Number" matInput [matAutocomplete]="auto" (keyup)="onKeyUp($event)">
+      <mat-autocomplete #auto="matAutocomplete" class="mat-autocomplete-panel ng-star-inserted
+                        mat-autocomplete-visible rounded square scrollbar-dusty-grass square thin scroll">
+        <mat-option *ngFor="let option of filteredOptions" [value]="option.mainCustomer.name+' '+option.mainCustomer.lastname"
+                    (onSelectionChange)="setLead(option)">
+          <span data-toggle="tooltip" class="red-tooltip d-block" data-placement="top"
+                title="{{option.mainCustomer.email}} - {{option.mainCustomer.phoneNumber}}
+             {{option.mainCustomer.mobileNum}}" container="body">
+            {{option.leadId}} - {{option.mainCustomer.name}} {{option.mainCustomer.lastname}}
+          </span>
+          <span class="subitittleCustomer d-block" title="{{option.mainCustomer.email}}">
+            {{option.mainCustomer.email}}
+          </span>
+          <span class="subitittleCustomer">
+            {{option.mainCustomer.mobileNum}}
+          </span>
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+  </div>
+
+  <div class="row pb-3" *ngIf="selectedCustomer">
+    <div class="col-3 text-left"><span>Customer:</span></div>
+    <div class="col-9 text-left">
+      <span>{{selectedCustomer.name}} {{selectedCustomer.lastname}}</span>
+    </div>
+  </div>
+
+  <div class="row pb-3">
+    <div class="col-5 text-left t-8"><span>Team Members:</span></div>
+    <div class="col-7">
+      <select class="custom-select rounded" [(ngModel)]="teamMemberSelected" name="teamMemberSelected"
+        (change)="assignEmployee()" placeholder="select">
+        <option [ngValue]="null" style="display:none;"> Team Member </option>
+        <option [ngValue]="employee.employeeId" *ngFor="let employee of teamMembers">{{employee.name}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row pb-3">
+    <div class="col-2 text-left t-8"><span>Title:</span></div>
+    <div class="col-10 text-right">
+      <input type="text" [(ngModel)]="addTask.title" name="title" class="form-control" autocomplete="off" required>
+      <div class="invalid-feedback">It's required!</div>
+    </div>
+  </div>
+
+  <div class="row pb-3" *ngIf="type && type === appConfig.appointmentType.appointment && addTask">
+    <div class="col-12 text-left pb-2"><span>Starts:</span></div>
+    <div class="row">
+      <div class="col-5 text-right">
+        <date-picker [required]="true" [myDateValue]="addTask.startDate?addTask.startDate: ''" name="startDate"
+          (change)="addTask.startDate = $event"></date-picker>
+        <div class="invalid-feedback">It's required!</div>
+      </div>
+      <div class="col-7 text-right">
+        <timepicker [(ngModel)]="startTime" name="timepicker1" class="animated fadeIn" [showSpinners]="false"
+          [required]="true"></timepicker>
+        <div class="invalid-feedback">It's required!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row pb-3" *ngIf="addTask">
+    <div class="col-12 text-left pb-2" *ngIf="type === appConfig.appointmentType.appointment"><span>Ends:</span></div>
+    <div class="col-12 text-left pb-2" *ngIf="type !== appConfig.appointmentType.appointment"><span>Date:</span></div>
+    <div class="col-5 text-right">
+      <date-picker [required]="true" [myDateValue]="addTask.startDate?addTask.endDate: ''" name="endDate"
+        (change)="addTask.endDate = $event"></date-picker>
+      <div class="invalid-feedback">It's required!</div>
+    </div>
+    <div class="col-7 text-right">
+      <timepicker [(ngModel)]="endTime" name="timepicker2" class="animated fadeIn" [showSpinners]="false"
+        [required]="true"></timepicker>
+      <div class="invalid-feedback">It's required!</div>
+    </div>
+  </div>
+
+  <div class="row pb-3">
+    <div class="col-4 text-left "><span>Priority:</span></div>
+    <div class="col-8 text-right">
+      <tc-radio [value]="addTask.priority" (change)="setPriority($event)">
+        <div class="row w-100 mr-0 justify-content-between">
+          <tc-radio-option [value]="false" class="col mr-0">Normal</tc-radio-option>
+          <tc-radio-option [value]="true" class="col mr-0">High</tc-radio-option>
+        </div>
+      </tc-radio>
+    </div>
+  </div>
+
+  <div class="row pb-3">
+    <div class="col-12 text-left pb-2"><span>Description:</span></div>
+    <div class="col-12 text-right">
+      <textarea class="w-100 form-control" [(ngModel)]="addTask.description" name="description" required></textarea>
+      <div class="invalid-feedback">It's required!</div>
+    </div>
+  </div>
+
+  <div class="buttons d-flex">
+    <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="cancelTask()">
+      <div class="d-flex">
+        <div class="aosp-ui-icon aosp-ui-cancel title"></div>Cancel
+      </div>
+    </button>
+    <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="saveTask()">
+      <div class="d-flex">
+        <div class="aosp-ui-icon aosp-ui-save title"></div>Save
+      </div>
+    </button>
+  </div>
+
+</form>

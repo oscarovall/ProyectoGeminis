@@ -1,0 +1,31 @@
+<div class="timeline-box" *ngFor="let box of data">
+  <div class="box-label" *ngIf="showYears && box.sectionLabel">
+    <div class="label-text">{{ box.sectionLabel }}</div>
+  </div>
+
+  <div class="box-items">
+    <div class="item" *ngFor="let item of box.sectionData">
+      <div class="icon-block">
+        <div
+          class="item-icon {{ item.icon || 'icofont-clock-time' }}"
+          [ngStyle]="{
+            'background': item.iconBg,
+            'color': item.iconColor
+          }"
+        ></div>
+
+        <div class="line"></div>
+      </div>
+
+      <div class="content-block">
+        <div class="item-header">
+          <h2 class="h6 item-title" *ngIf="item.title">{{ item.title }}</h2>
+
+          <div class="item-date" *ngIf="item.date"><span>{{ item.date }}</span></div>
+        </div>
+
+        <div class="item-desc" [innerHTML]="item.content"></div>
+      </div>
+    </div>
+  </div>
+</div>

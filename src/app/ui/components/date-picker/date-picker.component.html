@@ -1,0 +1,10 @@
+<input type="text"
+  class="form-control"
+  #dp="bsDatepicker"
+  bsDatepicker
+  [(ngModel)]="myDateValue"
+  [required]="required"
+  (ngModelChange)="onChange($event)"
+  viewMode= "years"
+  >
+  <div class="invalid-feedback" *ngIf="required">It's required!</div>

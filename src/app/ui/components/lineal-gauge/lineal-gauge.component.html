@@ -1,0 +1,9 @@
+<div class="row w-100  mx-0 justify-content-center">
+    <div *ngFor="let item of options"
+    (click)="editState(item.option_class)"
+    [class]=" item.option_class"
+    [style.boxShadow]=" state.name == item.name ? item.boxShadow : null"></div>
+</div>
+<div class="row w-100 justify-content-center mt-2 mx-0">
+    <div class="label" [style.color]="state.color">{{state.name}}</div>
+</div>

@@ -1,0 +1,10 @@
+<div class="input-wrapper">
+  <tc-input [placeholder]="'Add new todo'"#todoText (keydown)="addItem($event, todoText.value, todoText)"></tc-input>
+</div>
+
+<ul class="list">
+	<li *ngFor="let item of items">
+    <tc-checkbox [(ngModel)]="item.done"><span class="item" [ngClass]="{'completed': item.done }" >{{ item.text }}</span></tc-checkbox>
+		<i class="icon icofont-close-line-squared" (click)="removeItem(item)"></i>
+	</li>
+</ul>

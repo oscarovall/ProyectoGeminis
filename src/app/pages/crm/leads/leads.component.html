@@ -1,0 +1,130 @@
+<div class="row w-100 m-0 menuTitle3Div animated fadeIn">
+  <div class="col-4 col-md-6">
+    <div class="title2 t-3">Leads</div>
+  </div>
+
+  <div class="col-4 col-md-3 text-right pr-0 inner-addon right-addon d-flex">   
+    <input type="text" class="form-control input-search" aria-label="Number" matInput (keyup.enter)="onKeyUp(wordsFilter)" [(ngModel)]="wordsFilter" placeholder="Search">    
+    <button type="button" class="btn-search" (click)="onKeyUp(wordsFilter)"><i class="fa fa-search"></i></button>    
+  </div>
+
+  <div class="col-4 col-md-3 text-right pr-0">
+
+    <select class="custom-select rounded" [(ngModel)]="teamMemberSelected" name="teamMemberSelected"
+      (change)="changePage(1)" placeholder="select">
+      <option [ngValue]="null" style="display:none;"> Team Member </option>
+      <option [ngValue]="null"> All </option>
+      <option [ngValue]="employee.employeeId" *ngFor="let employee of teamMembers">{{employee.name}}</option>
+    </select>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="loading">
+
+  <div class="col-sm-12">
+
+    <div class="alert alert-warning text-center">
+      <br>
+      <i class="fa fa-spinner fa-spin fa-3x"></i>
+      <br>
+      <strong class="spinnerText">Loading</strong>
+    </div>
+  </div>
+</div>
+
+<div class="pl-3 pr-3" *ngIf="!loading">
+  <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+    <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+      <thead>
+        <tr>
+
+          <td scope="col" class="text-center text-nowrap">Customer Name</td>
+          <td scope="col" class="text-center text-nowrap">Home Consultant</td>
+          <td scope="col" class="text-center text-nowrap">PA</td>
+          <td scope="col" class="text-center text-nowrap">% to Closure</td>
+          <td scope="col" class="text-center text-nowrap">Step</td>
+          <td scope="col" class="text-center text-nowrap">Actions</td>
+          <td scope="col" class="text-center text-nowrap">Status</td>
+          <td scope="col" class="text-center text-nowrap">Close Date</td>
+          <td scope="col" class="text-center text-nowrap">Last Contact</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lead of leads" class="animated fadeIn">
+
+          <td width="" class="remove_lines text-center">
+            <a class="text-title" href="/lead/{{lead.leadId}}">{{lead.mainCustomer.name}} {{lead.mainCustomer.lastname}}</a>
+          </td>
+          <td width="" class="remove_lines text-center">
+            <div class="row">
+              <div *ngFor="let employeeLead of lead.employeeLead" class="col-12">
+                <span
+                  *ngIf="employeeLead.employee.role.role1 === appConfig.specificRoles.sr">{{ employeeLead.employee.name }}</span>
+              </div>
+            </div>
+          </td>
+          <td width="" class="remove_lines text-center">
+            <div class="row">
+              <div *ngFor="let employeeLead of lead.employeeLead" class="col-12">
+                <span
+                  *ngIf="employeeLead.employee.role.role1 === appConfig.specificRoles.pa">{{ employeeLead.employee.name }}</span>
+              </div>
+            </div>
+          </td>
+          <td width="180" class="remove_lines text-center" style="min-width: 180px;">
+            <div class="row">
+              <div class="col-9 mt-2">
+                <tc-progress [color]="'#468cc8'" [progress]="lead.leadProgressInfo.percentageToClousure" [size]="'sm'" [border]="'1px solid #468cc8'">
+                </tc-progress>
+              </div>
+              <div class="col-3">
+                <span>{{lead.leadProgressInfo.percentageToClousureTextLabel}}</span>
+              </div>
+            </div>
+          </td>
+          <td width="" class="remove_lines text-center">
+            <div *ngIf="lead.leadProgressInfo.currentStep" data-toggle="tooltip" data-placement="bottom" [title]="lead.leadProgressInfo.currentStep.name">              
+                <span>{{ lead.leadProgressInfo.stepTextLabel }}</span>         
+            </div>
+          </td>
+          <td width="180" class="remove_lines text-center">
+            <div class="d-flex">
+              <button tc-button type="button" class="btn-icon btn-outline-dark p-0 rounded" (click)="sendNewMessage(lead)">
+                <div class="aosp-ui-icon aosp-ui-email-md"></div>
+              </button>
+
+              <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2"  (click)="redirectCall(lead)">
+                <div class="aosp-ui-icon aosp-ui-call-md"></div>
+              </button>
+
+              <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="addEvent(lead)">
+                <div class="aosp-ui-icon aosp-ui-calendar-md"></div>
+              </button>
+
+              <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2"
+                (click)="redirect('/lead/' + lead.leadId)">
+                <div class="aosp-ui-icon aosp-ui-edit-md"></div>
+              </button>
+            </div>
+          </td>
+          <td width="100" class="remove_lines text-center">
+            <tc-badge class="w-100" [size]="'md'" [view]="pipeStatus(lead.leadStatus.shortStatus)"><span
+                class="nowrap">{{lead.leadStatus.status}}</span></tc-badge>
+          </td>
+          <td width="" class="remove_lines text-center">{{lead.closeDate | date:'MM/dd/y'}}</td>
+          <td width="" class="remove_lines text-center">{{lead.lastContactDate | date:'MM/dd/y'}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-between mt-3">
+    <ngbd-pagination-advanced [totalItems]='totalPages' [page]="currentPage" (pageChanged)="changePage($event)"></ngbd-pagination-advanced>
+
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (change)="changePageSize()">
+      <option [ngValue]="5">5 items per page</option>
+      <option [ngValue]="10">10 items per page</option>
+      <option [ngValue]="50">50 items per page</option>
+    </select>
+  </div>
+</div>
