@@ -13,3 +13,10 @@
 .borderTittle-table {
   border-bottom:2px solid #68b7f6 !important;
 }
+
+
+.model {
+  cursor: pointer !important;
+  color: #66b3f3 !important;
+  font-weight:500;
+}

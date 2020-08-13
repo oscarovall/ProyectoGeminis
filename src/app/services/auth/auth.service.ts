@@ -13,6 +13,7 @@ import { concatMap } from 'rxjs/operators';
 import * as jwt_decode from 'jwt-decode';
 import { RolesForAuth } from '../../shared/models/role';
 import { RolePagesForAuth } from '../../shared/models/role-page';
+import { UserAuthAosp } from '../../models/auth-aosp/user-auth-aosp';
 
 @Injectable({
   providedIn: 'root'
@@ -131,7 +132,7 @@ export class AuthService {
     localStorage.setItem('employee', JSON.stringify(employee));
   }
 
-  getUser(): Employee {
+  getUser(): UserAuthAosp {
     if (localStorage.getItem('employee') != null) {
       return JSON.parse(localStorage.getItem('employee'));
     }

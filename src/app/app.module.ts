@@ -4,7 +4,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule, MatGridListModule, MatExpansionModule } from '@angular/material';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
@@ -23,6 +23,7 @@ import { LayoutModule } from './layout/layout.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AuthAospModule } from './auth-aosp/auth-aosp.module';
+import { AuthInterceptor } from './interceptors/authInterceptor ';
 // import { APP_ROUTES } from './app.routes';
 import { ServiceModule } from './services/service.module';
 
@@ -56,7 +57,7 @@ import { ServiceModule } from './services/service.module';
    // APP_ROUTES,
     BsDatepickerModule.forRoot()
   ],
-  providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 4000 } }, DatePipe, AppConfig],
+  providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 4000 } },{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, DatePipe, AppConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

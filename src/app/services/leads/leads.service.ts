@@ -17,6 +17,9 @@ import { Customer } from '../../models/crm/Customer';
 import { HomesOrderInput } from '../../models/crm/HomesOrderInput';
 import { Employeelead } from '../../models/EmployeeLead';
 import { ProdOption } from '../../models/crm/ProdOption';
+import { ResponseAPI } from '../../models/ResponseAPI';
+import { ProdOptionExt } from '../../models/crm/ProdOptionExt';
+import { LeadProdOption } from '../../models/crm/LeadProdOption';
 
 
 
@@ -344,9 +347,7 @@ export class LeadsService {
           return [];
         })
       );
-
   }
-
 
   rejectRso(leadId: number, workflowId: number, productInvId: number, rsoRejectedReason: string) {
     const rejectPendingRso = {
@@ -360,7 +361,7 @@ export class LeadsService {
         catchError(err => {
           Swal.fire({
             icon: 'error',
-            title: 'Error when generating Approve',
+            title: 'Error when generating Reject',
             text: err.message
           });
           return [];
@@ -379,7 +380,7 @@ export class LeadsService {
         catchError(err => {
           Swal.fire({
             icon: 'error',
-            title: 'Error when generating Approve',
+            title: 'Error when generating Change Home',
             text: err.message
           });
           return [];
@@ -516,13 +517,32 @@ export class LeadsService {
       );
   }
 
-  getAllOptionsByLead() {
-    const url = `${environment.api}LeadProductOptions/get-all-product-options`;
+  getAllOptionsByLead(leadId: number, workflowId: number) {
+    const url =
+    `${environment.api}LeadProductOptions/get-all-product-options-include-lead-product-options?` +
+    `LeadId=${leadId}&WorkflowId=${workflowId}`;
+    console.log('url', url);
     return this.http.get<any>(url)
       .pipe(
         map((result: any) => {
+          console.log('map', result);
           return result.results;
         }),
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when getting Product Options',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  saveOptionsByLead(leadProdOption: LeadProdOption[]) {
+    const url = `${environment.api}LeadProductOptions/save`;
+    return this.http.post(url, leadProdOption)
+      .pipe(
         catchError(err => {
           Swal.fire({
             icon: 'error',

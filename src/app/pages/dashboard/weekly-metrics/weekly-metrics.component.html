@@ -25,9 +25,9 @@
 
 <div class="row mx-3 mb-3" >
   <div class="table-responsive p-3 bg-aosp-info rounded square scrollbar-dusty-grass square thin" >
-    <div class="row w-100 p-0 m-0" style="height: 300px;">
-      <div *ngFor="let data of weeklyMetrics" class="col-1 col-md-3 col-xl-2  p-4" style="min-width: 250px; margin: auto">
-        <h3 class="p-0 text-center tittleLeads" style="font-size:16px">{{data.name}}</h3>
+    <div class="row w-100 p-0 m-0">
+      <div *ngFor="let data of weeklyMetrics" class="col p-4">
+        <h3 class="p-0 text-center tittleLeads">{{data.name}}</h3>
         <div>
           <div class="graph-container">
             <div style="display: flex">

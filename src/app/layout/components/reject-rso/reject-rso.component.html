@@ -9,7 +9,7 @@
             <span class="title">
               Please select the new home model for this RSO
             </span>
-            <select class="form-control rounded my-3">
+            <select class="form-control rounded my-3" [(ngModel)]="estadoSelected" name="estadoSelected">
               <option style="display:none;"> -- select a Home -- </option>
               <option *ngFor="let productInv of product" [value]="productInv.productInvId">
     
@@ -22,7 +22,7 @@
       </div>
       <div class="row w-100 mt-2">
         <div class="col-6 pr-2">
-          <button type="button" class="upload w-100">CHANGE HOME</button>
+          <button type="button" class="upload w-100" (click)="saveButtonChange()">CHANGE HOME</button>
         </div>
         <div class="col-6 p-0 pl-2 ">
           <button type="button" class="cancel w-100" (click)="closeButton()">CANCEL</button>

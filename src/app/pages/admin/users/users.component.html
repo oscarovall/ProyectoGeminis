@@ -12,11 +12,24 @@
   </div>
 </div>
 
-<div class="pl-3 pr-3">
+<div class="row animated fadeIn px-3" *ngIf="isLoading">
+
+  <div class="col-sm-12">
+
+    <div class="alert alert-warning text-center">
+      <br>
+      <i class="fa fa-spinner fa-spin fa-3x"></i>
+      <br>
+      <strong class="spinnerText">Loading</strong>
+    </div>
+  </div>
+</div>
+
+<div class="pl-3 pr-3" *ngIf="!isLoading">
   <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
     <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
       <thead>
-        <tr class="borderTittle-table">
+        <tr>
           <td scope="col" width="180" style="min-width: 180px; text-align: center;" colspan="2">Name</td>
           <td scope="col" style="padding-left: 2em;">Role</td>
           <td scope="col" >Dealership</td>
@@ -31,17 +44,18 @@
         <tr *ngFor="let employee of employees; let f = last" class="animated fadeIn">
           <td width="" class="remove_lines">
             <div class="item-img">
-              <img src="{{ employee.imageUrl }}" style="height: 30px" *ngIf="employee.imageUrl" (error)="employee.imageUrl = null">
-              <div class="aosp-ui-profile-small" *ngIf="!employee.imageUrl"></div>
+              <img src="{{ employee.employeeImageUrl }}" style="height: 30px" *ngIf="employee.employeeImageUrl" (error)="employee.employeeImageUrl = null">
+              <div class="aosp-ui-profile-small" *ngIf="!employee.employeeImageUrl"></div>
             </div>
           </td>
-          <td width="" class="remove_lines">{{employee.name}}</td>
-          <td width="" class="remove_lines">{{employee.role}}</td>
-          <td width="" class="remove_lines"><div *ngIf="employee.store">{{employee.store.name}}</div></td>
-          <td width="" class="remove_lines"><span *ngIf="employee.employeeEmployeeTeamTeamMember[0]">{{employee.employeeEmployeeTeamTeamMember[0].teamOwner.name}}</span></td>
+          <td width="" class="remove_lines">{{employee.employeeName}}</td>
+          <td width="" class="remove_lines">{{employee.rolName}}</td>
+          <td width="" class="remove_lines"><div *ngIf="employee.storelId > 0">{{employee.storeName}}</div></td>
+          <!-- <td width="" class="remove_lines"><span *ngIf="employee.employeeEmployeeTeamTeamMember[0]">{{employee.employeeEmployeeTeamTeamMember[0].teamOwner.name}}</span></td> -->
+          <td width="" class="remove_lines"><span ></span></td>
           <td width="" class="remove_lines">{{employee.email}}</td>
-          <td width="" class="remove_lines">{{employee.cellphone}}</td>
-          <td width="" class="remove_lines text-center"><tc-switcher [value]="employee.active" [disabled]="true"></tc-switcher></td>
+          <td width="" class="remove_lines">{{employee.employeePhone}}</td>
+          <td width="" class="remove_lines text-center"><tc-switcher [value]="employee.employeeActive" ></tc-switcher></td>
           <td class="remove_lines d-flex text-right">
             <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="resetPassword(employee)">
               <div class="d-flex">
@@ -59,7 +73,7 @@
     </table>
   </div>
   <div class="d-flex justify-content-between mt-3">
-    <ngbd-pagination-advanced [totalItems]='totalPages' [page]="currentPage" (pageChanged)="changePage($event)" *ngIf="totalPages > pageSize"></ngbd-pagination-advanced>
+    <ngbd-pagination-advanced [totalItems]='totalPages' [page]="currentPage" (pageChanged)="changePage($event)"></ngbd-pagination-advanced>
 
     <select class="form-control" style="width: auto" [(ngModel)]="pageSize" (change)="changePageSize()">
       <option [ngValue]="10">10 items per page</option>

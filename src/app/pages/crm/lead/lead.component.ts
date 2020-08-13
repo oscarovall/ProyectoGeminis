@@ -30,6 +30,8 @@ import { Product } from '../../../models/crm/Product';
 import { HomesOrderInput } from '../../../models/crm/HomesOrderInput';
 import Swal from 'sweetalert2';
 import { ProdOption } from '../../../models/crm/ProdOption';
+import { ProdOptionExt } from '../../../models/crm/ProdOptionExt';
+import { LeadProdOption } from '../../../models/crm/LeadProdOption';
 
 
 
@@ -77,7 +79,7 @@ export class LeadComponent implements OnInit {
   // Forms to print
   formsToPrint: LeadDocument[];
   homeSelected: Home[] = [new Home(), new Home(), new Home()];
-  options: ProdOption[];
+  options: ProdOptionExt[];
 
   homeToOrder: Home;
 
@@ -151,14 +153,19 @@ export class LeadComponent implements OnInit {
       this.search();
     } else {
       // Get Options
-      this.leadsService.getAllOptionsByLead().subscribe((options: ProdOption[]) => {
+      this.leadsService.getAllOptionsByLead(this.lead.leadId, this.lead.workflowId).subscribe((options: ProdOptionExt[]) => {
+        console.log('options', options);
+
         this.options = options;
+        this.sumOptions();
       });
 
       const productInvId = this.lead.leadProducts.filter(data => data.active)[0].productInvId;
-      this.leadsService.getOrderHome(productInvId).subscribe(result => this.homeToOrder = result);
-
-      // Get Value Options
+      this.leadsService.getOrderHome(productInvId).subscribe(result => {
+        this.homeToOrder = result;
+        this.homeToOrder.disabled = true;
+        this.sumOptions();
+      });
 
     }
 
@@ -175,8 +182,68 @@ export class LeadComponent implements OnInit {
     }
   }
 
-  changeOption(option: ProdOption) {
+  changeOption(option: ProdOptionExt) {
+    console.log('change', option);
 
+    if (option.included === this.appConfig.optionsType.no || option.included === 'null') {
+      option.included = this.appConfig.optionsType.no;
+      option.price = null;
+    } else if (option.included === this.appConfig.optionsType.included) {
+      option.price = 0;
+    }
+
+    this.sumOptions();
+  }
+
+  sumOptions() {
+    let optionsPrice = 0;
+    if (this.options) {
+      this.options.forEach((optionTemp: ProdOptionExt) => {
+        if (optionTemp.included === this.appConfig.optionsType.yes) {
+          optionsPrice = optionsPrice + optionTemp.price;
+        }
+      });
+      optionsPrice = this.round(optionsPrice);
+    }
+
+    if (this.homeToOrder) {
+      this.homeToOrder.optionsPrice = optionsPrice;
+    }
+  }
+
+  round(num, digits = 2) {
+    return Math.round(this.nextFloat(num) * Math.pow(10, digits)) / Math.pow(10, digits);
+  }
+  nextFloat(num) {
+    return (num + 0.5 * Number.EPSILON * num);
+  }
+
+  saveOptions() {
+    const leadProdOptions = [];
+
+    this.options.forEach((option: ProdOptionExt) => {
+      if (option.included === this.appConfig.optionsType.no || option.included === 'null') {
+        option.included = this.appConfig.optionsType.no;
+        option.price = null;
+      } else if (option.included === this.appConfig.optionsType.included ||
+        option.included === this.appConfig.optionsType.yes) {
+
+        const leadProdOption = new LeadProdOption();
+        leadProdOption.leadId = this.lead.leadId;
+        leadProdOption.workflowId = this.lead.workflowId;
+        leadProdOption.optionId = option.optionId;
+        leadProdOption.price = option.price;
+        leadProdOption.included = option.included;
+
+        leadProdOptions.push(leadProdOption);
+      }
+    });
+
+    this.leadsService.saveOptionsByLead(leadProdOptions).subscribe((result: any) => {
+      console.log('Result', result);
+
+      this.sendNotification('Home information saved!');
+    });
   }
 
   setClasses(classes: Class[]) {
@@ -317,9 +384,6 @@ export class LeadComponent implements OnInit {
       this.homeToOrder = home;
       this.orderHomes();
     });
-  }
-
-  Test(some: any) {
   }
 
   // Hidden Show Classes with dependencies

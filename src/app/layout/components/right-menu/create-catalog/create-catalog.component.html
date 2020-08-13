@@ -43,6 +43,28 @@
       </div>
 
       <div class="row py-1">
+        <div class="col-5 p-0 text-left">Box Size 2: *</div>
+        <div class="col-7 p-0 text-left">   
+          <div class="d-flex">
+            <input class="w-100 form-control mr-2" type="number" [(ngModel)]="data.boxWide2" name="boxWide2" [maxLength]="'50'" autocomplete="off"/>
+            <span class="py-2">x</span> 
+            <input class="w-100 form-control ml-2" type="number" [(ngModel)]="data.boxLong2" name="boxLong2" [maxLength]="'50'" autocomplete="off"/>
+          </div>    
+        </div>
+      </div>
+
+      <div class="row py-1">
+        <div class="col-5 p-0 text-left">Weight: *</div>
+        <div class="col-7 p-0 text-left">
+          <div class="d-flex">
+            <input class="w-100 form-control mr-2" type="number" [(ngModel)]="data.weight " name="weight " [maxLength]="'50'" autocomplete="off" required />
+            <span class="py-2">-</span> 
+            <input class="w-100 form-control ml-2" type="number" [(ngModel)]="data.weight2" name="weight2" [maxLength]="'50'" autocomplete="off"/>
+          </div>    
+        </div>
+      </div>
+
+      <div class="row py-1">
         <div class="col-5 p-0 text-left">Sq Ft: *</div>
         <div class="col-7 p-0 text-left">
           <input class="w-100 form-control" type="number" [(ngModel)]="data.sqft" name="sqft" [maxLength]="'50'" autocomplete="off" required />

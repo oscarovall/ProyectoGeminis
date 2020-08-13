@@ -14,6 +14,10 @@ export class Product {
   bath: number;
   boxWide: number;
   boxLong: number;
+  boxWide2: number;
+  boxLong2: number;
+  weight: number;
+  weight2: number;
   manufacturerId: number;
   typeWide: string;
   productId: number;

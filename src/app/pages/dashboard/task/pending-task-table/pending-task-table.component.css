@@ -1,68 +1,61 @@
-
-
 .scroll {
-	position: relative;
-	overflow-y: scroll;
-	max-height: 320px;
+  position: relative;
+  overflow-y: scroll;
+  max-height: 311px;
 }
 
-tbody, tr {
-    display: block;
+tbody,
+tr {
+  display: block;
 }
 
 tbody {
-    height: 320px;
-    overflow-y: auto;
-    overflow-x: hidden;
+  height: 311px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-tbody, tr { display: block; }
-
-tbody {
-    height: 320px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-th, td {
-	padding: 5px;
+th,
+td {
+  padding: 5px;
 }
 
 thead tr {
-    width: 99%;
+  width: 99%;
 }
 
 .text-title {
-	color: var(--color-default-font);
-	font-family: Roboto;
-	font-size: 14px;
-	font-weight: 500;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: 1.67;
-	letter-spacing: normal;
-	text-align: left;
+  color: var(--color-default-font);
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  text-align: left;
 }
 
-tbody td, thead th {
-    width: 1%;
+tbody td,
+thead th {
+  width: 1%;
 }
 
 .task {
-	min-width: 250px;
+  min-width: 250px;
 }
 .date {
-	min-width: 110px;
+  min-width: 110px;
 }
 .actions {
-	min-width: 60px;
+  min-width: 60px;
 }
 
 .due-label {
-	color: #bd2536 !important;
-    font-size: 14px;
-    font-family: Roboto;
-    font-weight: 500;
+  color: #bd2536 !important;
+  font-size: 14px;
+  font-family: Roboto;
+  font-weight: 500;
 }
 
 .task-description {
@@ -70,7 +63,7 @@ tbody td, thead th {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color:transparent !important;
+  background-color: transparent !important;
 }
 
 .table-responsive {
@@ -79,5 +72,5 @@ tbody td, thead th {
   overflow-x: auto;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   padding: 2px;
-  border:none !important;
+  border: none !important;
 }

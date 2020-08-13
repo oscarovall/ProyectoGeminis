@@ -4,14 +4,6 @@
   </div>
 
 
-  <!--<div class="col-6 col-md-3 text-right pr-0">
-    <select class="custom-select rounded" [(ngModel)]="estadoSelected" name="estadoSelected"
-            (change)="changePage(1)" placeholder="select">
-      <option [ngValue]="null" style="display:none;"> Used Status </option>
-      <option [ngValue]="product" *ngFor="let product of estados">{{product.label}}</option>
-    </select>
-  </div>-->
-
   <div class="col-6 col-md-3 text-right pr-0">
     <select class="form-control font-filtro rounded" [(ngModel)]="estadoSelected" name="estadoSelected"
             (change)="changePage(1)" placeholder="select">
@@ -69,8 +61,8 @@
         <tr *ngFor="let product of inventory;" class="animated fadeIn">
 
           <td width="" class="remove_lines text-center">{{product.productLot?.lot.storage.store.name}} - {{product.productLot?.lot.storage.name}} {{product.productLot?.lot.lotNameId}}</td>
-          <td width="" class="remove_lines text-center">{{product.manufacturer.shortName}}</td>
-          <td width="" class="remove_lines text-center">{{product.name}}</td>
+          <td width="" class="remove_lines text-center model" (click)="seeDetail(product)">{{product.manufacturer.shortName}}</td>
+          <td width="" class="remove_lines text-center model" (click)="seeDetail(product)">{{product.name}}</td>
           <td width="" class="remove_lines text-center">{{product.serialNum}}</td>
           <td width="" class="remove_lines text-center">{{product.hudNum}}</td>
           <td width="" class="remove_lines text-center">{{product.boxLong}}X{{product.boxWide}}</td>

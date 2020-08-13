@@ -31,7 +31,7 @@
   </div>
   
   <div class="pl-3 pr-3" *ngIf="!loading && manufacturers">
-    <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+    <div class="table-responsive p-0 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
       <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
         <thead>
           <tr class="borderTittle-table">
@@ -60,7 +60,7 @@
               <a class="text-title" (click)="viewProducts(data)">{{data.shortName}}</a>
             </td>     
             <td width="" class="remove_lines text-center">
-              <div class="my-2 mx-auto aosp-ui-icon-header aosp-ui-view" (click)="viewPlants(data)"></div>                         
+              <div class="mx-auto aosp-ui-icon-header aosp-ui-view" (click)="viewPlants(data)"></div>                         
             </td>   
             <td width="" class="remove_lines text-center">phone #</td>    
             <td width="" class="remove_lines text-center">{{data.mainAddress}}</td>    
@@ -113,7 +113,7 @@
   </div>
   
   <div class="pl-3 pr-3" *ngIf="!loading && manufacturers">
-    <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+    <div class="table-responsive p-0 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
       <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
         <thead>
           <tr>
@@ -139,7 +139,7 @@
               </div>
             </td>          
             <td width="" class="remove_lines text-center">{{product.name}}</td>     
-            <td width="" class="remove_lines text-center">{{product.sqft}}</td>    
+            <td width="" class="remove_lines text-center">{{product.boxWide}} x {{product.boxLong}}</td>    
             <td width="" class="remove_lines text-center">{{product.bed}}</td>    
             <td width="" class="remove_lines text-center">{{product.bath}}</td>    
             <td width="" class="remove_lines text-center">{{product.windZone}}</td>   
@@ -190,7 +190,7 @@
   </div>
   
   <div class="pl-3 pr-3" *ngIf="!loading && plants">
-    <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+    <div class="table-responsive p-0 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
       <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
         <thead>
           <tr>

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, LeadsService } from '../../../services/service.index';
+import { AuthService, LeadsService, UserService } from '../../../services/service.index';
 import { Router } from '@angular/router';
 import { AppConfig } from '../../../app.config';
 import { ProductService } from '../../../services/Product/product.service';
 import { Product } from '../../../models/crm/Product';
 import { ProductInvAvailableStatus } from '../../../models/crm/ProductInvAvailableStatus';
 import { Employee } from './../../../models/Employee';
-
-
+import { Home } from '../../../models/crm/home';
 
 
 @Component({
@@ -37,7 +36,9 @@ export class InventoryComponent implements OnInit {
     private leadService: LeadsService,
     private router: Router,
     public appConfig: AppConfig,
-    public _productService: ProductService
+    public _productService: ProductService,
+    public userService: UserService,
+    public productService: ProductService
 
   ) {
     this.getProduct(this.currentPage);
@@ -71,9 +72,7 @@ export class InventoryComponent implements OnInit {
               console.log(productTmp, this.inventory)
             }
 9          })
-          //this.inventory = pagination.results.filter(data =>
-          //  !!data && data.productInvAvStatus.name == this.estadoSelected.name
-          //  && data.productInvUsedStatus.name == this.estadoSelected2.name);
+   
         } else {
           this.inventory = pagination.results;
         }
@@ -118,6 +117,11 @@ export class InventoryComponent implements OnInit {
     if (name === this.appConfig.productInvAvStatus.model) {
       return 'info';
     }
+  }
+
+  seeDetail(homeSelected: Home) {
+    this.userService.showHideRightMenu(this.appConfig.rightMenu.productDetail);
+    setTimeout(() => { this.productService.setSelectedHome(homeSelected); });
   }
 
 }

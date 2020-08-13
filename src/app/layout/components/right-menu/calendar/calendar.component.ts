@@ -81,8 +81,8 @@ export class CalendarComponent implements OnInit {
   }
 
   getEmployeeId() {
-    const employee: Employee = this.authService.getUser();
-    return employee.employeeId;
+    const currentUser = this.authService.getUser();
+    return currentUser.employeeId;
   }
 
   editTask(event: Appointment) {

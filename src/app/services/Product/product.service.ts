@@ -78,6 +78,21 @@ export class ProductService {
         })
       );
   }
+
+  getAllLots() {
+    const url = `${environment.api}Stores/get-all-lots`;
+    return this.http.get<any>(url)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when getting all Lots',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
 }
 
 

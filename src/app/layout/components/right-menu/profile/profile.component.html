@@ -10,17 +10,17 @@
             <div class="contact">
               <div class="img-section">
                 <div class="contact-img container">
-                  <img src="{{ employee.imageUrl }}" class="image" *ngIf="employee.imageUrl"
-                    (error)="employee.imageUrl = null">
-                  <div class="aosp-ui-profile-big" *ngIf="!employee.imageUrl"></div>
+                  <img src="{{ employee.employeeImageUrl }}" class="image" *ngIf="employee.employeeImageUrl"
+                    (error)="employee.employeeImageUrl = null">
+                  <div class="aosp-ui-profile-big" *ngIf="!employee.employeeImageUrl"></div>
 
                   <div class="middle">
                     <button tc-button [afterIcon]="'icofont-pencil-alt-5'" class="text"
                       (click)="uploadDocument()"></button>
                   </div>
                 </div>
-                <h3 *ngIf="!modeEdit" class="contact-name">{{ employee.name }}</h3>
-                <span *ngIf="!modeEdit" class="contact-role">{{ employee.role.role1 }}</span>
+                <h3 *ngIf="!modeEdit" class="contact-name">{{ employee.employeeName }}</h3>
+                <span *ngIf="!modeEdit" class="contact-role">{{ employee.rolName }}</span>
               </div>
 
               <div class="contact-item row" *ngIf="modeEdit">
@@ -28,7 +28,7 @@
                   <span>Name:</span>
                 </div>
                 <div class="col-10 text-right p-0">
-                  <input type="text" [(ngModel)]="employee.name" name="name" class="form-control" required>
+                  <input type="text" [(ngModel)]="employee.employeeName" name="name" class="form-control" required>
                   <div class="invalid-feedback">It´s obligatory!</div>
                 </div>
               </div>
@@ -38,11 +38,11 @@
                   <span>Contact Number:</span>
                 </div>
                 <div class="col-7 text-right p-0" *ngIf="!modeEdit">
-                  <span>{{ employee.cellphone }}</span>
+                  <span>{{ employee.employeePhone }}</span>
                 </div>
                 <div class="col-7 text-right p-0" *ngIf="modeEdit">
                   <number-format [format]="'phoneNumber'" (changeValue)="changePhoneNumber($event)"
-                    [value]="employee.cellphone" name="phoneNumber" class="p-0 h-auto" [required]="'required'">
+                    [value]="employee.employeePhone" name="phoneNumber" class="p-0 h-auto" [required]="'required'">
                   </number-format>
                   <div class="invalid-feedback">It should have a number</div>
                 </div>
@@ -62,12 +62,12 @@
                 </div>
 
               </div>
-              <div class="contact-item row" *ngIf="!modeEdit && employee.store">
+              <div class="contact-item row" *ngIf="!modeEdit && employee.storelId">
                 <div class="col-6 text-left p-0">
                   <span>Store:</span>
                 </div>
                 <div class="col-6 text-right p-0">
-                  <span>{{ employee.store.name }}</span>
+                  <span>{{ employee.storeName }}</span>
                 </div>
               </div>
             </div>
@@ -80,10 +80,10 @@
     </tc-card>
 
     <hr
-      *ngIf="(employee.employeeEmployeeTeamTeamOwner && employee.employeeEmployeeTeamTeamOwner.length > 0) || this.userService.modeEditAdmin">
+      *ngIf="(employee.teamMembers && employee.teamMembers.length > 0) || this.userService.modeEditAdmin">
 
     <div
-      *ngIf="(employee.employeeEmployeeTeamTeamOwner && employee.employeeEmployeeTeamTeamOwner.length > 0) || this.userService.modeEditAdmin">
+      *ngIf="(employee.teamMembers && employee.teamMembers.length > 0) || this.userService.modeEditAdmin">
       <div class="row pl-4 pr-4 mb-3" *ngIf="this.userService.modeEditAdmin">
         <div class="col-7 pl-0">
           Role
@@ -92,19 +92,19 @@
           Store
         </div>
         <div class="col-7 pl-0">
-          <select class="form-control rounded" [(ngModel)]="employee.role" name="role" *ngIf="roles" required>
+          <select class="form-control rounded" [(ngModel)]="employee.rolId" name="role" *ngIf="roles" required>
             <option [ngValue]="null" style="display:none;"> -- Select a role -- </option>
-            <option *ngFor="let role of roles" [value]="role.role1">{{role.role1}}</option>
+            <option *ngFor="let role of roles" [value]="role.id">{{role.value}}</option>
           </select>
         </div>
         <div class="col-5 pr-0 text-right">
-          <select class="form-control rounded" [(ngModel)]="employee.storeId" name="stores" *ngIf="stores">
+          <select class="form-control rounded" [(ngModel)]="employee.storelId" name="stores" *ngIf="stores">
             <option [ngValue]="null"> -- All -- </option>
             <option *ngFor="let store of stores" [value]="store.storeId">{{store.name}}</option>
           </select>
         </div>
       </div>
-      <div class="row pl-4 pr-4">
+      <!-- <div class="row pl-4 pr-4">
         <div class="col-12 pl-0">
           <h3 class="p-0">Team Members</h3>
         </div>
@@ -123,10 +123,10 @@
         <div class="col-4 pr-0 text-right" *ngIf="this.userService.modeEditAdmin">
           <button tc-button [tcShape]="4" (click)="addTeamMember()" class="t-4">+ Add</button>
         </div>
-      </div>
+      </div> -->
 
 
-      <div class="row pr-4 pl-4 mb-2" *ngFor="let member of employee.employeeEmployeeTeamTeamOwner; let i = index">
+      <!-- <div class="row pr-4 pl-4 mb-2" *ngFor="let member of employee.teamMembers; let i = index">
         <div class="col-2 pl-0">
           <div class="item-img">
             <img src="{{ member.teamMember.imageUrl }}" style="height: 30px" *ngIf="member.teamMember.imageUrl"
@@ -141,7 +141,7 @@
             <div class="aosp-ui-icon aosp-ui-delete"></div>
           </button>
         </div>
-      </div>
+      </div> -->
     </div>
     <hr>
 

@@ -8,11 +8,11 @@ import { Lead } from '../../../../models/crm/lead';
 import { LeadsService } from '../../../../services/leads/leads.service';
 
 @Component({
-  selector: 'app-home-detail',
-  templateUrl: './home-detail.component.html',
-  styleUrls: ['./home-detail.component.css']
+  selector: 'app-detail-home-dashboard',
+  templateUrl: './detail-home-dashboard.component.html',
+  styleUrls: ['./detail-home-dashboard.component.css']
 })
-export class HomeDetailComponent implements OnInit {
+export class DetailHomeDashboardComponent implements OnInit {
 
   home: Home;
   lead: Lead;
@@ -21,17 +21,15 @@ export class HomeDetailComponent implements OnInit {
     private productService: ProductService,
     private userService: UserService,
     private leadsService: LeadsService,
-    private _snackBar: MatSnackBar
-  ) {
+    private _snackBar: MatSnackBar)
+  {
     this.home = this.productService.selectedHome;
     this.productService.selectedHomeChanged.subscribe((home: Home) => {
       this.home = home;
-      console.log('CASA SELECCIONADA', this.home);
     });
   }
 
   ngOnInit() {
-
   }
 
   showModal(url: string, iframe: boolean) {
@@ -45,4 +43,5 @@ export class HomeDetailComponent implements OnInit {
   sendNotification(message: string) {
     this._snackBar.open(message);
   }
+
 }

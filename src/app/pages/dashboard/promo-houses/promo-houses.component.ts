@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, LeadsService } from '../../../services/service.index';
+import { AuthService, LeadsService, UserService } from '../../../services/service.index';
 import { Router } from '@angular/router';
 import { AppConfig } from '../../../app.config';
 import { ProductService } from '../../../services/Product/product.service';
 import { Product } from '../../../models/crm/Product';
+import { Home } from '../../../models/crm/home';
+
 
 
 @Component({
@@ -25,8 +27,9 @@ export class PromoHousesComponent implements OnInit {
     private leadService: LeadsService,
     private router: Router,
     public appConfig: AppConfig,
-    public _productService: ProductService
-
+    public _productService: ProductService,
+    public userService: UserService,
+    public productService: ProductService
   )
   {
     this.getProduct(this.currentPage);
@@ -36,7 +39,7 @@ export class PromoHousesComponent implements OnInit {
   ngOnInit() {
    
   }
-
+   
 
   getProduct(currentPage) {
 
@@ -59,6 +62,11 @@ export class PromoHousesComponent implements OnInit {
   changePageSize() {
     this.currentPage = 1;
     this.changePage(this.currentPage);
+  }
+
+  seeDetail(homeSelected: Home) {
+    this.userService.showHideRightMenu(this.appConfig.rightMenu.productDetail);
+    setTimeout(() => { this.productService.setSelectedHome(homeSelected); });
   }
 
 }

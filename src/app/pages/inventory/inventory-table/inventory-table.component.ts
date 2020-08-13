@@ -123,17 +123,17 @@ export class InventoryTableComponent implements OnInit {
   /* -- End Filter By Words -- */
 
   addStockHome() {
-    this.userService.showHideRightMenu(this.appConfig.rightMenu.productDetail);
+    this.userService.showHideRightMenu(this.appConfig.rightMenu.productInv);
     setTimeout(() => { this.productService.setSelectedHome(null); });
   }
 
   editHome(homeSelected: Home) {
-    this.userService.showHideRightMenu(this.appConfig.rightMenu.productDetail);
+    this.userService.showHideRightMenu(this.appConfig.rightMenu.productInv);
     setTimeout(() => { this.productService.setSelectedHome(homeSelected); });
   }
 
   seeDetail(homeSelected: Home) {
-    this.userService.showHideRightMenu(this.appConfig.rightMenu.productDetail);
+    this.userService.showHideRightMenu(this.appConfig.rightMenu.productInv);
     setTimeout(() => { this.productService.setSelectedHome(homeSelected); });
   }
 }

@@ -44,3 +44,9 @@
   color: #fff;
   font-size: 1.0625em;
 }
+
+.model {
+  cursor: pointer !important;
+  color: #66b3f3 !important;
+  font-weight:500;
+}

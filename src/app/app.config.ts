@@ -26,7 +26,8 @@ export class AppConfig {
     lot: 'Lot',
     manufacturer: 'Manufacturer',
     plant: 'Plant',
-    catalog: 'Catalog'
+    catalog: 'Catalog',
+    productInv: 'Product Inventory'
   };
 
   channelType = {
@@ -49,6 +50,12 @@ export class AppConfig {
   languages = {
     spanish: 'Spanish',
     english: 'English',
+  };
+
+  optionsType = {
+    no: null,
+    included: 'INC',
+    yes: 'YES'
   };
 
   leadBasicInformation = {

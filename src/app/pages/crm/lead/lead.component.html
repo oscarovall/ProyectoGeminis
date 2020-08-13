@@ -538,7 +538,7 @@ class.objectTypeId === appConfig.objectType.Lead ?
                     </div>
                   </ng-container>
 
-                  <div class="col-12 h-100 text-right mt-3" *ngIf="!hasLeadProductActive()">
+                  <div class="col-12 h-100 text-right mt-3">
                     <div *ngIf="class.disabled && !class.homeComparison">
                       <button (click)="class.disabled = !class.disabled" tc-button [afterIcon]="'icofont-pencil-alt-5'"
                         [view]="'success'" [outline]="true" class="rounded"></button>
@@ -712,7 +712,7 @@ class.objectTypeId === appConfig.objectType.Lead ?
 
                 <div class="col-12 col-xl-12 col-md-12 col-lg-12 p-0">
                   <div class="row">
-                    <div class="col-12 col-md-12 col-lg-4 col-xl-4 p-0">
+                    <div class="col-12 col-md-12 col-lg-4 col-xl-4 p-1">
 
                       <div class="titleText text-center">
                         {{homeToOrder.year}} {{homeToOrder.name}}
@@ -800,24 +800,27 @@ class.objectTypeId === appConfig.objectType.Lead ?
                       </div>
                     </div>
 
-                    <div class="col-12 col-md-12 col-lg-8 col-xl-8 pr-0">
+                    <div class="col-12 col-md-12 col-lg-8 col-xl-8 pr-1">
                       <div class="row">
                         <div class="col-12 p-0 title2 ">
                           <div class="homeDetails">Options</div>
                         </div>
                         <ng-container *ngIf="options">
-                          <div class="col-6 mb-2 p-0 d-flex justify-content-between" *ngFor="let option of options" >
-                            <div class="row p-0 w-100">
-                              <div class="col-4 p-0 homeDetails">{{option.name}}</div>
-                              <div class="col-4 r-0 homeDetails">
-                                <input type="text" (change)="changeOption(option)" placeholder="{{option.defaultPrice?'Sugg: ' + option.defaultPrice: ''}}"
-                                  class="w-100" />
+                          <div class="col-6 mb-2 p-0 d-flex justify-content-between" *ngFor="let option of options; let i= index;" >
+                            <div class="row p-0 w-100" [ngClass]="{'pl-2': i % 2 !== 0}">
+                              <div class="col-5 p-0 homeDetails my-auto">{{option.name}}</div>
+                              <div class="col-4 r-0 homeDetails my-auto">
+                                <input type="number" (change)="changeOption(option)" [(ngModel)]="option.price"
+                                  placeholder="{{option.defaultPrice?'Sugg: ' + option.defaultPrice: ''}}"
+                                  class="w-100" *ngIf="!homeToOrder.disabled"/>
+                                <div class="w-100" *ngIf="homeToOrder.disabled">{{option.price}}</div>
                               </div>
                               <div class="col-3 pr-0">
-                                <select class="w-100 animated fadeIn">
-                                  <option value="NO">No</option>
-                                  <option value="YES">Yes</option>
-                                  <option value="INC">Inc</option>
+                                <select class="w-100 animated fadeIn" [(ngModel)]="option.included"
+                                  (change)="changeOption(option)" required [disabled]="homeToOrder.disabled">
+                                  <option [value]=appConfig.optionsType.no selected>No</option>
+                                  <option [value]=appConfig.optionsType.yes>Yes</option>
+                                  <option [value]=appConfig.optionsType.included>Inc</option>
                                 </select>
                               </div>
                             </div>
@@ -828,7 +831,7 @@ class.objectTypeId === appConfig.objectType.Lead ?
                         </div>
                         <div class="col-12 p-0 d-flex justify-content-between">
                           <div class="homeDetails">Options Price</div>
-                          <div class="text-right homeDetails">{{homeToOrder.optionsPrice ? homeToOrder.optionsPrice : 0 | currency}}</div>
+                          <div class="text-right homeDetails animated fadeIn">{{homeToOrder.optionsPrice ? homeToOrder.optionsPrice : 0 | currency}}</div>
                         </div>
                       </div>
 
@@ -855,6 +858,21 @@ class.objectTypeId === appConfig.objectType.Lead ?
                     </div>
                   </div>
 
+                </div>
+
+                <div class="col-12 h-100 text-right mt-2 pr-1">
+                  <div *ngIf="homeToOrder.disabled">
+                    <button (click)="homeToOrder.disabled = !homeToOrder.disabled" tc-button
+                      [afterIcon]="'icofont-pencil-alt-5'" [view]="'success'" [outline]="true" class="rounded"></button>
+                  </div>
+                  <div *ngIf="!homeToOrder.disabled">
+                    <button (click)="homeToOrder.disabled = !homeToOrder.disabled" class="warningBtn mr-2">
+                      CANCEL
+                    </button>
+                    <button (click)="saveOptions()" class="mainBtn">
+                      SAVE
+                    </button>
+                  </div>
                 </div>
 
               </div>

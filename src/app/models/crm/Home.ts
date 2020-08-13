@@ -12,6 +12,7 @@ export class Home extends ProductInv {
   productInvId: number;
 
   optionsPrice: number = 0;
+  disabled = true;
 
   productStatus;
   manufacturer;

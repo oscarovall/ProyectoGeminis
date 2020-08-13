@@ -8,6 +8,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { DocUploadComponent } from '../../../../ui/components/file-uploader/doc-upload/doc-upload.component';
 import { EmployeeEmployeeTeam } from '../../../../models/EmployeeEmployeeTeam';
+import { UserAuthAosp } from '../../../../models/auth-aosp/user-auth-aosp';
 import { AuthService, CompanyService, UserService } from '../../../../services/service.index';
 import { Router } from '@angular/router';
 @Component({
@@ -19,7 +20,7 @@ export class ProfileComponent implements OnInit {
 
   @ViewChild('f', null) form: NgForm;
   // teamMembers: Array<Employee> = [];
-  employee: Employee;
+  employee: UserAuthAosp;
   modeEdit: Boolean = false;
   // saveEvent = new EventEmitter<boolean>();
   // cancelEvent = new EventEmitter<boolean>();
@@ -27,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
   // New User
   stores: Store[];
-  roles: Role[];
+  roles: HtmlSelectOption[];
   // New team members
   filteredOptions: Array<Employee>;
   selectedTeamMember: Employee;
@@ -52,12 +53,17 @@ export class ProfileComponent implements OnInit {
   getEmployee() {
     // this.employee = Object.assign({}, this.employeeData);
     if (this.userService.selectedUserAdmin) {
-      this.userService.getRoles().subscribe((roles: Role[]) => this.roles = roles);
+      this.userService.getRoles().subscribe((roles: Role[]) =>{
+        console.log(roles);
+         this.roles = this.getHtmlSelectOptionForRoles(roles);
+      });
       this.companyService.getStores().subscribe((stores: Store[]) => this.stores = stores);
-      this.employee = this.userService.selectedUserAdmin;
+      this.employee = this.cloneObject(this.userService.selectedUserAdmin);
+
       this.modeEdit = true;
     } else {
-      this.employee = this.authService.getUser();
+      // this.employee = this.authService.getUser();
+      this.employee = new UserAuthAosp();
     }
     console.log('this.employee', this.employee);
 
@@ -68,6 +74,32 @@ export class ProfileComponent implements OnInit {
     // this.employee.employeeEmployeeTeamTeamOwner.forEach(member => {
     //   this.teamMembers.push(member.teamMember);
     // });
+  }
+
+  cloneObject(selectedUserAdmin: UserAuthAosp): UserAuthAosp {
+    const selectedUserAdminAsString = JSON.stringify(this.userService.selectedUserAdmin);
+    const newObject = JSON.parse(selectedUserAdminAsString);
+    return newObject;
+  }
+
+  getHtmlSelectOptionForRoles(roles): HtmlSelectOption[] {
+    const result = this.getHtmlSelectOptionForArrayOfObjects(roles,'roleId','role1');
+    return result;
+  }
+
+  getHtmlSelectOptionForArrayOfObjects(arrayOfObjects: any[], fieldWithId: string, fieldWithValue: string): HtmlSelectOption[] {
+    const result: HtmlSelectOption[] = [];
+    if(arrayOfObjects != null
+      && arrayOfObjects.length > 0 ){
+        arrayOfObjects.forEach(arrayOfObject => {
+          result.push({
+            id: arrayOfObject[fieldWithId],
+            value: arrayOfObject[fieldWithValue]
+          });
+        });
+    }
+
+    return result;
   }
 
   ShowHideModeEdit() {
@@ -127,81 +159,107 @@ export class ProfileComponent implements OnInit {
   }
 
   addTeamMember() {
-    if (!this.employee.employeeEmployeeTeamTeamOwner) {
-      this.employee.employeeEmployeeTeamTeamOwner = [];
-    }
-    let exist = false;
-    this.employee.employeeEmployeeTeamTeamOwner.forEach((teamMember: EmployeeEmployeeTeam) => {
-      if (teamMember.teamMemberId === this.selectedTeamMember.employeeId) {
-        exist = true;
-      }
-    });
-    if (exist) {
-      this.sendNotification('Team member already exist');
-    } else {
-      const teamMember = new EmployeeEmployeeTeam();
-      if (this.employee.employeeId) {
-        teamMember.teamOwnerId = this.employee.employeeId;
-      }
-      teamMember.teamMemberId = this.selectedTeamMember.employeeId;
-      teamMember.teamMember = this.selectedTeamMember;
-      this.employee.employeeEmployeeTeamTeamOwner.push(teamMember);
-    }
+    // if (!this.employee.employeeEmployeeTeamTeamOwner) {
+    //   this.employee.employeeEmployeeTeamTeamOwner = [];
+    // }
+    // let exist = false;
+    // this.employee.employeeEmployeeTeamTeamOwner.forEach((teamMember: EmployeeEmployeeTeam) => {
+    //   if (teamMember.teamMemberId === this.selectedTeamMember.employeeId) {
+    //     exist = true;
+    //   }
+    // });
+    // if (exist) {
+    //   this.sendNotification('Team member already exist');
+    // } else {
+    //   const teamMember = new EmployeeEmployeeTeam();
+    //   if (this.employee.employeeId) {
+    //     teamMember.teamOwnerId = this.employee.employeeId;
+    //   }
+    //   teamMember.teamMemberId = this.selectedTeamMember.employeeId;
+    //   teamMember.teamMember = this.selectedTeamMember;
+    //   this.employee.employeeEmployeeTeamTeamOwner.push(teamMember);
+    // }
   }
 
   deleteTeamMember(teamMeber: EmployeeEmployeeTeam, index: number) {
-    this.employee.employeeEmployeeTeamTeamOwner.splice(index, 1);
+    // this.employee.employeeEmployeeTeamTeamOwner.splice(index, 1);
   }
 
   saveChanges() {
-    if (this.employee.cellphone) {
-      if (this.form.valid === false) {
-        this.wasValidated = true;
-      } else {
-        this.wasValidated = false;
-        // console.log('this.contact', this.employee);
-
-        this.employee.password = 'Aosp123456*';
-        this.employee.cellphone = '+573153410481';
-
-        let respAWS;
-        if (this.employee.employeeId) {
-          respAWS = true;
-        } else {
-          console.log('authService.signUp', this.employee);
-          respAWS = this.authService.signUp(this.employee);
-          console.log('respAWS', respAWS);
-        }
-
-        if (respAWS) {
-          if (this.employee.employeeId) {
-            console.log('Updating user', this.employee);
-            this.userService.updateEmployee(this.employee).subscribe(() => {
-              this.sendNotification('Employee updated');
-              this.terminateSave();
-            });
-          } else {
-            console.log('Creating user', this.employee);
-            this.userService.createEmployee(this.employee).subscribe((newEmployee: Employee) => {
-              this.filteredOptions.push(newEmployee);
-              this.sendNotification('Employee created');
-              this.terminateSave();
-            });
-          }
-        }
-        // this.updateLocalStorage();
-      }
-    } else {
-      this.wasValidated = true;
+    console.log('saveChanges');
+    if (this.employee.employeeId > 0) {
+      //edit
+      console.log('Edit',this.employee);
+      this.userService.EditUser(this.employee)
+      .subscribe(
+        result=>{
+          console.log('result', result);
+          this.cancelClick();
+          this.sendNotification('User Updated!');
+          this.userService.userCreatedOrUpdate.emit(false);
+      }, error=>{
+        console.error('error', error);
+      });
+    } else{
+      console.log('Create', this.employee);
+      this.userService.createUser(this.employee)
+      .subscribe(
+        result=>{
+          this.cancelClick();
+          this.sendNotification('User Created!');
+          this.userService.userCreatedOrUpdate.emit(true);
+      }, error=>{
+        console.error('error', error);
+      });
     }
+    // if (this.employee.cellphone) {
+    //   if (this.form.valid === false) {
+    //     this.wasValidated = true;
+    //   } else {
+    //     this.wasValidated = false;
+    //     // console.log('this.contact', this.employee);
+
+    //     this.employee.password = 'Aosp123456*';
+    //     this.employee.cellphone = '+573153410481';
+
+    //     let respAWS;
+    //     if (this.employee.employeeId) {
+    //       respAWS = true;
+    //     } else {
+    //       console.log('authService.signUp', this.employee);
+    //       respAWS = this.authService.signUp(this.employee);
+    //       console.log('respAWS', respAWS);
+    //     }
+
+    //     if (respAWS) {
+    //       if (this.employee.employeeId) {
+    //         console.log('Updating user', this.employee);
+    //         this.userService.updateEmployee(this.employee).subscribe(() => {
+    //           this.sendNotification('Employee updated');
+    //           this.terminateSave();
+    //         });
+    //       } else {
+    //         console.log('Creating user', this.employee);
+    //         this.userService.createEmployee(this.employee).subscribe((newEmployee: Employee) => {
+    //           this.filteredOptions.push(newEmployee);
+    //           this.sendNotification('Employee created');
+    //           this.terminateSave();
+    //         });
+    //       }
+    //     }
+    //     // this.updateLocalStorage();
+    //   }
+    // } else {
+    //   this.wasValidated = true;
+    // }
 
   }
 
   changePhoneNumber(event) {
     if (event) {
-      this.employee.cellphone = event;
+      this.employee.employeePhone = event;
     } else {
-      this.employee.cellphone = null;
+      this.employee.employeePhone = null;
       this.wasValidated = true;
     }
   }
@@ -226,7 +284,7 @@ export class ProfileComponent implements OnInit {
       if (result && result.ok) {
         const extention = result.fileName.split('.').pop();
         const URL = `https://aosp-userdata-test-virginia.s3.amazonaws.com/MHOT/${folder}/${name}.${extention}`;
-        this.employee.imageUrl = URL;
+        // this.employee.imageUrl = URL;
          // this.userService.updateEmployee(this.employee).subscribe( res => {
           // this.updateLocalStorage();
          // });
@@ -246,4 +304,10 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(['/auth/log-out']);
     }, 0);
    }
+}
+
+class HtmlSelectOption {
+  public id: number;
+  public value: string;
+
 }

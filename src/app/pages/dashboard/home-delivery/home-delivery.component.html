@@ -39,18 +39,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let led of leads;" class="animated fadeIn">
+        <tr *ngFor="let lead of leads;" class="animated fadeIn">
 
-          <td width="" class="remove_lines text-center"><a href="/lead/{{led.leadId}}"> {{led.mainCustomer.name}} {{led.mainCustomer.lastname}}</a></td>
-          <td width="" class="remove_lines text-center">{{led.employeeLead[0].employee.name}}</td>
-          <td width="" class="remove_lines text-center">{{led.employeeLead[1].employee.name}}</td>
-          <td width="" class="remove_lines text-center">{{led.leadProducts[0].productInv.manufacturer.shortName}}</td>
-          <td width="" class="remove_lines text-center">{{led.leadProducts[0].productInv.name}}</td>
-          <td width="" class="remove_lines text-center">{{led.leadProducts[0].productInv.hudNum}}</td>
-          <td width="" class="remove_lines text-center">{{led.leadAttributeValue[3].attributeValue}}</td>
-          <td width="" class="remove_lines text-center">{{led.leadAttributeValue[2].leadAttributeValue1 | date:'MM/dd/y'}}</td>
-          <td width="" class="remove_lines text-center">{{led.leadAttributeValue[5].attributeValue}}</td>
-          <td width="" class="remove_lines text-center">{{led.leadAttributeValue[4].leadAttributeValue1 | date:'MM/dd/y'}}</td>
+          <td width="" class="remove_lines text-center"><a href="/lead/{{lead.leadId}}"> {{lead.mainCustomer.name}} {{lead.mainCustomer.lastname}}</a></td>
+          <td width="" class="remove_lines text-center">{{lead.employeeLead[0].employee.name}}</td>
+          <td width="" class="remove_lines text-center">{{lead.employeeLead[1].employee.name}}</td>
+          <td width="" class="remove_lines text-center model" (click)="seeDetail(lead.leadProducts[0].productInv)">{{lead.leadProducts[0].productInv.manufacturer.shortName}}</td>
+          <td width="" class="remove_lines text-center model" (click)="seeDetail(lead.leadProducts[0].productInv)">{{lead.leadProducts[0].productInv.name}}</td>
+          <td width="" class="remove_lines text-center">{{lead.leadProducts[0].productInv.hudNum}}</td>
+          <td width="" class="remove_lines text-center">{{lead.leadAttributeValue[3].attributeValue}}</td>
+          <td width="" class="remove_lines text-center">{{lead.leadAttributeValue[2].leadAttributeValue1 | date:'MM/dd/y'}}</td>
+          <td width="" class="remove_lines text-center">{{lead.leadAttributeValue[5].attributeValue}}</td>
+          <td width="" class="remove_lines text-center">{{lead.leadAttributeValue[4].leadAttributeValue1 | date:'MM/dd/y'}}</td>
 
         </tr>
 

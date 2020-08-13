@@ -2,11 +2,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 
-
 //opciones
 import { LeadsService, UserService } from '../../../services/service.index';
 import { LeadStatus } from '../../../models/leadStatus';
 import { ProductInv } from '../../../models/crm/ProductInv';
+import { Lead } from '../../../models/crm/lead';
 
 
 @Component({
@@ -16,9 +16,10 @@ import { ProductInv } from '../../../models/crm/ProductInv';
 })
 export class RejectRsoComponent implements OnInit {
 
-
-  leadsStatus: LeadStatus[];
   product: ProductInv[] = [];
+  estadoSelected: any;
+  prueba: Lead;
+  pruebas: ProductInv;
 
   constructor(
     public dialogRef: MatDialogRef<RejectRsoComponent>,
@@ -27,16 +28,10 @@ export class RejectRsoComponent implements OnInit {
     public leadsService: LeadsService)
   {
 
-  
   }
 
   ngOnInit() {
-    this.leadsStatus = [];
-    this.leadsService.getLeadStatus().subscribe((leadsStatus: LeadStatus[]) => {
-      console.log('leadsStatus', leadsStatus);
-      this.leadsStatus = leadsStatus;
-    });
-
+  
     this.product = [];
     this.leadsService.productInvAvailable().subscribe(result => {
       console.log('Product Invent', result);
@@ -48,8 +43,18 @@ export class RejectRsoComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  saveButton() {
+  saveButtonChange() {
+    console.log(this.estadoSelected, 'selected');
 
+    console.log("leadId-->", this.data.vleadId)
+    console.log("vworkflowId-->", this.data.vworkflowId)
+
+    this.dialogRef.close(this.estadoSelected);
+
+    this.leadsService.ChangeHomeRso(this.data.vleadId, this.data.vworkflowId, this.estadoSelected)
+      .subscribe(resp => {
+        console.log(resp, 'Prueba de Approve');
+      })
   }
 
   closeButton() {

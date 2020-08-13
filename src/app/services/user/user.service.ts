@@ -4,6 +4,7 @@ import { AppConfig } from './../../app.config';
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Role } from '../../models/Role';
+import { UserAuthAosp } from '../../models/auth-aosp/user-auth-aosp';
 
 import { catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
@@ -35,14 +36,15 @@ export class UserService {
   public openRightMenuChange = new EventEmitter<boolean>();
 
   // Profile Admin
-  public selectedUserAdmin: Employee;
+  public selectedUserAdmin: UserAuthAosp;
   public modeEditAdmin = false;
-  public selectedUserAdminChanged: EventEmitter<Employee> = new EventEmitter<Employee>();
+  public selectedUserAdminChanged: EventEmitter<UserAuthAosp> = new EventEmitter<UserAuthAosp>();
 
   // Profile Rol
   public selectedRoleAdmin: Role;
   public selectedRoleAdminChanged: EventEmitter<Role> = new EventEmitter<Role>();
   public selectedRoleAdminSaved: EventEmitter<Role> = new EventEmitter<Role>();
+  public userCreatedOrUpdate: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   // Template
   public selectedTemplate: Template;
@@ -126,7 +128,7 @@ export class UserService {
   }
 
   showModalQualify() {
-   
+
     this.openModal = true;
     this.openModalQualifyChange.emit(this.openModal);
   }
@@ -142,7 +144,7 @@ export class UserService {
   ////////////////////////////////////////////
   //   USER MNGT
   ////////////////////////////////////////////
-  setSelectedUserAdmin(employee: Employee) {
+  setSelectedUserAdmin(employee: UserAuthAosp) {
     this.selectedUserAdmin = employee;
     if (employee) {
       this.modeEditAdmin = true;
@@ -159,6 +161,10 @@ export class UserService {
 
   saveDoneRole(role: Role) {
     this.selectedRoleAdminSaved.emit(this.selectedRoleAdmin);
+  }
+
+  saveDoneUserCreatedOrUpdate(create: boolean) {
+    this.userCreatedOrUpdate.emit(create);
   }
 
   setSelectedTemplate(template: Template) {
@@ -202,6 +208,85 @@ export class UserService {
           Swal.fire({
             icon: 'error',
             title: 'Error when getting all employee - pagination',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  getUsers(page: number, pageSize: number) {
+
+    let urlBase = `${environment.api}Users/GetUsers?`;
+
+    if (page != null) {
+      urlBase = `${urlBase}Page=${page}&`;
+    }
+
+    if (pageSize != null) {
+      urlBase = `${urlBase}PageSize=${pageSize}`;
+    }
+    return this.http.get<any>(urlBase)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when getting all user - pagination',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  createUser(user: UserAuthAosp) {
+    const urlBase = `${environment.api}Users/AddUser`;
+
+    const requestBody = {
+      name: user.employeeName,
+      contactNumber: user.employeePhone,
+      email: user.email,
+      roleId: user.rolId,
+      storeId: user.storelId,
+      employeeIds: [
+        0
+      ]
+    };
+
+    return this.http.post<any>(urlBase, requestBody)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when creating user',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  EditUser(user: UserAuthAosp) {
+    const urlBase = `${environment.api}Users/EditUser`;
+
+    const requestBody = {
+      employeeId: user.employeeId,
+      name: user.employeeName,
+      contactNumber: user.employeePhone,
+      email: user.email,
+      roleId: user.rolId,
+      storeId: user.storelId,
+      employeeIds: [
+        0
+      ]
+    }
+
+    return this.http.put<any>(urlBase, requestBody)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when updating user',
             text: err.message
           });
           return [];

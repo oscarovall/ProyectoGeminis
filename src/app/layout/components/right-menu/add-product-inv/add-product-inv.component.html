@@ -3,75 +3,126 @@
     <mat-tab-group mat-stretch-tabs #tasksgroup class="mat-elevation-z4">
       <mat-tab label="Home Feautures">
         <div class="container p-0">
-          <ng-container *ngIf="home">
-            <div class="row">
-              <div class="col-12 col-md-6 col-lg-6 col-xl-12 result-homes">
-                <div class="position-relative mx-3 mb-0">
+          
 
-                  <img [src]="home.iconUrl" alt="home.name" class="w-100 h-100 rounded" />
+            <div class="row p-3">
 
-                  <div class="bg-bottom bg-bottom-homes"></div>
-                  <div class="title-result-homes pb-3 px-2">
-                    <div class="row pl-2 pr-3">
-                      <div class="col">
-                        <div class="title-bottom">{{home.name}}</div>
-                      </div>
+              <div class="col-12 mb-3 p-0">
+                <div class="text-left p-0">
+                  <p class="title2"> Location </p>                  
+                </div>
+                <div class="text-left p-0">
+                  <select class="custom-select rounded" placeholder="select" [(ngModel)]="locationId" name="location" required>                    
+                    <option [ngValue]="data.location" *ngFor="let data of locations">
+                      {{data.location}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-12 mb-3 p-0">
+                <div class="text-left p-0">
+                  <p class="title2"> Catalog Homes </p>                  
+                </div>
+                <div class="text-left p-0">
+                  <select class="custom-select rounded" placeholder="select" [(ngModel)]="homeSelected" name="homeSelected" required>                    
+                    <option [ngValue]="home.productId" *ngFor="let home of catalogHomes">{{home.manufacturer.shortName}} / {{home.name}} / {{home.nameId}} / {{home.year}}</option>
+                  </select>
+                </div>
+              </div>    
+              
+              <div class="col-12 mb-3 p-0">
+                <div class="text-left p-0">
+                  <p class="title2"> Serial # </p>                  
+                </div>
+                <div class="text-left p-0">
+                  <input class="w-100 form-control" type="text" [(ngModel)]="serial" name="serial" [maxLength]="'200'" autocomplete="off"/>
+                </div>
+              </div>
+             
+              <div class="col-12 mb-3 p-0">
+                <div class="text-left p-0">
+                  <p class="title2"> HUD # </p>                  
+                </div>
+                <div class="text-left p-0">
+                  <input class="w-100 form-control" type="text" [(ngModel)]="hud" name="hud" [maxLength]="'200'" autocomplete="off"/>
+                </div>
+              </div>
+
+             
+
+              
+            
+          </div>
+
+          <ng-container *ngIf="!home">
+
+            <a class="col-12 col-md-6 col-lg-6 col-xl-3 result-homes">
+              <div class="position-relative mt-3 mx-3 mb-0">
+  
+                <img [src]="home.iconUrl" alt="home.name" style="width: auto; height: 257.3px; border-radius: 5%;" class="w-100 h-100" />
+  
+                <div class="bg-bottom bg-bottom-homes"></div>
+                <div class="title-result-homes pb-3 px-2">
+                  <div class="row pl-2 pr-3">
+                    <div class="col">
+                      <div class="title-bottom">{{home.name}}</div>
                     </div>
-                    <hr>
-                    <div class="row">
+                  </div>
+                  <hr>
+                  <div class="row">
 
-                      <div class="col-4 home-result-feature text-left pr-0">
-                        <div class="row">
-                          <div class="col-6 p-1">
-                            <div class="home-sqm-icon m-auto" style="height: 30px;"></div>
-                          </div>
-                          <div class="col-6 p-0">
-                            <div class="" style="font-size: 12px;">Sq ft</div>
-                            <div class="" style="font-size: 14px;">{{home.sqft}}</div>
-                          </div>
+                    <div class="col-4 home-result-feature text-left pr-0">
+                      <div class="row">
+                        <div class="col-6 p-1">
+                          <div class="home-sqm-icon m-auto" style="height: 30px;"></div>
                         </div>
-                      </div>
-
-                      <div class="col-4 home-result-feature text-left pr-0 pl-3">
-                        <div class="row">
-                          <div class="col-6 p-1">
-                            <div class="home-beds-icon m-auto" style="height: 30px;"></div>
-                          </div>
-                          <div class="col-6">
-                            <div class="" style="font-size: 12px;">Bed</div>
-                            <div class="" style="font-size: 14px;">{{home.bed}}</div>
-                          </div>
+                        <div class="col-6 p-0">
+                          <div class="" style="font-size: 12px;">Sq ft</div>
+                          <div class="" style="font-size: 14px;">{{home.sqft}}</div>
                         </div>
-                      </div>
-
-                      <div class="col-4 home-result-feature text-left pr-0 pl-3">
-                        <div class="row">
-                          <div class="col-6 p-1">
-                            <div class="home-baths-icon m-auto" style="height: 30px;"></div>
-                          </div>
-                          <div class="col-6 p-0">
-                            <div class="" style="font-size: 12px;">Bath</div>
-                            <div class="" style="font-size: 14px;">{{home.bath}}</div>
-                          </div>
-                        </div>
-                      </div>
+                      </div>                    
                     </div>
+
+                    <div class="col-4 home-result-feature text-left pr-0 pl-3">
+                      <div class="row">
+                        <div class="col-6 p-1">
+                          <div class="home-beds-icon m-auto" style="height: 30px;"></div>
+                        </div>
+                        <div class="col-6">
+                          <div class="" style="font-size: 12px;">Bed</div>
+                          <div class="" style="font-size: 14px;">{{home.bed}}</div>
+                        </div>
+                      </div>                    
+                    </div>
+
+                    <div class="col-4 home-result-feature text-left pr-0 pl-3">
+                      <div class="row">
+                        <div class="col-6 p-1">
+                          <div class="home-baths-icon m-auto" style="height: 30px;"></div>
+                        </div>
+                        <div class="col-6 p-0">
+                          <div class="" style="font-size: 12px;">Bath</div>
+                          <div class="" style="font-size: 14px;">{{home.bath}}</div>
+                        </div>
+                      </div>                    
+                    </div>                   
                   </div>
                 </div>
               </div>
-
-              <div class="p-3 w-100 row m-0">
-                <div class="col-6 w-100" *ngIf="home._3dTourUrl && true">
-                  <button class="mainBtn w-100" (click)="showModal(home._3dTourUrl, true)">
-                    <div class="d-flex">VIRTUAL TOUR</div>
-                  </button>
-                </div>
-                <div class="col-6 w-100" *ngIf="home.floorplanUrl && true">
-                  <button class="mainBtn w-100" (click)="showModal(home.floorplanUrl, false)">
-                    <div class="d-flex">FLOORPLAN</div>
-                  </button>
-                </div>
+            </a>
+  
+            <div class="p-3 w-100 row m-0">
+              <div class="col-6 w-100">
+                <button class="mainBtn w-100" (click)="showModal(home._3dTourUrl, true)">
+                  <div class="d-flex">VIRTUAL TOUR</div>
+                </button>              
               </div>
+              <div class="col-6 w-100">
+                <button class="mainBtn w-100" (click)="showModal(home.floorplanUrl, false)">  
+                  <div class="d-flex">FLOORPLAN</div>
+                </button>              
+              </div>        
             </div>
           </ng-container>
 
@@ -80,7 +131,7 @@
             <table style="border: transparent" class="table table-bordered table-striped animated fadeIn b-0 mb-0">
               <thead>
                 <tr>
-                  <td scope="col" class="remove_all_lines text-left text-nowrap title2">Home Details</td>
+                  <td scope="col" class="remove_all_lines text-left text-nowrap" style="font-size:16px;color:#eae5eb">Home Details</td>
                 </tr>
               </thead>
               <tbody>
@@ -175,14 +226,14 @@
             </table>
           </div>
 
-          <!--<hr *ngIf="home && home.addOnsInv" style="width: 90% !important">-->
+          <hr *ngIf="home && home.addOnsInv" style="width: 90% !important">
 
            <!-- AddOns -->
-           <!--<div class="col-12" *ngIf="home && home.addOnsInv">
+           <div class="col-12" *ngIf="home && home.addOnsInv">
             <table style="border: transparent" class="table table-bordered table-striped animated fadeIn b-0 mb-0">
               <thead>
                 <tr>
-                  <td scope="col" class="remove_all_lines text-left text-nowrap title2">AddOns</td>
+                  <td scope="col" class="remove_all_lines text-left text-nowrap" style="font-size:16px;color:#eae5eb">AddOns</td>
                 </tr>
               </thead>
               <tbody>
@@ -193,29 +244,41 @@
     
               </tbody>
             </table>
-          </div>-->
+          </div>
           
-          <!--<hr style="width: 90% !important">--> 
+          <hr style="width: 90% !important"> 
   
           <!-- Price -->
           <div class="col-12" *ngIf="home">
             <table style="border: transparent" class="table table-bordered table-striped animated fadeIn b-0 mb-0">
               <thead>
                 <tr>
-                  <td scope="col" class="remove_all_lines text-left text-nowrap title2" >Princing</td>
+                  <td scope="col" class="remove_all_lines text-left text-nowrap" style="font-size:16px;color:#eae5eb">Princing</td>
                 </tr>
               </thead>
               <tbody>
                 <tr class="animated fadeIn">
     
-                  <td width="" class="remove_all_lines text-left py-1">Options Price:</td>
-                  <td width="" class="remove_all_lines text-left py-1">{{home.optionsPrice ? home.optionsPrice : 0 | currency}}</td>
+                  <td width="" class="remove_all_lines text-left py-1">MSRP Price:</td>
+                  <td width="" class="remove_all_lines text-left py-1">{{home.price | currency}}</td>
                 </tr>
     
                 <tr class="animated fadeIn">
     
-                  <td width="" class="remove_all_lines text-left py-1">Sales Price</td>
-                  <td width="" class="remove_all_lines text-left py-1">{{home.price | currency}}</td>
+                  <td width="" class="remove_all_lines text-left py-1">TTL Fees:</td>
+                  <td width="" class="remove_all_lines text-left py-1">$ 0</td>
+                </tr>
+    
+                <tr class="animated fadeIn">
+    
+                  <td width="" class="remove_all_lines text-left py-1">Escrow Tax:</td>
+                  <td width="" class="remove_all_lines text-left py-1">$ 0</td>
+                </tr>
+    
+                <tr class="animated fadeIn">
+    
+                  <td width="" class="remove_all_lines text-left py-1">Escrow Insurance:</td>
+                  <td width="" class="remove_all_lines text-left py-1">$ 0</td>
                 </tr>
         
               </tbody>
@@ -230,8 +293,8 @@
               <tbody>                    
                 <tr class="animated fadeIn">
     
-                  <td width="" class="remove_all_lines text-left text-nowrap title2 font">Home Price:</td>
-                  <td width="" class="remove_all_lines text-left text-nowrap title2 font">{{home.price+(home.optionsPrice?home.optionsPrice:0) | currency}}</td>
+                  <td width="" class="remove_all_lines text-left" style="vertical-align: middle;">Total Price:</td>
+                  <td width="" class="remove_all_lines text-center" style="font-size: 28px;">{{home.price | currency}}</td>
                 </tr>
     
               </tbody>
@@ -242,8 +305,8 @@
           <div class="p-3 w-100 row m-0 mb-3">
             
             <div class="col-6 w-100 m-auto">
-              <button class="warningBtn w-100" (click)="orderHomes()"> 
-                <div class="d-flex">ORDER HOME</div>
+              <button class="warningBtn w-100" (click)="save()"> 
+                <div class="d-flex">Save</div>
               </button>              
             </div>        
           </div>

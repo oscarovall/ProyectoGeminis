@@ -5,6 +5,13 @@ import { ChangeHomeRsoComponent } from '../../../layout/components/change-home-r
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { RejectRsoComponent } from '../../../layout/components/reject-rso/reject-rso.component';
+import { ProductInv } from '../../../models/crm/ProductInv';
+import { Home } from '../../../models/crm/home';
+import { UserService } from '../../../services/service.index';
+import { AppConfig } from '../../../app.config';
+import { ProductService } from '../../../services/Product/product.service';
+import { Product } from '../../../models/crm/Product';
+import { Lead } from '../../../models/crm/lead';
 
 
 
@@ -19,9 +26,20 @@ export class PendingRsoComponent implements OnInit {
   totalPages: number;
   pageSize: number = 5;
   currentPage: number = 1;
+  product: ProductInv[] = [];
+  inventory: Product[] = [];
+  estados: Product[] = [];
+  cargando: boolean = true;
+  selectedLead: Lead; 
+
   constructor(
     private leadsService: LeadsService, public dialog: MatDialog,
-    public modalDialog: MatDialog
+    public modalDialog: MatDialog,
+    public userService: UserService,
+    public appConfig: AppConfig,
+    public productService: ProductService
+    
+
   ) {
     this.getPendingRso(this.currentPage);
   }
@@ -47,8 +65,7 @@ export class PendingRsoComponent implements OnInit {
     this.changePage(this.currentPage);
   }
 
-  approve() {
-
+  approve(leadId: number, workflowId: number, productInvId: number) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You are about to approve this RSO",
@@ -58,7 +75,12 @@ export class PendingRsoComponent implements OnInit {
       confirmButtonColor: '#6ca100',
       confirmButtonText: 'Approve'
     }).then((result) => {
-      if (result.value) { 
+      if (result.value) {
+        this.leadsService.approveRso(leadId, workflowId, productInvId)
+          .subscribe(resp => {
+            console.log(resp, 'Prueba de Approve'); 
+        })
+
         Swal.fire(
           'Approved!',
           'Your choice has been registered. Look for the home at the respective Customer.',
@@ -69,31 +91,34 @@ export class PendingRsoComponent implements OnInit {
 
   }
 
-  reject() {
-
+  reject(leadId: number, workflowId: number, productInvId: number, rsoRejectedReason: string) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '368px';
     dialogConfig.scrollStrategy = new NoopScrollStrategy();
+    //Se obtiene la data de la función y se envia al componente del modal.
+    dialogConfig.data = { vleadId: leadId, vworkflowId: workflowId, vproductInvId: productInvId, vrsoRejectedReason: rsoRejectedReason }
 
     const dialogRef = this.dialog.open(ChangeHomeRsoComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(comment => {
-      console.log('The dialog was closed', comment);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
 
     });
 
   }
 
-  changeHome() {
+  changeHome(leadId: number, workflowId: number) {
 
-    const modalConfig = new MatDialogConfig();
-    modalConfig.width = '400px';
-    modalConfig.scrollStrategy = new NoopScrollStrategy();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '400px';
+    dialogConfig.scrollStrategy = new NoopScrollStrategy();
+    dialogConfig.data = { vleadId: leadId, vworkflowId: workflowId};
 
-    const modalRef = this.modalDialog.open(RejectRsoComponent, modalConfig);
-    modalRef.afterClosed().subscribe(result => {
-      this.closeModalStep(result);
-      console.log('The dialog was closed', result);
-    });
+    const modalRef = this.modalDialog.open(RejectRsoComponent, dialogConfig);
+
+    modalRef.afterClosed().subscribe(result => { 
+  
+     });
+
   }
 
 
@@ -101,4 +126,10 @@ export class PendingRsoComponent implements OnInit {
     console.log('The step dialog was closed: ', result);
   
   }
+   
+  seeDetail(homeSelected: Home) {
+    this.userService.showHideRightMenu(this.appConfig.rightMenu.productDetail);
+    setTimeout(() => { this.productService.setSelectedHome(homeSelected); });
+  }
+
 }

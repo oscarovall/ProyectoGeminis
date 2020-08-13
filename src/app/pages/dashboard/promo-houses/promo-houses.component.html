@@ -48,8 +48,8 @@
         <tr *ngFor="let product of promoHome;" class="animated fadeIn">
 
           <td width="" class="remove_lines text-center">{{product.productLot?.lot.storage.store.name}} - {{product.productLot?.lot.storage.name}} {{product.productLot?.lot.lotNameId}}</td>
-          <td width="" class="remove_lines text-center">{{product.manufacturer.shortName}}</td>
-          <td width="" class="remove_lines text-center">{{product.name}}</td>
+          <td width="" class="remove_lines text-center model" (click)="seeDetail(product)">{{product.manufacturer.shortName}}</td>
+          <td width="" class="remove_lines text-center model" (click)="seeDetail(product)">{{product.name}}</td>
           <td width="" class="remove_lines text-center">{{product.serialNum}}</td>
           <td width="" class="remove_lines text-center">{{product.hudNum}}</td>
           <td width="" class="remove_lines text-center">{{product.boxLong}}X{{product.boxWide}}</td>

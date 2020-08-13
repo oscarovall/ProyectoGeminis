@@ -47,6 +47,9 @@ import { CreatePlantComponent } from './components/right-menu/create-plant/creat
 import { CreateCatalogComponent } from './components/right-menu/create-catalog/create-catalog.component';
 import { ChangeHomeRsoComponent } from './components/change-home-rso/change-home-rso.component';
 import { RejectRsoComponent } from './components/reject-rso/reject-rso.component';
+import { AddProductInvComponent } from './components/right-menu/add-product-inv/add-product-inv.component';
+import { DetailHomeDashboardComponent } from './components/right-menu/detail-home-dashboard/detail-home-dashboard.component';
+
 
 @NgModule({
   imports: [
@@ -98,6 +101,9 @@ import { RejectRsoComponent } from './components/reject-rso/reject-rso.component
     ChangeHomeRsoComponent,
     RejectRsoComponent,
     CreateCatalogComponent,
+    AddProductInvComponent,
+    DetailHomeDashboardComponent,
+    DetailHomeDashboardComponent
   ],
   entryComponents: [
     CloseTaskDialogComponent,
