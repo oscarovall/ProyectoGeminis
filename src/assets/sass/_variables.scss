@@ -2,7 +2,8 @@
 
 $background: var(--foreground-default);
 
-$default-color: #fff;
+$default-color: var(--color-default-font);
+$href-color: var(--color-href-font);
 $main-ff: Roboto, sans-serif;
 $second-ff: Roboto, sans-serif;
 $main-fs: 14px;
@@ -14,6 +15,7 @@ $shape: 0;
 
 //Titles and Fonts
 $color-main-font: var(--color-main-font);
+$color-h3: var(--color-h3);
 
 //Table
 $background-table: var(--foreground-table);
@@ -34,9 +36,32 @@ $subtitleWidget:var(--subtitleWidget);
 $numberWidget: var(--numberWidget);
 $boxShadowWidget: var(--boxShadowWidget);
 
-//Filtros
+//Filters
 $custom-select: var(--custom-select);
 $font-filtros: var(--font-filtros);
+$events-calendar-day: var(--events-calendar-day);
+
+//a
+$text-a: var(--text-a);
+
+//Pagination
+$pag-bg-num: var(--pag-bg-num);
+$pag-bg-arrows: var(--pag-bg-arrows);
+$pag-bg-selected: var(--pag-bg-selected);
+$pag-bg-hover: var(--pag-bg-hover);
+$pag-color-num: var(--pag-color-num);
+$pag-color-selected: var(--pag-color-selected);
+$pag-color-arrows: var(--pag-color-arrows);
+$pag-color-hover: var(--pag-color-hover);
+
+//Right Menu
+$right-menu-bg: var(--right-menu-bg);
+$right-menu-color: var(--right-menu-color);
+
+//Textbox
+$input-color: var(--input-color);
+$input-bg: var(--input-bg);
+$input-border: var(--input-border);
 
 //Sidebar
 $sidebar: none;
@@ -59,6 +84,35 @@ $label-center: var(--label-center);
 
 //Loading
 $alert-warning: var(--alert-warning);
+
+//Total Gross
+$bg-item-dashboard: var(--bg-item-dashboard);
+
+//Calendar
+$fondo-dia: var(--fondo-dia);
+$border-left-calendar: var(--border-left-calendar);
+$fondo-dia-actual: var(--fondo-dia-actual);
+$fondo-dia-tittle: var(--fondo-dia-tittle);
+$font-dia-title: var(--font-dia-title);
+$border-left-color: var(--border-left-color);
+$fond-hover: var(--fond-hover);
+
+//panels
+$panels-lead: var(--panels-lead);
+
+//Icons
+$icons-select: var(--icons-select);
+$icons-down: var(--icons-down);
+
+//circle-step
+$circle-step: var(--circle-step);
+
+//Input
+$input-search-admin: var(--input-search-admin);
+
+//calendar
+$border-Calendar-color: var(--border-Calendar-color);
+$font-day-color: var(--font-day-color);
 
 //Media
 $max543 : only screen and (max-width: 543px);

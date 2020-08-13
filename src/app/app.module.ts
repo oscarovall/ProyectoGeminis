@@ -22,20 +22,13 @@ import { PagesModule } from './pages/pages.module';
 import { LayoutModule } from './layout/layout.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { LoginComponent } from './login/login/login.component';
-import { LogoutComponent } from './logout/logout/logout.component';
+import { AuthAospModule } from './auth-aosp/auth-aosp.module';
 // import { APP_ROUTES } from './app.routes';
 import { ServiceModule } from './services/service.module';
-import { NotEnoughRightsComponent } from './not-enough-rights/not-enough-rights/not-enough-rights.component';
-
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    LogoutComponent,
-    NotEnoughRightsComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +48,7 @@ import { NotEnoughRightsComponent } from './not-enough-rights/not-enough-rights/
       settings: SettingsReducer
     }),
     LayoutModule,
+    AuthAospModule,
     UIModule,
     PagesModule,
     RoutingModule,

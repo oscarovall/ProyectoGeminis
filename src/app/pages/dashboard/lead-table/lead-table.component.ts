@@ -98,29 +98,29 @@ export class LeadTableComponent implements OnInit {
     setTimeout(() => { this.cService.setSelectedCustomer(selectedLead.mainCustomer); });
   }
 
-  pipeStatus(status: string) {
-    if (status === this.appConfig.leadStatus.active) {
-      return 'info';
-    } if (status === this.appConfig.leadStatus.closed) {
-      return 'success';
-    } if (status === this.appConfig.leadStatus.delivery) {
-      return 'success';
-    } if (status === this.appConfig.leadStatus.lost) {
-      return 'error';
-    } if (status === this.appConfig.leadStatus.potencial) {
-      return 'info';
-    } if (status === this.appConfig.leadStatus.pre) {
-      return 'warning';
-    } if (status === this.appConfig.leadStatus.qualified) {
-      return 'info';
-    } if (status === this.appConfig.leadStatus.rejected) {
-      return 'error';
-    } if (status === this.appConfig.leadStatus.stalled) {
-      return 'error';
-    } else {
-      return 'info';
-    }
-  }
+  // pipeStatus(status: string) {
+  //   if (status === this.appConfig.leadStatus.active) {
+  //     return 'info';
+  //   } if (status === this.appConfig.leadStatus.closed) {
+  //     return 'success';
+  //   } if (status === this.appConfig.leadStatus.delivery) {
+  //     return 'success';
+  //   } if (status === this.appConfig.leadStatus.lost) {
+  //     return 'error';
+  //   } if (status === this.appConfig.leadStatus.potencial) {
+  //     return 'info';
+  //   } if (status === this.appConfig.leadStatus.pre) {
+  //     return 'warning';
+  //   } if (status === this.appConfig.leadStatus.qualified) {
+  //     return 'info';
+  //   } if (status === this.appConfig.leadStatus.rejected) {
+  //     return 'error';
+  //   } if (status === this.appConfig.leadStatus.stalled) {
+  //     return 'error';
+  //   } else {
+  //     return 'info';
+  //   }
+  // }
 
   sendNewMessage(selectedLead: Lead) {
     this.usrService.showHideRightMenu(this.config.rightMenu.sendMessage);

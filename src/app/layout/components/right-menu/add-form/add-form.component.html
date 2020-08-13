@@ -54,7 +54,7 @@
               <div class="ml-1 tc-icon-wrap aosp-ui-hints" data-toggle="tooltip" data-placement="right"></div>
             </div>
 
-            <select class="custom-select rounded" placeholder="select" [(ngModel)]="selectedDocument.docCategoryId"
+            <select class="form-control rounded" placeholder="select" [(ngModel)]="selectedDocument.docCategoryId"
                     name="docCategoryId" required>
               <option [ngValue]="null" style="display:none;"> Select Category </option>
               <option [ngValue]="docCategory.docCategoryId" *ngFor="let docCategory of getAllDocCategory">
@@ -126,7 +126,7 @@
             <!--select ATTRIBUTE-->
             <div class="col-10 form-group">
 
-              <select class="custom-select rounded" placeholder="select"
+              <select class="form-control rounded" placeholder="select"
                       [(ngModel)]="selectedDocument.cellDocumentAttributeType[in].attributeTypeId[i]"
                       name="attributeTypeId{{in}}{{i}}" id="attributeTypeId{{in}}{{i}}" required>
                 <optgroup *ngFor="let class of (getAllAttributeType | attTypeGroup)" label="{{class.name}}">

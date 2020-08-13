@@ -5,6 +5,14 @@
     background-color: #48640e !important;
 }
 
+.changeHome {
+  background-color: #0b89ee !important;
+}
+
+  .changeHome:hover {
+    background-color: #0d5fa1 !important;
+  }
+
 .reject {
     background-color: #bd2536 !important;
 }
@@ -14,4 +22,25 @@
 
 .borderTittle-table {
   border-bottom:2px solid #68b7f6 !important;
+}
+
+.swal2-title {
+  position: relative;
+  max-width: 100%;
+  margin: 0 0 .4em;
+  padding: 0;
+  color:#0c1d55 !important;
+  font-size: 1.875em;
+  font-weight: 600;
+  text-align: center;
+  text-transform: none;
+  word-wrap: break-word;
+}
+
+.swal2-styled.swal2-confirm {
+  border: 0;
+  border-radius: .25em;
+  background-color:#6ca100 !important;
+  color: #fff;
+  font-size: 1.0625em;
 }

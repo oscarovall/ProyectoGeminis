@@ -13,9 +13,10 @@
 }
 
 .numberWidget {
-  color:#5aaef3;
+  color:#5aaef3 !important;
+  font-size: 40px;
 }
- 
+
 
 .fa.fa-spinner.fa-spin.fa-3x {
   color: #0d5fa1 !important;

@@ -23,7 +23,6 @@
         <th scope="col" class="text-center p-3 date">Start</th>
         <th scope="col" class="text-center p-3 date">Due</th>
         <th scope="col" class="text-center p-3 date"></th>
-        <th scope="col" class="text-center p-3 date"></th>
       </tr>
     </thead>
     <tbody class="rounded square scrollbar-dusty-grass square thin">
@@ -46,7 +45,6 @@
           <p *ngIf="!task.due" class="m-0 task-description">{{task.endDate |date:'h:mm a'}}</p>
           <p *ngIf="task.due" class="m-0 task-description due-label">DUE TASK</p>
         </td>
-        <td scope="col" class="remove_lines text-center p-3 date"></td>
         <td scope="col" class="remove_lines text-center p-3 date">
           <div class="d-flex text-center">
             <!-- <button *ngIf="task.due" tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="editOnRightMenu(task)">

@@ -9,7 +9,7 @@
   </div>
 
   <div class="col-4 col-md-3 text-right pr-0">
-    <select class="custom-select rounded" [(ngModel)]="selectedStatus" (change)="changeStatus()" name="selectedStatus"
+    <select class="form-control rounded" [(ngModel)]="selectedStatus" (change)="changeStatus()" name="selectedStatus"
       placeholder="Select a Status" required>
       <option [ngValue]="null" style="display:none;">Select a Pre-lead Status </option>
       <option [ngValue]="-1"> All </option>
@@ -50,17 +50,17 @@
       <tbody>
         <tr *ngFor="let customer of customers" class="animated fadeIn">
 
-          <td width="" class="remove_lines text-left">
-            <a class="text-title">{{customer.name}} {{customer.lastname}}</a>
+          <td width="" class="remove_lines text-center">
+        {{customer.name}} {{customer.lastname}}
           </td>
           <td width="" class="remove_lines text-center">
-            <a class="text-title">{{ customer.mobileNum | phoneNumber}}</a>
+            {{ customer.mobileNum | phoneNumber}}
         </td>
-        <td width="" class="remove_lines text-left">
-          <a class="text-title">{{ customer.email }}</a>
+        <td width="" class="remove_lines text-center">
+          {{ customer.email }}
       </td>
           <td width="" class="remove_lines text-center">
-              <a class="text-title">{{ customer.employee.name }}</a>
+               {{ customer.employee.name }}
           </td>
           <td width="" class="remove_lines text-center">{{customer.creationDate | date:'MM/dd/y'}}</td>
           <td width="" class="remove_lines text-center">{{customer.lastContactDate | date:'MM/dd/y'}}</td>
@@ -91,7 +91,7 @@
   <div class="d-flex justify-content-between mt-3">
     <ngbd-pagination-advanced [totalItems]='totalPages' [page]="currentPage" (pageChanged)="changePage($event)"></ngbd-pagination-advanced>
 
-    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (change)="changePageSize()">
+    <select class="form-control" style="width: auto" [(ngModel)]="pageSize" (change)="changePageSize()">
       <option [ngValue]="5">5 items per page</option>
       <option [ngValue]="10">10 items per page</option>
       <option [ngValue]="50">50 items per page</option>

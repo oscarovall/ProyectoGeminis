@@ -37,7 +37,7 @@ $_types: (
   background: accent-palette(400);
 	border-radius: 5px;
 	font-size: .7rem;
-  color: #fff;
+  color: #fff !important;
 	padding: ($module-rem / 2) ($module-rem * 2);
 
   &.small {

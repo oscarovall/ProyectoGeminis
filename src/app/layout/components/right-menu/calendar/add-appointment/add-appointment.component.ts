@@ -72,6 +72,24 @@ export class AddAppointmentComponent implements OnInit, OnChanges {
     }
   }
 
+  validaDate(event) {
+     if (event > this.addTask.endDate) {
+      this.addTask.startDate = event;
+      this.addTask.endDate = null;
+    } else {
+      this.addTask.startDate = event;
+    } 
+  }
+
+  validaDateEnd(event) {
+    console.log('Prueba final');
+    if (event < this.addTask.startDate) {
+       this.addTask.endDate = null;
+    } else {
+      this.addTask.endDate = event;
+    }
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (this.addTask) {
       this.toEdit = true;

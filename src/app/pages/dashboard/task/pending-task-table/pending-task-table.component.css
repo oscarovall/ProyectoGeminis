@@ -6,8 +6,8 @@
 	max-height: 320px;
 }
 
-tbody, tr { 
-    display: block; 
+tbody, tr {
+    display: block;
 }
 
 tbody {
@@ -25,7 +25,7 @@ tbody {
 }
 
 th, td {
-	padding: 5px;		
+	padding: 5px;
 }
 
 thead tr {
@@ -33,7 +33,7 @@ thead tr {
 }
 
 .text-title {
-	color: #5aaef3;
+	color: var(--color-default-font);
 	font-family: Roboto;
 	font-size: 14px;
 	font-weight: 500;
@@ -42,11 +42,10 @@ thead tr {
 	line-height: 1.67;
 	letter-spacing: normal;
 	text-align: left;
-	color: #5aaef3;
 }
 
 tbody td, thead th {
-    width: 1%;     
+    width: 1%;
 }
 
 .task {

@@ -39,6 +39,7 @@ export class CalendarComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef, private tasksDue: TasksDuePipe,
     private authService: AuthService
   ) {
+
     this.employeeId = this.getEmployeeId();
     this.calendarService.selectedEventChanged.subscribe((selectedEvent: Appointment) => this.openSelected(selectedEvent));
     this.calendarService.allEventsChanged.subscribe((selectedEvent: Appointment) => this.onChangeCal(this.today));
@@ -50,7 +51,7 @@ export class CalendarComponent implements OnInit {
 
   onChangeCal(event: Date) {
     this.pendingTasks = this.calendarService.allEvents; // this.tasksDue.transform(this.calendarService.allEvents, false, event);
- 
+
 
     this.dueTasks = this.tasksDue.transform(this.calendarService.allEvents, true, event);
 
@@ -86,7 +87,7 @@ export class CalendarComponent implements OnInit {
 
   editTask(event: Appointment) {
     this.calendarService.setSelectedEvent(event);
-    
+
     if (event.lead && event.lead.mainCustomer) {
       this.calendarService.setSelectedCustomer(event.lead.mainCustomer);
     } else {
@@ -122,7 +123,7 @@ export class CalendarComponent implements OnInit {
     const dialogRef = this.dialog.open(CloseTaskDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(comment => {
-      // console.log('The dialog was closed', comment);
+      console.log('The dialog was closed', comment);
       if (comment) {
         taskChecked.closeDate = new Date();
         taskChecked.closeComment = comment;

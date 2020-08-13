@@ -81,6 +81,7 @@ import { PhoneNumberPipe } from './pipes/phone-number.pipe';
 import { EmployeesStorePipe } from './pipes/employees-store.pipe';
 import { FormsCategoryPipe } from './pipes/forms-category.pipe';
 import { SafePipe } from './pipes/safe.pipe';
+import { AppointmentsTasksPipe } from './pipes/appointments-tasks.pipe';
 
 @NgModule({
   imports: [
@@ -171,9 +172,11 @@ import { SafePipe } from './pipes/safe.pipe';
     EmployeesStorePipe,
     PhoneNumberPipe,
     FormsCategoryPipe,
-    SafePipe
+    SafePipe,
+    AppointmentsTasksPipe
   ],
   exports: [
+    AppointmentsTasksPipe,
     SafePipe,
     FormsCategoryPipe,
     EmployeesStorePipe,

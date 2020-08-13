@@ -16,6 +16,10 @@ export class NumberFormatComponent implements OnInit {
   type: string = 'text';
   constructor() {
     this.changeValue = new EventEmitter<string>();
+    if (this.value) {
+      this.insideVaule = this.value;
+      this.applyFormat();
+    }
   }
 
   ngOnInit() {

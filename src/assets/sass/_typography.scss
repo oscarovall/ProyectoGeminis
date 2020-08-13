@@ -30,13 +30,15 @@ h6,
 }
 h1,
 .h1 {
-	font-size: 4.2142857rem;
-	line-height: 1.13;
+	font-size: 35px;
+  line-height: 1.13;
+  color: $tittleLeads !important;
 }
 h2,
 .h2 {
-	font-size: 3.1428571rem;
-	line-height: 1;
+	font-size: 21px;
+  line-height: 1;
+  color: $tittleLeads !important;
 }
 h3,
 .h3 {
@@ -48,7 +50,7 @@ h3,
 	line-height: 1.88;
 	letter-spacing: normal;
 	border-radius: inherit;
-	color: #eae5eb !important;
+	color: $color-h3 !important;
 	display: block;
 	padding: 0.71428571rem 0.71428571rem;
 	position: relative;
@@ -91,7 +93,7 @@ blockquote {
 }
 
 a {
-	color: accent-palette(500) !important;
+	color: $href-color !important;
 	text-decoration: none;
 	transition: color .2s $animation;
 

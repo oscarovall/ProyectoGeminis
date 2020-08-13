@@ -48,7 +48,7 @@ export class ClientActivityComponent implements OnInit {
 
     this.traceabilityService.getTraceabilityPaginated(this.pageSize, this.page, this.leadId).subscribe((traceability) => {
 
-      console.log('Traceability', traceability);
+      // console.log('Traceability', traceability);
       this.totalPages = traceability.pageCount;
       this.recordCount = traceability.recordCount;
       this.values = traceability.results;

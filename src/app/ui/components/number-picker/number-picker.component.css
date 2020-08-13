@@ -14,15 +14,14 @@
   width: 34%;
   color: #5a6aa5;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.14;
 }
 .operator {
   cursor: pointer;
-  color: #eae5eb;
+  color: $color-main-font !important;
   height: 100%;
-  width: 33%;
-  font: 30px/1 Arial, sans-serif;
+  width:33%;
 }
 .operator:hover {
   opacity: 50%;
@@ -37,12 +36,4 @@ div {
 }
 
 /*Prevent text selection*/
-span {
-  width: 8px;
-  height: 14px;
-  opacity: 0.9;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.14;
-  color: #eae5eb;
-}
+

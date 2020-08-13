@@ -14,7 +14,7 @@
   <div class="col-12 p-0">
     <tc-form-group>
       <tc-form-label class="tc-form-label">Role</tc-form-label>
-      <select class="custom-select rounded" [(ngModel)]="newStep.roleId">
+      <select class="form-control rounded" [(ngModel)]="newStep.roleId">
         <option [ngValue]="null"> -- Everyone -- </option>
         <option *ngFor="let role of roles" [value]="role.roleId">{{role.role1}}</option>
       </select>

@@ -1,0 +1,32 @@
+
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="modal-body row w-100 h-100 mx-0">
+
+        <div class="col-12 p-0 mt-3">
+          <tc-form-group>
+            <tc-form-label class="tc-form-label princip">Change Home</tc-form-label>
+            <span class="title">
+              Please select the new home model for this RSO
+            </span>
+            <select class="form-control rounded my-3">
+              <option style="display:none;"> -- select a Home -- </option>
+              <option *ngFor="let productInv of product" [value]="productInv.productInvId">
+    
+                {{productInv.name}} -  {{productInv.price | currency}}  -  {{productInv.year}}  -  {{productInv.make}}
+
+              </option>
+            </select>
+          </tc-form-group>
+        </div>
+      </div>
+      <div class="row w-100 mt-2">
+        <div class="col-6 pr-2">
+          <button type="button" class="upload w-100">CHANGE HOME</button>
+        </div>
+        <div class="col-6 p-0 pl-2 ">
+          <button type="button" class="cancel w-100" (click)="closeButton()">CANCEL</button>
+        </div>
+      </div>
+    </div>
+  </div>

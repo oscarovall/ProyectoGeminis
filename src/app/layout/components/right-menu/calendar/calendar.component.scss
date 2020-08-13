@@ -26,7 +26,7 @@ hr {
 }
 
 .taskList {
-	padding: 7px 20px 7px 20px;
+	padding: 3px 20px 3px 10px;
 	font-family: Roboto;
 	font-size: 0.9em;
 	font-weight: 500;
@@ -36,10 +36,10 @@ hr {
 	letter-spacing: normal;
 
 	.item-text {
-        color: rgba(#fff,.8);
+        color: var(--color-default-font);
 	}
 	.item-title {
-		color: #5aaef3;
+		color: var(--color-href-font);
 	}
 }
 
@@ -61,8 +61,9 @@ hr {
 
 .scroll {
 	position: relative;
-	overflow-y: scroll;
-	max-height:240px !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+	max-height: 100% !important;
 }
 
 .borderRed {
@@ -97,5 +98,5 @@ hr {
 }
 
 .contact-item.row.taskList.borderLeft {
-  margin-top: -7px !important;
+  // margin-top: -7px !important;
 }

@@ -29,6 +29,7 @@ import { ProductService } from '../../../services/Product/product.service';
 import { Product } from '../../../models/crm/Product';
 import { HomesOrderInput } from '../../../models/crm/HomesOrderInput';
 import Swal from 'sweetalert2';
+import { ProdOption } from '../../../models/crm/ProdOption';
 
 
 
@@ -76,6 +77,7 @@ export class LeadComponent implements OnInit {
   // Forms to print
   formsToPrint: LeadDocument[];
   homeSelected: Home[] = [new Home(), new Home(), new Home()];
+  options: ProdOption[];
 
   homeToOrder: Home;
 
@@ -87,7 +89,6 @@ export class LeadComponent implements OnInit {
     private authService: AuthService,
     public ar: ActivatedRoute,
     private leadsService: LeadsService,
-    private traceabilityService: TraceabilityService,
     private wService: WorkflowService,
     private formsService: FormsService,
     public appConfig: AppConfig,
@@ -99,6 +100,7 @@ export class LeadComponent implements OnInit {
     // Get Classes
     const ClassCustomerLead = this.leadsService.getClassCustomerLead().subscribe((classes: Class[]) => {
       this.classes = classes;
+      // console.log(this.classes);
 
       if (this.classes && this.lead) {
         this.setClasses(this.classes);
@@ -148,11 +150,17 @@ export class LeadComponent implements OnInit {
     if (!this.hasLeadProductActive()) {
       this.search();
     } else {
-      let productInvId = this.lead.leadProducts.filter(data => data.active)[0].productInvId;
-      this.leadsService.getOrderHome(productInvId)
-        .subscribe(result => this.homeToOrder = result);
-    }
+      // Get Options
+      this.leadsService.getAllOptionsByLead().subscribe((options: ProdOption[]) => {
+        this.options = options;
+      });
 
+      const productInvId = this.lead.leadProducts.filter(data => data.active)[0].productInvId;
+      this.leadsService.getOrderHome(productInvId).subscribe(result => this.homeToOrder = result);
+
+      // Get Value Options
+
+    }
 
     this.tempLead = this.lead;
 
@@ -167,6 +175,9 @@ export class LeadComponent implements OnInit {
     }
   }
 
+  changeOption(option: ProdOption) {
+
+  }
 
   setClasses(classes: Class[]) {
     // Get General Classes
@@ -392,7 +403,7 @@ export class LeadComponent implements OnInit {
   }
 
   OnChangesLead(value, LeadbasicInfoField) {
-   
+
     if (LeadbasicInfoField === this.appConfig.leadBasicInformation.Source) {
     }
     if (LeadbasicInfoField === this.appConfig.leadBasicInformation.firstVisit) {
@@ -407,26 +418,32 @@ export class LeadComponent implements OnInit {
   }
 
   // Hidden Show attributeType with dependencies
-  validate(attributeNavigation: any, classObj: Class) {
+  validate(attType: AttributeType, classObj: Class) {
+    // console.log('Validate 1');
+
+    if (attType && attType.attributeNavigation) {
+    // console.log('Validate 2', attType, classObj);
+    const attDep = attType.attributeNavigation;
+
     if (classObj.objectTypeId === this.appConfig.objectType.Customer) {
-      if (attributeNavigation) {
+      if (attDep) {
         let at;
-        classObj.attributeType.forEach((attType) => {
-          if (attributeNavigation.attributeType.attributeTypeId === attType.attributeTypeId) {
-            at = attType;
+        classObj.attributeType.forEach((attType2) => {
+          if (attDep.attributeTypeId === attType2.attributeTypeId) {
+            at = attType2;
           }
         });
         if (!at.customerAttributeValue.length) {
           return false;
         }
         if (this.appConfig.dataType.NoList.includes(at.dataTypeId)) {
-          if (attributeNavigation.value === at.customerAttributeValue[0].customerAttributeValue1) {
+          if (attDep.value === at.customerAttributeValue[0].customerAttributeValue1) {
             return true;
           } else {
             return false;
           }
         } else {
-          if (attributeNavigation.attributeId === at.customerAttributeValue[0].attributeId) {
+          if (attDep.attributeId === at.customerAttributeValue[0].attributeId) {
             return true;
           } else {
             return false;
@@ -436,24 +453,24 @@ export class LeadComponent implements OnInit {
         return true;
       }
     } else if (classObj.objectTypeId === this.appConfig.objectType.Lead) {
-      if (attributeNavigation) {
+      if (attDep) {
         let at: AttributeType;
-        classObj.attributeType.forEach((attType) => {
-          if (attributeNavigation.attributeType.attributeTypeId === attType.attributeTypeId) {
-            at = attType;
+        classObj.attributeType.forEach((attType2: AttributeType) => {
+          if (attDep.attributeTypeId === attType2.attributeTypeId) {
+            at = attType2;
           }
         });
         if (!at.leadAttributeValue.length) {
           return false;
         }
         if (this.appConfig.dataType.NoList.includes(at.dataTypeId)) {
-          if (attributeNavigation.value === at.leadAttributeValue[0].leadAttributeValue1) {
+          if (attDep.value === at.leadAttributeValue[0].leadAttributeValue1) {
             return true;
           } else {
             return false;
           }
         } else {
-          if (attributeNavigation.attributeId === at.leadAttributeValue[0].attributeId) {
+          if (attDep.attributeId === at.leadAttributeValue[0].attributeId) {
             return true;
           } else {
             return false;
@@ -464,9 +481,11 @@ export class LeadComponent implements OnInit {
       }
     }
   }
+  return true;
+  }
 
   save(classObj: Class, homeComparison?: boolean) {
-  
+
     let allGood = true;
     classObj.attributeType.forEach((attType: AttributeType) => {
       if (attType.obligatory) {
@@ -474,7 +493,7 @@ export class LeadComponent implements OnInit {
           if (!attType.leadAttributeValue || attType.leadAttributeValue.length === 0) {
             allGood = false;
             attType.valid = false;
-           
+
           } else {
             attType.leadAttributeValue.forEach((lav: LeadAttributeValue) => {
               if (
@@ -483,9 +502,9 @@ export class LeadComponent implements OnInit {
               ) {
                 allGood = false;
                 attType.valid = false;
-               
+
               } else {
-                
+
               }
             });
           }
@@ -494,12 +513,12 @@ export class LeadComponent implements OnInit {
       if (attType.dataTypeId === this.appConfig.dataType.ListDocument) {
         attType.attribute.forEach((att: Attribute) => {
           if (att.required) {
-           
+
             let find = false;
             attType.leadAttributeValue.forEach((lav: LeadAttributeValue) => {
               if (lav.attributeId === att.attributeId) {
                 find = true;
-              
+
                 if (
                   lav.leadAttributeValue1 === '' ||
                   !lav.attributeId ||
@@ -508,16 +527,16 @@ export class LeadComponent implements OnInit {
                   find = true;
                   allGood = false;
                   attType.valid = false;
-               
+
                 } else {
-                 
+
                 }
               }
             });
             if (!find) {
               allGood = false;
               attType.valid = false;
-            
+
             }
           }
         });
@@ -525,12 +544,12 @@ export class LeadComponent implements OnInit {
       if (attType.dataTypeId === this.appConfig.dataType.ListImages) {
         attType.attribute.forEach((att: Attribute) => {
           if (att.required) {
-    
+
             let find = false;
             attType.leadAttributeValue.forEach((lav: LeadAttributeValue) => {
               if (lav.attributeId === att.attributeId) {
                 find = true;
-                
+
                 if (
                   lav.leadAttributeValue1 === '' ||
                   !lav.attributeId ||
@@ -539,16 +558,16 @@ export class LeadComponent implements OnInit {
                   find = true;
                   allGood = false;
                   attType.valid = false;
-                
+
                 } else {
-                
+
                 }
               }
             });
             if (!find) {
               allGood = false;
               attType.valid = false;
-            
+
             }
           }
         });
@@ -560,7 +579,7 @@ export class LeadComponent implements OnInit {
         if (classObj.objectTypeId === this.appConfig.objectType.Lead) {
           this.lead.leadAttributeValue = attType.leadAttributeValue;
         } else if (classObj.objectTypeId === this.appConfig.objectType.Customer) {
-          
+
         }
       }
     });
@@ -571,9 +590,7 @@ export class LeadComponent implements OnInit {
     }
 
     if (allGood) {
- 
 
-  
       let id;
       if (classObj.objectTypeId === this.appConfig.objectType.Customer) {
         id = this.lead.mainCustomerId;
@@ -584,23 +601,25 @@ export class LeadComponent implements OnInit {
       this.sendNotification('Saving Information...');
 
       this.leadsService.updateLeadAttValues(id, classObj, this.leadId).subscribe(() => {
-        const trace = new Traceability();
-        trace.workflowId = this.WorkflowId;
-        trace.leadId = this.leadId;
-        trace.name = 'Section completed';
-        trace.employeeID = 2;
-        trace.description1 = classObj.name;
-        trace.type = 'info';
-        trace.date = new Date();
-       
-        this.traceabilityService.saveClassChange(trace).subscribe(() => { });
+
         classObj.changedAttTypes = [];
         this.sendNotification('Changes Saved!');
 
         if (homeComparison) {
-          console.log(classObj, 'Prueba');
+          // console.log(classObj, 'Prueba');
           this.search();
         }
+
+        // const trace = new Traceability();
+        // trace.workflowId = this.WorkflowId;
+        // trace.leadId = this.leadId;
+        // trace.name = 'Section completed';
+        // trace.employeeID = 2;
+        // trace.description1 = classObj.name;
+        // trace.type = 'info';
+        // trace.date = new Date();
+
+        // this.traceabilityService.saveClassChange(trace).subscribe(() => { });
       });
     } else {
 
@@ -632,7 +651,7 @@ export class LeadComponent implements OnInit {
           for (let i = 0; i <= 2; i++) {
             if (this.homes.length > i) {
               this.homes[i].selected = true;
-              this.homeSelected[i] = this.homes[i]
+              this.homeSelected[i] = this.homes[i];
             }
             if (this.homes.length === i) {
 
@@ -643,13 +662,13 @@ export class LeadComponent implements OnInit {
 
 
     } else {
-    
+
       this.homes = [];
     }
   }
 
   cargarHome(home: Home, index: number) {
-  
+
     home.selected = false;
     this.homeSelected[index].selected = true;
 
@@ -657,7 +676,7 @@ export class LeadComponent implements OnInit {
 
   getSelectedHomes() {
     if (this.homeSelected) {
-      //return this.homes.filter(data => data.selected);
+      // return this.homes.filter(data => data.selected);
       return this.homeSelected;
     } else {
       return [];
@@ -680,7 +699,7 @@ export class LeadComponent implements OnInit {
     input.workflowId = this.lead.workflowId;
     input.productInvId = this.homeToOrder.productInvId;
     input.readyToMove = this.homeToOrder.readyToMove;
-    //this.showSelectedHome = true;
+    // this.showSelectedHome = true;
     this.leadsService.homesOrder(input)
       .subscribe((leadProducts: HomesOrderInput) => {
         console.log(leadProducts, 'Order Home');
@@ -694,9 +713,10 @@ export class LeadComponent implements OnInit {
           } else {
             data.active = false;
           }
-        })
+        });
         if (!found) {
-          this.lead.leadProducts.push({ leadId: input.leadId, workflowId: input.workflowId, active: true, productInvId: input.productInvId })
+          this.lead.leadProducts.push(
+            { leadId: input.leadId, workflowId: input.workflowId, active: true, productInvId: input.productInvId });
         }
       });
   }
@@ -879,7 +899,7 @@ export class LeadComponent implements OnInit {
 
   printForm(formToPrint: LeadDocument) {
     this.formsService.generateFilledForm(this.lead.leadId, this.WorkflowId, formToPrint.leadDocumentId).subscribe((urlS: any) => {
-    
+
       // const url = this.router.navigateByUrl(urlS);
 
       let url = urlS.excelUrl;

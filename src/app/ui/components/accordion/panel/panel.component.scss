@@ -17,28 +17,29 @@ $_shape: $shape;
 
   .panel-header {
     align-items: stretch;
-    background: $_header-bg;
-    border: 0px ;
+    background: $panels-lead;
+    border: 0px;
     border-radius: 4px;
-		cursor: pointer;
-		color: #fff;
+    cursor: pointer;
+    color: #fff;
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
     outline: none;
     padding: $_header-padding;
     transition: color .2s $animation, background .2s $animation, border-color .2s $animation;
-		width: 100%;
+    width: 100%;
 
     > * {
       // margin: 0 ($module-rem / 2);
     }
+
     .title-icon {
       margin-top: $module-rem * (3/4);
     }
 
     .title {
-			align-items: center;
+      align-items: center;
       display: flex;
       flex-flow: row wrap;
       flex: 2;
@@ -48,27 +49,31 @@ $_shape: $shape;
       margin-bottom: 0;
       padding: 0;
     }
+
     &:hover {
-			opacity: 70%;
+      opacity: 70%;
     }
+
     &.active {
       border-color: accent-palette(500);
       color: accent-palette(500);
     }
+
     &.alternative {
       margin-bottom: 0;
-			transition: background 0.3s $animation, border-radius 0.3s $animation, color 0.3s $animation;
+      transition: background 0.3s $animation, border-radius 0.3s $animation, color 0.3s $animation;
 
       &.active {
         background: transparent;
         border-radius: $_shape $_shape 0 0;
-				color: #fff;
+        color: #fff;
 
         .panel-body {
           border-radius: 0 0 $_shape $_shape;
           transition: border-radius 0.2s $animation;
         }
       }
+
       .icon {
         &.minus {
           span {
@@ -77,23 +82,24 @@ $_shape: $shape;
         }
       }
     }
+
     .icon {
-			align-self: stretch;
-			display: flex;
-			height: 16px;
-			margin-top: $module-rem * 1.55;
-			justify-content: center;
-			transition: background 0.3s $animation;
-			width: 16px;
+      align-self: stretch;
+      display: flex;
+      height: 16px;
+      margin-top: $module-rem * 1.55;
+      justify-content: center;
+      transition: background 0.3s $animation;
+      width: 16px;
 
       span {
-        background: #fff;
+        background: $icons-down !important;
         border-radius: 1px;
         display: block;
         width: 14px;
         height: 2px;
         margin-bottom: 6px;
-				transition: opacity 0.3s $animation, background 0.3s $animation;
+        transition: opacity 0.3s $animation, background 0.3s $animation;
 
         &:nth-child(1) {
           margin: 0;
@@ -101,9 +107,11 @@ $_shape: $shape;
           transform: rotate(90deg);
         }
       }
+
       &.minus {
         span {
           background: accent-palette(500);
+
           &:nth-child(1) {
             opacity: 0;
           }
@@ -111,22 +119,23 @@ $_shape: $shape;
       }
     }
   }
+
   .panel-body {
     background: $_content-bg;
     border: 1px solid rgba( #000, 0.1);
     border-radius: $_shape;
-		box-sizing: border-box;
+    box-sizing: border-box;
     color: $_content-color;
     width: 100%;
     display: block;
     overflow: hidden;
     margin-top: $module-rem;
-		transition: max-height 0.5s $animation, padding 0.1s $animation;
+    transition: max-height 0.5s $animation, padding 0.1s $animation;
 
     &.alternative {
       margin-top: 0;
       border-radius: 0 0 $_shape $_shape;
-			border-top: none;
+      border-top: none;
 
       &.active {
         border-radius: 0 0 $_shape $_shape;
@@ -144,6 +153,7 @@ $_shape: $shape;
       }
     }
   }
+
   &.panel-large {
     > .panel {
       > .panel-header {
@@ -153,6 +163,7 @@ $_shape: $shape;
       }
     }
   }
+
   .content-wrap {
     overflow: hidden;
   }

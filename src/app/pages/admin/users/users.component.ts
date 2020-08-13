@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
 
   employees: Employee[];
   totalPages: number;
-  pageSize: number = 3;
+  pageSize: number = 10;
   currentPage: number = 1;
 
   constructor(private usrService: UserService, private appConfig: AppConfig) {
@@ -23,6 +23,7 @@ export class UsersComponent implements OnInit {
   }
 
   changePage(page) {
+    console.log('Page', page);
     this.usrService.getAllEmployees(this.pageSize, page).subscribe((pagination) => {
       this.totalPages = pagination.pageCount * 10;
       this.employees = pagination.results;

@@ -21,6 +21,9 @@ export class TCCardComponent implements OnInit {
   }
   @HostBinding('class.full-width') @Input() fullWidth: boolean;
 
+  @Input() background: string;
+  @Input() border: string;
+  @Input() cardContentClass: string;
   @Input() align: string;
   @Input() title: string;
   @Input() img: string;
@@ -34,6 +37,7 @@ export class TCCardComponent implements OnInit {
   constructor() {
     this.overflow = true;
     this.fullWidth = false;
+    this.cardContentClass = 'card-content';
   }
 
   ngOnInit() {

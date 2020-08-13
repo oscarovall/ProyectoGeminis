@@ -68,7 +68,7 @@
   </div>
 </div> -->
 
-<div class="table-responsive animated fadeIn">
+<div class="table-responsive animated fadeIn border-0">
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -89,7 +89,7 @@
           </div>
           <div class="row">
             <div class="col-12" *ngIf="!item.activity.description2">
-              <span class="info">{{item.activity.description1}}</span>
+              <span class="title2">{{item.activity.description1}}</span>
             </div>
             <div class="col-12" *ngIf="item.activity.description2">
               <span class="status">{{item.activity.description1}}</span>
@@ -106,7 +106,7 @@
           </div>
           <div class="row">
             <div class="col-12" style="text-align: center;">
-              <span class="info">{{item.employee.name}}</span>
+              <span class="title2">{{item.employee.name}}</span>
             </div>
           </div>
         </td>

@@ -61,8 +61,8 @@
           </div>
           <div class="row w-100 p-0 m-0" *ngFor="let lead of foundCustomer.lead">
             <a [routerLink]="['/lead/'+lead.leadId]" (click)="close()" class="text-left col-3 pl-0">{{lead.leadId}}</a>
-            <div class="text-left col-5">{{lead.creationDate | date}}</div>
-            <div class="text-left col-4 pr-0">{{lead.lastContactDate | date}}</div>
+            <div class="text-left col-5">{{lead.creationDate | date:'MM/dd/y'}}</div>
+            <div class="text-left col-4 pr-0">{{lead.lastContactDate | date:'MM/dd/y'}}</div>
           </div>
         </div>
         <div *ngIf="foundCustomer.lead.length === 0" class="text-left mt-2">

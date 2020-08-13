@@ -8,7 +8,7 @@
   <div class="col-12 p-0">
     <tc-form-group>
       <tc-form-label class="tc-form-label">Attribute Type</tc-form-label>
-      <select (change)="attTypeChanged($event)" class="custom-select rounded" [(ngModel)]="newStep.attributeTypeId">
+      <select (change)="attTypeChanged($event)" class="form-control rounded" [(ngModel)]="newStep.attributeTypeId">
         <option style="display:none;"> -- select an option -- </option>
         <option *ngFor="let attType of attTypesToShow" [value]="attType.attributeTypeId">{{attType.name}}</option>
       </select>
@@ -17,7 +17,7 @@
   <div class="col-12 p-0" *ngIf="values1ToShow && values1ToShow.length > 0">
     <tc-form-group>
       <tc-form-label class="tc-form-label">First Value</tc-form-label>
-      <select class="custom-select"  [(ngModel)]="newStep.mainValueId">
+      <select class="form-control"  [(ngModel)]="newStep.mainValueId">
         <option style="display:none;"> -- select an option -- </option>
         <option *ngFor="let attVal of values1ToShow" [value]="attVal.attributeId">{{attVal.value}}</option>
       </select>
@@ -26,7 +26,7 @@
   <div class="col-12 p-0" *ngIf="values1ToShow && values1ToShow.length > 0">
     <tc-form-group>
       <tc-form-label class="tc-form-label">Second Value</tc-form-label>
-      <select class="custom-select"  [(ngModel)]="newStep.secondaryValueId">
+      <select class="form-control"  [(ngModel)]="newStep.secondaryValueId">
         <option style="display:none;"> -- select an option -- </option>
         <option *ngFor="let attVal of values1ToShow" [value]="attVal.attributeId">{{attVal.value}}</option>
       </select>

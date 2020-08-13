@@ -1,7 +1,5 @@
 
-
-
-import { ProductInv } from "./ProductInv";
+import { ProductInv } from './ProductInv';
 
 
 
@@ -12,6 +10,9 @@ export class Home extends ProductInv {
   mainIconUrl: string;
   readyToMove: boolean;
   productInvId: number;
+
+  optionsPrice: number = 0;
+
   productStatus;
   manufacturer;
 }

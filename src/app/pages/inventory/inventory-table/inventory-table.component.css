@@ -6,11 +6,6 @@
     line-height: inherit;
   }
   
-  .alert.alert-warning {
-    background: #0b1c51 !important;
-    border-color: transparent !important;
-  }
-  
   .fa.fa-spinner.fa-spin.fa-3x {
     color: #0d5fa1 !important;
   }
@@ -19,7 +14,18 @@
     color: #0d5fa1 !important;
   }
 
-  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #eae5eb !important;
-    opacity: 1; /* Firefox */
-  }
+.btn-search {
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: $custom-select !important;
+  color: $font-filtros !important;
+  padding-right: 13px;
+}
+
+.borderTittle-table {
+  border-bottom: 2px solid #68b7f6 !important;
+}
+
+.alert.alert-warning {
+  background:$alert-warning !important;
+}

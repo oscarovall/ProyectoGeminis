@@ -1,3 +1,4 @@
+import { ProductImg } from './ProductImg';
 
 
 export class Product {
@@ -33,16 +34,10 @@ export class Product {
   floors: number;
   store: string;
   details: string;
+  mainProductImg: ProductImg;
 
   manufacturer: any;
+  productImg: ProductImg[];
 
   constructor() { }
-}
-
-{
- 
-  
-  
-  
-  
 }

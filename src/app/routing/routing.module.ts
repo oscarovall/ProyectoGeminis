@@ -9,8 +9,8 @@ import { LeadComponent } from '../pages/crm/lead/lead.component';
 import { EmailComponent } from '../pages/admin/email/email.component';
 import { CalendarComponent } from '../pages/apps/aosp/calendar/calendar.component';
 import { UsersComponent } from '../pages/admin/users/users.component';
-import { LoginComponent } from '../login/login/login.component';
-import { LogoutComponent } from '../logout/logout/logout.component';
+import { LoginComponent } from '../auth-aosp/login/login.component';
+import { LogoutComponent } from '../auth-aosp/logout/logout/logout.component';
 import { RolesComponent } from '../pages/admin/roles/roles.component';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
@@ -26,10 +26,12 @@ import { InventoryTableComponent } from '../pages/inventory/inventory-table/inve
 import { RolesForAuth } from '../shared/models/role';
 import { RolePage } from '../models/RolePage';
 import { RolePagesForAuth } from '../shared/models/role-page';
-import { NotEnoughRightsComponent } from '../not-enough-rights/not-enough-rights/not-enough-rights.component';
+import { NotEnoughRightsComponent } from '../pages/not-enough-rights/not-enough-rights.component';
 import { DealershipsComponent } from '../pages/admin/dealerships/dealerships.component';
 import { ManufacturerComponent } from '../pages/admin/manufacturer/manufacturer/manufacturer.component';
+import { UnderConstructionComponent } from '../pages/under-construction/under-construction.component';
 
+import { AuthAospComponent } from '../auth-aosp/auth-aosp/auth-aosp.component';
 
 
 
@@ -79,6 +81,29 @@ const DEFAULT_ROUTES: Routes = [
   { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard], },
 
   { path: 'not-enough-rights', component: NotEnoughRightsComponent, },
+
+  // Under Construction
+  { path: 'serviceandrepair', component: UnderConstructionComponent, },
+  { path: 'insurance', component: UnderConstructionComponent, },
+  { path: 'finance', component: UnderConstructionComponent, },
+  { path: 'realestate', component: UnderConstructionComponent, },
+  { path: 'reports', component: UnderConstructionComponent, },
+
+
+  { path: 'company-admin', component: UnderConstructionComponent, },
+  { path: 'attributes-admin', component: UnderConstructionComponent, },
+];
+
+const AUTH_ROUTES: Routes = [
+  {
+    path: 'log-in',
+    component: LoginComponent,
+  },
+  {
+    path: 'log-out',
+    component: LogoutComponent,
+  }
+
 ];
 
 //  canActivate: [AuthGuard], data: {pageName: 'Roles'}
@@ -89,13 +114,10 @@ export const ROUTES: Routes = [
     children: DEFAULT_ROUTES
   },
   {
-    path: 'log-in',
-    component: LoginComponent,
+    path: 'auth',
+    component: AuthAospComponent,
+    children: AUTH_ROUTES
   },
-  {
-    path: 'log-out',
-    component: LogoutComponent,
-  }
 ];
 
 @NgModule({

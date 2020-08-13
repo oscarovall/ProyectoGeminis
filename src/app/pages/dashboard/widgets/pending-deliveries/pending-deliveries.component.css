@@ -12,7 +12,8 @@
 }
 
 .numberWidget {
-  color: #5aaef3;
+  color: #5aaef3 !important;
+  font-size: 40px;
 }
 
 

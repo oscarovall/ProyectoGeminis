@@ -6,16 +6,13 @@
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  color: #eae5eb;
+
 }
 
 .btn.btn-outline-dark.rounded.addForm {
   width: 174px;
 }
 
-.remove_lines.forms {
-  color: #eae5eb;
-}
 
 .table td, .table th {
   padding: .75rem;
@@ -31,8 +28,7 @@
 }
 
 .alert.alert-warning {
-  background: #0b1c51 !important;
-  border-color: transparent !important;
+  background:$alert-warning !important;
 }
 
 .fa.fa-spinner.fa-spin.fa-3x {
@@ -48,7 +44,6 @@
   overflow-y: auto;
 }
 
-
 .aosp-ui-delete-md {
   background-image: url("/assets/img/AOSP/delete_icon.svg");
   background-size: 20px;
@@ -56,7 +51,10 @@
   position: relative;
   width: 24px !important;
   min-height: 34px !important;
-  
+}
+
+.borderTittle-table {
+  border-bottom: 2px solid #68b7f6 !important;
 }
 
 

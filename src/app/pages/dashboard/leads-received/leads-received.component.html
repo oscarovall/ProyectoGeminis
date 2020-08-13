@@ -3,7 +3,7 @@
     <div class="title2 t-3">Leads Received</div>
   </div>
   <div class="col-6 col-md-4 col-xl-3 text-right pr-0">
-    <select class="custom-select font-filtro rounded" [(ngModel)]="storeSelected" name="storeSelected"
+    <select class="form-control font-filtro rounded" [(ngModel)]="storeSelected" name="storeSelected"
       (change)="getLeadsReceived()" placeholder="select">
       <option [ngValue]="''" style="display:none;"> Store </option>
       <option [ngValue]="''"> All </option>
@@ -42,7 +42,7 @@
       <h3 class="p-0 tittleLeads" style="font-size:22px">Total Leads Received</h3>
     </div>
     <div class="col-3">
-      <select class="custom-select font-filtro rounded" [(ngModel)]="sourceSelected" name="sourceSelected"
+      <select class="form-control font-filtro rounded" [(ngModel)]="sourceSelected" name="sourceSelected"
         (change)="getLeadsReceived()" placeholder="select">
         <option [ngValue]="''" style="display:none;"> Source </option>
         <option [ngValue]="''"> All </option>

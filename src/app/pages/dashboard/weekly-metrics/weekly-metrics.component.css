@@ -38,3 +38,7 @@
 .date.d-flex {
   height:36px !important;
 }
+
+.chartjs-render-monitor {
+  border:none !important;
+}

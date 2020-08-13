@@ -16,6 +16,7 @@ import { environment } from '../../../environments/environment';
 import { Customer } from '../../models/crm/Customer';
 import { HomesOrderInput } from '../../models/crm/HomesOrderInput';
 import { Employeelead } from '../../models/EmployeeLead';
+import { ProdOption } from '../../models/crm/ProdOption';
 
 
 
@@ -136,7 +137,7 @@ export class LeadsService {
       .pipe(
         map(() => {
           this.evaluateStep(leadId).subscribe((resp) => {
-            console.log(resp);
+            console.log('Evaluate', resp);
           });
         }),
         catchError((err: any) => {
@@ -230,7 +231,7 @@ export class LeadsService {
       );
   }
 
-  getLeadStatus(IdStatus: number, pageSize: number, currentPage: number) {
+  getLeadByStatus(IdStatus: number, pageSize: number, currentPage: number) {
     const url = `${environment.api}Leads/get-lead-status?idStatus=${IdStatus}&CurrentPage=${currentPage}&PageSize=${pageSize}`;
     return this.http.get<any>(url)
       .pipe(
@@ -238,6 +239,24 @@ export class LeadsService {
           Swal.fire({
             icon: 'error',
             title: 'Error when getting all employee - pagination',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  getLeadStatus() {
+    const url = `${environment.api}LeadStatus`;
+    return this.http.get<LeadStatus[]>(url)
+      .pipe(
+        map((result: any) => {
+          return result.results;
+        }),
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when getting all status of leads',
             text: err.message
           });
           return [];
@@ -275,8 +294,10 @@ export class LeadsService {
       );
   }
 
+
+  //Pending RSO
   getPendingRso(pageSize: number, currentPage: number) {
-    const url = `${environment.api}Leads/get-lead-status?IdStatus=2&CurrentPage=${currentPage}&PageSize=${pageSize}`;
+    const url = `${environment.api}PendingRso/get-page?CurrentPage=${currentPage}&PageSize=${pageSize}`;
     return this.http.get<any>(url)
       .pipe(
         catchError(err => {
@@ -289,6 +310,84 @@ export class LeadsService {
         })
       );
   }
+
+  productInvAvailable() {
+    const url = `${environment.api}ProductInv/get-all-available`;
+    return this.http.get<any>(url)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when getting all',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  approveRso(leadId: number, workflowId: number, productInvId: number) {
+    const approvePendingRso = {
+      leadId: leadId,
+      workflowId: workflowId,
+      productInvId: productInvId
+    };
+
+    return this.http.post<any>(`${environment.api}PendingRso/approve`, approvePendingRso)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when generating Approve',
+            text: err.message
+          });
+          return [];
+        })
+      );
+
+  }
+
+
+  rejectRso(leadId: number, workflowId: number, productInvId: number, rsoRejectedReason: string) {
+    const rejectPendingRso = {
+      leadId: leadId,
+      workflowId: workflowId,
+      productInvId: productInvId,
+      rsoRejectedReason: rsoRejectedReason
+    };
+    return this.http.post<any>(`${environment.api}PendingRso/reject`, rejectPendingRso)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when generating Approve',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  ChangeHomeRso(leadId: number, workflowId: number, productInvId: number) {
+    const changeHomePendingRso = {
+      leadId: leadId,
+      workflowId: workflowId,
+      productInvId: productInvId
+    };
+    return this.http.post<any>(`${environment.api}PendingRso/change-home`, changeHomePendingRso)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when generating Approve',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+  //////////////////////////////////////////////
+
 
   getLeadsReceived(TeamOwnerId:number, startDate, endDate, sourceName?: string, storeId?: string) {
     const url = `${environment.api}Leads/count-leads-received?TeamOwnerId=${TeamOwnerId}&StoreId=${storeId}&SourceName=${sourceName}&CreationDateStartsAt=${startDate}&CreationDateEndsAt=${endDate}`;
@@ -369,7 +468,9 @@ export class LeadsService {
       );
   }
 
-
+  ////////////////////////////////////////////
+  //   HOMES
+  ////////////////////////////////////////////
   getHomes(leadId: number, workFlowId: number) {
     const url = `${environment.api}Homes/get-all-by-preferences?leadId=${leadId}&workFlowId=${workFlowId}`;
     return this.http.get<any>(url)
@@ -408,6 +509,24 @@ export class LeadsService {
           Swal.fire({
             icon: 'error',
             title: 'Error when getting Leads Received',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  getAllOptionsByLead() {
+    const url = `${environment.api}LeadProductOptions/get-all-product-options`;
+    return this.http.get<any>(url)
+      .pipe(
+        map((result: any) => {
+          return result.results;
+        }),
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when getting Product Options',
             text: err.message
           });
           return [];

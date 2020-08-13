@@ -1,159 +1,162 @@
-<tc-card [title]="'User Profile'" [align]="'center'" [padding]="'0'" class="user-info">
-
-  <div class="contact-wrapper">
-    <tc-card [padding]="'0'" class="user-info">
-      <form #f="ngForm" id="contactForm" [ngClass]="{'was-validated': wasValidated}" novalidate>
-
-        <div class="contact">
-          <div class="img-section">
-            <div class="contact-img container">
-              <img src="{{ employee.imageUrl }}" class="image" *ngIf="employee.imageUrl"
-                (error)="employee.imageUrl = null">
-              <div class="aosp-ui-profile-big" *ngIf="!employee.imageUrl"></div>
-
-              <div class="middle">
-                <button tc-button [afterIcon]="'icofont-pencil-alt-5'" class="text" (click)="uploadDocument()"></button>
-              </div>
-            </div>
-            <h3 *ngIf="!modeEdit" class="contact-name">{{ employee.name }}</h3>
-            <span *ngIf="!modeEdit" class="contact-role">{{ employee.role.role1 }}</span>
-          </div>
-
-          <div class="contact-item row" *ngIf="modeEdit">
-            <div class="col-2 text-left p-0" [ngClass]="{'t-7': modeEdit}">
-              <span>Name:</span>
-            </div>
-            <div class="col-10 text-right p-0">
-              <input type="text" [(ngModel)]="employee.name" name="name" class="form-control" required>
-              <div class="invalid-feedback">It´s obligatory!</div>
-            </div>
-          </div>
-
-          <div class="contact-item row">
-            <div class="col-5 text-left p-0" [ngClass]="{'t-7': modeEdit}">
-              <span>Contact Number:</span>
-            </div>
-            <div class="col-7 text-right p-0" *ngIf="!modeEdit">
-              <span>{{ employee.cellphone }}</span>
-            </div>
-            <div class="col-7 text-right p-0" *ngIf="modeEdit">
-              <number-format [format]="'phoneNumber'" (changeValue)="changePhoneNumber($event)"
-                [value]="employee.cellphone" name="phoneNumber" class="p-0 h-auto" [required]="'required'">
-              </number-format>
-              <div class="invalid-feedback">It should have a number</div>
-            </div>
-          </div>
-
-          <div class="contact-item row">
-            <div class="col-2 text-left p-0" [ngClass]="{'t-7': modeEdit}">
-              <span>Email:</span>
-            </div>
-            <div class="col-10 text-right p-0" *ngIf="!modeEdit">
-              <span>{{ employee.email }}</span>
-            </div>
-            <div class="col-10 text-right p-0" *ngIf="modeEdit">
-              <input type="email" [(ngModel)]="employee.email" name="email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" required>
-              <div class="invalid-feedback">It should have a valid email</div>
-            </div>
-
-          </div>
-          <div class="contact-item row" *ngIf="!modeEdit && employee.store">
-            <div class="col-6 text-left p-0">
-              <span>Store:</span>
-            </div>
-            <div class="col-6 text-right p-0">
-              <span>{{ employee.store.name }}</span>
-            </div>
-          </div>
-        </div>
-      </form>
-    </tc-card>
-  </div>
-
-  <!-- <tc-contact [employeeData]="employee" [modeEdit]="modeEdit" [saveEvent]="saveEvent" [cancelEvent]="cancelEvent"
-    (saveDone)="ShowHideModeEdit()" class="user-info"></tc-contact> -->
-</tc-card>
-
-<hr
-  *ngIf="(employee.employeeEmployeeTeamTeamOwner && employee.employeeEmployeeTeamTeamOwner.length > 0) || this.userService.modeEditAdmin">
-
-<div
-  *ngIf="(employee.employeeEmployeeTeamTeamOwner && employee.employeeEmployeeTeamTeamOwner.length > 0) || this.userService.modeEditAdmin">
-  <div class="row pl-4 pr-4 mb-3" *ngIf="this.userService.modeEditAdmin">
-    <div class="col-7 pl-0">
-      Role
-    </div>
-    <div class="col-5 pr-0">
-      Store
-    </div>
-    <div class="col-7 pl-0">
-      <select class="custom-select rounded" [(ngModel)]="employee.role" name="role" *ngIf="roles" required>
-        <option [ngValue]="null" style="display:none;"> -- Select a role -- </option>
-        <option *ngFor="let role of roles" [value]="role.role1">{{role.role1}}</option>
-      </select>
-    </div>
-    <div class="col-5 pr-0 text-right">
-      <select class="custom-select rounded" [(ngModel)]="employee.storeId" name="stores" *ngIf="stores">
-        <option [ngValue]="null"> -- All -- </option>
-        <option *ngFor="let store of stores" [value]="store.storeId">{{store.name}}</option>
-      </select>
-    </div>
-  </div>
-  <div class="row pl-4 pr-4">
-    <div class="col-12 pl-0">
-      <h3 class="p-0">Team Members</h3>
-    </div>
-    <div class="col-8 pl-0 mb-2" *ngIf="this.userService.modeEditAdmin">
-      <input type="text" class="w-100" aria-label="Number" matInput [matAutocomplete]="auto" (keyup)="onKeyUp($event)">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions" [value]="option.name"
-          (onSelectionChange)="setEmployee(option)">
-          <span data-toggle="tooltip" [title]="option.name">
-            {{option.employeeId}} - {{option.name}}
-          </span>
-        </mat-option>
-      </mat-autocomplete>
-    </div>
-    <div class="col-4 pr-0 text-right" *ngIf="this.userService.modeEditAdmin">
-      <button tc-button [tcShape]="4" (click)="addTeamMember()" class="t-4">+ Add</button>
-    </div>
-  </div>
+<div class="h-100">
   <div class="scroll square scrollbar-dusty-grass square thin">
 
-    <div class="row pr-4 pl-4 mb-2" *ngFor="let member of employee.employeeEmployeeTeamTeamOwner; let i = index">
-      <div class="col-2 pl-0">
-        <div class="item-img">
-          <img src="{{ member.teamMember.imageUrl }}" style="height: 30px" *ngIf="member.teamMember.imageUrl"
-            (error)="member.teamMember.imageUrl = null">
-          <div class="aosp-ui-profile-small" *ngIf="!member.teamMember.imageUrl"></div>
+    <tc-card [title]="'User Profile'" [align]="'center'" [padding]="'0'" class="user-info border-0">
+
+      <div class="contact-wrapper">
+        <tc-card [padding]="'0'" class="user-info" [cardContentClass]="'profile-content-class'">
+          <form #f="ngForm" id="contactForm" [ngClass]="{'was-validated': wasValidated}" novalidate>
+
+            <div class="contact">
+              <div class="img-section">
+                <div class="contact-img container">
+                  <img src="{{ employee.imageUrl }}" class="image" *ngIf="employee.imageUrl"
+                    (error)="employee.imageUrl = null">
+                  <div class="aosp-ui-profile-big" *ngIf="!employee.imageUrl"></div>
+
+                  <div class="middle">
+                    <button tc-button [afterIcon]="'icofont-pencil-alt-5'" class="text"
+                      (click)="uploadDocument()"></button>
+                  </div>
+                </div>
+                <h3 *ngIf="!modeEdit" class="contact-name">{{ employee.name }}</h3>
+                <span *ngIf="!modeEdit" class="contact-role">{{ employee.role.role1 }}</span>
+              </div>
+
+              <div class="contact-item row" *ngIf="modeEdit">
+                <div class="col-2 text-left p-0" [ngClass]="{'t-7': modeEdit}">
+                  <span>Name:</span>
+                </div>
+                <div class="col-10 text-right p-0">
+                  <input type="text" [(ngModel)]="employee.name" name="name" class="form-control" required>
+                  <div class="invalid-feedback">It´s obligatory!</div>
+                </div>
+              </div>
+
+              <div class="contact-item row">
+                <div class="col-5 text-left p-0" [ngClass]="{'t-7': modeEdit}">
+                  <span>Contact Number:</span>
+                </div>
+                <div class="col-7 text-right p-0" *ngIf="!modeEdit">
+                  <span>{{ employee.cellphone }}</span>
+                </div>
+                <div class="col-7 text-right p-0" *ngIf="modeEdit">
+                  <number-format [format]="'phoneNumber'" (changeValue)="changePhoneNumber($event)"
+                    [value]="employee.cellphone" name="phoneNumber" class="p-0 h-auto" [required]="'required'">
+                  </number-format>
+                  <div class="invalid-feedback">It should have a number</div>
+                </div>
+              </div>
+
+              <div class="contact-item row">
+                <div class="col-2 text-left p-0" [ngClass]="{'t-7': modeEdit}">
+                  <span>Email:</span>
+                </div>
+                <div class="col-10 text-right p-0" *ngIf="!modeEdit">
+                  <span>{{ employee.email }}</span>
+                </div>
+                <div class="col-10 text-right p-0" *ngIf="modeEdit">
+                  <input type="email" [(ngModel)]="employee.email" name="email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" required>
+                  <div class="invalid-feedback">It should have a valid email</div>
+                </div>
+
+              </div>
+              <div class="contact-item row" *ngIf="!modeEdit && employee.store">
+                <div class="col-6 text-left p-0">
+                  <span>Store:</span>
+                </div>
+                <div class="col-6 text-right p-0">
+                  <span>{{ employee.store.name }}</span>
+                </div>
+              </div>
+            </div>
+          </form>
+        </tc-card>
+      </div>
+
+      <!-- <tc-contact [employeeData]="employee" [modeEdit]="modeEdit" [saveEvent]="saveEvent" [cancelEvent]="cancelEvent"
+    (saveDone)="ShowHideModeEdit()" class="user-info"></tc-contact> -->
+    </tc-card>
+
+    <hr
+      *ngIf="(employee.employeeEmployeeTeamTeamOwner && employee.employeeEmployeeTeamTeamOwner.length > 0) || this.userService.modeEditAdmin">
+
+    <div
+      *ngIf="(employee.employeeEmployeeTeamTeamOwner && employee.employeeEmployeeTeamTeamOwner.length > 0) || this.userService.modeEditAdmin">
+      <div class="row pl-4 pr-4 mb-3" *ngIf="this.userService.modeEditAdmin">
+        <div class="col-7 pl-0">
+          Role
+        </div>
+        <div class="col-5 pr-0">
+          Store
+        </div>
+        <div class="col-7 pl-0">
+          <select class="form-control rounded" [(ngModel)]="employee.role" name="role" *ngIf="roles" required>
+            <option [ngValue]="null" style="display:none;"> -- Select a role -- </option>
+            <option *ngFor="let role of roles" [value]="role.role1">{{role.role1}}</option>
+          </select>
+        </div>
+        <div class="col-5 pr-0 text-right">
+          <select class="form-control rounded" [(ngModel)]="employee.storeId" name="stores" *ngIf="stores">
+            <option [ngValue]="null"> -- All -- </option>
+            <option *ngFor="let store of stores" [value]="store.storeId">{{store.name}}</option>
+          </select>
         </div>
       </div>
-      <div class="col-8 h4">{{member.teamMember.name}}</div>
-      <div class="col-2 text-right" *ngIf="this.userService.modeEditAdmin">
-        <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="deleteTeamMember(member, i)"
-          view="error">
-          <div class="aosp-ui-icon aosp-ui-delete"></div>
-        </button>
+      <div class="row pl-4 pr-4">
+        <div class="col-12 pl-0">
+          <h3 class="p-0">Team Members</h3>
+        </div>
+        <div class="col-8 pl-0 mb-2" *ngIf="this.userService.modeEditAdmin">
+          <input type="text" class="w-100" aria-label="Number" matInput [matAutocomplete]="auto"
+            (keyup)="onKeyUp($event)">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions" [value]="option.name"
+              (onSelectionChange)="setEmployee(option)">
+              <span data-toggle="tooltip" [title]="option.name">
+                {{option.employeeId}} - {{option.name}}
+              </span>
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+        <div class="col-4 pr-0 text-right" *ngIf="this.userService.modeEditAdmin">
+          <button tc-button [tcShape]="4" (click)="addTeamMember()" class="t-4">+ Add</button>
+        </div>
+      </div>
+
+
+      <div class="row pr-4 pl-4 mb-2" *ngFor="let member of employee.employeeEmployeeTeamTeamOwner; let i = index">
+        <div class="col-2 pl-0">
+          <div class="item-img">
+            <img src="{{ member.teamMember.imageUrl }}" style="height: 30px" *ngIf="member.teamMember.imageUrl"
+              (error)="member.teamMember.imageUrl = null">
+            <div class="aosp-ui-profile-small" *ngIf="!member.teamMember.imageUrl"></div>
+          </div>
+        </div>
+        <div class="col-8 h4">{{member.teamMember.name}}</div>
+        <div class="col-2 text-right" *ngIf="this.userService.modeEditAdmin">
+          <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="deleteTeamMember(member, i)"
+            view="error">
+            <div class="aosp-ui-icon aosp-ui-delete"></div>
+          </button>
+        </div>
       </div>
     </div>
-    <!-- <tc-list class="mb-0">
-      <tc-list-item *ngFor="let member of employee.employeeEmployeeTeamTeamOwner" [img]="member.teamMember.imageUrl" [title]="member.teamMember.name">
-      </tc-list-item>
-    </tc-list> -->
+    <hr>
+
+    <div class="buttons pb-0">
+      <!-- <button tc-button [tcShape]="4" [outline]="true" [view]="'info'" [block]="true">CHANGE PASSWORD</button> -->
+      <button class="mb-3" [hidden]="modeEdit" tc-button [tcShape]="4" [block]="true" (click)="ShowHideModeEdit()">Edit
+        Profile</button>
+      <button class="mb-2" [hidden]="!modeEdit" tc-button [tcShape]="4" [block]="true"
+        (click)="saveChanges()">Save</button>
+      <button class="mb-0" [hidden]="!modeEdit" tc-button [tcShape]="4" [outline]="true" [view]="'info'" [block]="true"
+        (click)="cancelClick()">Cancel</button>
+    </div>
+    <div class="buttons" *ngIf="!modeEdit">
+      <button class="mt-2 pt-0" tc-button [tcShape]="4" [view]="'error'" [block]="true" (click)="logout()">Sign
+        out</button>
+    </div>
   </div>
 </div>
-
-<hr>
-
-<div class="buttons">
-  <!-- <button tc-button [tcShape]="4" [outline]="true" [view]="'info'" [block]="true">CHANGE PASSWORD</button> -->
-  <button [hidden]="modeEdit" tc-button [tcShape]="4" [block]="true" (click)="ShowHideModeEdit()">Edit Profile</button>
-  <button [hidden]="!modeEdit" tc-button [tcShape]="4" [block]="true" (click)="saveChanges()">Save</button>
-  <button [hidden]="!modeEdit" tc-button [tcShape]="4" [outline]="true" [view]="'info'" [block]="true"
-    (click)="cancelClick()">Cancel</button>
-</div>
-<div class="buttons">
-  <button tc-button [tcShape]="4" [view]="'error'" [block]="true" (click)="logout()">Sigh out</button>
-</div>
-

@@ -3,10 +3,10 @@
     <tc-form-label class="tc-form-label">Step name</tc-form-label>
     <input class="form-control w-100" type="text" placeholder="Input step name" [(ngModel)]="newStep.name">
   </div>
-  <div class="col-12 p-0">
+  <div class="col-12 p-0 mt-3">
     <tc-form-group>
       <tc-form-label class="tc-form-label">Role</tc-form-label>
-      <select (change)="roleChanged($event)" class="custom-select rounded" [(ngModel)]="newStep.roleId">
+      <select (change)="roleChanged($event)" class="form-control rounded" [(ngModel)]="newStep.roleId">
         <option style="display:none;"> -- select a role -- </option>
         <option *ngFor="let role of roles" [value]="role.roleId">{{role.role1}}</option>
       </select>

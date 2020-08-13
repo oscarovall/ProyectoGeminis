@@ -5,9 +5,9 @@ $_panel-width: 35 * $module;
 $_nav-height: 11 * $module-rem;
 
 :host {
-	background: #0c1d55;
+	background: $right-menu-bg;
 	border-left: 1px solid main-palette(500);
-	color: #fff;
+	color: $right-menu-color;
 	display: block;
 	position: fixed;
 	right: -$_panel-width;

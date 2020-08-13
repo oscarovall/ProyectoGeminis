@@ -4,27 +4,27 @@
     background: #0c1d55;
     color: #60aeef;
   }
-  
+
   .text-nowrap {
     color: #5ba6e6 !important;
     text-align: center;
     font-size: 14px !important;
   }
-  
+
   ::ng-deep .cal-week-view .cal-day-headers .cal-header {
     flex: 1;
     text-align: center;
     padding: 14px;
   }
-    
+
   .scroll {
-    height: 250px; 
-    overflow-y: scroll;
+    height: 250px;
+    overflow-y: auto;
   }
-  
+
   .bar-progress {
-    background-color: #0068c5; 
-    border-radius: 5px; 
+    background-color: #0068c5;
+    border-radius: 5px;
     max-width: 100%;
     min-width: 350px;
   }

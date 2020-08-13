@@ -32,8 +32,11 @@
 
 .scroll {
 	position: relative;
-	overflow-y: auto;
-	max-height: 110px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  max-height: calc(100% - 80px);
+	// max-height: 110px;
 }
 
 .buttons {
@@ -41,7 +44,13 @@
 }
 
 tc-card {
-	background-color: #001347;
+  background-color: none !important;
+  border: none !important;
+}
+
+.profile-content-class{
+    background: transparent;
+    border: none; 
 }
 
 // hr {
@@ -57,10 +66,12 @@ $img-size: 12 * $module;
 :host {
   .contact-wrapper {
     .tc-card {
-      background-color: #001347;
+      background-color: none !important;
       margin: 0;
       padding: 0px 23px 0 28px;
+      border: none !important;
     }
+
     .contact {
       flex: 1;
       min-width: 100%;
@@ -89,6 +100,7 @@ $img-size: 12 * $module;
             position: relative;
           }
         }
+
         .contact-name {
           font-size: 14px;
 
@@ -96,30 +108,33 @@ $img-size: 12 * $module;
             color: rgba(#eae5eb,.8);
             font-weight: 500;
             text-decoration: none;
-						transition: color .2s $animation;
+            transition: color .2s $animation;
 
             &:hover {
               color: #eae5eb;
             }
           }
         }
+
         .contact-role {
           font-size: 14px;
           // opacity: 0.6;
           margin-bottom: 2 * $module-rem;
         }
       }
+
       .contact-item {
         display: flex;
         flex-direction: row;
         font-size: 14px;
         justify-content: space-between;
         padding: $module-rem 0;
-        color: #eae5eb;
+        color: $color-main-font;
 
         & > *:first-child {
           // opacity: 0.6;
         }
+
         a {
           color: rgba(#eae5eb,.8);
           font-weight: 500;
@@ -137,12 +152,14 @@ $img-size: 12 * $module;
   .container {
     position: relative;
   }
+
   .image {
     opacity: 1;
     display: block;
     transition: .5s ease;
     backface-visibility: hidden;
   }
+
   .middle {
     transition: .5s ease;
     opacity: 0;
@@ -155,12 +172,15 @@ $img-size: 12 * $module;
     width: 50px;
     height: 50px;
   }
+
   .container:hover .image {
     opacity: 0.3;
   }
+
   .container:hover .middle {
     opacity: 1;
   }
+
   .text {
     color: #64b5f6;
     width: 100%;

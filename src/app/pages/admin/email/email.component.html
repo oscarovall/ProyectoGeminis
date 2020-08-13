@@ -1,6 +1,6 @@
 <div class="row w-100 m-0 menuTitle3Div">
   <div class="col-3 p-0 m-auto">
-    <select class="custom-select rounded" [(ngModel)]="selectedChannel" (change)="changeChannel($event.target.value)">
+    <select class="form-control rounded font-filtro" [(ngModel)]="selectedChannel" (change)="changeChannel($event.target.value)">
       <option [ngValue]="null" style="display:none;"> -- Select Channel Type -- </option>
       <option [value]="appConfig.templates.email">{{appConfig.templates.email}}</option>
       <option [value]="appConfig.templates.textMessage">{{appConfig.templates.textMessage}}</option>
@@ -56,7 +56,7 @@
 </div>
 <div class="row pl-3 pr-3 w-100" *ngIf="textTemplates.length > 0 && !loading && selectedChannel == appConfig.templates.textMessage">
   <div class="col-3 p-0">
-    <select class="custom-select rounded" [(ngModel)]="selectedSmsTemplateId" (change)="selectSmsTemplate()" >
+    <select class="form-control rounded font-filtro" [(ngModel)]="selectedSmsTemplateId" (change)="selectSmsTemplate()" >
       <option [ngValue]="null" style="display:none;"> -- Select Template -- </option>
       <option [value]="template.templateId" *ngFor="let template of textTemplates; let pos = index" >{{template.name}}</option>
     </select>
@@ -80,7 +80,7 @@
       </div>
 
       <div class="col-3">
-        <select (change)="addVariable($event.target.value)" class="custom-select rounded">
+        <select (change)="addVariable($event.target.value)" class="form-control rounded font-filtro">
           <option value=""> -- Add Variable -- </option>
           <optgroup *ngFor="let class of (attributeTypes | attTypeGroup)" label="{{class.name}}">
             <option *ngFor="let attributeType of class.attributeType" [value]="attributeType.attributeTypeId">{{attributeType.name}}</option>
@@ -89,7 +89,7 @@
       </div>
 
       <div class="col-3">
-        <select class="custom-select rounded" [(ngModel)]="selectedLanguage" (change)="changeLanguage($event.target.value)">
+        <select class="form-control rounded font-filtro" [(ngModel)]="selectedLanguage" (change)="changeLanguage($event.target.value)">
           <option style="display:none;"> -- Select Language -- </option>
           <option [value]="appConfig.languages.english">{{appConfig.languages.english}}</option>
           <option [value]="appConfig.languages.spanish">{{appConfig.languages.spanish}}</option>

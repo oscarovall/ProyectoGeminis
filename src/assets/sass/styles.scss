@@ -17,7 +17,9 @@ html {
 }
 body {
 	height: 100%;
-	overflow-x: hidden;
+  overflow-x: hidden;
+  position: relative;
+  background: $background;
 }
 app {
 	display: block;
@@ -42,10 +44,11 @@ input.form-control {
 	color: #fff;
 }
 .form-control {
-	background: transparent;
-	padding: 0;
-	border: 0;
-	height: auto;
+  background: transparent;
+  padding: 0;
+  border: 0;
+  height: auto;
+  cursor: pointer;
 }
 
 .form-control:disabled{
@@ -96,7 +99,7 @@ timepicker .form-control,
 }
 
 .alertTag,
-.warnignTag,
+.warningTag,
 .successTag,
 .defaultTag,
 .inactiveTag {
@@ -123,6 +126,11 @@ timepicker .form-control,
 	text-align: center;
 }
 
+
+.defaultTag,
+.bg-info {
+	background-color: #00529b;
+}
 .alertTag,
 .bg-warning {
 	background-color: #cc7d22;
@@ -135,10 +143,6 @@ timepicker .form-control,
 .successTag,
 .bg-success {
 	background-color: #6ca100;
-}
-.defaultTag,
-.bg-info {
-	background-color: #00529b;
 }
 
 .mat-snack-bar-container {
@@ -188,7 +192,7 @@ timepicker .form-control,
 }
 
 p {
-	color: #fff;
+  color: $color-main-font;
 }
 
 a.blue {
@@ -205,29 +209,43 @@ a.blue {
 	font-style: normal;
 	line-height: 1.5;
 	letter-spacing: normal;
-	color: #fff;
+	color: $color-main-font;
+}
+
+.text-a {
+  color: #5aaef3 !important;
 }
 
 .title2 {
   font-weight: 500;
   margin-bottom: 0.5rem;
   font-size: 16px;
-  color: var(--color-main-font);
+  color: $color-main-font;
+}
+
+.title2-lead {
+  color: $color-main-font;
 }
 
 .title3 {
-	font-weight: 500;
-	font-size: 12px;
-	margin-bottom: 0.4rem;
-	text-align: center;
-	white-space: nowrap;
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 0.4rem;
+  text-align: center;
+  white-space: nowrap;
+  color: $color-main-font;
 }
+
+.info {
+  color: $color-main-font !important;
+}
+
 
 .title4 {
 	font-size: 20px;
 	line-height: 25px;
 	top: 4px;
-	position: relative;
+	position:relative;
 }
 
 .text {
@@ -235,6 +253,95 @@ a.blue {
 	white-space: nowrap;
 	overflow: hidden;
 }
+
+//Card
+.panel-body{
+  border: none !important;
+}
+
+hr {
+  border:solid 1px $custom-select !important;
+}
+
+.numberpicker {
+  border-radius: 5px;
+  background-color: $custom-select !important;
+  height: 30px;
+  width: 58px;
+}
+
+.cal-month-view .cal-cell-top {
+  background-color: $fondo-dia !important;
+  color: $font-dia-title !important;
+}
+
+.cal-month-view .cal-header .cal-cell {
+  color: $font-dia-title !important;
+  background:$fond-hover !important;
+}
+
+.cal-month-view .cal-day-cell {
+  border-right: 1px solid $border-Calendar-color !important;
+  border-left: 1px solid $border-Calendar-color !important;
+  border-bottom: 1px solid $border-Calendar-color !important;
+}
+
+.cal-month-view .cal-days {
+  border: 1px solid $border-Calendar-color !important;
+  border-bottom: 0;
+}
+
+.cal-month-view .cal-days .cal-cell-row {
+  border-bottom: 1px solid $border-Calendar-color !important;
+}
+
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+  color: $font-day-color !important;
+}
+
+.cal-month-view .cal-events {
+  background: $custom-select !important;
+  border: 1px solid transparent !important;
+  margin: 0px !important;
+}
+
+.cal-month-view .cal-open-day-events {
+  padding: 15px;
+  color: $subtitleWidget !important;
+  background-color: $events-calendar-day !important;
+}
+
+.bs-datepicker-body {
+  background-color:$fondo-dia !important;
+  border: 0;
+}
+
+
+.bs-datepicker-body table td {
+  color: $subtitleWidget !important;
+}
+
+.theme-green .bs-datepicker-body table td span.selected{
+    color:white !important;
+}
+
+.theme-green .bs-datepicker-body table td span.is-highlighted:not(.disabled):not(.selected) {
+  color: white !important;
+}
+
+.cal-month-view.cal-header.cal-cell:hover{
+    background:transparent !important;
+}
+
+.theme-green .bs-datepicker-head {
+  background-color: $custom-select !important;
+}
+
+.bs-datepicker-head button {
+  color: $subtitleWidget !important;
+}
+
+
 
 td > button {
 	color: #fff !important;
@@ -246,15 +353,31 @@ input[type=number],
 input[type=email],
 select {
 	border-radius: 4px;
-	background-color: #1f316b !important;
-	border: 0px;
+	background-color: $input-bg !important;
+	border: 1px solid $input-border;
 	font-family: Roboto;
 	font-size: 14px;
-	font-weight: 300;
+	font-weight: 400 !important;
 	line-height: 1.14;
-	color: #eae5eb !important;
+	color: $input-color !important;
 	padding-left: 7px;
 }
+
+/*span {
+  width: 8px;
+  height: 14px;
+  opacity: 0.9;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.14;
+  color: $input-color !important;
+}*/
+
+input[type=text]:focus{
+  outline: none !important;
+  border:2px solid #B7D7FB;
+}
+
 input[type=password],
 input[type=text],
 select,
@@ -281,10 +404,11 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   // border: 1px solid #1f316b ;
-  -webkit-text-fill-color: #eae5eb ;
-  background-color: #1f316b !important;
+  -webkit-text-fill-color: $input-color ;
+  background-color: $input-bg !important;
   // -webkit-box-shadow: 0 0 0px 1000px #000 inset;
-  transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 9999s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
 .custom-select {
@@ -303,6 +427,10 @@ select.form-control {
 }
 textarea.form-control {
 	height: 64px;
+}
+
+.invalid-feedback {
+  font-size: 13px;
 }
 
 .item-img {
@@ -333,6 +461,47 @@ textarea.form-control {
 
 .lead-label-date {
   margin-top: 15px;
+}
+
+//Input
+textarea, input[type=password], input[type=text], input[type=number], input[type=email], select {
+  border-radius: 4px;
+  background-color: $custom-select !important;
+  border: 0px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.14;
+  color: $font-filtros !important;
+  padding-left: 7px;
+}
+
+.btn-search {
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: $custom-select !important;
+  color: $font-filtros !important;
+  padding-right: 13px;
+}
+
+.aosp-ui-view {
+  background-image:$icons-select !important;
+}
+
+.panel-header.icon span {
+  background:$icons-down !important;
+  border-radius: 1px;
+  display: block;
+  width: 14px;
+  height: 2px;
+  margin-bottom: 6px;
+  transition: opacity 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+a {
+  /* color: #eae5eb !important; */
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
 }
 
 /**********
@@ -418,7 +587,12 @@ body {
 .mat-dialog-container {
 	box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14),
 		0 9px 46px 8px rgba(0, 0, 0, .12);
-	background: #0c1d55 !important;
+  background: $background !important;
+  color: $default-color !important;
+}
+
+.title {
+  color:$color-main-font !important;
 }
 
 //Modal
@@ -449,6 +623,13 @@ LIST DOCUMENTS
 	color: #bd2536;
 }
 
+$pag-bg-num: var(--pag-bg-num);
+$pag-bg-arrows: var(--pag-bg-arrows);
+$pag-bg-selected: var(--pag-bg-selected);
+$pag-color-num: var(--pag-color-num);
+$pag-color-selected: var(--pag-color-selected);
+$pag-color-arrows: var(--pag-color-arrows);
+
 /**********
 Pagination
 **********/
@@ -464,29 +645,16 @@ Pagination
   vertical-align: middle;
   width: 32px;
   height: 32px;
-  background-color: #1f316b;
-  font-size: 12px;
+  background-color: $pag-bg-num;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.67;
   letter-spacing: normal;
   text-align: center;
-  color: #5a6aa5;
+  color: $pag-color-num !important;
 }
-
-.page-link:hover, .page-item:hover {
-  border-color: #1f316b;
-  opacity: 70%;
-}
-.page-item.disabled .page-link{
-  background-color: #1F316B;
-}
-.page-item:first-child.disabled .page-link, .page-item:last-child.disabled .page-link{
-  background-color:#00529b;
-  opacity: 70%;
-}
-
 
 .page-item:last-child .page-link, .page-item:first-child .page-link{
   cursor: pointer;
@@ -497,7 +665,7 @@ Pagination
   justify-content: center;
   border-radius: 4px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.32);
-  background-color: #00529b;
+  background-color: $pag-bg-arrows;
   font-family: Roboto;
   font-size: 14px;
   font-weight: 300;
@@ -505,7 +673,29 @@ Pagination
   font-style: normal;
   line-height: 2;
   letter-spacing: normal;
-  color: #eae5eb;
+  color: $pag-color-arrows !important;
+}
+
+.page-item.active .page-link {
+  background-color: $pag-bg-selected;
+  color: $pag-color-selected !important;
+}
+
+.page-link:hover, .page-item .page-link:hover {
+  background-color: $pag-bg-hover;
+  color: $pag-color-hover !important;
+  // opacity: 50%;
+}
+
+.page-item.disabled .page-link{
+  background-color: $pag-bg-arrows;
+  color: $pag-color-arrows !important;
+  opacity: 50%;
+}
+
+.page-item:first-child.disabled .page-link, .page-item:last-child.disabled .page-link{
+  //background-color:#00529b;
+  opacity: 50%;
 }
 
 
@@ -561,7 +751,7 @@ Table
 
 .table-bordered {
 	border-top-right-radius: 15px;
-	border-top-left-radius: 15px; 
+	border-top-left-radius: 15px;
 }
 
 .table-bordered th {
@@ -872,7 +1062,7 @@ app-calendar .bs-datepicker {
 }
 
 .tc-card {
-	background-color: #0c1d55 !important;
+	background-color: $right-menu-bg !important;
 }
 
 .remove_all_lines {
@@ -888,10 +1078,34 @@ app-calendar .bs-datepicker {
 
 .bg-item-dashboard {
   background: $gross-profit;
+  border:1px solid $bg-item-dashboard !important;
+}
+
+.slick-prev:before, .slick-next:before {
+  color:$font-filtros !important;
+}
+
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:hover {
+  background: #0d5fa1 !important;
+}
+
+.mat-expansion-panel-header:hover {
+  background: #0d5fa1 !important;
+}
+
+.promoHouseLead {
+  background: $custom-select;
+  border: 1px solid $bg-item-dashboard !important;
+}
+
+.item-circle-step {
+  color: $circle-step !important;
 }
 
 .chartjs-render-monitor {
-  background:$graph-Appointments !important;
+  background: $graph-Appointments !important;
+  border: 1px solid $bg-item-dashboard !important;
 }
 
 .tittleLeads {
@@ -914,10 +1128,18 @@ app-calendar .bs-datepicker {
 	color: #0d5fa1 !important;
   }
 
+.borderTittle-table {
+  border-bottom: 2px solid #68b7f6 !important;
+}
 
 .task-description {
   color: $task-description !important;
 }
+
+
+
+////////////////Calendar///////////
+
 
 
   ///////////////////
@@ -929,7 +1151,7 @@ app-calendar .bs-datepicker {
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 3.25;
+  // line-height: 3.25;
   letter-spacing: normal;
   text-align: left;
   color: #5aaef3;
@@ -989,7 +1211,7 @@ app-calendar .bs-datepicker {
 }
 
 .remove_lines {
-  color: $font-table-content;
+  color: $font-table-content !important;
 }
 
 .parrafo {
@@ -1139,4 +1361,40 @@ td.remove_line.text-left.homeDetails.i{
 .input-search {
 	height: 38px;
 	border-radius: 5px 0 0 5px !important;
+}
+
+.mat-stepper-horizontal, .mat-stepper-vertical {
+    background-color: transparent !important;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: $background !important;
+}
+
+.mat-step-header .mat-step-label.mat-step-label-active {
+	color: $default-color !important;
+	font-size:16px
+}
+.mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: #7b1fa2;
+  color: $default-color !important;
+}
+.font-white {
+  color: #fff !important;
+}
+
+.mat-vertical-stepper-header {
+  padding: 12px !important;
+}
+
+.mat-vertical-content-container {
+  margin-left: 0px !important;
+}
+
+.mat-stepper-vertical-line::before {
+  border-left-style: none !important;
+}
+
+.mat-vertical-content {
+  padding: 0 16px 16px 16px !important;
 }

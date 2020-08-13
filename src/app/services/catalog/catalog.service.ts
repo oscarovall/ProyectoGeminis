@@ -146,4 +146,96 @@ export class CatalogService {
       );
   }
 
+  uploadFloorplanImg(data: FormData) {
+    return this.http.post<any>(`${environment.api}ProductsCatalog/upload-floorplan-image`, data)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when creating a Document',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  uploadIcon(data: FormData) {
+    return this.http.post<any>(`${environment.api}ProductsCatalog/upload-icon`, data)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when creating a Document',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  uploadProductImg(data: FormData) {
+    return this.http.post<any>(`${environment.api}ProductsCatalog/upload-product-image`, data)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when creating a Document',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  deleteFloorplanImg(productId: number) {
+    const data = {
+      'productId': productId
+    };
+    return this.http.post<any>(`${environment.api}ProductsCatalog/delete-floorplan-image`, data)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when delete floorplan',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  deleteIcon(productId: number) {
+    const data = {
+      'productId': productId
+    };
+    return this.http.post<any>(`${environment.api}ProductsCatalog/delete-icon`, data)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when Delete Icon',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  deleteproductImg(productImgId: number) {
+    const data = {
+      'productImgId': productImgId
+    };
+    return this.http.post<any>(`${environment.api}ProductsCatalog/delete-product-image`, data)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when Delete Product',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
 }

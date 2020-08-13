@@ -243,7 +243,7 @@ export class ProfileComponent implements OnInit {
 
    logout(): void {
     setTimeout(() => {
-      this.router.navigate(['/log-out']);
+      this.router.navigate(['/auth/log-out']);
     }, 0);
    }
 }

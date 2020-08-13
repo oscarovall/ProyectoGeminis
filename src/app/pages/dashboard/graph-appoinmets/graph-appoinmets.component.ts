@@ -20,6 +20,8 @@ import { CustomEventTitleFormatter } from '../../apps/aosp/calendar/custom-event
 import { Chart, ChartOptions } from 'chart.js';
 import { GraphAppointmentsService } from '../../../services/graphAppointment/graph-appointments.service';
 import { LeadsService } from '../../../services/leads/leads.service';
+import { ThemeService } from '../../../services/theme/theme.service';
+import { Theme, light, dark } from '../../../models/ui/theme';
 
 
 
@@ -66,7 +68,8 @@ export class GraphAppoinmetsComponent implements OnInit {
 
   cargando: boolean = true;
 
-
+  speedData = null;
+  theme: Theme;
 
   constructor(
     private authService: AuthService,
@@ -76,11 +79,17 @@ export class GraphAppoinmetsComponent implements OnInit {
     private cService: CalendarService,
     private graphAppointmentsService: GraphAppointmentsService,
     public datepipe: DatePipe,
-    public appConfig: AppConfig, public dialog: MatDialog, private _snackBar: MatSnackBar) {
+    public appConfig: AppConfig,
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private themeService: ThemeService) {
 
-    this.actions = [
+    this.theme = this.themeService.getActiveTheme();
+    this.themeService.changeTheme.subscribe((theme: Theme) => {
+      this.changeTheme(theme);
+    });
 
-    ];
+    this.actions = [];
 
     this.activeDayIsOpen = true;
 
@@ -95,7 +104,6 @@ export class GraphAppoinmetsComponent implements OnInit {
       this.updateEvents();
     });
 
-
     this.selectedEvent = this.events[0];
     this.eventActive = false;
     this.newEvent = false;
@@ -104,7 +112,7 @@ export class GraphAppoinmetsComponent implements OnInit {
     this.selectedStartDate = '';
     this.selectedTitle = '';
     this.selectedStartTime = '';
-    this.selectedEndTime = ''
+    this.selectedEndTime = '';
 
     this.activeDayIsOpen = true;
 
@@ -117,7 +125,6 @@ export class GraphAppoinmetsComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.getCount();
   }
 
@@ -128,7 +135,6 @@ export class GraphAppoinmetsComponent implements OnInit {
     });
   }
 
-
   changePage(currentPage) {
     if (this.teamMemberSelected) {
       this.getLeadsByTeamMember(currentPage);
@@ -136,7 +142,6 @@ export class GraphAppoinmetsComponent implements OnInit {
     } else {
       this.getLeadByTeamOwner(currentPage);
     }
-
   }
 
   getLeadByTeamOwner(currentPage) {
@@ -193,7 +198,7 @@ export class GraphAppoinmetsComponent implements OnInit {
     const startDate = formatDate(this.startDate, 'yyyy/MM/dd', 'en-US');
     const endDate = formatDate(this.endDate, 'yyyy/MM/dd', 'en-US');
     if (this.teamMemberSelected) {
-      const id = this.teamMemberSelected; 
+      const id = this.teamMemberSelected;
       const IncludeTeamMebers = false;
       this.leadService.getCount(id, IncludeTeamMebers, startDate, endDate).subscribe((response) => {
         this.paintGrapfic(response);
@@ -213,54 +218,74 @@ export class GraphAppoinmetsComponent implements OnInit {
       return;
     }
 
-    var dataClosed = [];
-    var dataTotal = [];
-    var dataLabel = [];
+    const dataClosed = [];
+    const dataTotal = [];
+    const dataLabel = [];
 
-
-    for (var i = 0; i < response.results.length; i++) {
+    for (let i = 0; i < response.results.length; i++) {
       dataTotal.push(response.results[i].total);
       dataClosed.push(response.results[i].closed);
       dataLabel.push(response.results[i].dayOfWeek);
-    };
+    }
 
-
-    var speedCanvas = document.getElementById("speedChart") as HTMLCanvasElement;
-
-    Chart.defaults.global.defaultFontFamily = "Lato";
-    Chart.defaults.global.defaultFontSize = 18;
-
-    var dataFirst = {
-      label: "Appointments Set",
+    const dataFirst = {
+      label: 'Appointments Set',
       data: dataTotal,
       lineTension: 0,
       fill: false,
       borderColor: '#5ba6e6'
     };
 
-
-    var dataSecond = {
-      label: "Appointments Shown",
+    const dataSecond = {
+      label: 'Appointments Shown',
       data: dataClosed,
       lineTension: 0,
       fill: false,
       borderColor: '#8d2fb5a6'
     };
 
-    var speedData = {
+    this.speedData = {
       labels: dataLabel,
       datasets: [dataFirst, dataSecond]
     };
 
-    Chart.defaults.global.defaultFontColor = 'white';
+    this.createChart();
+
+    this.cargando = false;
+  }
+
+  changeTheme(theme: Theme) {
+    this.theme = this.themeService.getActiveTheme();
+    this.createChart();
+  }
+
+  createChart() {
+    const speedCanvas = document.getElementById('speedChart') as HTMLCanvasElement;
+
     Chart.defaults.global.defaultFontFamily = 'Roboto';
-    var chartOptions = {
+    Chart.defaults.global.defaultFontSize = 12;
+
+    Chart.defaults.global.defaultFontColor = '#0c1d55';
+    if (this.theme === dark) {
+      Chart.defaults.global.defaultFontColor = '#FFFFFF';
+    }
+
+    const chartOptions = {
+      scales: {
+        yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1,
+            }
+        }]
+      },
       legend: {
         display: true,
         position: 'bottom',
         labels: {
           boxWidth: 80,
-          fontColor: 'white'
+          fontColor: Chart.defaults.global.defaultFontColor,
+          fontFamily: 'Roboto'
         },
 
         scales: {
@@ -277,20 +302,16 @@ export class GraphAppoinmetsComponent implements OnInit {
               fixedStepSize: 1
             }
           }]
-         
+
         }
-
       }
-
     } as ChartOptions;
 
-    var lineChart = new Chart(speedCanvas, {
+    const lineChart = new Chart(speedCanvas, {
       type: 'line',
-      data: speedData,
+      data: this.speedData,
       options: chartOptions
     });
-
-    this.cargando = false;
   }
 
   calculateDateRange() {

@@ -1,5 +1,5 @@
 .text-title {
-    color: #5aaef3 !important;
+    color: var(--color-default-font) !important;
 }
 
 .table-responsive {
@@ -17,3 +17,4 @@
 .alert.alert-warning {
   background:$alert-warning !important;
 }
+

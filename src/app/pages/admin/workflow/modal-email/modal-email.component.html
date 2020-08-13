@@ -8,7 +8,7 @@
   <div class="col-12 p-0">
     <tc-form-group>
       <tc-form-label class="tc-form-label">Email Template</tc-form-label>
-      <select (change)="templateChanged($event)" class="custom-select rounded" [(ngModel)]="newStep.templateId">
+      <select (change)="templateChanged($event)" class="form-control rounded" [(ngModel)]="newStep.templateId">
         <option style="display:none;"> -- select an option -- </option>
         <option *ngFor="let template of templateService.templates" [value]="template.templateId">{{template.name}}</option>
       </select>

@@ -21,7 +21,7 @@
 </div>
 
 <div class="pl-3 pr-3" *ngIf="!cargando">
-  <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+  <div class="table-responsive p-0 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
     <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
       <thead>
         <tr class="borderTittle-table">
@@ -41,14 +41,14 @@
       <tbody>
         <tr *ngFor="let led of leads;" class="animated fadeIn">
 
-          <td width="" class="remove_lines text-center"><a style="color: rgb(70, 140, 200) !important;" href="/lead/{{led.leadId}}"> {{led.mainCustomer.name}} {{led.mainCustomer.lastname}}</a></td>
+          <td width="" class="remove_lines text-center"><a href="/lead/{{led.leadId}}"> {{led.mainCustomer.name}} {{led.mainCustomer.lastname}}</a></td>
           <td width="" class="remove_lines text-center">{{led.employeeLead[0].employee.name}}</td>
           <td width="" class="remove_lines text-center">{{led.employeeLead[1].employee.name}}</td>
           <td width="" class="remove_lines text-center">{{led.leadProducts[0].productInv.manufacturer.shortName}}</td>
           <td width="" class="remove_lines text-center">{{led.leadProducts[0].productInv.name}}</td>
           <td width="" class="remove_lines text-center">{{led.leadProducts[0].productInv.hudNum}}</td>
           <td width="" class="remove_lines text-center">{{led.leadAttributeValue[3].attributeValue}}</td>
-          <td width="" class="remove_lines text-center">{{led.leadAttributeValue[2].leadAttributeValue1}}</td>
+          <td width="" class="remove_lines text-center">{{led.leadAttributeValue[2].leadAttributeValue1 | date:'MM/dd/y'}}</td>
           <td width="" class="remove_lines text-center">{{led.leadAttributeValue[5].attributeValue}}</td>
           <td width="" class="remove_lines text-center">{{led.leadAttributeValue[4].leadAttributeValue1 | date:'MM/dd/y'}}</td>
 
@@ -60,7 +60,7 @@
   <div class="d-flex justify-content-between mt-3">
     <ngbd-pagination-advanced [totalItems]='totalPages' [page]="currentPage" (pageChanged)="changePage($event)"></ngbd-pagination-advanced>
 
-    <select class="custom-select font-filtro" style="width: auto" [(ngModel)]="pageSize" (change)="changePageSize()">
+    <select class="form-control font-filtro" style="width: auto" [(ngModel)]="pageSize" (change)="changePageSize()">
       <option [ngValue]="5">5 items per page</option>
       <option [ngValue]="10">10 items per page</option>
       <option [ngValue]="50">50 items per page</option>

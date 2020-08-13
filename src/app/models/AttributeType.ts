@@ -10,15 +10,17 @@ export class AttributeType {
   public name: string;
   public description: string;
   public dataTypeId: number;
-  public attributeTypeParentId: number;
+  public attributeId: number;
+  // public attributeTypeParentId: number;
   public classId: number;
   public length: number;
   public position: number;
   public disabled: boolean;
   public obligatory: boolean;
   public required: boolean;
+
+  public attributeNavigation: Attribute;
   public attribute: Attribute[];
-  public attributeNavigation: any;                              //Create model
   public customerAttributeValue: CustomerAttributeValue[];
   public leadAttributeValue: LeadAttributeValue[] = [];
   public class: Class;

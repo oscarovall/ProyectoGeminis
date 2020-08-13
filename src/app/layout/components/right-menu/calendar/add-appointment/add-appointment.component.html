@@ -34,7 +34,7 @@
   <div class="row pb-3">
     <div class="col-5 text-left t-8"><span>Team Members:</span></div>
     <div class="col-7">
-      <select class="custom-select rounded" [(ngModel)]="teamMemberSelected" name="teamMemberSelected"
+      <select class="form-control rounded" [(ngModel)]="teamMemberSelected" name="teamMemberSelected"
         (change)="assignEmployee()" placeholder="select">
         <option [ngValue]="null" style="display:none;"> Team Member </option>
         <option [ngValue]="employee.employeeId" *ngFor="let employee of teamMembers">{{employee.name}}</option>
@@ -55,11 +55,11 @@
     <div class="row">
       <div class="col-5 text-right">
         <date-picker [required]="true" [myDateValue]="addTask.startDate?addTask.startDate: ''" name="startDate"
-          (change)="addTask.startDate = $event"></date-picker>
+          (change)="validaDate($event)" type="time"></date-picker>
         <div class="invalid-feedback">It's required!</div>
       </div>
       <div class="col-7 text-right">
-        <timepicker [(ngModel)]="startTime" name="timepicker1" class="animated fadeIn" [showSpinners]="false"
+        <timepicker [(ngModel)]="startTime"  type="time" name="timepicker1" class="animated fadeIn" [showSpinners]="false"
           [required]="true"></timepicker>
         <div class="invalid-feedback">It's required!</div>
       </div>
@@ -70,12 +70,12 @@
     <div class="col-12 text-left pb-2" *ngIf="type === appConfig.appointmentType.appointment"><span>Ends:</span></div>
     <div class="col-12 text-left pb-2" *ngIf="type !== appConfig.appointmentType.appointment"><span>Date:</span></div>
     <div class="col-5 text-right">
-      <date-picker [required]="true" [myDateValue]="addTask.startDate?addTask.endDate: ''" name="endDate"
-        (change)="addTask.endDate = $event"></date-picker>
+      <date-picker [required]="true"  type="time" [myDateValue]="addTask.startDate?addTask.endDate: ''" name="endDate"
+        (change)="validaDateEnd($event)"></date-picker>
       <div class="invalid-feedback">It's required!</div>
     </div>
     <div class="col-7 text-right">
-      <timepicker [(ngModel)]="endTime" name="timepicker2" class="animated fadeIn" [showSpinners]="false"
+      <timepicker [(ngModel)]="endTime" type="time" name="timepicker2" class="animated fadeIn" [showSpinners]="false"
         [required]="true"></timepicker>
       <div class="invalid-feedback">It's required!</div>
     </div>

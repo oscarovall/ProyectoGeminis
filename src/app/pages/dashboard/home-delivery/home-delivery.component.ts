@@ -40,7 +40,7 @@ export class HomeDeliveryComponent implements OnInit {
 
     this.cargando = true;
 
-    this.leadService.getLeadStatus(this.IdStatus ,this.pageSize, currentPage)
+    this.leadService.getLeadByStatus(this.IdStatus, this.pageSize, currentPage)
       .subscribe((pagination: any) => {
         this.totalPages = pagination.pageCount * 10;
         this.leads = pagination.results;

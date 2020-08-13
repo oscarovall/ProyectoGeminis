@@ -79,7 +79,9 @@ import { SlickModule } from 'ngx-slick';
 import { InventoryTableComponent } from './inventory/inventory-table/inventory-table.component';
 import { DealershipsComponent } from './admin/dealerships/dealerships.component';
 import { ManufacturerComponent } from './admin/manufacturer/manufacturer/manufacturer.component';
-
+import { NotEnoughRightsComponent } from './not-enough-rights/not-enough-rights.component';
+import { UnderConstructionComponent } from './under-construction/under-construction.component';
+import { ModalChangeStatusComponent } from './admin/workflow/modal-change-status/modal-change-status.component';
 
 // import { PAGES_ROUTES } from './pages.routes';
 
@@ -169,7 +171,10 @@ import { ManufacturerComponent } from './admin/manufacturer/manufacturer/manufac
     HomeComponent,
     InventoryTableComponent,
     DealershipsComponent,
-    ManufacturerComponent
+    ManufacturerComponent,
+    NotEnoughRightsComponent,
+    UnderConstructionComponent,
+    ModalChangeStatusComponent
   ],
   entryComponents: [
     ModalConditionComponent,
@@ -178,7 +183,8 @@ import { ManufacturerComponent } from './admin/manufacturer/manufacturer/manufac
     DocUploadComponent,
     ModalFillClassComponent,
     ModalApproveByComponent,
-    ModalCreateTaskComponent
+    ModalCreateTaskComponent,
+    ModalChangeStatusComponent
   ],
   providers: [
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 4000 } },

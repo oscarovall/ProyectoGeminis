@@ -154,7 +154,7 @@
 .aosp-ui-edit-md {
 	background-image: url("/assets/img/AOSP/edit_icon.svg");
 	background-size: 20px;
-	background-position: center;	
+	background-position: center;
 	position: relative;
 	width: 24px !important;
 	min-height: 34px !important;
@@ -163,7 +163,7 @@
 .aosp-ui-calendar-md {
 	background-image: url("/assets/img/AOSP/date_icon.svg");
 	background-size: 22px;
-	background-position: center;	
+	background-position: center;
 	position: relative;
 	width: 24px !important;
 	min-height: 34px !important;
@@ -172,7 +172,7 @@
 .aosp-ui-email-md {
 	background-image: url("/assets/img/AOSP/email_icon.svg");
 	background-size: 23px;
-	background-position: center;	
+	background-position: center;
 	position: relative;
 	width: 24px !important;
 	min-height: 34px !important;
@@ -181,7 +181,7 @@
 .aosp-ui-call-md {
 	background-image: url("/assets/img/AOSP/call_icon.svg");
 	background-size: 20px;
-	background-position: center;	
+	background-position: center;
 	position: relative;
 	width: 24px !important;
 	min-height: 34px !important;
@@ -190,16 +190,16 @@
 .aosp-ui-approve-md {
 	background-image: url("/assets/img/AOSP/approve_icon.svg");
 	background-size: 20px;
-	background-position: center;	
+	background-position: center;
 	position: relative;
 	width: 24px !important;
 	min-height: 34px !important;
 }
 
-.aosp-ui-reset-md {	
+.aosp-ui-reset-md {
 	background-image: url("/assets/img/AOSP/refresh_icon_due.svg");
 	background-size: 20px;
-	background-position: center;	
+	background-position: center;
 	position: relative;
 	width: 24px !important;
 	min-height: 34px !important;
@@ -262,6 +262,10 @@
 
 .aosp-ui-menu9 {
 	background-image: url("/assets/img/AOSP/menu_icon9.svg");
+}
+
+.aosp-ui-menu11 {
+	background-image: url("/assets/img/AOSP/menu_icon11.svg");
 }
 
 // Header Icons
@@ -383,7 +387,7 @@
 	transform: rotate(135deg) translate(0, -50%);
 	-webkit-transform-origin: top;
 	transform-origin: top;
-	top: 50%;
+	top: calc(50% - 3px);
 	left: 4px;
 	transition: all .3s ease-out;
 }

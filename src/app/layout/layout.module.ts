@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UIModule } from '../ui/ui.module';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +12,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
 import { NavBarComponent } from './components/nav-bar';
 import { SideBarComponent } from './components/side-bar';
 import { VerticalLayoutComponent } from './vertical';
@@ -21,6 +22,7 @@ import { MenuComponent } from './components/menu';
 import { FooterComponent } from './components/footer';
 import { LogoComponent } from './components/logo/logo.component';
 import { CloseTaskDialogComponent } from './components/close-task-dialog/close-task-dialog.component';
+
 
 import { RightMenuComponent } from './components/right-menu/right-menu.component';
 import { CalendarComponent } from './components/right-menu/calendar/calendar.component';
@@ -43,6 +45,8 @@ import { CreateLotComponent } from './components/right-menu/create-lot/create-lo
 import { CreateManufacturerComponent } from './components/right-menu/create-manufacturer/create-manufacturer.component';
 import { CreatePlantComponent } from './components/right-menu/create-plant/create-plant.component';
 import { CreateCatalogComponent } from './components/right-menu/create-catalog/create-catalog.component';
+import { ChangeHomeRsoComponent } from './components/change-home-rso/change-home-rso.component';
+import { RejectRsoComponent } from './components/reject-rso/reject-rso.component';
 
 @NgModule({
   imports: [
@@ -55,6 +59,7 @@ import { CreateCatalogComponent } from './components/right-menu/create-catalog/c
     OrderModule,
     BsDatepickerModule,
     MatTabsModule,
+    MatStepperModule,
     TimepickerModule,
     MatAutocompleteModule,
     MatFormFieldModule,
@@ -89,13 +94,19 @@ import { CreateCatalogComponent } from './components/right-menu/create-catalog/c
     CreateLotComponent,
     CreateManufacturerComponent,
     CreatePlantComponent,
+    ChangeHomeRsoComponent,
+    ChangeHomeRsoComponent,
+    RejectRsoComponent,
     CreateCatalogComponent,
   ],
   entryComponents: [
-    CloseTaskDialogComponent
+    CloseTaskDialogComponent,
+    ChangeHomeRsoComponent,
+    RejectRsoComponent
   ],
   providers: [
-    TasksDuePipe
+    TasksDuePipe,
+    CurrencyPipe
   ]
 })
 export class LayoutModule { }

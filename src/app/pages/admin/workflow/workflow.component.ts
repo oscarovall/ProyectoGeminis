@@ -15,6 +15,7 @@ import { ModalApproveByComponent } from './modal-approve-by/modal-approve-by.com
 import { Workflow } from '../../../models/workflow/Workflow';
 import { ModalCreateTaskComponent } from './modal-create-task/modal-create-task.component';
 import { ClassesService, WorkflowService } from '../../../services/service.index';
+import { ModalChangeStatusComponent } from './modal-change-status/modal-change-status.component';
 
 @Component({
   selector: 'app-workflow',
@@ -71,20 +72,20 @@ export class WorkflowComponent implements OnInit {
           const newStep = this.workflowService.newStepObj(2);
           this.openCreateTaskDialog(newStep, 'Create');
 
-          // Assign Role
+          // Change Status
         } else if (stepType.stepTypeId === 3) {
           const newStep = this.workflowService.newStepObj(3);
-          this.openRoleDialog(newStep, 'Create');
+          this.openChangeStatusDialog(newStep, 'Create');
 
-          // Approve By
-        } else if (stepType.stepTypeId === 4) {
+          // Approve By & Approve RSO By
+        } else if (stepType.stepTypeId === 4 || stepType.stepTypeId === 11) {
           const newStep = this.workflowService.newStepObj(4);
           this.openRoleDialog(newStep, 'Create');
 
-          //ToDo Show Calculator
+          // ToDo Show Calculator
         } else if (stepType.stepTypeId === 5) {
           const newStep = this.workflowService.newStepObj(5);
-          //ToDo
+          // ToDo
           this.openEmailDialog(newStep, 'Create');
 
           // Set Attributes
@@ -123,7 +124,7 @@ export class WorkflowComponent implements OnInit {
   // Edit STEP
   editStep(selectedStep: Step) {
     console.log('Edit Step');
-    //ToDo Condition
+    // ToDo Condition
     if (selectedStep.stepTypeId === 0) {
       this.openConditionDialog(selectedStep, 'Edit');
       // Send Email
@@ -132,13 +133,13 @@ export class WorkflowComponent implements OnInit {
       // Create Task for Role
     } else if (selectedStep.stepTypeId === 2) {
       this.openCreateTaskDialog(selectedStep, 'Edit');
-      // Assign Role
+      // Change Status
     } else if (selectedStep.stepTypeId === 3) {
+      this.openChangeStatusDialog(selectedStep, 'Edit');
+      // Approve By & Approve RSO By
+    } else if (selectedStep.stepTypeId === 4 || selectedStep.stepTypeId === 11) {
       this.openRoleDialog(selectedStep, 'Edit');
-      // Approve By
-    } else if (selectedStep.stepTypeId === 4) {
-      this.openRoleDialog(selectedStep, 'Edit');
-      //ToDo Show Calculator
+      // ToDo Show Calculator
     } else if (selectedStep.stepTypeId === 5) {
       this.openEmailDialog(selectedStep, 'Edit');
       // Set Attributes
@@ -212,7 +213,7 @@ export class WorkflowComponent implements OnInit {
     });
   }
 
-  // APPROVE BY AND ASSIGN TO Dialog
+  // APPROVE BY AND PPROVE RSO BY Dialog
   openRoleDialog(newStep: Step, action: string): void {
     const modalConfig = new MatDialogConfig();
     modalConfig.data = { step: newStep, action: action };
@@ -220,6 +221,19 @@ export class WorkflowComponent implements OnInit {
     modalConfig.scrollStrategy = new NoopScrollStrategy();
 
     const modalRef = this.modalDialog.open(ModalApproveByComponent, modalConfig);
+    modalRef.afterClosed().subscribe(result => {
+      this.closeModalStep(result);
+    });
+  }
+
+  // CHANGE STATUS Dialog
+  openChangeStatusDialog(newStep: Step, action: string): void {
+    const modalConfig = new MatDialogConfig();
+    modalConfig.data = { step: newStep, action: action };
+    modalConfig.width = '400px';
+    modalConfig.scrollStrategy = new NoopScrollStrategy();
+
+    const modalRef = this.modalDialog.open(ModalChangeStatusComponent, modalConfig);
     modalRef.afterClosed().subscribe(result => {
       this.closeModalStep(result);
     });

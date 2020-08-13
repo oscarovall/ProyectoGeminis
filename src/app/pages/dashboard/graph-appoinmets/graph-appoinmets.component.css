@@ -1,5 +1,4 @@
 
-
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
   cursor: pointer;
   background: #0c1d55;
@@ -20,9 +19,8 @@
 
 .chartjs-render-monitor {
   animation: chartjs-render-animation 0.001s;
-  background: $graph-Appointments;
+  /* background: $graph-Appointments; */
   height: 400px !important;
-  width: 820px !important;
 }
 
 .fa.fa-spinner.fa-spin.fa-3x {

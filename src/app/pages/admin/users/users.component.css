@@ -5,3 +5,7 @@
   border-left: transparent;
   border-bottom: transparent;
 }
+
+.borderTittle-table {
+  border-bottom: 2px solid #68b7f6 !important;
+}

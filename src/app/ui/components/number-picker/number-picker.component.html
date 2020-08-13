@@ -1,11 +1,11 @@
 <div class="numberpicker row" [ngClass]="{'disabled': disabled}">
   <div class="operator" (click)="subt()" *ngIf="!disabled">
-    <span>-</span>
+    <span class="title2-lead ng-star-inserted">-</span>
   </div>
   <div class="count">
-    <span>{{value}}</span>
+    <div class="title2-lead ng-star-inserted">{{value}}</div>
   </div>
   <div class="operator" (click)="plus()" *ngIf="!disabled" >
-    <span>+</span>
+    <span class="title2-lead ng-star-inserted">+</span>
   </div>
 </div>

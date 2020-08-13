@@ -55,17 +55,21 @@
 	background: transparent;
 }
 p {
-	margin-top: 0.5em;
-	width: 90px;
-	font-size: 14px;
-	font-weight: 300;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: 1.43;
-	letter-spacing: normal;
-	text-align: center;
-	color: #adc9df;
+  margin-top: 0.5em;
+  width: 90px;
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
 }
+
+.item-circle-step {
+  color:$circle-step !important;
+}
+
 span {
 	color: #eae5eb;
 	font-size: 32px;

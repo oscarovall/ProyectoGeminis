@@ -6,6 +6,7 @@ import { LeadStep } from './LeadStep';
 import { Customer } from './Customer';
 import { Employeelead } from '../EmployeeLead';
 import { LeadStatus } from '../leadStatus';
+import { LeadProdOption } from './LeadProdOption';
 
 
 export class LeadProduct {
@@ -44,6 +45,7 @@ export class Lead {
   public leadSteps: LeadStep[];
   public leadStatus: LeadStatus;
   public leadProgressInfo: any;
+  public leadProdOption: LeadProdOption[];
 
   constructor() {
 

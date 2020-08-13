@@ -1,4 +1,4 @@
-<div class="col-12 col-xl-12 col-md-12 col-lg-12 pl-4 pr-4 mt-2" style="background: #132562;">
+<div class="col-12 col-xl-12 col-md-12 col-lg-12 pl-4 pr-4 mt-2 promoHouseLead">
   <div class="row w-100 m-0 menuTitle3Div animated fadeIn pl-2">
     <div>
       <div class="title2">
@@ -12,7 +12,7 @@
   <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)" *ngIf="result && result.length">
     <div ngxSlickItem *ngFor="let productInv of result" class="slide">
 
-        <div class="titleText text-left">
+        <div class="titleText text-center">
           {{productInv.name}} - {{productInv.nameId}}
         </div>
         <ng-container >

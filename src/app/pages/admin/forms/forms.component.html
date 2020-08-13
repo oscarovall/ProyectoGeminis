@@ -10,10 +10,10 @@
   </div>
 </div>
 
-<div class="row px-5" *ngIf="!cargando">
+<div class="row px-5" *ngIf="!cargando"> 
   <div class="row w-100 m-0 menuTitle3Div animated fadeIn">
     <div>
-      <div class="forms-configuration">Forms Configuration</div>
+      <div class="forms-configuration title2">Forms Configuration</div>
     </div>
     <div class="col title1ComponentsDiv text-right pr-0">
       <button tc-button type="button" class="col-xl-2 btn btn-outline-dark rounded addForm" (click)="addNewForm()">
@@ -26,9 +26,9 @@
 
   <div class="pl-3 pr-3 col-xl-12 listaForm rounded square scrollbar-dusty-grass square thin scroll">
     <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
-      <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
+      <table class="table table-bordered table-striped animated fadeIn b-0 mb-0 text-center">
         <thead>
-          <tr>
+          <tr class="borderTittle-table">
             <td scope="col">Category</td>
             <td scope="col">Form</td>
             <td scope="col">Has Document</td>
@@ -38,7 +38,7 @@
         <tbody>
 
           <tr *ngFor="let LeadDocument of getAll; let in=index" class="animated fadeIn">
-            <td width="" class="remove_lines forms">{{LeadDocument.docCategory.name}}</td>
+            <td width="" class="remove_lines forms ">{{LeadDocument.docCategory.name}}</td>
             <td width="" class="remove_lines forms">{{LeadDocument.name}}</td>
             <td width="" class="remove_lines forms pl-5">
               <input class="styled-checkbox" type="checkbox"  [checked]="LeadDocument.templateUrl" >

@@ -1,9 +1,9 @@
 <div class="row w-100 m-0 menuTitle3Div animated fadeIn">
   <div class="col-12 col-md-12 col-xl-6 my-2">
     <div class="title2 t-3">Weekly Metrics</div>
-  </div> 
-  <div  class="col-6 col-md-6 col-xl-3">    
-    <select class="custom-select font-filtro rounded" [(ngModel)]="teamMemberSelected" name="teamMemberSelected"
+  </div>
+  <div  class="col-6 col-md-6 col-xl-3">
+    <select class="form-control font-filtro rounded" [(ngModel)]="teamMemberSelected" name="teamMemberSelected"
       (change)="getWeeklyMetrics()" placeholder="select">
       <option [ngValue]="null" style="display:none;"> Team Member </option>
       <option [ngValue]="null"> All </option>
@@ -32,25 +32,25 @@
           <div class="graph-container">
             <div style="display: flex">
               <div class="label-center">
-                {{data.done}}/{{(data.goal)}}             
+                {{data.done}}/{{(data.goal)}}
             </div>
               <canvas baseChart
-                width="100" 
+                width="100"
                 height="100"
                 [data]="[data.done, data.pending]"
                 [labels]="doughnutChartLabels"
                 [chartType]="doughnutChartType"
                 [colors]="data.color"
                 [legend]="false">
-              </canvas>            
+              </canvas>
             </div>
-           
+
           </div>
         </div>
-      
-      </div>    
-     
+
+      </div>
+
     </div>
   </div>
- 
+
 </div>

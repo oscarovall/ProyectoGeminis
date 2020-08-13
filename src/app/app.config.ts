@@ -87,17 +87,17 @@ export class AppConfig {
     pa: 'Processing Agent'
   };
 
-  leadStatus = {
-    active: 'Active',
-    closed: 'Closed',
-    delivery: 'Delivery',
-    lost: 'Lost',
-    potencial: 'Potencial',
-    pre: 'Pre',
-    qualified: 'Qualified',
-    rejected: 'Rejected',
-    stalled: 'Stalled'
-  };
+  // leadStatus = {
+  //   active: 'Active',
+  //   closed: 'Closed',
+  //   delivery: 'Delivery',
+  //   lost: 'Lost',
+  //   potencial: 'Potencial',
+  //   pre: 'Pre',
+  //   qualified: 'Qualified',
+  //   rejected: 'Rejected',
+  //   stalled: 'Stalled'
+  // };
 
   productInvAvStatus = {
     available: 'Available',
@@ -116,15 +116,15 @@ export class AppConfig {
   };
 
   leadStatusIds = {
-    active: 0,
-    closed: 1,
-    delivery: 2,
-    lost: 3,
-    potencial: 4,
-    pre: 5,
-    qualified: 6,
-    rejected: 7,
-    stalled: 8
+    potencial: 0,
+    // closed: 1,
+    // delivery: 2,
+    // lost: 3,
+    // potencial: 4,
+    // pre: 5,
+    // qualified: 6,
+    // rejected: 7,
+    // stalled: 8
   };
 
   CustomerAT = {

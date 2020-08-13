@@ -5,7 +5,7 @@
         <div class="title1">Workflows List</div>
       </div>
       <div class="col pl-3 title1ComponentsDiv">
-        <select *ngIf="workflowService.workflows" name="attributeWorkflows" class="custom-select rounded"
+        <select *ngIf="workflowService.workflows" name="attributeWorkflows" class="form-control rounded"
           value="selectedWorkflow">
           <option *ngFor="let workflow of workflowService.workflows" [value]="workflowService.selectedWorkflow">
             {{workflow.name}}</option>

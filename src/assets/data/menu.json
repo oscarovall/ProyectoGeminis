@@ -28,27 +28,27 @@
   {
 		"title": "Service and repair",
     "icon": "aosp-ui-serviceandrepair",
-    "routing": "serviceandrepair-dashboard"
+    "routing": "serviceandrepair"
   },
   {
 		"title": "Insurance",
     "icon": "aosp-ui-insurance",
-    "routing": "insurance-dashboard"
+    "routing": "insurance"
   },
   {
 		"title": "Finance",
     "icon": "aosp-ui-finance",
-    "routing": "finance-dashboard"
+    "routing": "finance"
   },
   {
 		"title": "Real Estate",
     "icon": "aosp-ui-realestate",
-    "routing": "realestate-dashboard"
+    "routing": "realestate"
   },
   {
 		"title": "Reports",
     "icon": "aosp-ui-reports",
-    "routing": "report-dashboard"
+    "routing": "reports"
   },
   {
 		"title": "Administration",
@@ -71,10 +71,6 @@
 			{
 				"title": "Attributes",
 				"routing": "attributes-admin"
-			},
-			{
-				"title": "Products",
-				"routing": "products-admin"
 			},
 			{
 				"title": "Workflows",

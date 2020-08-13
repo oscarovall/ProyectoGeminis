@@ -34,6 +34,7 @@ export class ManufacturerComponent implements OnInit {
     this.getManufacturers();
     this.manufacturerService.selectedManufacturerSaved.subscribe((data: Manufacturer) => this.getManufacturers());
     this.manufacturerService.selectedPlantSaved.subscribe((data: Plant) => this.getPlantsByManufacturer());
+    this.manufacturerService.selectedProductSaved.subscribe((data: Product) => this.getProductsByManufacturer());
   }
 
   ngOnInit() {
@@ -63,10 +64,13 @@ export class ManufacturerComponent implements OnInit {
 
   getProductsByManufacturer() {
     this.loading = true;
+    this.products = [];
     const manufacturerId = this.selectedManufacturer.manufacturerId;
+    setTimeout(() => { this.manufacturerService.setSelectedManufacturer(this.selectedManufacturer); });
     this.manufacturerService.getAllManufacturerProducts(manufacturerId).subscribe((response: any) => {
       this.loading = false;
       this.products = response.results;
+      console.log('Products->', this.products);
     });
   }
 

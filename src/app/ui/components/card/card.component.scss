@@ -30,17 +30,17 @@ $_types: (
 );
 
 :host {
-	background-repeat: no-repeat;
-	background-color: #0c1d55;
-	background-size: cover;
-	background-position: center center;
-	border: $_border-width solid $_border-color;
-	border-radius: $_shape;
-	color: $_color;
-	display: block;
-	// font-size: $_fz;
-	// margin-bottom: 2 * $module-rem;
-	position: relative;
+  background-repeat: no-repeat;
+  background-color: #0c1d55;
+  background-size: cover;
+  background-position: center center;
+  border: $_border-width solid $_border-color;
+  border-radius: $_shape;
+  color: $_color;
+  display: block;
+  // font-size: $_fz;
+  // margin-bottom: 2 * $module-rem;
+  position: relative;
 
   .bg-image {
     border-radius: inherit;
@@ -50,10 +50,12 @@ $_types: (
     top: 0;
     width: 100%;
   }
+
   img {
     max-width: 100%;
     height: auto;
   }
+
   .card-title {
     font-family: Roboto;
     font-size: 16px;
@@ -62,13 +64,13 @@ $_types: (
     font-style: normal;
     line-height: 1.88;
     letter-spacing: normal;
-		border-radius: inherit;
-		color: #fff;
-		display: block;
+    border-radius: inherit;
+    color: #fff;
+    display: block;
     padding: ($module-rem) ($module-rem * 1);
     position: relative;
-		margin: 0;
-		width: 100%;
+    margin: 0;
+    width: 100%;
 
     .mark {
       //background-image: linear-gradient(-100deg, rgba(#fff, 0), accent-palette(500) 85%, rgba(#fff, 0));
@@ -76,12 +78,16 @@ $_types: (
       background: none;
     }
   }
+
   .card-content {
     display: block;
     padding: $module-rem * 1;
-		position: relative;
-		width: 100%;
+    position: relative;
+    width: 100%;
+    background: $gross-profit;
+    border: 1px solid $bg-item-dashboard;
   }
+
 
   @each $type, $color in $_types {
     &.card-#{$type} {
@@ -95,24 +101,29 @@ $_types: (
       }
     }
   }
-	&.outline {
-		background: none;
-		border: 1px solid currentColor;
-	}
-	.text-center {
-		text-align: center;
-	}
-	.text-right {
-		text-align: right;
-	}
-	&.full-width {
-		display: flex;
-		flex: 1;
 
-		> .card-content {
-			flex: 1;
-		}
-	}
+  &.outline {
+    background: none;
+    border: 1px solid currentColor;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  &.full-width {
+    display: flex;
+    flex: 1;
+
+    > .card-content {
+      flex: 1;
+    }
+  }
+
   ::ng-deep {
     .card-header {
       align-items: center;
@@ -124,9 +135,11 @@ $_types: (
       .addition {
         margin: $module-rem;
       }
+
       .info {
         flex-grow: 2;
       }
+
       .addition {
         @media #{$max543} {
           display: none;

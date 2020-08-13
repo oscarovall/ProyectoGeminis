@@ -17,7 +17,7 @@
         <tc-form-label class="tc-form-label t-8">Panel</tc-form-label>
       </div>
       <div class="col-8 pl-0 pr-0">
-        <select (change)="templateChanged($event, classToShow)" class="custom-select rounded"
+        <select (change)="templateChanged($event, classToShow)" class="form-control rounded"
           [(ngModel)]="classToShow.classId">
           <option style="display:none;"> -- select a panel -- </option>
           <optgroup *ngFor="let classGroups of (classesService.classes | classGroup)" label="{{classGroups.name}}">
@@ -43,7 +43,7 @@
         <tc-form-label class="tc-form-label t-8">Role</tc-form-label>
       </div>
       <div class="col-10 pl-0 pr-0">
-        <select class="custom-select rounded" [(ngModel)]="newStep.role">
+        <select class="form-control rounded" [(ngModel)]="newStep.role">
           <option [ngValue]="null"> -- Everyone -- </option>
           <option *ngFor="let role of roles" [value]="role.role1">{{role.role1}}</option>
         </select>

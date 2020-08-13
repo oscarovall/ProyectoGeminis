@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
-import { AuthService} from '../../services/service.index';
+import { AuthService} from '../../../services/service.index';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,7 +19,7 @@ export class LogoutComponent implements OnInit, AfterContentInit {
   ngAfterContentInit() {
     this.authService.signOut();
     setTimeout(() => {
-      this.router.navigate(['/log-in']);
+      this.router.navigate(['/auth/log-in']);
     }, 0);
   }
 

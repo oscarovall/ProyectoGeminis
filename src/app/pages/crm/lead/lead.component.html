@@ -8,7 +8,9 @@
   <div class="row mb-4">
     <div class="col-12 col-md-9 d-flex">
       <div class="title" *ngIf="lead">{{lead.mainCustomer.name + ' ' + lead.mainCustomer.lastname}}</div>
-      <label class="defaultTag ml-3 " *ngIf="lead">{{lead.leadStatus.status}}</label>
+      <label class="defaultTag ml-3"
+        [ngClass]="{'alertTag': lead.leadStatus.color==='warning', 'errorTag': lead.leadStatus.color==='error'}"
+        *ngIf="lead">{{lead.leadStatus.status}}</label>
     </div>
   </div>
 
@@ -50,7 +52,7 @@
     </div>
     <div class="col-6 col-sm-4 col-md-3 pl-2 pr-2">
       <button class="warningBtn w-100 p-0" type="button" (click)="showModalQualify()">
-      QUALIFYING QUESTIONS</button>
+        QUALIFYING QUESTIONS</button>
     </div>
   </div>
 
@@ -78,7 +80,8 @@
           <p class="title2">1st Visit</p>
           <date-picker *ngIf="lead && !basicInfoDisabled" [myDateValue]="lead._1stVisitDate" [required]="'required'"
             (change)="OnChangesLead($event, 2)"></date-picker>
-          <p class="lead-label-date mb-0" *ngIf="basicInfoDisabled && lead">{{lead._1stVisitDate |  date:'M/d/yy'}}</p>
+          <p class="lead-label-date mb-0 title2-lead" *ngIf="basicInfoDisabled && lead">
+            {{lead._1stVisitDate | date:'MM/dd/y'}}</p>
         </div>
 
         <!-- Signing Date -->
@@ -86,7 +89,8 @@
           <p class="title2">Signing Date</p>
           <date-picker (change)="OnChangesLead($event, 3)" *ngIf="lead && !basicInfoDisabled"
             [myDateValue]="lead.signingDate"></date-picker>
-          <p class="lead-label-date mb-0" *ngIf="basicInfoDisabled && lead">{{lead.signingDate |  date:'M/d/yy'}}</p>
+          <p class="lead-label-date mb-0 title2-lead" *ngIf="basicInfoDisabled && lead">
+            {{lead.signingDate | date:'MM/dd/y'}}</p>
         </div>
 
         <!-- Close Date -->
@@ -94,7 +98,8 @@
           <p class="title2">Close Date</p>
           <date-picker (change)="OnChangesLead($event, 4)" *ngIf="lead && !basicInfoDisabled"
             [myDateValue]="lead.closeDate" [required]="'required'"></date-picker>
-          <p class="lead-label-date mb-0" *ngIf="basicInfoDisabled && lead">{{lead.closeDate |  date:'MMM d, yyyy'}}</p>
+          <p class="lead-label-date mb-0 title2-lead" *ngIf="basicInfoDisabled && lead">
+            {{lead.closeDate | date:'MM/dd/y'}}</p>
         </div>
 
         <div class="col-6 col-sm-2 w-100" style="margin-top: 27px">
@@ -161,13 +166,14 @@
       <ng-container *ngFor="let class of (classes | orderBy:'position') | classcolPipe:false">
         <tc-accordion [view]="'alternative'" class="w-100 p-0" *ngIf='validateClass(class.attribute, classes)'>
           <tc-panel [title]="class.name" [size]="'sm'" [opened]="class.open" *ngIf="class.visible">
-            <tc-card style="background-color: #0c1d55 !important;" class="p-0 m-0">
+            <tc-card class="p-0 m-0">
+              <!-- Dynamic Panel -->
               <form #f="ngForm" (keydown.enter)="cancelarPropagacion($event)" class="form PrintArea"
                 [ngClass]="{'was-validated': class.wasValidated}" novalidate>
                 <div class="row">
                   <ng-container *ngFor="let attributeType of (class.attributeType | orderBy:'position')">
-                    <div class="col-sm-12 col-md-6 col-lg-3 mb-4"
-                      *ngIf="validate(attributeType.attributeNavigation,class) && attributeType.attributeTypeId !== -1"
+                    <div class="col-sm-12 col-md-6 col-lg-3 mt-2"
+                      *ngIf="validate(attributeType, class) && attributeType.attributeTypeId !== -1"
                       [ngClass]="{ 'col-lg-6': attributeType.dataTypeId === appConfig.dataType.TextLong }">
                       <div>
                         <div style="display: flex;">
@@ -195,7 +201,7 @@
                           (change)="onChange($event.target.value, attributeType, class)"
                           [maxLength]="attributeType && attributeType.length ? attributeType.length : '200'"
                           [required]="attributeType.obligatory" />
-                        <div class="text" ngbTooltip="{{
+                        <div class="title2-lead" ngbTooltip="{{
                       class.objectTypeId === appConfig.objectType.Lead ?
                           attributeType.leadAttributeValue &&
                           attributeType.leadAttributeValue[0] &&
@@ -241,7 +247,8 @@ class.objectTypeId === appConfig.objectType.Lead ?
                         }}" [required]="attributeType.obligatory"
                           [maxLength]="attributeType && attributeType.length ? attributeType.length : '1500'">
                         </textarea>
-                        <p *ngIf="class.disabled && attributeType.dataTypeId == appConfig.dataType.TextLong">
+                        <p class="title2-lead"
+                          *ngIf="class.disabled && attributeType.dataTypeId == appConfig.dataType.TextLong">
                           {{
                             class.objectTypeId === appConfig.objectType.Lead ?
                             attributeType.leadAttributeValue &&
@@ -271,7 +278,8 @@ class.objectTypeId === appConfig.objectType.Lead ?
                       ? attributeType.customerAttributeValue[0].customerAttributeValue1
                     : ''" (change)="onChange($event, attributeType, class)" [required]="attributeType.obligatory">
                         </date-picker>
-                        <p *ngIf="class.disabled && attributeType.dataTypeId == appConfig.dataType.Date">
+                        <p class="title2-lead"
+                          *ngIf="class.disabled && attributeType.dataTypeId == appConfig.dataType.Date">
                           {{
                           class.objectTypeId === appConfig.objectType.Lead ?
                           attributeType.leadAttributeValue &&
@@ -284,7 +292,7 @@ class.objectTypeId === appConfig.objectType.Lead ?
                         attributeType.customerAttributeValue[0].customerAttributeValue1
                             ? attributeType.customerAttributeValue[0].customerAttributeValue1
                           : ''
-                         |  date
+                         |  date:'MM/dd/y'
                           }}
                         </p>
 
@@ -348,7 +356,8 @@ class.objectTypeId === appConfig.objectType.Lead ?
 
                           <div class="row w-100 mr-0 justify-content-between"
                             *ngFor="let attribute of attributeType.attribute">
-                            <tc-radio-option [value]="attribute.value" class="col mr-0" [disabled]="class.disabled">
+                            <tc-radio-option [value]="attribute.value" class="col mr-0 title2-lead"
+                              [disabled]="class.disabled">
                               {{ attribute.value }}
                             </tc-radio-option>
                           </div>
@@ -434,7 +443,8 @@ class.objectTypeId === appConfig.objectType.Lead ?
 
                         <!-- Number Picker -->
                         <number-picker *ngIf="attributeType.dataTypeId ==  appConfig.dataType.Number"
-                          [required]="attributeType.obligatory" [disabled]="class.disabled" [value]="class.objectTypeId === appConfig.objectType.Lead ?
+                          [required]="attributeType.obligatory" [disabled]="class.disabled" class="form-control"
+                          [value]="class.objectTypeId === appConfig.objectType.Lead ?
                               attributeType.leadAttributeValue &&
                               attributeType.leadAttributeValue[0] &&
                               attributeType.leadAttributeValue[0].leadAttributeValue1
@@ -465,8 +475,8 @@ class.objectTypeId === appConfig.objectType.Lead ?
 
                         <!-- Phone number -->
                         <number-format *ngIf="attributeType.dataTypeId ==  appConfig.dataType.PhoneNumber"
-                          [disabled]="class.disabled" [format]="'phoneNumber'" [required]="attributeType.obligatory"
-                          (change)="
+                          [disabled]="class.disabled" class="form-control" [format]="'phoneNumber'"
+                          [required]="attributeType.obligatory" (change)="
                         onChange($event.target.value, attributeType, class)
                       " [value]="
                       class.objectTypeId === appConfig.objectType.Lead ?
@@ -504,8 +514,9 @@ class.objectTypeId === appConfig.objectType.Lead ?
 
                         <!-- Money Range -->
                         <div *ngIf="attributeType.dataTypeId ==  appConfig.dataType.MoneyRange">
-                          <range [Disabled]="class.disabled" (Change)="onChange($event, attributeType, class)"
-                            [required]="attributeType.obligatory" [value]="
+                          <range [Disabled]="class.disabled" class="form-control"
+                            (Change)="onChange($event, attributeType, class)" [required]="attributeType.obligatory"
+                            [value]="
                       class.objectTypeId === appConfig.objectType.Lead ?
                             attributeType.leadAttributeValue &&
                             attributeType.leadAttributeValue[0] &&
@@ -526,10 +537,8 @@ class.objectTypeId === appConfig.objectType.Lead ?
                       </div>
                     </div>
                   </ng-container>
-                  <!-- </div>
 
-      <div class="row"> -->
-                  <div class="col-12 h-100 text-right">
+                  <div class="col-12 h-100 text-right mt-3" *ngIf="!hasLeadProductActive()">
                     <div *ngIf="class.disabled && !class.homeComparison">
                       <button (click)="class.disabled = !class.disabled" tc-button [afterIcon]="'icofont-pencil-alt-5'"
                         [view]="'success'" [outline]="true" class="rounded"></button>
@@ -540,11 +549,9 @@ class.objectTypeId === appConfig.objectType.Lead ?
                       </button>
 
                       <ng-container *ngIf="!class.homeComparison">
-
                         <button (click)="save(class)" class="mainBtn">
                           SAVE
                         </button>
-
                       </ng-container>
 
                       <ng-container *ngIf="class.homeComparison">
@@ -552,30 +559,16 @@ class.objectTypeId === appConfig.objectType.Lead ?
                           SEARCH
                         </button>
                       </ng-container>
-
-
-                      <!-- <ng-container *ngIf="class.changedAttTypes && class.changedAttTypes.length">
-            <button (click)="save(class)" class="mainBtn">
-              SAVE 1
-            </button>
-          </ng-container>
-          <ng-container *ngIf="!(class.changedAttTypes && class.changedAttTypes.length)">
-            <button (click)="save(class)" class="mainBtn" disabled="true">
-              SAVE 2
-            </button>
-          </ng-container> -->
                     </div>
                   </div>
+
                 </div>
-              </form><br />
-
-
-              <div *ngIf="class.homeComparison && !hasLeadProductActive() && homes && homes.length > 0">
+              </form>
+              <!-- End Dynamic Panel -->
+              <!-- Home Comparison without Product Active -->
+              <div class="mt-4" *ngIf="class.homeComparison && !hasLeadProductActive() && homes && homes.length > 0">
                 <div class="row">
-
                   <div *ngFor="let home of getSelectedHomes(); let in=index" class="col-xl-4">
-
-
                     <select class="form-control" id="homeSelected{{in}}" [(ngModel)]="homeSelected[in]"
                       name="homeSelected{{in}}" (change)="cargarHome(home, in)" placeholder="select">
                       <option [ngValue]="null" style="display:none;"> Selected Option </option>
@@ -583,21 +576,18 @@ class.objectTypeId === appConfig.objectType.Lead ?
                         <option [ngValue]="home" *ngFor="let home of source.items">{{home.year}} - {{home.name}} -
                           {{home.price | currency}}</option>
                       </optgroup>
-
                     </select>
-
 
                     <div class="row">
                       <div class="col-xl-1 my-3">
                         <input type="radio" name="home{{in}}" [(ngModel)]="homeToOrder" [value]="home"
                           style="width:22px;height:32px;cursor:pointer;">
                       </div>
-
                       <div class="titleText text-center col-xl-10" style="font-size: 20px;">
                         {{home.year}} - {{home.name}}
                       </div>
-
                     </div>
+
                     <ng-container>
                       <a class="col-12 col-md-6 col-lg-6 col-xl-3 result-homes">
                         <div class="position-relative" style="margin-top:-8%;" (click)="seeDetail(home)"
@@ -605,8 +595,6 @@ class.objectTypeId === appConfig.objectType.Lead ?
 
                           <img [src]="home.iconUrl" alt="home.name" style="width: auto; height: 257.3px;"
                             class="w-100 h-100" />
-
-
                           <div class="bg-bottom"></div>
                           <div class="title-result-homes pb-3">
                             <div class="row pl-2 pr-3">
@@ -635,7 +623,6 @@ class.objectTypeId === appConfig.objectType.Lead ?
                         </div>
                       </a>
                     </ng-container>
-
 
                     <div class="row my-3">
 
@@ -672,18 +659,18 @@ class.objectTypeId === appConfig.objectType.Lead ?
                           <div>
                             <div class="text-left">
                               <h3 class="subitulo">Location</h3>
-                              <p class="parrafo">{{home.storeName}}</p>
+                              <p class="">{{home.storeName}}</p>
                             </div>
 
 
                             <div>
                               <h3 class="subitulo">Base Price</h3>
-                              <p class="parrafo">{{home.price | currency}}</p>
+                              <p class="">{{home.price | currency}}</p>
                             </div>
 
                             <div>
                               <h3 class="subitulo">Details</h3>
-                              <p class="parrafo">
+                              <p class="">
                                 {{home.details || 'No Details'}}
                               </p>
                               <hr />
@@ -694,7 +681,7 @@ class.objectTypeId === appConfig.objectType.Lead ?
                               <div class="rounded square scrollbar-dusty-grass square thin scroll
                                  height-atts" style="height: auto; overflow: auto; overflow-x: hidden;
                                       max-height: 160px;">
-                                <p *ngFor="let addOn of home.addOnsInv" class="parrafo">
+                                <p *ngFor="let addOn of home.addOnsInv" class="">
                                   - {{addOn.name}}
                                 </p>
                               </div>
@@ -703,7 +690,7 @@ class.objectTypeId === appConfig.objectType.Lead ?
 
                             <div style="display: inline-flex;">
                               <h3 class="subitulo">Total Price</h3>
-                              <p class="parrafo">
+                              <p class="">
                                 <a class="mx-4" style="font-size:28px">{{home.price | currency}}</a>
                               </p>
                             </div>
@@ -719,54 +706,48 @@ class.objectTypeId === appConfig.objectType.Lead ?
                 </mat-expansion-panel>
                 <app-promo-homes></app-promo-homes>
               </div>
-
-              <!--Home Detail-->
-              <!--<div *ngIf="showSelectedHome">-->
-
-              <div *ngIf="class.homeComparison && hasLeadProductActive() && homeToOrder">
+              <!-- End Home Comparison without Product Active -->
+              <!-- Home Comparison with Product Active -->
+              <div class="mt-4" *ngIf="class.homeComparison && hasLeadProductActive() && homeToOrder">
 
                 <div class="col-12 col-xl-12 col-md-12 col-lg-12 p-0">
-
                   <div class="row">
-                    <div class="col-12 col-md-12 col-lg-4 col-xl-4" style="margin-top:-2%">
-                      <div class="titleText text-center my-4">
+                    <div class="col-12 col-md-12 col-lg-4 col-xl-4 p-0">
+
+                      <div class="titleText text-center">
                         {{homeToOrder.year}} {{homeToOrder.name}}
                       </div>
-                      <ng-container>
-                        <a class="col-12 col-md-6 col-lg-6 col-xl-3 result-homes">
-                          <div class="position-relative" style="margin-top:-40px">
-
-                            <img [src]="homeToOrder.iconUrl" alt="homeToOrder.name" style="width: auto;
-                                  height:257.3px;" class="w-100 h-100" />
-
-                            <div class="bg-bottom"></div>
-                            <div class="title-result-homes pb-3">
-                              <div class="row pl-2 pr-3">
-                                <div class="col">
-                                  <div class="title-bottom">{{homeToOrder.name}}</div>
-                                </div>
+                      <div class="col-12 result-homes pt-0">
+                        <div class="position-relative">
+                          <img [src]="homeToOrder.iconUrl" alt="homeToOrder.name" class="w-100 h-100" />
+                          <div class="bg-bottom"></div>
+                          <div class="title-result-homes pb-3">
+                            <div class="row pl-2 pr-3">
+                              <div class="col">
+                                <div class="title-bottom">{{homeToOrder.name}}</div>
                               </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-4 home-result-feature text-left pr-0">
-                                  <div class="home-sqm-icon">{{homeToOrder.sqft}}</div>
-                                  Square Feet
-                                </div>
-                                <div class="col-4 home-result-feature text-center pr-0">
-                                  <div class="home-beds-icon m-auto">{{homeToOrder.bed}}</div>
-                                  Beedrooms
-                                </div>
-                                <div class="col-4 home-result-feature text-right pr-0">
-                                  <div class="position-right">
-                                    <div class="home-baths-icon mx-4">{{homeToOrder.bath}}</div>
-                                    <div class="">Bathrooms</div>
-                                  </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-4 home-result-feature text-left pr-0">
+                                <div class="home-sqm-icon">{{homeToOrder.sqft}}</div>
+                                Square Feet
+                              </div>
+                              <div class="col-4 home-result-feature text-center pr-0">
+                                <div class="home-beds-icon m-auto">{{homeToOrder.bed}}</div>
+                                Beedrooms
+                              </div>
+                              <div class="col-4 home-result-feature text-right pr-0">
+                                <div class="position-right">
+                                  <div class="home-baths-icon mx-4">{{homeToOrder.bath}}</div>
+                                  <div class="">Bathrooms</div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </a>
-                      </ng-container>
+                        </div>
+                      </div>
+
                       <div class="row my-3">
                         <div class="col-xl-6" *ngIf="homeToOrder._3dTourUrl && true">
                           <button type="button" class="homeBtn btn btn-primary"
@@ -777,142 +758,107 @@ class.objectTypeId === appConfig.objectType.Lead ?
                             (click)="showModal(homeToOrder.floorplanUrl, false)">FLOORPLAN</button>
                         </div>
                       </div>
-                    </div>
 
-                    <div class="col-12 col-md-12 col-lg-4 col-xl-4 pr-0">
-                      <div>
-                        <div class="titleText text-left" style="color:#eae5eb">
-                          Home Details
-                        </div>
-                        <div class="text-left">
-                          <h3 class="subitulo">Location</h3>
-                          <p class="parrafo">{{homeToOrder.manufacturer?.shortName}}</p>
-                        </div>
-
-                        <div>
-                          <h3 class="subitulo">Base Price</h3>
-                          <p class="parrafo">{{homeToOrder.price | currency}}</p>
-                        </div>
-
-                        <div>
-                          <h3 class="subitulo">Details</h3>
-                          <p class="parrafo">
-                            {{homeToOrder.details || 'No Details'}}
-                          </p>
-                        </div>
-
-                        <div *ngIf="homeToOrder && homeToOrder.addOnsInv" class="row ">
-                          <h3 class="subitulo my2">Add-Ons</h3>
-
-                          <div class="rounded square scrollbar-dusty-grass square thin scroll
-                                 height-atts" style="height: auto; overflow: auto; overflow-x: hidden;
-                                max-height: 160px;" *ngIf="homeToOrder.addOnsInv.length > 0">
-                            <p *ngFor="let addOn of homeToOrder.addOnsInv" class="parrafo">
-                              - {{addOn.name}}
-                            </p>
-
+                      <div class="row">
+                        <div class="col-6 pr-0">
+                          <div class="text-left">
+                            <h3 class="subitulo">Manufacturer</h3>
+                            <p class="mb-0">{{homeToOrder.manufacturer?.shortName}}</p>
+                          </div>
+                          <div class="text-left">
+                            <h3 class="subitulo">Model - Year</h3>
+                            <p class="mb-0">{{homeToOrder.nameId + ' / ' + homeToOrder.name}}</p>
+                            <p class="mb-0">{{homeToOrder.year }}</p>
+                          </div>
+                          <div>
+                            <h3 class="subitulo">Base Price</h3>
+                            <p class="mb-0">{{homeToOrder.price | currency}}</p>
                           </div>
                         </div>
+                        <div class="col-6 pr-0">
+                          <div>
+                            <h3 class="subitulo">Details</h3>
+                            <p class="mb-0">
+                              {{homeToOrder.details || 'No Details'}}
+                            </p>
+                          </div>
+                        </div>
+                        <!-- <div class="col-12 pr-0">
+                          <div *ngIf="homeToOrder && homeToOrder.addOnsInv" class="row ">
+                            <h3 class="subitulo my2">Add-Ons</h3>
+
+                            <div class="rounded square scrollbar-dusty-grass square thin scroll w-100
+                                     height-atts" style="height: auto; overflow: auto; overflow-x: hidden;
+                                    max-height: 160px;" *ngIf="homeToOrder.addOnsInv.length > 0">
+                              <p *ngFor="let addOn of homeToOrder.addOnsInv" class="mb-1">
+                                - {{addOn.name}}
+                              </p>
+
+                            </div>
+                          </div>
+                        </div> -->
                       </div>
                     </div>
 
+                    <div class="col-12 col-md-12 col-lg-8 col-xl-8 pr-0">
+                      <div class="row">
+                        <div class="col-12 p-0 title2 ">
+                          <div class="homeDetails">Options</div>
+                        </div>
+                        <ng-container *ngIf="options">
+                          <div class="col-6 mb-2 p-0 d-flex justify-content-between" *ngFor="let option of options" >
+                            <div class="row p-0 w-100">
+                              <div class="col-4 p-0 homeDetails">{{option.name}}</div>
+                              <div class="col-4 r-0 homeDetails">
+                                <input type="text" (change)="changeOption(option)" placeholder="{{option.defaultPrice?'Sugg: ' + option.defaultPrice: ''}}"
+                                  class="w-100" />
+                              </div>
+                              <div class="col-3 pr-0">
+                                <select class="w-100 animated fadeIn">
+                                  <option value="NO">No</option>
+                                  <option value="YES">Yes</option>
+                                  <option value="INC">Inc</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+                        <div class="col-12 p-0">
+                          <hr class="w-100 my-2" />
+                        </div>
+                        <div class="col-12 p-0 d-flex justify-content-between">
+                          <div class="homeDetails">Options Price</div>
+                          <div class="text-right homeDetails">{{homeToOrder.optionsPrice ? homeToOrder.optionsPrice : 0 | currency}}</div>
+                        </div>
+                      </div>
 
-                    <div class="col-12 col-md-12 col-lg-4 col-xl-4 pr-0">
-                      <table class="table animated fadeIn b-0 mb-0">
-                        <thead>
-                          <tr>
-                            <td scope="col" class="text-left text-nowrap" style="font-size:16px;color:#eae5eb;
-                                  border:none">
-                              Princing
-                            </td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr class="animated fadeIn">
-                            <td width="" class="remove_line text-left homeDetails">Sales Price</td>
-                            <td width="" class="remove_lines text-left homeDetails i" style="border-top:transparent">
-                              {{homeToOrder.price | currency}}
-                            </td>
-                          </tr>
-
-                          <tr class="animated fadeIn">
-                            <td width="" class="remove_line text-left homeDetails">Add-Ons</td>
-                            <td width="" class="remove_lines text-left homeDetails" style="border-top:transparent">
-                              {{homeToOrder.addOnsPrice | currency}}
-                            </td>
-                          </tr>
-
-                          <tr class="animated fadeIn">
-                            <td width="" class="remove_line text-left homeDetails pb-0 pt-2">Total Price</td>
-                            <td width="" class="remove_lines text-left homeDetails pb-0 pt-2"
-                              style="border-top:transparent">
-                              {{homeToOrder.price | currency}}
-                            </td>
-                          </tr>
-
-                          <tr class="animated fadeIn">
-                            <td width="" class="remove_line text-left homeDetails pb-0 pt-2">Form T</td>
-                            <td width="" class="remove_lines text-left homeDetails pb-0 pt-2"
-                              style="border-top:transparent">
-                              $
-                            </td>
-                          </tr>
-
-                          <tr class="animated fadeIn">
-
-                            <td width="" class="remove_line text-left homeDetails pb-0 pt-2">Make Ready</td>
-                            <td width="" class="remove_lines text-left homeDetails pb-0 pt-2"
-                              style="border-top:transparent">
-                              $
-                            </td>
-                          </tr>
-
-                          <tr class="animated fadeIn">
-
-                            <td width="" class="remove_line text-left homeDetails pb-0 pt-2">Title Fees</td>
-                            <td width="" class="remove_lines text-left homeDetails pb-0 pt-2"
-                              style="border-top:transparent">
-                              $
-                            </td>
-                          </tr>
-
-                          <tr class="animated fadeIn">
-                            <td width="" class="remove_line text-left homeDetails pb-0 pt-2">MHIT</td>
-                            <td width="" class="remove_lines text-left homeDetails pb-0 pt-2"
-                              style="border-top:transparent">
-                              $
-                            </td>
-                          </tr>
-
-                          <tr class="animated fadeIn">
-                            <td width="" class="remove_line text-left homeDetails pb-0 pt-2">1sr Yr. Ins. Premium</td>
-                          </tr>
-                          <tr class="animated fadeIn">
-                            <td width="" class="remove_line text-left homeDetails pb-0 pt-2">Flood Valuation</td>
-                          </tr>
-                          <tr class="animated fadeIn">
-                            <td width="" class="remove_line text-left homeDetails pb-0 pt-2">Home Valuation</td>
-                          </tr>
-                          <tr class="animated fadeIn">
-                            <td width="" class="remove_line text-left homeDetails pb-0 pt-2">Land</td>
-                          </tr>
-                          <hr style="width: 146%;" />
-                          <tr class="animated fadeIn">
-                            <td width="" class="remove_line text-left homeDetails" style="font-size:20px">Total Price
-                            </td>
-                            <td width="" class="remove_lines text-left homeDetails" style="border:none;font-size:26px">
-                              {{homeToOrder.price | currency}}</td>
-                          </tr>
-
-                        </tbody>
-                      </table>
+                      <div class="row mt-4">
+                        <div class="col-12 p-0 title2 ">
+                          <div class="homeDetails">Princing</div>
+                        </div>
+                        <div class="col-12 p-0 d-flex justify-content-between">
+                          <div class="homeDetails">Options Price</div>
+                          <div class="text-right homeDetails">{{homeToOrder.optionsPrice ? homeToOrder.optionsPrice : 0 | currency}}</div>
+                        </div>
+                        <div class="col-12 p-0 mt-2 d-flex justify-content-between">
+                          <div class="homeDetails">Sales Price</div>
+                          <div class="text-right homeDetails">{{homeToOrder.price | currency}}</div>
+                        </div>
+                        <div class="col-12 p-0">
+                          <hr class="w-100 my-2" />
+                        </div>
+                        <div class="col-12 p-0 h2 d-flex justify-content-between">
+                          <div class="homeDetails">Home Price</div>
+                          <div class="text-right homeDetails">{{homeToOrder.price+(homeToOrder.optionsPrice?homeToOrder.optionsPrice:0) | currency}}</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
                 </div>
 
               </div>
-              <!--</div>-->
+              <!-- End Home Comparison with Product Active -->
             </tc-card>
           </tc-panel>
         </tc-accordion>
@@ -977,7 +923,7 @@ class.objectTypeId === appConfig.objectType.Lead ?
                         [ngClass]="{'d-block': attributeType.valid === false && !class.disabled && class.wasValidated}"
                         *ngIf="attributeType.obligatory">It's required!</div>
                     </div>
-                  </div>
+                  </div><br />
 
                   <div class="col-12 h-100 text-right">
                     <div *ngIf="class.disabled">

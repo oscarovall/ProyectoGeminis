@@ -1,0 +1,20 @@
+<div class="modal-body row w-100 h-100 mx-0">
+  <div class="col-12 p-0">
+    <tc-form-label class="tc-form-label">Step name</tc-form-label>
+    <input class="form-control w-100" type="text" placeholder="Input step name" [(ngModel)]="newStep.name">
+  </div>
+  <div class="col-12 p-0 mt-3">
+    <tc-form-group>
+      <tc-form-label class="tc-form-label">Lead Status</tc-form-label>
+      <select class="form-control rounded" [(ngModel)]="newStep.leadStatus">
+        <option style="display:none;"> -- select a status -- </option>
+        <option *ngFor="let leadStatus of leadsStatus" [value]="leadStatus.leadStatusId">{{leadStatus.status}}</option>
+      </select>
+    </tc-form-group>
+  </div>
+</div>
+<div class="row modal-footer justify-content-end">
+  <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" [view]="'error'" (click)="deleteButton()" *ngIf="action==='Edit'">Delete</button>
+  <button tc-button type="button" class="btn btn-outline-dark mr-2 rounded" (click)="closeButton()">Cancel</button>
+  <button tc-button type="button" class="btn btn-outline-dark rounded" (click)="saveButton()">Save</button>
+</div>
