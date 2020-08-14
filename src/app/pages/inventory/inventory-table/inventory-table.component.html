@@ -29,7 +29,7 @@
 </div>
 
 <div class="pl-3 pr-3" *ngIf="!cargando">
-  <div class="table-responsive pr-2 pl-2 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
+  <div class="table-responsive p-0 bg-aosp-info rounded scroll square scrollbar-dusty-grass square thin">
     <table class="table table-bordered table-striped animated fadeIn b-0 mb-0">
       <thead>
         <tr class="borderTittle-table">
@@ -74,7 +74,7 @@
           <td width="" class="remove_lines text-center">{{product.estOffline | date:'MM/dd/y'}}</td>          
           <td width="50" class="remove_lines text-center">
             <div class="d-flex">
-              <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="seeDetail(product)">
+              <button tc-button type="button" class="btn btn-outline-dark p-0 rounded ml-2" (click)="editHome(product)">
                 <div class="aosp-ui-icon aosp-ui-edit-md"></div>
               </button>
             </div>

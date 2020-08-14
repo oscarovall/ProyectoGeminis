@@ -1,3 +1,4 @@
+import { Location } from './../../../../models/Location';
 import { MatSnackBar } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { Home } from '../../../../models/crm/Home';
@@ -8,6 +9,8 @@ import { LeadsService } from '../../../../services/leads/leads.service';
 import { ProductInv } from '../../../../models/crm/ProductInv';
 import { CatalogService } from '../../../../services/catalog/catalog.service';
 import { Product } from '../../../../models/crm/Product';
+import { ProductInvAvailableStatus } from '../../../../models/crm/ProductInvAvailableStatus';
+import { ProductInvUsedStatus } from '../../../../models/crm/ProductInvUsedStatus';
 
 @Component({
   selector: 'app-add-product-inv',
@@ -16,16 +19,19 @@ import { Product } from '../../../../models/crm/Product';
 })
 export class AddProductInvComponent implements OnInit {
 
-  home: Home;
+  homeInv: ProductInv;
   lead: Lead;
-  locations;
-  homeSelected;
-  serial;
-  hud;
+  locations: Location[];
+  availableStatusList: ProductInvAvailableStatus[];
+  usedStatusList: ProductInvUsedStatus[];
   locationId: number;
   newProductInv: ProductInv;
   catalogHomes: Product[];
+  showCatalogHomes: boolean = true;
 
+  /* data */
+  locationSelected: number;
+  catalogHomeSelected: Product;
 
   constructor(
     private productService: ProductService,
@@ -34,19 +40,33 @@ export class AddProductInvComponent implements OnInit {
     private leadsService: LeadsService,
     private _snackBar: MatSnackBar
   ) {
-    this.home = this.productService.selectedHome;
-    this.productService.selectedHomeChanged.subscribe((home: Home) => {
-      this.home = home;
-    });
-    this.getAllLots();
     this.getAllCatalog();
+    this.getOptionsForProductInv();
+    this.loadAllLots();
+
+    this.productService.selectedHomeInvChanged
+      .subscribe((homeInv: ProductInv) => {
+        this.cleanData();
+        this.homeInv = homeInv;
+        this.locationSelected = (this.homeInv.lot) ? this.homeInv.lot.lotId : this.locationSelected;
+        this.showCatalogHomes = (this.homeInv.productInvId) ? false : true;
+      });
+  }
+
+
+
+  cleanData() {
+    this.homeInv = null;
+    this.showCatalogHomes = true;
+    this.locationSelected = null;
+    this.catalogHomeSelected = null;
   }
 
   ngOnInit() {
 
   }
 
-  getAllLots() {
+  loadAllLots() {
     this.productService.getAllLots().subscribe((response: any) => {
       this.locations = response.results;
       console.log('location->', this.locations);
@@ -60,6 +80,13 @@ export class AddProductInvComponent implements OnInit {
     });
   }
 
+  getOptionsForProductInv() {
+    this.productService.getOptiosForProductInv().subscribe((response: any) => {
+      this.availableStatusList = response.availableStatusList;
+      this.usedStatusList = response.usedStatusList;
+    });
+  }
+
   showModal(url: string, iframe: boolean) {
     this.userService.showModal(url, iframe);
   }
@@ -68,6 +95,21 @@ export class AddProductInvComponent implements OnInit {
   sendNotification(message: string) {
     this._snackBar.open(message);
   }
+
+  changeLocation() {
+    this.catalogHomeSelected = null;
+    if (this.locationSelected) {
+      const productId = this.locations.find(loc => loc.lotId === this.locationSelected).productId;
+      this.catalogHomeSelected = this.catalogHomes.find(catalog => catalog.productId === productId);
+      console.log('casa seleccionada->', this.catalogHomeSelected);
+
+    }
+  }
+
+  setPrice(price: number) {
+    this.homeInv.price = price;
+  }
+
 
   save() { }
 }

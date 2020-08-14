@@ -1,6 +1,9 @@
+import { Location } from './../Location';
 import { ProductInvAvailableStatus } from "./ProductInvAvailableStatus";
 import { ProductInvImg } from "./ProductInvImg";
 import { AddOnsInv } from "./AddOnsInv";
+import { ProductInvUsedStatus } from './ProductInvUsedStatus';
+import { Lot } from '../Lot';
 
 
 
@@ -29,7 +32,9 @@ export class ProductInv {
   productInvUsedStatusId: number;
   productInvAvStatusId: number;
   hudNum: string;
+  hudNum2: string;
   serialNum: string;
+  serialNum2: string;
   rsoOrderNum: string;
   moveInReady: boolean;
   estOffline: string;
@@ -41,6 +46,8 @@ export class ProductInv {
   public productInvAvailableStatus: ProductInvAvailableStatus[];
   public productInvImg: ProductInvImg[];
   public addOnsInv: AddOnsInv[];
+  public productInvUsedStatus: ProductInvUsedStatus;
+  public lot: Location;
 
   constructor() { }
 }

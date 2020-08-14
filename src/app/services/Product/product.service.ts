@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Home } from '../../models/crm/Home';
 import { Lead } from '../../models/crm/lead';
+import { ProductInv } from '../../models/crm/ProductInv';
 
 
 
@@ -16,9 +17,13 @@ import { Lead } from '../../models/crm/lead';
 export class ProductService {
 
   // Home-edit
-  public selectedHome: Home;
+  public selectedHome: Home;  
   public selectedHomeChanged: EventEmitter<Home> = new EventEmitter<Home>();
   public orderHomeSelected: EventEmitter<Home> = new EventEmitter<Home>();
+
+  // Home Inv
+  public selectedHomeInv: ProductInv;
+  public selectedHomeInvChanged: EventEmitter<ProductInv> = new EventEmitter<ProductInv>();
 
   // Lead
   public selectedLead: Lead;
@@ -41,6 +46,10 @@ export class ProductService {
   }
   orderHomeClicked(home: Home) {
     this.orderHomeSelected.emit(home);
+  }
+  setSelectedHomeInv(home: ProductInv) {
+    this.selectedHomeInv = home;
+    this.selectedHomeInvChanged.emit(this.selectedHomeInv);
   }
 
   getProduct(pageSize: number, currentPage: number, filterWords: Array<string>) {
@@ -87,6 +96,21 @@ export class ProductService {
           Swal.fire({
             icon: 'error',
             title: 'Error when getting all Lots',
+            text: err.message
+          });
+          return [];
+        })
+      );
+  }
+
+  getOptiosForProductInv() {
+    const url = `${environment.api}ProductInv/get-options-for-product-inv-status`;
+    return this.http.get<any>(url)
+      .pipe(
+        catchError(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error when getting Optios For ProductInv',
             text: err.message
           });
           return [];

@@ -7,6 +7,7 @@ import { Product } from '../../../models/crm/Product';
 import { ProductInvAvailableStatus } from '../../../models/crm/ProductInvAvailableStatus';
 import { Employee } from './../../../models/Employee';
 import { Home } from '../../../models/crm/home';
+import { ProductInv } from '../../../models/crm/ProductInv';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class InventoryComponent implements OnInit {
   estadoSelected = null;
   estadoSelected2 = null;
 
-  inventory: Product[] = [];
+  inventory: ProductInv[] = [];
   estados: Product[] = [];
   availableStatusList: Product[] = [];
   usedStatusList: Product[] = [];

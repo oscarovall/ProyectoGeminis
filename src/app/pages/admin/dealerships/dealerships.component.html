@@ -66,8 +66,17 @@
           <td width="" class="remove_lines text-center">{{data.zip}}</td>   
           <td width="" class="remove_lines text-center">{{data.storageList.length}}</td>
           <td width="" class="remove_lines text-center">
-            <!-- <div class="my-2 mx-auto aosp-ui-icon-header aosp-ui-view icono" (click)="viewTeamMembers(data)"></div>  -->
-            <ul class="lista lista--outer flex">
+            <ng-template #htmlContent>
+              <table>
+                <tr  class="remove_lines text-center" *ngFor="let item of data.storeMemberList; let pos = index">
+                  <td  class="remove_lines text-left" style="border: none !important;">{{pos+1}}. {{ item.name }}</td>
+                </tr>
+              </table>
+            </ng-template>
+            <div class="my-2 mx-auto aosp-ui-icon-header aosp-ui-view icono" (click)="viewTeamMembers(data)" [ngbTooltip]="htmlContent" [openDelay]="300" [closeDelay]="500000">
+              
+            </div> 
+            <!-- <ul class="lista lista--outer flex">
               <li class="lista__item--outer m-auto">
                 <a class="flex lista--enlace">
                   <div class="my-2 mx-auto aosp-ui-icon-header aosp-ui-view" style="position: relative !important;"></div> 
@@ -76,13 +85,14 @@
                   <li class="lista__item--inner"> <a class="flex lista--enlace"  *ngFor="let member of data.storeMemberList">{{member.name}}</a></li>
                 </ul>        
               </li>
-            </ul>                            
+            </ul>  -->                           
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
 <!-- END DEALERSHIP-TABLE -->
 
 <br>

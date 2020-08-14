@@ -10,6 +10,7 @@ import { ProductService } from '../../../services/Product/product.service';
 import icons from 'glyphicons';
 import { Home } from '../../../models/crm/Home';
 import { UserService } from '../../../services/user/user.service';
+import { ProductInv } from '../../../models/crm/ProductInv';
 
 @Component({
   selector: 'app-inventory-table',
@@ -18,7 +19,7 @@ import { UserService } from '../../../services/user/user.service';
 })
 export class InventoryTableComponent implements OnInit {
 
-  inventory: Product[] = [];
+  inventory: ProductInv[] = [];
   estados: Product[] = [];
   teamMembers: Employee[];
   productInvAvailableStatus: ProductInvAvailableStatus[] = [];
@@ -123,17 +124,18 @@ export class InventoryTableComponent implements OnInit {
   /* -- End Filter By Words -- */
 
   addStockHome() {
+    const newProduct = new ProductInv();
     this.userService.showHideRightMenu(this.appConfig.rightMenu.productInv);
-    setTimeout(() => { this.productService.setSelectedHome(null); });
+    setTimeout(() => { this.productService.setSelectedHomeInv(newProduct); });
   }
 
-  editHome(homeSelected: Home) {
+  editHome(homeSelected: ProductInv) {
     this.userService.showHideRightMenu(this.appConfig.rightMenu.productInv);
-    setTimeout(() => { this.productService.setSelectedHome(homeSelected); });
+    setTimeout(() => { this.productService.setSelectedHomeInv(homeSelected); });
   }
 
-  seeDetail(homeSelected: Home) {
+  /* seeDetail(homeSelected: ProductInv) {
     this.userService.showHideRightMenu(this.appConfig.rightMenu.productInv);
     setTimeout(() => { this.productService.setSelectedHome(homeSelected); });
-  }
+  } */
 }
